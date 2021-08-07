@@ -8,11 +8,25 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Region",
+"language": "GDScript",
+"path": "res://scripts/region.gd"
+} ]
+_global_script_class_icons={
+"Region": ""
+}
+
 [application]
 
 config/name="SPQR2"
 run/main_scene="res://scenes/map/Map.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Region="*res://scripts/region.gd"
 
 [importer_defaults]
 
