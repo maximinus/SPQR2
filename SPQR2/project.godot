@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "Region",
+"class": "MapRegion",
 "language": "GDScript",
 "path": "res://scripts/region.gd"
 } ]
 _global_script_class_icons={
-"Region": ""
+"MapRegion": ""
 }
 
 [application]
