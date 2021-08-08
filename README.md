@@ -1,3 +1,3 @@
 # SPQR2
 
-Control and empire and make Rome the greatest empire the world has ever known.
+Control Rome and make it the greatest empirethe world has ever known.
