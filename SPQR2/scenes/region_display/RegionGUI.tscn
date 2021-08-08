@@ -1,0 +1,79 @@
+[gd_scene format=2]
+
+[node name="RegionGUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -774.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HB1" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 14.0
+
+[node name="NameL" type="Label" parent="VBoxContainer/HB1"]
+margin_right = 42.0
+margin_bottom = 14.0
+text = "Name:"
+
+[node name="NameD" type="Label" parent="VBoxContainer/HB1"]
+margin_left = 46.0
+margin_right = 124.0
+margin_bottom = 14.0
+text = "Some Name"
+
+[node name="HB2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 250.0
+margin_bottom = 32.0
+
+[node name="CityL" type="Label" parent="VBoxContainer/HB2"]
+margin_right = 28.0
+margin_bottom = 14.0
+text = "City:"
+
+[node name="CityD" type="Label" parent="VBoxContainer/HB2"]
+margin_left = 32.0
+margin_right = 69.0
+margin_bottom = 14.0
+text = "Rome"
+
+[node name="HB3" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 250.0
+margin_bottom = 50.0
+
+[node name="CultureL" type="Label" parent="VBoxContainer/HB3"]
+margin_right = 50.0
+margin_bottom = 14.0
+text = "Culture:"
+
+[node name="CultureD" type="Label" parent="VBoxContainer/HB3"]
+margin_left = 54.0
+margin_right = 70.0
+margin_bottom = 14.0
+text = "50"
+
+[node name="HB4" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 250.0
+margin_bottom = 68.0
+
+[node name="WealthL" type="Label" parent="VBoxContainer/HB4"]
+margin_right = 45.0
+margin_bottom = 14.0
+text = "Wealth"
+
+[node name="WealthD" type="Label" parent="VBoxContainer/HB4"]
+margin_left = 49.0
+margin_right = 73.0
+margin_bottom = 14.0
+text = "120"
