@@ -56,12 +56,12 @@ Milestone #1:
 	Click a region and see stats on sidebar
 
 	Details (started writing:7th August 2021 coding: 7th August 2021):
-		* Cursor keys move smoothly. Should be fast and fluid
+		* Cursor keys move smoothly ✓. Should be fast ✓ and fluid
 		* Middle mouse grab overules keys and also moves smoothly
 		* Click detection by lookup on texture
-		* MapRegion is a class instanced from json data, it is stored in a meta "engine" class
-		* Stats are UI, make it a simple text box and get the sizing right for now
-		* The UI is going to need a dropshadow, right?
+		* MapRegion is a class instanced from json data ✓, it is stored in a meta "engine" class
+		* Stats are UI, make it a simple text box and get the sizing right for now ✓
+		* The UI is going to need a dropshadow, and insetting a little
 		* Not clicking a region should clear, not hide, the UI
 
 Milestone #2:
