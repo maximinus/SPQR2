@@ -8,6 +8,7 @@ var culture: int
 var money: int
 var manpower: int
 var loyalty: int
+var color: Array
 
 func _init(data: Dictionary):
 	# if it doesn't exist, return a null
@@ -18,3 +19,17 @@ func _init(data: Dictionary):
 	self.money = data['wealth']
 	self.manpower = data['manpower']
 	self.loyalty = data['loyalty']
+	self.color = data['color']
+
+func matchColor(g, b):
+	if(g == self.color[1] and b == self.color[2]):
+		return true
+	return false
+
+static func getMatch(g, b):
+	# given the 2 colors, match the region
+	for i in data.regions:
+		if i.matchColor(g, b):
+			return i
+	# no match
+	return null

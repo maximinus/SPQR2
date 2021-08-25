@@ -1,31 +1,47 @@
-[
-	{"name":"Cisalpina",
-	 "city":"Ravenna",
-	 "culture":"12",
-	 "wealth":"12",
-	 "manpower":"12",
-	 "loyalty":"12",
-	 "color": [255, 0, 32]
-	 },
-	{"name":"Corsica & Sardinia",
-	 "city":"Caralis",
-	 "culture":"12",
-	 "wealth":"12",
-	 "manpower":"12",
-	 "loyalty":"12",
-	 "color": [255, 0, 64]},
-	{"name":"Latium",
-	 "city":"Rome",
-	 "culture":"16",
-	 "wealth":"16",
-	 "manpower":"16",
-	 "loyalty":"16",
-	 "color": [255, 0, 128]},
-	{"name":"Sicilia",
-	 "city":"Syracuse",
-	 "culture":"12",
-	 "wealth":"12",
-	 "manpower":"12",
-	 "loyalty":"12",
-	 "color": [255, 0, 96]}
-]
+{
+	"REGIONS": [
+		{"name":"Cisalpina",
+	 	 "city":"Ravenna",
+	 	 "culture":"12",
+	 	 "wealth":"12",
+	 	 "manpower":"12",
+	 	 "loyalty":"12",
+	 	 "color": [255, 0, 32],
+	 	 "id": 1
+	 	},
+		{"name":"Corsica & Sardinia",
+	 	 "city":"Caralis",
+	 	 "culture":"12",
+	 	 "wealth":"12",
+	 	 "manpower":"12",
+	  	 "loyalty":"12",
+	 	 "color": [255, 0, 64],
+	 	 "id": 2
+	 	}
+		{"name":"Latium",
+	 	 "city":"Rome",
+	 	 "culture":"16",
+	 	 "wealth":"16",
+	 	 "manpower":"16",
+	 	 "loyalty":"16",
+	 	 "color": [255, 0, 128],
+	 	 "id": 3
+	 	},
+		{"name":"Sicilia",
+	 	 "city":"Syracuse",
+	 	 "culture":"12",
+	 	 "wealth":"12",
+	 	 "manpower":"12",
+	 	 "loyalty":"12",
+	 	 "color": [255, 0, 96],
+	 	 "id": 4,
+	 	}
+	],
+	"PATHS": {
+		"LAND": [
+			[1, 3],
+			[3, 4]
+		],
+		"SEA": []
+	}
+}

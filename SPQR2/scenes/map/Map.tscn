@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://gfx/map/map_final.png" type="Texture" id=1]
 [ext_resource path="res://scenes/map/Map.gd" type="Script" id=2]
 [ext_resource path="res://gfx/map/map_regions.png" type="Texture" id=3]
+[ext_resource path="res://scenes/unit/Unit.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/map_overlay/Overlay.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Shader" id=1]
@@ -10,6 +11,7 @@ code = "shader_type canvas_item;
 
 uniform sampler2D regions;
 uniform vec4 region_color: hint_color;
+const vec4 brightness = vec4(0.15, 0.15, 0.15, 0.0);
 
 void fragment() {
 	vec4 rcol = texture(regions, UV);
@@ -17,20 +19,12 @@ void fragment() {
 		COLOR = texture(TEXTURE, UV);
 	} else {
 		if(rcol == region_color) {
-			COLOR = vec4(1.0, 0.0, 0.5, 1.0);
+			// highlight the color by making it brighter
+			COLOR = texture(TEXTURE, UV) + brightness;
 		} else {
 			COLOR = texture(TEXTURE, UV);
 		}
 	}
-	/* 
-	No idea why this does not work
-	vec4 rcol = texture(regions, UV);
-	if(rcol == region_color) {
-		COLOR = vec4(1.0, 0.0, 0.5, 1.0);
-	} else {
-		COLOR = texture(TEXTURE, UV);
-	}
-	*/
 }
 "
 
@@ -39,6 +33,9 @@ shader = SubResource( 1 )
 shader_param/region_color = null
 shader_param/regions = ExtResource( 3 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 3000, 2000 )
+
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -46,6 +43,15 @@ script = ExtResource( 2 )
 material = SubResource( 2 )
 texture = ExtResource( 1 )
 centered = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="Map"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Area2D"]
+position = Vector2( 2999.06, 2000 )
+shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 1780, 1600 )
@@ -56,3 +62,12 @@ smoothing_speed = 8.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Overlay" parent="CanvasLayer" instance=ExtResource( 7 )]
+
+[node name="Cities" type="Node2D" parent="."]
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Unit1" parent="Units" instance=ExtResource( 5 )]
+position = Vector2( 1832.4, 1593.5 )
+
+[connection signal="input_event" from="Map/Area2D" to="." method="_on_Area2D_input_event"]

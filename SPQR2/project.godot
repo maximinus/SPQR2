@@ -28,7 +28,7 @@ config/icon="res://icon.png"
 
 helpers="*res://scripts/helpers.gd"
 region="*res://scripts/region.gd"
-constructors="*res://scripts/constructors.gd"
+data="*res://scripts/data.gd"
 
 [display]
 
