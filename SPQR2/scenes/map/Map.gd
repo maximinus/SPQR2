@@ -12,7 +12,7 @@ var region_material: Material
 var city_scene = preload('res://scenes/city/City.tscn')
 
 # needed for zooming
-var zoom_min: float = 0.2
+var zoom_min: float = 0.4
 var zoom_max: float = 2.0
 var zoom_speed: float = 0.12
 var zoom_goal: float = 1.0
