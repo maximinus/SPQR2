@@ -8,4 +8,4 @@ export_presets.cfg
 .mono/
 data_*/
 
-raw_gfx/
+raw_gfx/*
