@@ -1,0 +1,10 @@
+{"compile":[
+["/home/sparky/code/SPQR2/tools/validate_json/nimcache/validate.c", "gcc -c  -w  -I/usr/lib/nim -o /home/sparky/code/SPQR2/tools/validate_json/nimcache/validate.o /home/sparky/code/SPQR2/tools/validate_json/nimcache/validate.c"],
+["/home/sparky/code/SPQR2/tools/validate_json/nimcache/stdlib_system.c", "gcc -c  -w  -I/usr/lib/nim -o /home/sparky/code/SPQR2/tools/validate_json/nimcache/stdlib_system.o /home/sparky/code/SPQR2/tools/validate_json/nimcache/stdlib_system.c"]
+],
+"link":[
+"/home/sparky/code/SPQR2/tools/validate_json/nimcache/validate.o",
+"/home/sparky/code/SPQR2/tools/validate_json/nimcache/stdlib_system.o"
+],
+"linkcmd": "gcc   -o /home/sparky/code/SPQR2/tools/validate_json/validate  /home/sparky/code/SPQR2/tools/validate_json/nimcache/validate.o /home/sparky/code/SPQR2/tools/validate_json/nimcache/stdlib_system.o    -ldl"
+}

@@ -8,4 +8,8 @@ export_presets.cfg
 .mono/
 data_*/
 
+# the really big files
 raw_gfx/*
+
+# nim build folders
+nimcache/*
