@@ -16,6 +16,116 @@ Player can spend money
 Next emperor is chosen
 
 
+Overview
+--------
+
+Starting in 200 BC, you have 2 consuls and a small number of regions.
+Each consul can conduct a certain (low) number of campaigns
+A campaign is conducted this way:
+	* A region is chosen, and the consul moved there
+	* The consul may choose to move ONE unit from ONE region from almost* anywhere on the board
+		* Almost: Region must be connected, not a crazy (6+ regions) distance, Region not under attack (?)
+	* The consul can move, by one region, all the units in this region and all controlled adjacent ones
+	* After this move, the player can choose any controlled region to attack a non-controlled region
+
+	* Here we add another element: the purpose of the invade. The player chooses a goal:
+		1: Raid: Avoid combat and leave after stealing money
+		2: Destroy enemy forces: Find the enemy forces and engage them, destroy them, grab any loot and go home (more loot than 1)
+		3: Invade: Capture the region and the city
+		4: Sack: Capture the region and the city, steal everything, burn it all, and go home (this will gain a lot more money than 2)
+
+	Enemy choices (and the player when you are invaded) and outcomes:
+
+		1: Attack / Don't Attack
+			First leads to battle on random number
+			Second (or failed check) leads to losing money and enemy leaving
+		2: Engage, or choose not to on a check
+			First (or failed check), a battle
+			Second, you must leave to another friendly region
+		3: Engage or not.
+			If you do not engage (checked), the attackers have a chance to take the city
+				If they win, they have the city. You may attack the city or retreat to another region.
+				If they lose, you may attack on their retreat
+			If you engage (or failed check), there is a battle. If the attackers win, they move on to attack the city.
+		4: Plays out as 3, except you have the extra option to withdraw:
+			The attackers attack the city.
+			If they lose, they go home
+			If they win, they steal everything and go home
+			You may not attack if they lose the city battle
+			There is no check on a random meeting (so there's no chance you'll lose the army if the city isn't worth it)
+
+
+	* Combat is decided per region, and the player can see the results of the 1st region attack before deciding on others
+	* For combat, the results are:
+		* Romans are pushed back, probably injured in some way
+		* Romans push into the territory but fail to take it
+		* Romans conquer the territory but not the city
+		* Romans conquer the territory and the city
+	* We repeat from "The consul can move"
+	* A certain amount of "fatigue" builds up every cycle, and units start to lose effeciency fairly quickly (on both sides)
+	* It is important to note the AI should be able to play between these moves (i.e., defend if obvious, attack if obvious, keep it simple)
+	* A player can choose to "wait" so they can react to enemy events
+	* If they do, they can only play 1 campaign after waiting
+Once all campaigns are done, maybe the enemy chooses now to attack
+If all campaigns are done, the player may choose to campaign an extra time at some expense
+	* The expense is borne by the following emperor
+Now cultural and city growth is done (TODO)
+
+
+At some point the "Empire" card is played, to remove the Republic
+This always give a civil war
+In a civil war:
+	You must beat the other rival(s)
+	Unlimited campaigns but success begats success and you should steamroll
+
+In the Empire:
+	Only 1 emperor, and not 2 consuls, so war is harder
+	Tax revenew goes up - more to play with
+	Cities count as a cost, but overall tax income will go up
+	A card is needed to found a city
+
+
+Hiding Information
+------------------
+
+Not all systems are transparent.
+There are hidden stats that are never exposed, but sometimes expressed in player messages.
+Maybe the stats are exposed or accumulation obscure, or the other way around
+These are:
+	Culture
+		Writing			- Should be accumulative, starts at 0 and cards + cities + peace add to this
+		Art 			- Should be accumulative, starts at 0 and cards + cities + peace add to this
+	Natural World
+		Construction 	- Should be accumulative, starts at 0 and cards + cities + peace add to this
+		Innovation 		- Should be accumulative, starts at 0 and cards + cities + peace add to this
+	Religion
+		Christianity 	- Starts at zero and can go up and down
+			This stat triggers the "Christian Emperor" card
+		Roman Gods		- Starts at some value and can fluctuate (especially if you add a new region)
+These stats effect your score at the end, so they are important.
+To get the best scores should be hard, so no shame should be attached to low scores.
+
+
+Enemies
+-------
+	Enemy AI must have characteristics
+	They must move their units, build things, expand and decline like the player
+	Their leaders are like the player in the way they attack
+	Although they don't really have cards, they may act like they do due to random events
+	AI is fairly simple
+		* Aggressive AI will attack if it looks possible, or raid if barbarian and defenses are low
+		* Expansionist will do the same but stick around
+		* Raiders will raid, and avoid conbat (a city helps here)
+		* Neutral AI will largly avoid attacking
+		* Friendly AI (rare) is controlled by the player
+		* They will generally ask for a truce if needed rather than risk destruction
+	The troops:
+		There should NOT be a kind of scissors, paper rock here, we do not want strategy everywhere
+		As history progresses, horse mounted troops improve - by 400 AD they are essential (or card based)
+
+
+
+
 Regions
 -------
 
@@ -25,6 +135,7 @@ Each region has:
 	A money stat (gives money)
 	A manpower stat
 	A "loyalty to the emperor" stat
+	An indicator of basic terrain type
 
 
 Troops
@@ -36,6 +147,24 @@ Troops
 		* Attack vs defence rating
 		* Generals ratings
 		* Luck
+
+Cards:
+------
+	Player is given 5 cards at start of game
+	They are divided into "good" and "bad" cards which are mixed
+	One must be played at the start of a turn, and another at the end
+		* Otherwise card playing is slow, this way, 200 years = 8 turns = 16 cards
+	After playing, another is picked up
+	Card effects can change gameplay, eg:
+		* Card: Leader has 1 extra campaign
+	Or meta-gameplay
+		* Card: When played, gain 2 random good cards which are played instantly
+	Or force game changes:
+		* Card: Roman changes from Republic to Empire.
+	Cards can have options, so that they may be multi-purpose
+		* Card: Either event may happen:
+			* Tacitus writes a famous history of Rome
+			* You have +1 campaigns
 
 
 We need:

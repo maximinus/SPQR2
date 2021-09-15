@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/map_final.png-c5b6e3f9bb861eb8c55165df8de16801.s3tc.stex"
-path.etc2="res://.import/map_final.png-c5b6e3f9bb861eb8c55165df8de16801.etc2.stex"
+path.s3tc="res://.import/roughness.png-d341e5ee74cd0ed9be26a241e8430415.s3tc.stex"
+path.etc2="res://.import/roughness.png-d341e5ee74cd0ed9be26a241e8430415.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://gfx/map/map_final.png"
-dest_files=[ "res://.import/map_final.png-c5b6e3f9bb861eb8c55165df8de16801.s3tc.stex", "res://.import/map_final.png-c5b6e3f9bb861eb8c55165df8de16801.etc2.stex" ]
+source_file="res://gfx/map/roughness.png"
+dest_files=[ "res://.import/roughness.png-d341e5ee74cd0ed9be26a241e8430415.s3tc.stex", "res://.import/roughness.png-d341e5ee74cd0ed9be26a241e8430415.etc2.stex" ]
 
 [params]
 
@@ -25,7 +25,7 @@ flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

@@ -33,7 +33,7 @@ proc validateRegion(region: Region): void =
 
 proc checkNonZeroRegions(regions: seq[Region]): void =
     if(regions.len == 0):
-        error("* Error: No regions set")
+        error("No regions set")
 
 proc checkAllPaths(paths: JsonNode, name: string): seq[int] =
     # must be an array of some kind
@@ -78,5 +78,8 @@ proc checkGameData(): void =
     verifyPathIndexes(all_path_indexes, regions)
 
 when isMainModule:
-    checkGameData()
+    try:
+        checkGameData()
+    except:
+        error("Closing")
     echo "* Game Data OK"
