@@ -68,6 +68,5 @@ smoothing_speed = 8.0
 [node name="Units" type="Node2D" parent="."]
 
 [node name="Unit1" parent="Units" instance=ExtResource( 5 )]
-position = Vector2( 1832.4, 1593.5 )
 
 [connection signal="input_event" from="Map/Area2D" to="." method="_on_Area2D_input_event"]

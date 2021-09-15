@@ -13,29 +13,35 @@ onready var zoom_tween: Tween = $Tweens/ZoomTween
 onready var camera_tween: Tween = $Tweens/CameraTween
 onready var camera = $Camera
 
+var city_scene = preload('res://scenes/city/City.tscn')
+
 var zoom_level = 3.5
+var zoom_goal: float = 1.0
+
 var map_intersect = null
 var camera_intersect = null
 var region_map: Image
 var region_material: Material
 var dragging: bool
+var drag_offset: Vector2
 
 func _ready():
 	# setup all data
-	#data.loadAllData()
+	data.loadAllData()
 	# load the region texture
-	#var image = load('res://gfx/map/map_regions.png')
-	#region_map = image.get_data()
-	#region_map.lock()
-	#helpers.log('Loaded region map')
-	#dragging = false
-	#region_material = $Map.get_material()
-	#addCities()
+	var image = load('res://gfx/map/map_regions.png')
+	region_map = image.get_data()
+	region_map.lock()
+	helpers.log('Loaded region map')
+	dragging = false
+	region_material = $GameMap.get_map_material()
+	addCities()
 	set_zoom_level(zoom_level)
 
 func _process(delta):
 	calculate_intersections()
-	scroll_map(delta)
+	if check_mouse_drag() == false:
+		check_cursor_keys(delta)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("zoom_in"):
@@ -45,11 +51,37 @@ func _unhandled_input(event):
 
 func addCities():
 	for i in data.cities:
-		pass
-		#var city_instance = city_scene.instance()
-		#city_instance.position.x = i[0]
-		#city_instance.position.y = i[1]
-		#$Cities.add_child(city_instance)
+		var city_instance = city_scene.instance()
+		city_instance.translation.x = i[0]
+		city_instance.translation.z = i[1]
+		city_instance.rotation_degrees.y = i[2]
+		$Cities.add_child(city_instance)
+
+func check_mouse_drag() -> bool:
+	# return false if the mouse is doing nothing
+	# check depending on current state
+	if dragging == false:
+		# middle mouse down?
+		if Input.is_action_pressed('middle_mouse'):
+			dragging = true
+			# nothing to do this frame
+			# we don't need the mouse position, we need where the mouse IS relative to the ground plane
+			drag_offset = get_viewport().get_mouse_position()
+			return true
+	else:
+		if Input.is_action_pressed(('middle_mouse')):
+			# yes, move by delta of mouse move
+			var current_move = get_viewport().get_mouse_position()
+			var camera_offset = Vector2(camera.translation.x, camera.translation.z)
+			camera_offset += (drag_offset - current_move) * zoom_level
+			print(camera_offset)
+			camera.translation.x = camera_offset.x
+			camera.translation.z = camera_offset.y
+			drag_offset = current_move
+			return true
+		else:
+			dragging = false
+	return false
 
 func set_zoom_level(value):
 	# We limit the value between min_zoom and max_zoom
@@ -113,7 +145,7 @@ func calculate_intersections():
 	var zpos = camera.translation.y * tan(90.0 + camera.rotation.x)
 	camera_intersect = Vector2(camera.translation.x, zpos)
 
-func scroll_map(delta):
+func check_cursor_keys(delta):
 	var move = Vector3(0.0, 0.0, 0.0)
 	var scaling = (zoom_level / SCROLL_SPEED) * delta
 	if Input.is_action_pressed("left"):
@@ -126,4 +158,3 @@ func scroll_map(delta):
 		move.z += scaling
 	if move != Vector3(0.0, 0.0, 0.0):
 		$Camera.translation += move
-		#$Lights.translation += move
