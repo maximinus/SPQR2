@@ -3,7 +3,6 @@
 [ext_resource path="res://gfx/hdri/decor_shop_4k.exr" type="Texture" id=1]
 
 [sub_resource type="PanoramaSky" id=1]
-radiance_size = 4
 panorama = ExtResource( 1 )
 
 [resource]
@@ -12,3 +11,7 @@ background_sky = SubResource( 1 )
 ambient_light_color = Color( 0.8, 0.764706, 0.666667, 1 )
 ambient_light_energy = 0.2
 ambient_light_sky_contribution = 0.0
+fog_depth_begin = 8.0
+fog_depth_end = 20.0
+tonemap_mode = 2
+adjustment_enabled = true
