@@ -5,7 +5,7 @@ const SCROLL_SPEED = 0.6
 const MIN_ZOOM = 1.0
 const MAX_ZOOM = 10.0
 # how much we change the zoom_level on every wheel turn
-const ZOOM_FACTOR = 0.5
+const ZOOM_FACTOR = 0.3
 # Duration of the zoom's tween animation.
 const ZOOM_DURATION = 0.2
 
@@ -71,15 +71,18 @@ func check_mouse_drag() -> bool:
 	else:
 		if Input.is_action_pressed(('middle_mouse')):
 			# yes, move by delta of mouse move
-			var current_move = get_viewport().get_mouse_position()
-			var camera_offset = Vector2(camera.translation.x, camera.translation.z)
-			camera_offset += (drag_offset - current_move) * zoom_level
-			print(camera_offset)
-			camera.translation.x = camera_offset.x
-			camera.translation.z = camera_offset.y
-			drag_offset = current_move
+			#var current_move = get_viewport().get_mouse_position()
+			#var camera_offset = Vector2(camera.translation.x, camera.translation.z)
+			#camera_offset += (drag_offset - current_move) * zoom_level
+			#print(camera_offset)
+			#camera.translation.x = camera_offset.x
+			#camera.translation.z = camera_offset.y
+			#drag_offset = current_move
 			return true
 		else:
+			print(map_intersect)
+			print(camera_intersect)
+			print('---')
 			dragging = false
 	return false
 
@@ -129,6 +132,10 @@ func set_zoom_level(value):
 	camera_tween.start()	
 	# TODO: if we zoom and are off-centre with the mouse, we must also move that way
 	
+func scale_plane_coords(x, y):
+	return Vector2(round((12.4 + x) * (6200.0 / 24.8)),
+				   round((8.4 + y) * (4200.0 / 16.8)))
+	
 func calculate_intersections():
 	# create a horizontal plane where the map is
 	var map_plane = Plane(Vector3(0, 1, 0), 0)
@@ -139,11 +146,14 @@ func calculate_intersections():
 	var to = from + camera.project_ray_normal(mouse_pos) * 1000.0
 	# null if they don't intersect, otherwise gives the meeting point
 	# Should be like (4.884333, 0, -4.067944), treat as {x:4.88, y:-4.07}
-	map_intersect = map_plane.intersects_ray(from, to)
-	
+	var intersect = map_plane.intersects_ray(from, to)
+	# now convert to pixel map coords
+	map_intersect = scale_plane_coords(intersect.x, intersect.z)
+
 	# do the camera aim manually
-	var zpos = camera.translation.y * tan(90.0 + camera.rotation.x)
-	camera_intersect = Vector2(camera.translation.x, zpos)
+	var zpos = camera.translation.y * tan(deg2rad(90.0 + camera.rotation_degrees.x))
+	# camera zpos is high when camera is looking at bottom, so offset is taken away (offset is _+ve)	
+	camera_intersect = scale_plane_coords(camera.translation.x, camera.translation.z - zpos)
 
 func check_cursor_keys(delta):
 	var move = Vector3(0.0, 0.0, 0.0)
