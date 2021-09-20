@@ -34,7 +34,7 @@ func _ready():
 	region_map.lock()
 	helpers.log('Loaded region map')
 	dragging = false
-	region_material = $GameMap.get_map_material()
+	#region_material = $GameMap.get_map_material()
 	addCities()
 	set_zoom_level(zoom_level)
 
@@ -133,8 +133,8 @@ func set_zoom_level(value):
 	# TODO: if we zoom and are off-centre with the mouse, we must also move that way
 	
 func scale_plane_coords(x, y):
-	return Vector2(round((12.4 + x) * (6200.0 / 24.8)),
-				   round((8.4 + y) * (4200.0 / 16.8)))
+	return Vector2(round((x + 12.5) * (6000.0 / 25.0)),
+				   round((y + 8.34) * (4000.0 / 16.68)))
 	
 func calculate_intersections():
 	# create a horizontal plane where the map is
