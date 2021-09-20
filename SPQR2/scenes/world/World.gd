@@ -8,6 +8,7 @@ const MAX_ZOOM = 10.0
 const ZOOM_FACTOR = 0.3
 # Duration of the zoom's tween animation.
 const ZOOM_DURATION = 0.2
+const MAP_PIXEL_SIZE = Vector2(6000.0, 4000.0)
 
 onready var zoom_tween: Tween = $Tweens/ZoomTween
 onready var camera_tween: Tween = $Tweens/CameraTween
@@ -40,8 +41,17 @@ func _ready():
 
 func _process(delta):
 	calculate_intersections()
+	get_map_color()
 	if check_mouse_drag() == false:
 		check_cursor_keys(delta)
+
+func get_map_color():
+	# in x range?
+	if map_intersect.x >= 0.0 and map_intersect.x < MAP_PIXEL_SIZE.x:
+		# in y range?
+		if map_intersect.y >= 0.0 and map_intersect.y < MAP_PIXEL_SIZE.y:
+			print(region_map.get_pixel(map_intersect.x, map_intersect.y))
+
 
 func _unhandled_input(event):
 	if event.is_action_pressed("zoom_in"):
@@ -133,8 +143,8 @@ func set_zoom_level(value):
 	# TODO: if we zoom and are off-centre with the mouse, we must also move that way
 	
 func scale_plane_coords(x, y):
-	return Vector2(round((x + 12.5) * (6000.0 / 25.0)),
-				   round((y + 8.34) * (4000.0 / 16.68)))
+	return Vector2(round((x + 12.5) * (MAP_PIXEL_SIZE.x / 25.0)),
+				   round((y + 8.34) * (MAP_PIXEL_SIZE.x / 16.68)))
 	
 func calculate_intersections():
 	# create a horizontal plane where the map is
