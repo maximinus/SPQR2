@@ -41,17 +41,20 @@ func _ready():
 
 func _process(delta):
 	calculate_intersections()
-	get_map_color()
+	set_map_color()
 	if check_mouse_drag() == false:
 		check_cursor_keys(delta)
 
-func get_map_color():
+func set_map_color():
 	# in x range?
 	if map_intersect.x >= 0.0 and map_intersect.x < MAP_PIXEL_SIZE.x:
 		# in y range?
 		if map_intersect.y >= 0.0 and map_intersect.y < MAP_PIXEL_SIZE.y:
-			print(region_map.get_pixel(map_intersect.x, map_intersect.y))
-
+			# yes, we need to set a color
+			$map_board.set_region_color(region_map.get_pixel(map_intersect.x, map_intersect.y))
+			return
+	# set color to black
+	$map_board.set_region_color(Vector3(0.0, 0.0, 0.0))
 
 func _unhandled_input(event):
 	if event.is_action_pressed("zoom_in"):
@@ -98,10 +101,6 @@ func check_mouse_drag() -> bool:
 
 func set_zoom_level(value):
 	# We limit the value between min_zoom and max_zoom
-	
-	# print where from and where to
-	#print(camera_intersect, ' -> ', map_intersect)
-	
 	zoom_level = clamp(value, MIN_ZOOM, MAX_ZOOM)
 	#  tween between camera zoom current value to the target zoom
 	zoom_tween.interpolate_property(
