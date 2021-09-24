@@ -30,7 +30,7 @@ func _ready():
 	# setup all data
 	data.loadAllData()
 	# load the region texture
-	var image = load('res://gfx/map/map_regions.png')
+	var image = load('res://gfx/map/map_regions_uncompressed.png')
 	region_map = image.get_data()
 	region_map.lock()
 	helpers.log('Loaded region map')
@@ -46,15 +46,19 @@ func _process(delta):
 		check_cursor_keys(delta)
 
 func set_map_color():
+	# just set mouse
+	$map_board.set_mouse(map_intersect / MAP_PIXEL_SIZE)
+	
 	# in x range?
 	if map_intersect.x >= 0.0 and map_intersect.x < MAP_PIXEL_SIZE.x:
 		# in y range?
 		if map_intersect.y >= 0.0 and map_intersect.y < MAP_PIXEL_SIZE.y:
 			# yes, we need to set a color
-			$map_board.set_region_color(region_map.get_pixel(map_intersect.x, map_intersect.y))
+			var col = region_map.get_pixel(map_intersect.x, map_intersect.y)
+			$map_board.set_region_color(Vector3(col.r, col.g, col.b))
 			return
-	# set color to black
-	$map_board.set_region_color(Vector3(0.0, 0.0, 0.0))
+	# set color to white
+	$map_board.set_region_color(Vector3(1.0, 1.0, 1.0))
 
 func _unhandled_input(event):
 	if event.is_action_pressed("zoom_in"):
@@ -143,7 +147,7 @@ func set_zoom_level(value):
 	
 func scale_plane_coords(x, y):
 	return Vector2(round((x + 12.5) * (MAP_PIXEL_SIZE.x / 25.0)),
-				   round((y + 8.34) * (MAP_PIXEL_SIZE.x / 16.68)))
+				   round((y + 8.34) * (MAP_PIXEL_SIZE.y / 16.68)))
 	
 func calculate_intersections():
 	# create a horizontal plane where the map is

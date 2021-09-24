@@ -76,12 +76,12 @@ At some point the "Empire" card is played, to remove the Republic
 This always give a civil war
 In a civil war:
 	You must beat the other rival(s)
-	Unlimited campaigns but success begats success and you should steamroll
+	Unlimited campaigns but success begats success and you should steamroll (or lose fast)
 
 In the Empire:
 	Only 1 emperor, and not 2 consuls, so war is harder
-	Tax revenew goes up - more to play with
-	Cities count as a cost, but overall tax income will go up
+	Tax revenue goes up - more to play with
+	Cities increase tax revenue even more
 	A card is needed to found a city
 
 
@@ -90,7 +90,7 @@ Hiding Information
 
 Not all systems are transparent.
 There are hidden stats that are never exposed, but sometimes expressed in player messages.
-Maybe the stats are exposed or accumulation obscure, or the other way around
+Maybe the stats are exposed and accumulation obscure, or the other way around
 These are:
 	Culture
 		Writing			- Should be accumulative, starts at 0 and cards + cities + peace add to this
@@ -99,16 +99,22 @@ These are:
 		Construction 	- Should be accumulative, starts at 0 and cards + cities + peace add to this
 		Innovation 		- Should be accumulative, starts at 0 and cards + cities + peace add to this
 	Religion
-		Christianity 	- Starts at zero and can go up and down
+		Christianity 	- Starts at zero and can go up and down (but not below zero)
 			This stat triggers the "Christian Emperor" card
+			Christianity is double-edged:
+				* It means less tax revenue overall
+				* Less romanisation
+				* The first Christian emperor has more money (raids temples) and has an army with high morale
 		Roman Gods		- Starts at some value and can fluctuate (especially if you add a new region)
 These stats effect your score at the end, so they are important.
-To get the best scores should be hard, so no shame should be attached to low scores.
+To get the best scores should be hard, so no shame should be attached to low scores in one area.
 
 
 Enemies
 -------
 	Enemy AI must have characteristics
+		* I.e., barbarians act different in some way to Persians
+			- maybe as simple as one raids, one invades
 	They must move their units, build things, expand and decline like the player
 	Their leaders are like the player in the way they attack
 	Although they don't really have cards, they may act like they do due to random events
@@ -121,9 +127,8 @@ Enemies
 		* They will generally ask for a truce if needed rather than risk destruction
 	The troops:
 		There should NOT be a kind of scissors, paper rock here, we do not want strategy everywhere
-		As history progresses, horse mounted troops improve - by 400 AD they are essential (or card based)
-
-
+		As history progresses, horse mounted troops improve - by 400 AD they are essential
+			* Change could be card based
 
 
 Regions
@@ -134,7 +139,7 @@ Each region has:
 	A culture stat (gives culture)
 	A money stat (gives money)
 	A manpower stat
-	A "loyalty to the emperor" stat
+	A "loyalty to the emperor" stat (?)
 	An indicator of basic terrain type
 
 

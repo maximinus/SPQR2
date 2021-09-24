@@ -1,36 +1,82 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://gfx/map/map_board.glb" type="PackedScene" id=1]
 [ext_resource path="res://gfx/map_table/table.glb" type="PackedScene" id=2]
 [ext_resource path="res://scenes/map_board/map_board.gd" type="Script" id=3]
 [ext_resource path="res://gfx/map/roughness.png" type="Texture" id=4]
 [ext_resource path="res://gfx/map/map_final.png" type="Texture" id=5]
+[ext_resource path="res://gfx/map/map_regions.png" type="Texture" id=6]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
 
-uniform sampler2D image_map;
+// 3 textures: the map, it's roughness and the regions
+uniform sampler2D image_map : hint_albedo;
 uniform sampler2D rough_map;
+uniform sampler2D region_map;
 uniform float roughness_scale = 1.2;
+// color of pixel mouse is over now
 uniform vec3 region_color;
+// where is the mouse
+uniform vec2 mouse_pos;
+
+bool same_color(vec3 col1, vec3 col2) {
+	float diff = abs(col1.r - col2.r) + abs(col1.g - col2.g) + abs(col1.b - col2.b);
+	if(diff < 0.008) {
+		return true;
+	}
+	return false;
+}
 
 void fragment() {
-	ALBEDO = texture(image_map, UV).rgb;
+	// if the col is not over a region, we get
+	// white = out of bounds
+	// black = no region
+	
+	// get color of where we are
+	vec3 map_color = texture(image_map, UV).rgb;
+	vec3 reg_color = texture(region_map, UV).rgb;
+	
+	// if the region color is white, this means we are out of bounds
+	// draw yellow in this case, else draw the map
+	
+	if(region_color == vec3(1.0, 1.0, 1.0)) {
+		// this works
+		ALBEDO = vec3(1.0, 1.0, 0.0);
+	} else {
+		if(region_color == vec3(0.0, 0.0, 0.0)) {
+			ALBEDO = map_color;
+		} else {
+			float delta = distance(reg_color, region_color);
+			// are we over our color?
+			// compare the blues
+			if(abs(reg_color.b - region_color.b) < 0.05) {
+				// display the colour of the region
+				ALBEDO = reg_color;	
+			} else {
+				// display the map
+				ALBEDO = map_color;
+			}
+		}
+	}
 	ROUGHNESS = texture(rough_map, UV).r / roughness_scale;
-}"
+}
+"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/roughness_scale = 1.2
-shader_param/region_color = null
+shader_param/region_color = Vector3( 0, 0, 0 )
+shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/image_map = ExtResource( 5 )
 shader_param/rough_map = ExtResource( 4 )
+shader_param/region_map = ExtResource( 6 )
 
 [node name="map_board" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
 [node name="GameBoard" parent="." index="0"]
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0 )
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.00278425, 0.0178394, -0.0398849 )
 material/1 = SubResource( 2 )
 
 [node name="table" parent="." index="1" instance=ExtResource( 2 )]
