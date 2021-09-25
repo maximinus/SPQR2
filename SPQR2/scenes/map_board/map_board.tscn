@@ -26,9 +26,17 @@ uniform vec2 mouse_pos;
 
 void fragment() {
 	// start by getting the color of the map
-	vec3 region_i = texture(region_map, UV).rbg;
-	// 
-	ALBEDO = vec3(1.0, 1.0, 0.0);
+	vec4 region_i = texture(region_map, UV);
+	if(region_i.a == 0.0) {
+		// no region, just draw the map
+		ALBEDO = texture(image_map, UV).rgb;
+	} else {
+		// get the region index of this colour
+		float index = ((region_i.b * 16.0) + (region_i.r * 256.0));
+		float owner_ypos = 0.125 + (index * 0.25);
+		//owner_ypos = 0.0;
+		ALBEDO = texture(map_owners, vec2(0, owner_ypos)).rgb;
+	}
 	ROUGHNESS = texture(rough_map, UV).r / roughness_scale;
 }
 
