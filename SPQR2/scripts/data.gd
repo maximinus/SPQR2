@@ -63,5 +63,15 @@ func load_all_data():
 	return false
 
 # all methods to get data follow here
-func getRegionOwnersTexture():
-	pass
+func get_region_owners_texture() -> Image:
+	# build a texture describing the owners of the regions
+	# regions are already in the correct order of the array
+	# we build with a texture region
+	var base_image = Image.new()
+	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
+	base_image.lock()
+	var ypos: int = 0
+	for i in regions:
+		base_image.set_pixel(0, ypos, Color(0, 0, region.owned_by * 16))
+	base_image.unlock()
+	return base_image

@@ -12,8 +12,6 @@ var color: Array
 var owned_by: int
 
 func _init(data: Dictionary):
-	# if it doesn't exist, return a null
-	# have to check manually, no exceptions!
 	self.region_name = data['name']
 	self.city = data['city']
 	self.culture = data['culture']
@@ -24,12 +22,12 @@ func _init(data: Dictionary):
 	# owner not set
 	self.owned_by = -1
 
-func matchColor(g, b):
+func match_color(g, b):
 	if(g == self.color[1] and b == self.color[2]):
 		return true
 	return false
 
-static func getMatch(g, b):
+static func get_match(g, b):
 	# given the 2 colors, match the region
 	for i in data.regions:
 		if i.matchColor(g, b):
