@@ -4,6 +4,7 @@ extends Node
 # JSON error checking is a different step;
 # it should be run in the build step
 
+# regions are loaded per id, i.e. id 1 is the first region
 var regions: Array = []
 var cities: Array = []
 var land_paths: Array = []
@@ -33,6 +34,15 @@ func get_enemies(enemy_data: Array) -> Array:
 	helpers.log('Got %s enemies' % len(enemy_instances))
 	return enemy_instances
 
+func get_status(status: Dictionary) -> void:
+	var ownership: Array = status['ownership']
+	# this is an array of ints
+	var index: int = 0
+	# bounds checking is done on the file before running
+	for i in regions:
+		i.owned_by = ownership[index]
+		index += 1
+
 func load_all_data():
 	# return false if there was an issue
 	var file: File = File.new()
@@ -47,6 +57,7 @@ func load_all_data():
 		regions = get_regions(data['REGIONS'])
 		land_paths = get_paths(data['PATHS'])
 		enemies = get_enemies(data['ENEMIES'])
+		get_status(data['STATUS'])
 		return true
 	helpers.log('Failed to parse game data')
 	return false

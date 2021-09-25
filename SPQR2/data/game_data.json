@@ -53,5 +53,8 @@
 			"name": "Celts",
 			"id": 1
 		}
-	]
+	],
+	"STATUS": {
+		"ownership": [1, 0, 0, 0]
+	}
 }
