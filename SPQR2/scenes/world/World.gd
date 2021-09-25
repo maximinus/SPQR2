@@ -35,9 +35,10 @@ func _ready():
 	region_map.lock()
 	helpers.log('Loaded region map')
 	dragging = false
-	#region_material = $GameMap.get_map_material()
 	addCities()
 	set_zoom_level(zoom_level)
+	# do the initial setup, this should happen every change in the future
+	$map_board.set_region_owners(data.get_region_owners_texture())
 
 func _process(delta):
 	calculate_intersections()
