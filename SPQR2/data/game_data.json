@@ -51,6 +51,7 @@
 	"ENEMIES": [
 		{
 			"name": "Celts",
+			"color": [36, 107, 206],
 			"id": 1
 		}
 	],

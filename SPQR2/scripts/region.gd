@@ -9,7 +9,7 @@ var money: int
 var manpower: int
 var loyalty: int
 var color: Array
-var owned_by: int
+var owner_color: Color
 
 func _init(data: Dictionary):
 	self.region_name = data['name']
@@ -20,7 +20,7 @@ func _init(data: Dictionary):
 	self.loyalty = data['loyalty']
 	self.color = data['color']
 	# owner not set
-	self.owned_by = -1
+	self.owner_color = Color(0.0, 0.0, 0.0)
 
 func match_color(g, b):
 	if(g == self.color[1] and b == self.color[2]):

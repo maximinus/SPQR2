@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://gfx/map/map_board.glb" type="PackedScene" id=1]
 [ext_resource path="res://gfx/map_table/table.glb" type="PackedScene" id=2]
@@ -6,9 +6,7 @@
 [ext_resource path="res://gfx/map/roughness.png" type="Texture" id=4]
 [ext_resource path="res://gfx/map/map_final.png" type="Texture" id=5]
 [ext_resource path="res://gfx/map/map_regions.png" type="Texture" id=6]
-[ext_resource path="res://gfx/map/owner_colours.png" type="Texture" id=7]
 [ext_resource path="res://gfx/map/map_owners_polyfill.png" type="Texture" id=8]
-[ext_resource path="res://gfx/map/region_colors.png" type="Texture" id=9]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -18,9 +16,7 @@ uniform sampler2D image_map : hint_albedo;
 uniform sampler2D rough_map;
 uniform sampler2D region_map;
 // ownership of regions
-uniform sampler2D region_owners;
-uniform sampler2D owner_colours;
-uniform sampler2D region_basis;
+uniform sampler2D map_owners;
 uniform float roughness_scale = 1.2;
 // color of pixel mouse is over now
 uniform vec3 region_color;
@@ -70,9 +66,7 @@ shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/image_map = ExtResource( 5 )
 shader_param/rough_map = ExtResource( 4 )
 shader_param/region_map = ExtResource( 6 )
-shader_param/region_owners = ExtResource( 8 )
-shader_param/owner_colours = ExtResource( 7 )
-shader_param/region_basis = ExtResource( 9 )
+shader_param/map_owners = ExtResource( 8 )
 
 [node name="map_board" instance=ExtResource( 1 )]
 script = ExtResource( 3 )

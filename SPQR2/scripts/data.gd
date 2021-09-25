@@ -4,6 +4,8 @@ extends Node
 # JSON error checking is a different step;
 # it should be run in the build step
 
+const ROME_DEFAULT_COLOR = Color(233.0, 17.0, 17.0)
+
 # regions are loaded per id, i.e. id 1 is the first region
 var regions: Array = []
 var cities: Array = []
@@ -40,7 +42,11 @@ func get_status(status: Dictionary) -> void:
 	var index: int = 0
 	# bounds checking is done on the file before running
 	for i in regions:
-		i.owned_by = ownership[index]
+		var owner:int = ownership[index]
+		if owner == 0:
+			i.owner_color = ROME_DEFAULT_COLOR
+		else:
+			i.owner_color = enemies[index].base_color
 		index += 1
 
 func load_all_data():
@@ -72,6 +78,7 @@ func get_region_owners_texture() -> Image:
 	base_image.lock()
 	var ypos: int = 0
 	for i in regions:
-		base_image.set_pixel(0, ypos, Color(0, 0, region.owned_by * 16))
+		base_image.set_pixel(0, ypos, regions[ypos].owner_color)
+		ypos += 1
 	base_image.unlock()
 	return base_image
