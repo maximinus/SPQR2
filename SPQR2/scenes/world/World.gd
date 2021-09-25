@@ -35,7 +35,7 @@ func _ready():
 	region_map.lock()
 	helpers.log('Loaded region map')
 	dragging = false
-	addCities()
+	add_cities()
 	set_zoom_level(zoom_level)
 	# do the initial setup, this should happen every change in the future
 	$map_board.set_region_owners(data.get_region_owners_texture())
@@ -67,7 +67,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("zoom_out"):
 		set_zoom_level(zoom_level + ZOOM_FACTOR)
 
-func addCities():
+func add_cities():
 	for i in data.cities:
 		var city_instance = city_scene.instance()
 		city_instance.translation.x = i[0]

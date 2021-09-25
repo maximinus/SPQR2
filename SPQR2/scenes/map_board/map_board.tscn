@@ -23,7 +23,18 @@ uniform vec3 region_color;
 // where is the mouse
 uniform vec2 mouse_pos;
 
+
 void fragment() {
+	// start by getting the color of the map
+	vec3 region_i = texture(region_map, UV).rbg;
+	// 
+	ALBEDO = vec3(1.0, 1.0, 0.0);
+	ROUGHNESS = texture(rough_map, UV).r / roughness_scale;
+}
+
+
+/*
+void old_fragment() {
 	// if the col is not over a region, we get
 	// white = out of bounds
 	// black = no region
@@ -56,7 +67,7 @@ void fragment() {
 	}
 	ROUGHNESS = texture(rough_map, UV).r / roughness_scale;
 }
-"
+*/"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
