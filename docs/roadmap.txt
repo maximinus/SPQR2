@@ -192,25 +192,24 @@ Milestone #1:
 	Details (started writing:7th August 2021 coding: 7th August 2021):
 		* Cursor keys move smoothly ✓. Should be fast ✓ and fluid
 		* Middle mouse grab overules keys and also moves smoothly
-		* Click detection by lookup on texture
+		* Click detection by lookup on texture ✓
 		* MapRegion is a class instanced from json data ✓, it is stored in a meta "engine" class
 		* Stats are UI, make it a simple text box and get the sizing right for now ✓
-		* The UI is going to need a dropshadow, and insetting a little
-		* Not clicking a region should clear, not hide, the UI
+		* The UI is going to need a dropshadow, and insetting a little ✓
+		* Not clicking a region (i.e., the sea) should do nothing ✓
 
 Milestone #2:
 -------------
-	Add cities and roads to the map (some artwork needed here)
-	Click on a city shows other stats (probably the spend, whilst the region stats shows income)
+	Add cities ✓ and roads to the map (some artwork needed here)
 	GUI overlay shows current year and a person (the emperor) - get the layout right
 
 	Details (started writing:7th August 2021)
 		* Not all regions need roads between them.
-		* Cities should be easy enough. Like an icon probably
-		* They'll need to be pulled from json again
+		* Cities should be easy enough. Like an icon probably ✓
+		* They'll need to be pulled from json again ✓
 		* The stats are likely to be:
 			- Size
-		* When clicking a city or region, the stat panel should be the same size and display both sets of stats
+		* When clicking a city or region, the stat panel should be the same size and display both sets of stats ✓
 		* ESC brings up a menu (this is a ton of work, it means "decide the UI look and do it")
 
 Milestone #3:

@@ -28,7 +28,7 @@ var drag_offset: Vector2
 
 func _ready():
 	# setup all data
-	data.loadAllData()
+	data.load_all_data()
 	# load the region texture
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
 	region_map = image.get_data()
