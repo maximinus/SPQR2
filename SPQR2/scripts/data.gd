@@ -4,7 +4,7 @@ extends Node
 # JSON error checking is a different step;
 # it should be run in the build step
 
-const ROME_DEFAULT_COLOR = Color(233.0, 17.0, 17.0)
+const ROME_DEFAULT_COLOR = Color(0.91, 0.0664, 0.0664, 1.0)
 
 # regions are loaded per id, i.e. id 1 is the first region
 var regions: Array = []
@@ -81,4 +81,6 @@ func get_region_owners_texture() -> Image:
 		base_image.set_pixel(0, ypos, regions[ypos].owner_color)
 		ypos += 1
 	base_image.unlock()
-	return base_image
+	var img = ImageTexture.new()
+	img.create_from_image(base_image)
+	return img

@@ -20,7 +20,7 @@ func _init(data: Dictionary):
 	self.loyalty = data['loyalty']
 	self.color = data['color']
 	# owner not set
-	self.owner_color = Color(0.0, 0.0, 0.0)
+	self.owner_color = Color(0.0, 0.0, 0.0, 1.0)
 
 func match_color(g, b):
 	if(g == self.color[1] and b == self.color[2]):

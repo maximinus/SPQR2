@@ -10,4 +10,5 @@ func _init(data: Dictionary):
 	self.enemy_name = data['name']
 	self.id = data['id']
 	var c: Array = data['color']
-	self.base_color = Color(float(c[0]), float(c[1]), float(c[2]))
+	var base: float = 1.0 / 256.0
+	self.base_color = Color(base * float(c[0]), base * float(c[1]), base * float(c[2]), 1.0)

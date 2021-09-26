@@ -12,6 +12,6 @@ func set_mouse(mouse_pos):
 	var mat = $GameBoard.get_surface_material(1)
 	mat.set_shader_param('mouse_pos', mouse_pos)
 
-func set_region_owners(owners: Image):
+func set_region_owners(owners: ImageTexture):
 	var mat = $GameBoard.get_surface_material(1)
 	mat.set_shader_param('map_owners', owners)
