@@ -1,0 +1,25 @@
+TODO
+====
+
+List of current goals
+
+
+Short Term
+----------
+
+* Mouse over highlights regions
+* Restrict map panning to map borders
+* Add back mouse panning. Mouse changes to hand icon when RH mouse button is down
+* Handle zooming into and out of the map area the mouse is over
+* Change marble table to wood
+* Add mini-map to move instantly
+* Buttons on mini-map zoom to Rome, full zoom-out
+* Using regions you can show military strength, income etc on the map with the shader
+
+
+Medium Term
+-----------
+
+* Add leaders on left-hand-side
+* Add a leader figure, allow movement
+* Code a move

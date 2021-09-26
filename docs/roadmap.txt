@@ -22,10 +22,10 @@ Overview
 Starting in 200 BC, you have 2 consuls and a small number of regions.
 Each consul can conduct a certain (low) number of campaigns
 A campaign is conducted this way:
-	* A region is chosen, and the consul moved there
+	* A friendly region is chosen, and the consul moved there
 	* The consul may choose to move ONE unit from ONE region from almost* anywhere on the board
 		* Almost: Region must be connected, not a crazy (6+ regions) distance, Region not under attack (?)
-	* The consul can move, by one region, all the units in this region and all controlled adjacent ones
+	* The consul can move, by one region, all the units in this region and all controlled adjacent ones (Loops from here)
 	* After this move, the player can choose any controlled region to attack a non-controlled region
 
 	* Here we add another element: the purpose of the invade. The player chooses a goal:
@@ -34,20 +34,23 @@ A campaign is conducted this way:
 		3: Invade: Capture the region and the city
 		4: Sack: Capture the region and the city, steal everything, burn it all, and go home (this will gain a lot more money than 2)
 
-	Enemy choices (and the player when you are invaded) and outcomes:
+	Enemy choices (and the player when you are invaded) and outcomes for 1-4 above:
 
-		1: Attack / Don't Attack
-			First leads to battle on random number
+		1: (Raid) Attack / Don't Attack
+			First leads to battle on random number (i.e., you want to fight)
+				* Enemy may simply run away at this point - option is given to player raiding, fails on random number
+				* If failed runaway, battle engaged
 			Second (or failed check) leads to losing money and enemy leaving
-		2: Engage, or choose not to on a check
-			First (or failed check), a battle
-			Second, you must leave to another friendly region
-		3: Engage or not.
-			If you do not engage (checked), the attackers have a chance to take the city
+		2: (Destroy) Engage, or choose not to on a check
+			If you try to engage, there is a guarenteed battle
+			Not engage, needs a random check: fail is the battle
+			Pass is move to a friendly region or battle if no move avaliable
+		3: (Invade) Engage or not.
+			If you do not engage (checked), the attackers have a chance to attack the city
 				If they win, they have the city. You may attack the city or retreat to another region.
 				If they lose, you may attack on their retreat
 			If you engage (or failed check), there is a battle. If the attackers win, they move on to attack the city.
-		4: Plays out as 3, except you have the extra option to withdraw:
+		4: (Sack) Plays out as 3, except you have the extra option to withdraw:
 			The attackers attack the city.
 			If they lose, they go home
 			If they win, they steal everything and go home
@@ -63,12 +66,13 @@ A campaign is conducted this way:
 		* Romans conquer the territory and the city
 	* We repeat from "The consul can move"
 	* A certain amount of "fatigue" builds up every cycle, and units start to lose effeciency fairly quickly (on both sides)
+		* The loop "The consul can move" might be thought of a campaign year passing. Depends on how many times that happens
 	* It is important to note the AI should be able to play between these moves (i.e., defend if obvious, attack if obvious, keep it simple)
 	* A player can choose to "wait" so they can react to enemy events
 	* If they do, they can only play 1 campaign after waiting
 Once all campaigns are done, maybe the enemy chooses now to attack
 If all campaigns are done, the player may choose to campaign an extra time at some expense
-	* The expense is borne by the following emperor
+	* The expense is borne by the following emperor, since it is funded by money borrowed or spent during their reign
 Now cultural and city growth is done (TODO)
 
 
@@ -77,12 +81,34 @@ This always give a civil war
 In a civil war:
 	You must beat the other rival(s)
 	Unlimited campaigns but success begats success and you should steamroll (or lose fast)
+	A civil war is always the START of a turn. The turn sequence should go:
+		* An emperor is chosen in the normal way
+		* Civil war is declared
+		* All those that could have been chosen become claimants
+		* Player now chooses who to be
+		* A non-stop campaign is held until there is a winner
+		* It is more likely that a Roman army will "turn" rather than be defeated heavily
+			- Thus, battles will likely have less casualties
+		* The player now continues as the winner - which may be someone different
+
+Game is played as expected, except:
+	The goal is to:
+		A: Destroy all rivals
+		B: Go to Rome
+	For all participants:
+		You can only rarely recruit new army members (if you beat an opponent)
+		All Rome regions are friendly, including Rome
+		Moving to Rome gives a chance your rivals give up, especially if your army is much bigger
+			* By "give up" we likely mean "killed by the soldiers"
+		No challenger will want to not accept a fight, typically they all march to Rome ASAP
 
 In the Empire:
+	On the first emperors turn, all cards removed and replaced with all good cards
 	Only 1 emperor, and not 2 consuls, so war is harder
+		- A Later card allows an "East" and a "West" emperor, of course
 	Tax revenue goes up - more to play with
 	Cities increase tax revenue even more
-	A card is needed to found a city
+	A card is needed to found a city, rather than randomly in the Republic
 
 
 Hiding Information
@@ -93,11 +119,11 @@ There are hidden stats that are never exposed, but sometimes expressed in player
 Maybe the stats are exposed and accumulation obscure, or the other way around
 These are:
 	Culture
-		Writing			- Should be accumulative, starts at 0 and cards + cities + peace add to this
-		Art 			- Should be accumulative, starts at 0 and cards + cities + peace add to this
+		Writing			- Should be accumulative, starts at 0 and cards + cities + peace add to this (easy to get)
+		Art 			- Should be accumulative, starts at 0 and cards + cities + peace add to this (hard to get)
 	Natural World
-		Construction 	- Should be accumulative, starts at 0 and cards + cities + peace add to this
-		Innovation 		- Should be accumulative, starts at 0 and cards + cities + peace add to this
+		Engineering 	- Should be accumulative, starts at 0 and cards + cities + peace add to this (easy to get)
+		Science 		- Should be accumulative, starts at 0 and cards + cities + peace add to this (very hard to get)
 	Religion
 		Christianity 	- Starts at zero and can go up and down (but not below zero)
 			This stat triggers the "Christian Emperor" card
@@ -106,6 +132,7 @@ These are:
 				* Less romanisation
 				* The first Christian emperor has more money (raids temples) and has an army with high morale
 		Roman Gods		- Starts at some value and can fluctuate (especially if you add a new region)
+			- Whats the point of this stat?
 These stats effect your score at the end, so they are important.
 To get the best scores should be hard, so no shame should be attached to low scores in one area.
 
@@ -116,12 +143,13 @@ Enemies
 		* I.e., barbarians act different in some way to Persians
 			- maybe as simple as one raids, one invades
 	They must move their units, build things, expand and decline like the player
+		- Kept pretty simple, and mainly driven by progress
 	Their leaders are like the player in the way they attack
 	Although they don't really have cards, they may act like they do due to random events
 	AI is fairly simple
 		* Aggressive AI will attack if it looks possible, or raid if barbarian and defenses are low
 		* Expansionist will do the same but stick around
-		* Raiders will raid, and avoid conbat (a city helps here)
+		* Raiders will raid, and avoid combat (a city helps here)
 		* Neutral AI will largly avoid attacking
 		* Friendly AI (rare) is controlled by the player
 		* They will generally ask for a truce if needed rather than risk destruction
@@ -219,8 +247,7 @@ Milestone #3:
 	Turn: Move units -> click turn button
 
 	Details (started writing:7th August 2021)
-		* Needs to some easy to read a display of strength on the map
-		* Click on them replaces region data
+		* Needs some easy way to read a display of strength on the map
 		* Allow a unit to move ONCE. 1 move away with no road, and 2 with a road
 		* You need to display the move options AND calculate them. A ton of work!
 
@@ -236,7 +263,6 @@ Milestone #4:
 		* Add scenarios (a save with some flavour text)
 		* SPQR is about old shit. No need to jazz the UI up, just make it work and easy to use
 
-
 Milestone #5:
 -------------
 	Add cards
@@ -248,7 +274,7 @@ Milestone #5:
 		* Make the cards simple - just text!
 		* Player will need a way to see the cards - add a button and some bar showing current empire info
 		* There really should not be a lot of "screens with menus", the game should aim to present choices, not endless build options for endless cities
-			- By which I mean, I don't the player micro-managing. They need to play the game turn by turn based on the options they have.
+			- By which I mean, I don't want the player micro-managing. They need to play the game turn by turn based on the options they have.
 
 Milestone #6:
 -------------
@@ -267,7 +293,7 @@ Milestone #7:
 
 	Details (started writing:7th August 2021)
 		* Rather than a screen that is always viewable, make it a flow
-		* Will see after getting the emperor (and before being abke to move)
+		* Will see after getting the emperor (and before being able to move)
 		* Will see after combat - correct your mistakes
 		* Combat is blocked in this turn - you'll need to add to the "next turn" button
 
