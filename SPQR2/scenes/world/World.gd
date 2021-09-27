@@ -10,6 +10,9 @@ const ZOOM_FACTOR = 0.3
 const ZOOM_DURATION = 0.2
 const MAP_PIXEL_SIZE = Vector2(6000.0, 4000.0)
 
+var camera_min = Vector2(-10.5, -6.0)
+var camera_max = Vector2(10.5, 8.5)
+
 onready var zoom_tween: Tween = $Tweens/ZoomTween
 onready var camera_tween: Tween = $Tweens/CameraTween
 onready var camera = $Camera
@@ -36,6 +39,7 @@ func _ready():
 	helpers.log('Loaded region map')
 	dragging = false
 	add_cities()
+	calculate_viewable()
 	set_zoom_level(zoom_level)
 	# do the initial setup, this should happen every change in the future
 	$map_board.set_region_owners(data.get_region_owners_texture())
@@ -49,7 +53,6 @@ func _process(delta):
 func set_map_color():
 	# just set mouse
 	$map_board.set_mouse(map_intersect / MAP_PIXEL_SIZE)
-	
 	# in x range?
 	if map_intersect.x >= 0.0 and map_intersect.x < MAP_PIXEL_SIZE.x:
 		# in y range?
@@ -133,6 +136,9 @@ func set_zoom_level(value):
 	var angle_delta = 35.0 * zoom_c
 	var final_angle = -55.0 - angle_delta
 	
+	# TODO: having zoomed, we must recalculate the panning allowed
+	calculate_viewable()
+	
 	camera_tween.interpolate_property(
 		$Camera,
 		"rotation_degrees:x",
@@ -169,6 +175,13 @@ func calculate_intersections():
 	# camera zpos is high when camera is looking at bottom, so offset is taken away (offset is _+ve)	
 	camera_intersect = scale_plane_coords(camera.translation.x, camera.translation.z - zpos)
 
+func check_panning_limits(move: Vector3):
+	# only need to look at x and z
+	move += camera.translation
+	move.x = min(max(move.x, camera_min.x), camera_max.x)
+	move.z = min(max(move.z, camera_min.y), camera_max.y)
+	return move
+
 func check_cursor_keys(delta):
 	var move = Vector3(0.0, 0.0, 0.0)
 	var scaling = (zoom_level / SCROLL_SPEED) * delta
@@ -181,4 +194,11 @@ func check_cursor_keys(delta):
 	if Input.is_action_pressed("down"):
 		move.z += scaling
 	if move != Vector3(0.0, 0.0, 0.0):
-		$Camera.translation += move
+		camera.translation = check_panning_limits(move)
+
+func calculate_viewable():
+	# needs to scale with screen RATIO, by experiment
+	# i.e. might be 10:4, or 16:9 etc
+	# these values are for the fixed ratio 1000:600
+	camera_min = Vector2(-8.5, -5.2)
+	camera_max = Vector2(8.5, 5.2)

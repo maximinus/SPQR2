@@ -39,6 +39,7 @@ data="*res://scripts/data.gd"
 
 [display]
 
+window/size/width=1000
 window/stretch/aspect="keep"
 
 [importer_defaults]
