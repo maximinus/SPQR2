@@ -18,7 +18,7 @@ onready var camera = $Camera
 # size of area can view on different zooms
 # vec3 as x, y_top, y_bottom
 const VIEW_AREA_ZOOM_MIN = Vector3(12.75, 9.0, -6.5)
-const VIEW_AREA_ZOOM_MAX = Vector3(8.5, 5.2, -7.2)
+const VIEW_AREA_ZOOM_MAX = Vector3(6.0, 5.2, -7.2)
 # and then recalculated per zoom level
 var view_area = Vector3(7.0, 4.0, -4.0)
 

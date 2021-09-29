@@ -7,7 +7,7 @@ List of current goals
 Short Term
 ----------
 
-* Mouse over highlights regions
+✓ Mouse over highlights regions
 ✓ Restrict map panning to map borders
 * Add back mouse panning. Mouse changes to hand icon when RH mouse button is down
 * Handle zooming into and out of the map area the mouse is over
