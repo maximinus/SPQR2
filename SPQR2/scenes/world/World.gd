@@ -2,6 +2,7 @@ extends Spatial
 
 const SCROLL_SPEED = 0.6
 
+# min zoom is closest to the map
 const MIN_ZOOM = 1.0
 const MAX_ZOOM = 10.0
 # how much we change the zoom_level on every wheel turn
@@ -10,12 +11,16 @@ const ZOOM_FACTOR = 0.3
 const ZOOM_DURATION = 0.2
 const MAP_PIXEL_SIZE = Vector2(6000.0, 4000.0)
 
-var camera_min = Vector2(-10.5, -6.0)
-var camera_max = Vector2(10.5, 8.5)
-
 onready var zoom_tween: Tween = $Tweens/ZoomTween
 onready var camera_tween: Tween = $Tweens/CameraTween
 onready var camera = $Camera
+
+# size of area can view on different zooms
+# vec3 as x, y_top, y_bottom
+const VIEW_AREA_ZOOM_MIN = Vector3(12.75, 9.0, -6.5)
+const VIEW_AREA_ZOOM_MAX = Vector3(8.5, 5.2, -7.2)
+# and then recalculated per zoom level
+var view_area = Vector3(7.0, 4.0, -4.0)
 
 var city_scene = preload('res://scenes/city/City.tscn')
 
@@ -39,7 +44,7 @@ func _ready():
 	helpers.log('Loaded region map')
 	dragging = false
 	add_cities()
-	calculate_viewable()
+	calculate_view_area()
 	set_zoom_level(zoom_level)
 	# do the initial setup, this should happen every change in the future
 	$map_board.set_region_owners(data.get_region_owners_texture())
@@ -137,7 +142,7 @@ func set_zoom_level(value):
 	var final_angle = -55.0 - angle_delta
 	
 	# TODO: having zoomed, we must recalculate the panning allowed
-	calculate_viewable()
+	calculate_view_area()
 	
 	camera_tween.interpolate_property(
 		$Camera,
@@ -178,27 +183,27 @@ func calculate_intersections():
 func check_panning_limits(move: Vector3):
 	# only need to look at x and z
 	move += camera.translation
-	move.x = min(max(move.x, camera_min.x), camera_max.x)
-	move.z = min(max(move.z, camera_min.y), camera_max.y)
+	move.x = min(max(move.x, -view_area.x), view_area.x)
+	move.z = min(max(move.z, view_area.z), view_area.y)
 	return move
 
 func check_cursor_keys(delta):
 	var move = Vector3(0.0, 0.0, 0.0)
 	var scaling = (zoom_level / SCROLL_SPEED) * delta
-	if Input.is_action_pressed("left"):
+	if Input.is_action_pressed('left'):
 		move.x -= scaling
-	if Input.is_action_pressed("right"):
+	if Input.is_action_pressed('right'):
 		move.x += scaling
-	if Input.is_action_pressed("up"):
+	if Input.is_action_pressed('up'):
 		move.z -= scaling
-	if Input.is_action_pressed("down"):
+	if Input.is_action_pressed('down'):
 		move.z += scaling
 	if move != Vector3(0.0, 0.0, 0.0):
 		camera.translation = check_panning_limits(move)
 
-func calculate_viewable():
-	# needs to scale with screen RATIO, by experiment
-	# i.e. might be 10:4, or 16:9 etc
-	# these values are for the fixed ratio 1000:600
-	camera_min = Vector2(-8.5, -5.2)
-	camera_max = Vector2(8.5, 5.2)
+func calculate_view_area():
+	var zoom = camera.translation.y
+	# at zoom_min we should have VIEW_AREA_ZOOM_MIN
+	# at zoom_max we should have VIEW_AREA_ZOOM_MAX
+	var diff = (VIEW_AREA_ZOOM_MAX - VIEW_AREA_ZOOM_MIN) / (MAX_ZOOM - 1)
+	view_area = ((zoom - MIN_ZOOM) * diff) + VIEW_AREA_ZOOM_MIN
