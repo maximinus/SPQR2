@@ -73,7 +73,7 @@ func set_map_color():
 	# set color to white
 	$map_board.set_region_color(Vector3(1.0, 1.0, 1.0))
 
-func _unhandled_input(event):
+func _input(event):
 	if event.is_action_pressed('zoom_in'):
 		# true: zoom in
 		set_zoom_level(zoom_level - ZOOM_FACTOR, true)

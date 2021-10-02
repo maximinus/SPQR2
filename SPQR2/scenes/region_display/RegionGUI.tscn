@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://gfx/fonts/regular_roman.tres" type="DynamicFont" id=1]
 [ext_resource path="res://gfx/ui_elements/region_sidebar/background_patch.png" type="Texture" id=2]
-[ext_resource path="res://gfx/ui_elements/region_sidebar/eagle.png" type="Texture" id=3]
-[ext_resource path="res://gfx/ui_elements/region_sidebar/banner.png" type="Texture" id=4]
 [ext_resource path="res://scenes/region_display/RegionGUI.gd" type="Script" id=5]
 
 [sub_resource type="Theme" id=1]
@@ -19,10 +17,10 @@ Label/fonts/font = ExtResource( 1 )
 Label/styles/normal = null
 
 [node name="RegionGUI" type="Control"]
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -704.0
-rect_min_size = Vector2( 320, 600 )
+margin_left = -180.0
+margin_bottom = 200.0
 theme = SubResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -55,130 +53,110 @@ __meta__ = {
 [node name="VBox" type="VBoxContainer" parent="Mrg"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 310.0
-margin_bottom = 590.0
+margin_right = 170.0
+margin_bottom = 190.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Banner" type="TextureRect" parent="Mrg/VBox"]
-margin_right = 300.0
-margin_bottom = 50.0
-texture = ExtResource( 4 )
-stretch_mode = 4
-
-[node name="Title" type="Label" parent="Mrg/VBox/Banner"]
-margin_top = 7.0
-margin_right = 300.0
-margin_bottom = 57.0
-rect_min_size = Vector2( 0, 50 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+[node name="Title" type="Label" parent="Mrg/VBox"]
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
 text = "Name of the place"
 align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBCity" type="HBoxContainer" parent="Mrg/VBox"]
-margin_top = 60.0
-margin_right = 300.0
-margin_bottom = 87.0
+margin_top = 40.0
+margin_right = 160.0
+margin_bottom = 60.0
 
 [node name="CityL" type="Label" parent="Mrg/VBox/HBCity"]
-margin_right = 45.0
-margin_bottom = 27.0
+margin_right = 31.0
+margin_bottom = 20.0
 text = "City:"
 
 [node name="CityD" type="Label" parent="Mrg/VBox/HBCity"]
-margin_left = 49.0
-margin_right = 300.0
-margin_bottom = 27.0
+margin_left = 35.0
+margin_right = 160.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Rome"
 align = 2
 
 [node name="HBCulture" type="HBoxContainer" parent="Mrg/VBox"]
-margin_top = 97.0
-margin_right = 300.0
-margin_bottom = 124.0
+margin_top = 70.0
+margin_right = 160.0
+margin_bottom = 90.0
 
 [node name="CultureL" type="Label" parent="Mrg/VBox/HBCulture"]
-margin_right = 75.0
-margin_bottom = 27.0
+margin_right = 53.0
+margin_bottom = 20.0
 text = "Culture:"
 
 [node name="CultureD" type="Label" parent="Mrg/VBox/HBCulture"]
-margin_left = 79.0
-margin_right = 300.0
-margin_bottom = 27.0
+margin_left = 57.0
+margin_right = 160.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "50"
 align = 2
 
 [node name="HBWealth" type="HBoxContainer" parent="Mrg/VBox"]
-margin_top = 134.0
-margin_right = 300.0
-margin_bottom = 161.0
+margin_top = 100.0
+margin_right = 160.0
+margin_bottom = 120.0
 
 [node name="WealthL" type="Label" parent="Mrg/VBox/HBWealth"]
-margin_right = 72.0
-margin_bottom = 27.0
+margin_right = 51.0
+margin_bottom = 20.0
 text = "Wealth:"
 
 [node name="WealthD" type="Label" parent="Mrg/VBox/HBWealth"]
-margin_left = 76.0
-margin_right = 300.0
-margin_bottom = 27.0
+margin_left = 55.0
+margin_right = 160.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "120"
 align = 2
 
 [node name="HBManpower" type="HBoxContainer" parent="Mrg/VBox"]
-margin_top = 171.0
-margin_right = 300.0
-margin_bottom = 198.0
+margin_top = 130.0
+margin_right = 160.0
+margin_bottom = 150.0
 
 [node name="ManpowerL" type="Label" parent="Mrg/VBox/HBManpower"]
-margin_right = 104.0
-margin_bottom = 27.0
+margin_right = 74.0
+margin_bottom = 20.0
 text = "Manpower:"
 
 [node name="ManpowerD" type="Label" parent="Mrg/VBox/HBManpower"]
-margin_left = 108.0
-margin_right = 300.0
-margin_bottom = 27.0
+margin_left = 78.0
+margin_right = 160.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "40"
 align = 2
 
 [node name="HBLoyalty" type="HBoxContainer" parent="Mrg/VBox"]
-margin_top = 208.0
-margin_right = 300.0
-margin_bottom = 235.0
+margin_top = 160.0
+margin_right = 160.0
+margin_bottom = 180.0
 
 [node name="LoyaltyL" type="Label" parent="Mrg/VBox/HBLoyalty"]
-margin_right = 75.0
-margin_bottom = 27.0
+margin_right = 53.0
+margin_bottom = 20.0
 text = "Loyalty:"
 
 [node name="LoyaltyD" type="Label" parent="Mrg/VBox/HBLoyalty"]
-margin_left = 79.0
-margin_right = 300.0
-margin_bottom = 27.0
+margin_left = 57.0
+margin_right = 160.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "40"
 align = 2
-
-[node name="Spacer" type="Label" parent="Mrg/VBox"]
-margin_top = 329.0
-margin_right = 300.0
-margin_bottom = 356.0
-size_flags_vertical = 6
-
-[node name="TextureRect2" type="TextureRect" parent="Mrg/VBox"]
-margin_top = 450.0
-margin_right = 300.0
-margin_bottom = 580.0
-texture = ExtResource( 3 )
-stretch_mode = 4
