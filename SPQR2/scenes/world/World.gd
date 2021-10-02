@@ -54,8 +54,11 @@ func _ready():
 	$map_board.set_region_owners(data.get_region_owners_texture())
 
 func _process(delta):
+	# what are the mouse and camera looking at?
 	calculate_intersections()
+	# what color are we over for the shader?
 	set_map_color()
+	# move the map
 	if check_mouse_drag() == false:
 		check_cursor_keys(delta)
 
@@ -80,7 +83,7 @@ func _input(event):
 	if event.is_action_pressed("zoom_out"):
 		set_zoom_level(zoom_level + ZOOM_FACTOR, false)
 
-func add_cities():
+func add_cities() -> void:
 	for i in data.cities:
 		var city_instance = city_scene.instance()
 		city_instance.translation.x = i[0]
@@ -123,6 +126,7 @@ func set_zoom_level(value, zoom_in):
 	# from 55 to 90 is 35
 	var angle_delta = 35.0 * zoom_c
 	var final_angle = -55.0 - angle_delta
+	# update what we can see
 	calculate_view_area()
 	camera_tween.interpolate_property(
 		$Camera, 'rotation_degrees:x', $Camera.rotation_degrees.x,
@@ -137,18 +141,22 @@ func set_zoom_level(value, zoom_in):
 	var final_move = check_panning_limits(Vector3(delta.x, 0.0, delta.y))
 	# add the zoom
 	final_move.y = zoom_level
-	#  tween between camera zoom current value to the target zoom
+	# tween the camera to final_move
 	zoom_tween.interpolate_property(
 		$Camera, 'translation', $Camera.translation, final_move,
 		ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_OUT)
 	zoom_tween.start()
 	
 func scale_plane_coords(x, y):
+	# given plane coords, return pixel coords
+	# plane of (-12.5, -8.34) is (0,0) in pixels
+	# Since map is (12.5, 8.34) * 2 = (25.0, 16.68) in size,
+	# divide the pixel size by those values
 	return Vector2(round((x + 12.5) * (MAP_PIXEL_SIZE.x / 25.0)),
 				   round((y + 8.34) * (MAP_PIXEL_SIZE.y / 16.68)))
 
 func get_mouse_map_coords(scaled: bool):
-	# calculate what map pixel we are looking at
+	# calculate what map pixel the mouse is looking at
 	# start by creating a horizontal plane where the map is
 	var map_plane = Plane(Vector3(0, 1, 0), 0)
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -157,7 +165,7 @@ func get_mouse_map_coords(scaled: bool):
 	# null if they don't intersect, otherwise gives the meeting point
 	# Should be like (4.884333, 0, -4.067944), treat as {x:4.88, y:-4.07}
 	var intersect = map_plane.intersects_ray(from, to)
-	# convert to pixel map coords
+	# convert to pixel map coords if needed
 	if scaled == true:
 		return scale_plane_coords(intersect.x, intersect.z)
 	return Vector2(intersect.x, intersect.z)
@@ -172,6 +180,7 @@ func calculate_intersections():
 func check_panning_limits(move: Vector3):
 	# only need to look at x and z
 	move += camera.translation
+	# limit from -view_area to +view_area
 	move.x = min(max(move.x, -view_area.x), view_area.x)
 	move.z = min(max(move.z, view_area.z), view_area.y)
 	return move
