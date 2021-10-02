@@ -10,7 +10,10 @@ const ZOOM_FACTOR = 0.3
 # Duration of the zoom's tween animation.
 const ZOOM_DURATION = 0.2
 const MAP_PIXEL_SIZE = Vector2(6000.0, 4000.0)
+# amount to slow down mouse panning by
 const PAN_SCALING = 10.0
+# amount to slow down the scale of panning the map during a zoom
+const MOUSE_ZOOM_SCALING = 500.0
 
 onready var zoom_tween: Tween = $Tweens/ZoomTween
 onready var camera_tween: Tween = $Tweens/CameraTween
@@ -46,7 +49,7 @@ func _ready():
 	dragging = false
 	add_cities()
 	calculate_view_area()
-	set_zoom_level(zoom_level)
+	calculate_intersections()
 	# do the initial setup, this should happen every change in the future
 	$map_board.set_region_owners(data.get_region_owners_texture())
 
@@ -71,10 +74,11 @@ func set_map_color():
 	$map_board.set_region_color(Vector3(1.0, 1.0, 1.0))
 
 func _unhandled_input(event):
-	if event.is_action_pressed("zoom_in"):
-		set_zoom_level(zoom_level - ZOOM_FACTOR)
+	if event.is_action_pressed('zoom_in'):
+		# true: zoom in
+		set_zoom_level(zoom_level - ZOOM_FACTOR, true)
 	if event.is_action_pressed("zoom_out"):
-		set_zoom_level(zoom_level + ZOOM_FACTOR)
+		set_zoom_level(zoom_level + ZOOM_FACTOR, false)
 
 func add_cities():
 	for i in data.cities:
@@ -101,7 +105,6 @@ func check_mouse_drag() -> bool:
 			# yes, move by delta of mouse move
 			# false means to return by x/z, not by map pixels
 			var current_move = get_mouse_map_coords(false)
-			var camera_offset = Vector2(camera.translation.x, camera.translation.z)
 			var drag_move = (drag_offset - current_move) / PAN_SCALING			
 			camera.translation = check_panning_limits(Vector3(drag_move.x, 0.0, drag_move.y))
 			return true
@@ -109,28 +112,11 @@ func check_mouse_drag() -> bool:
 			dragging = false
 	return false
 
-func set_zoom_level(value):
+func set_zoom_level(value, zoom_in):
 	# We limit the value between min_zoom and max_zoom
 	zoom_level = clamp(value, MIN_ZOOM, MAX_ZOOM)
-	#  tween between camera zoom current value to the target zoom
-	zoom_tween.interpolate_property(
-		$Camera,
-		"translation:y",
-		$Camera.translation.y,
-		zoom_level,
-		ZOOM_DURATION,
-		Tween.TRANS_SINE,
-		# Easing out: start fast and slow down as we reach the target value.
-		Tween.EASE_OUT
-	)
-	zoom_tween.start()
 	# at maximum zoom out, our camera.x angle should -90, at max zoom in, -55
 	var zoom_c = 0.0
-	# zero at MIN_ZOOM and 1 at MAX_ZOOM
-	# zoom_level is between MIN_ZOOM and MAX_ZOOM
-	# zoom_level - MIN_ZOOM
-	# level is now 0 -> MAX_ZOOM... i.e. 0 to 4
-	# (MAX_ZOOM - MIN_ZOOM) gets you the divisor 4, so
 	zoom_c = zoom_level - MIN_ZOOM
 	if zoom_c != 0.0:
 		zoom_c = zoom_c / (MAX_ZOOM - MIN_ZOOM)
@@ -138,19 +124,24 @@ func set_zoom_level(value):
 	var angle_delta = 35.0 * zoom_c
 	var final_angle = -55.0 - angle_delta
 	calculate_view_area()
-	
 	camera_tween.interpolate_property(
-		$Camera,
-		"rotation_degrees:x",
-		$Camera.rotation_degrees.x,
-		final_angle,
-		ZOOM_DURATION,
-		Tween.TRANS_SINE,
-		# Easing out: start fast and slow down as we reach the target value.
-		Tween.EASE_OUT
-	)
-	camera_tween.start()	
-	# TODO: if we zoom and are off-centre with the mouse, we must also move that way
+		$Camera, 'rotation_degrees:x', $Camera.rotation_degrees.x,
+		final_angle, ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_OUT)
+	camera_tween.start()
+	# if we zoom and are off-centre with the mouse, we must also move that way
+	# cuurently we have the details per pixel, so apply scaling
+	var delta = (map_intersect - camera_intersect) / MOUSE_ZOOM_SCALING
+	# confirm the final destination
+	if zoom_in == false:
+		delta *= -1.0
+	var final_move = check_panning_limits(Vector3(delta.x, 0.0, delta.y))
+	# add the zoom
+	final_move.y = zoom_level
+	#  tween between camera zoom current value to the target zoom
+	zoom_tween.interpolate_property(
+		$Camera, 'translation', $Camera.translation, final_move,
+		ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_OUT)
+	zoom_tween.start()
 	
 func scale_plane_coords(x, y):
 	return Vector2(round((x + 12.5) * (MAP_PIXEL_SIZE.x / 25.0)),
