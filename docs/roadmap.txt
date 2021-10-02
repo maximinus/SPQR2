@@ -9,11 +9,12 @@ Map is region based
 Turn Sequence
 -------------
 
-Player is given a card, and player must play a card
+Player deals with cards
+Player can spend money
 Player can attack. Enemy attacks are after each player attack
 Player can then move long range
-Player can spend money
 Next emperor is chosen
+Year moves on 20 years. Loop back to start
 
 
 Overview
@@ -23,10 +24,14 @@ Starting in 200 BC, you have 2 consuls and a small number of regions.
 Each consul can conduct a certain (low) number of campaigns
 A campaign is conducted this way:
 	* A friendly region is chosen, and the consul moved there
-	* The consul may choose to move ONE unit from ONE region from almost* anywhere on the board
-		* Almost: Region must be connected, not a crazy (6+ regions) distance, Region not under attack (?)
-	* The consul can move, by one region, all the units in this region and all controlled adjacent ones (Loops from here)
-	* After this move, the player can choose any controlled region to attack a non-controlled region
+	* First, you may Support:
+		- The consul may choose to move ONE unit from ONE region from anywhere on the board to their region
+	* Then you may Prepare:
+		- The consul can move, by one region, all the units in this region and all controlled adjacent ones (Starts a loop from here)
+	* And then you may Attack:
+		- After this move, the player can choose any controlled region to attack a non-controlled region
+
+	With tougher enemies, they can also support and prepare. For every one of support and prepare you use, the enemy can also use.
 
 	* Here we add another element: the purpose of the invade. The player chooses a goal:
 		1: Raid: Avoid combat and leave after stealing money
@@ -183,21 +188,67 @@ Troops
 
 Cards:
 ------
-	Player is given 5 cards at start of game
-	They are divided into "good" and "bad" cards which are mixed
-	One must be played at the start of a turn, and another at the end
-		* Otherwise card playing is slow, this way, 200 years = 8 turns = 16 cards
+	Player is given 6 cards at start of game
+	They are divided into "good", "neutral" and "bad" cards which are mixed
+	Two must be played at the start of a turn, and another at the end
+		* Player gets 1 card, then must play 2. Then they get another card
+		* After playing cards, player may discard any good or neutral cards.
+		* For every 2 cards they discard (1 of which must be a good card), they may also discard 1 bad card
+		* Thats about 90 "natural" cards per game, they should and will be important
+
 	After playing, another is picked up
 	Card effects can change gameplay, eg:
 		* Card: Leader has 1 extra campaign
 	Or meta-gameplay
 		* Card: When played, gain 2 random good cards which are played instantly
+		* Card: Some effect + "this card may not be discarded"
 	Or force game changes:
 		* Card: Roman changes from Republic to Empire.
 	Cards can have options, so that they may be multi-purpose
 		* Card: Either event may happen:
 			* Tacitus writes a famous history of Rome
 			* You have +1 campaigns
+		* When played, raises an event
+
+
+Events:
+-------
+
+Events can trigger at any time.
+They are a simple question that requires an answer.
+Examples:
+	Mistreated nobles want to claim the money confiscated by the previous emperor.
+		A: Reject B: Pay 50% C: Pay all
+
+	Enemy offers 20,000 talents of silver to withdraw from a region
+		A: Reject B: Accept
+
+On the programming side, it's like raising a simple dialog.
+This means there needs to be some mechanism for this.
+
+
+What do Roads do?
+-----------------
+
+Roads need a purpose. Ideas:
+	* Roads faciltate a trade bonus
+	* Troops move quicker, although you may not really notice that
+	* If the troops moved under the prepare phase all use roads, the enemy will have no prepare phase, unless they also have roads.
+	* In the support phase, you may move 2 units if their move is all along roads.
+	* Retreat is a lot easier with roads
+	* Increased romanization if connected to Rome
+	* Roads add to the general score
+	* They are expensive, best added by general romanization (but perhaps by then the effects are weakened?)
+	* Most regions should have roads by 200, and the more far flung by 300 AD
+
+
+What do Boats do?
+-----------------
+
+Boats / Ports need a purpose. Ideas:
+	* Ports facilitate goods getting to Rome
+	* Ships prevent piracy
+	* 
 
 
 We need:

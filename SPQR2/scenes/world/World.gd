@@ -10,6 +10,7 @@ const ZOOM_FACTOR = 0.3
 # Duration of the zoom's tween animation.
 const ZOOM_DURATION = 0.2
 const MAP_PIXEL_SIZE = Vector2(6000.0, 4000.0)
+const PAN_SCALING = 10.0
 
 onready var zoom_tween: Tween = $Tweens/ZoomTween
 onready var camera_tween: Tween = $Tweens/CameraTween
@@ -92,23 +93,19 @@ func check_mouse_drag() -> bool:
 			dragging = true
 			# nothing to do this frame
 			# we don't need the mouse position, we need where the mouse IS relative to the ground plane
-			drag_offset = get_viewport().get_mouse_position()
+			drag_offset = get_mouse_map_coords(false)
 			return true
 	else:
+		# we are dragging, or at least should be
 		if Input.is_action_pressed(('middle_mouse')):
 			# yes, move by delta of mouse move
-			#var current_move = get_viewport().get_mouse_position()
-			#var camera_offset = Vector2(camera.translation.x, camera.translation.z)
-			#camera_offset += (drag_offset - current_move) * zoom_level
-			#print(camera_offset)
-			#camera.translation.x = camera_offset.x
-			#camera.translation.z = camera_offset.y
-			#drag_offset = current_move
+			# false means to return by x/z, not by map pixels
+			var current_move = get_mouse_map_coords(false)
+			var camera_offset = Vector2(camera.translation.x, camera.translation.z)
+			var drag_move = (drag_offset - current_move) / PAN_SCALING			
+			camera.translation = check_panning_limits(Vector3(drag_move.x, 0.0, drag_move.y))
 			return true
 		else:
-			print(map_intersect)
-			print(camera_intersect)
-			print('---')
 			dragging = false
 	return false
 
@@ -140,8 +137,6 @@ func set_zoom_level(value):
 	# from 55 to 90 is 35
 	var angle_delta = 35.0 * zoom_c
 	var final_angle = -55.0 - angle_delta
-	
-	# TODO: having zoomed, we must recalculate the panning allowed
 	calculate_view_area()
 	
 	camera_tween.interpolate_property(
@@ -160,21 +155,24 @@ func set_zoom_level(value):
 func scale_plane_coords(x, y):
 	return Vector2(round((x + 12.5) * (MAP_PIXEL_SIZE.x / 25.0)),
 				   round((y + 8.34) * (MAP_PIXEL_SIZE.y / 16.68)))
-	
-func calculate_intersections():
-	# create a horizontal plane where the map is
+
+func get_mouse_map_coords(scaled: bool):
+	# calculate what map pixel we are looking at
+	# start by creating a horizontal plane where the map is
 	var map_plane = Plane(Vector3(0, 1, 0), 0)
 	var mouse_pos = get_viewport().get_mouse_position()
-	# Create the start and end points. Start is where the camera is
 	var from = camera.project_ray_origin(mouse_pos)
-	# and then extend it along by a long way
 	var to = from + camera.project_ray_normal(mouse_pos) * 1000.0
 	# null if they don't intersect, otherwise gives the meeting point
 	# Should be like (4.884333, 0, -4.067944), treat as {x:4.88, y:-4.07}
 	var intersect = map_plane.intersects_ray(from, to)
-	# now convert to pixel map coords
-	map_intersect = scale_plane_coords(intersect.x, intersect.z)
+	# convert to pixel map coords
+	if scaled == true:
+		return scale_plane_coords(intersect.x, intersect.z)
+	return Vector2(intersect.x, intersect.z)
 
+func calculate_intersections():
+	map_intersect = get_mouse_map_coords(true)
 	# do the camera aim manually
 	var zpos = camera.translation.y * tan(deg2rad(90.0 + camera.rotation_degrees.x))
 	# camera zpos is high when camera is looking at bottom, so offset is taken away (offset is _+ve)	
