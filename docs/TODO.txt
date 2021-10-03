@@ -4,16 +4,17 @@ TODO
 List of current goals
 
 
-Short Term
-----------
+Short Term:
+-----------
 
-✓ Mouse over highlights regions
-✓ Restrict map panning to map borders
-✓ Add back mouse panning. Mouse changes to hand icon when RH mouse button is down
-✓ Handle zooming into and out of the map area the mouse is over
-✓ Change marble table to wood
-✓ Add mini-map to move instantly
-* Using regions you can show military strength, income etc on the map with the shader
+* Add military strength and money to regions
+* Remove region owner from region, calculate region owners from owners
+* Add 2 senators to map display
+* Add region borders and roads to map display
+* Add some more regions
+* Design an enemy soldier, and improve the current soldier
+* Add senators to screen
+* Add pop-up ESC menu
 
 
 Medium Term
