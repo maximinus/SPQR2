@@ -57,6 +57,7 @@ func _ready():
 func _process(delta):
 	# what are the mouse and camera looking at?
 	calculate_intersections()
+	update_minimap_pin()
 	# what color are we over for the shader?
 	set_map_color()
 	# move the map
@@ -100,6 +101,7 @@ func check_mouse_drag() -> bool:
 		# middle mouse down?
 		if Input.is_action_pressed('middle_mouse'):
 			dragging = true
+			$CanvasLayer/Overlay.set_default_cursor_shape(Input.CURSOR_DRAG)
 			# nothing to do this frame
 			# we don't need the mouse position, we need where the mouse IS relative to the ground plane
 			drag_offset = get_mouse_map_coords(false)
@@ -115,6 +117,7 @@ func check_mouse_drag() -> bool:
 			return true
 		else:
 			dragging = false
+			$CanvasLayer/Overlay.set_default_cursor_shape(Input.CURSOR_ARROW)
 	return false
 
 func set_zoom_level(value, zoom_in) -> void:
