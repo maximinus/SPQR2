@@ -4,15 +4,17 @@ signal map_clicked(pos)
 
 const MAP_SIZE: Vector2 = Vector2(180.0, 120.0)
 
+var start_size: Vector2
+
 func _ready() -> void:
 	pass
 
 func set_map_cursor(pos: Vector2) -> void:
 	# this is the value in UV format, i.e. 0-1 both axis
-	var offset = MAP_SIZE * pos
+	var delta = MAP_SIZE * pos
 	# TODO: Why do we need the extra offset? Should only be a pixel off
-	offset += $VBox/Map.rect_global_position + Vector2(6.0, 6.0)
-	$Pin.rect_position = offset
+	# Maybe need to account for the border
+	$VBox/Map/Pin.rect_position = delta - Vector2(3.0, 3.0)
 
 func _on_MapButton_pressed() -> void:
 	$VBox/HBox/MapButton.pressed = true
