@@ -14,6 +14,7 @@ const MAP_PIXEL_SIZE = Vector2(6000.0, 4000.0)
 const PAN_SCALING = 10.0
 # amount to slow down the scale of panning the map during a zoom
 const MOUSE_ZOOM_SCALING = 500.0
+const MAP_REAL_SIZE = Vector2(25.0, 16.68)
 
 onready var zoom_tween: Tween = $Tweens/ZoomTween
 onready var camera_tween: Tween = $Tweens/CameraTween
@@ -62,7 +63,7 @@ func _process(delta):
 	if check_mouse_drag() == false:
 		check_cursor_keys(delta)
 
-func set_map_color():
+func set_map_color() -> void:
 	# just set mouse
 	$map_board.set_mouse(map_intersect / MAP_PIXEL_SIZE)
 	# in x range?
@@ -76,7 +77,7 @@ func set_map_color():
 	# set color to white
 	$map_board.set_region_color(Vector3(1.0, 1.0, 1.0))
 
-func _input(event):
+func _input(event) -> void:
 	if event.is_action_pressed('zoom_in'):
 		# true: zoom in
 		set_zoom_level(zoom_level - ZOOM_FACTOR, true)
@@ -84,6 +85,7 @@ func _input(event):
 		set_zoom_level(zoom_level + ZOOM_FACTOR, false)
 
 func add_cities() -> void:
+	# add cities to scene from world data
 	for i in data.cities:
 		var city_instance = city_scene.instance()
 		city_instance.translation.x = i[0]
@@ -115,7 +117,8 @@ func check_mouse_drag() -> bool:
 			dragging = false
 	return false
 
-func set_zoom_level(value, zoom_in):
+func set_zoom_level(value, zoom_in) -> void:
+	# zoom the camera with a tween. May also need to tween the x/z position
 	# We limit the value between min_zoom and max_zoom
 	zoom_level = clamp(value, MIN_ZOOM, MAX_ZOOM)
 	# at maximum zoom out, our camera.x angle should -90, at max zoom in, -55
@@ -147,7 +150,7 @@ func set_zoom_level(value, zoom_in):
 		ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_OUT)
 	zoom_tween.start()
 	
-func scale_plane_coords(x, y):
+func scale_plane_coords(x, y) -> Vector2:
 	# given plane coords, return pixel coords
 	# plane of (-12.5, -8.34) is (0,0) in pixels
 	# Since map is (12.5, 8.34) * 2 = (25.0, 16.68) in size,
@@ -155,7 +158,7 @@ func scale_plane_coords(x, y):
 	return Vector2(round((x + 12.5) * (MAP_PIXEL_SIZE.x / 25.0)),
 				   round((y + 8.34) * (MAP_PIXEL_SIZE.y / 16.68)))
 
-func get_mouse_map_coords(scaled: bool):
+func get_mouse_map_coords(scaled: bool) -> Vector2:
 	# calculate what map pixel the mouse is looking at
 	# start by creating a horizontal plane where the map is
 	var map_plane = Plane(Vector3(0, 1, 0), 0)
@@ -170,14 +173,17 @@ func get_mouse_map_coords(scaled: bool):
 		return scale_plane_coords(intersect.x, intersect.z)
 	return Vector2(intersect.x, intersect.z)
 
-func calculate_intersections():
+func calculate_intersections() -> void:
+	# calculate what the camera and mouse pointer are looking at
 	map_intersect = get_mouse_map_coords(true)
 	# do the camera aim manually
 	var zpos = camera.translation.y * tan(deg2rad(90.0 + camera.rotation_degrees.x))
 	# camera zpos is high when camera is looking at bottom, so offset is taken away (offset is _+ve)	
 	camera_intersect = scale_plane_coords(camera.translation.x, camera.translation.z - zpos)
 
-func check_panning_limits(move: Vector3):
+func check_panning_limits(move: Vector3) -> Vector3:
+	# restrict the given move to the view area
+	# return the final camera position
 	# only need to look at x and z
 	move += camera.translation
 	# limit from -view_area to +view_area
@@ -185,7 +191,8 @@ func check_panning_limits(move: Vector3):
 	move.z = min(max(move.z, view_area.z), view_area.y)
 	return move
 
-func check_cursor_keys(delta):
+func check_cursor_keys(delta) -> void:
+	# if cursor keys are down, scroll the map
 	var move = Vector3(0.0, 0.0, 0.0)
 	var scaling = (zoom_level / SCROLL_SPEED) * delta
 	if Input.is_action_pressed('left'):
@@ -199,9 +206,35 @@ func check_cursor_keys(delta):
 	if move != Vector3(0.0, 0.0, 0.0):
 		camera.translation = check_panning_limits(move)
 
-func calculate_view_area():
+func calculate_view_area() -> void:
+	# calculate the area which can be viewed, based on the current zoom
 	var zoom = camera.translation.y
 	# at zoom_min we should have VIEW_AREA_ZOOM_MIN
 	# at zoom_max we should have VIEW_AREA_ZOOM_MAX
 	var diff = (VIEW_AREA_ZOOM_MAX - VIEW_AREA_ZOOM_MIN) / (MAX_ZOOM - 1)
 	view_area = ((zoom - MIN_ZOOM) * diff) + VIEW_AREA_ZOOM_MIN
+
+func _on_Overlay_mini_map(pos) -> void:
+	# the mini-map has been clicked. The co-ords are the UV of the map,
+	# i.e. 0 to 1 on both the axis. Update the map and the map pin
+	var half_map = MAP_REAL_SIZE / 2.0
+	pos *= MAP_REAL_SIZE
+	pos -= half_map
+	# the "move" would be where we are, compared to where we want to be
+	# the camera intersect in is pixels, so recalculate
+	var camera_pos = (camera_intersect / MAP_PIXEL_SIZE) * MAP_REAL_SIZE
+	camera_pos -= half_map
+	pos -= camera_pos
+	var new_pos = check_panning_limits(Vector3(pos.x, 0.0, pos.y))
+	# no need to tween, but if a camera tween exists, stop it
+	camera_tween.stop_all()
+	camera.translation = new_pos	
+	# finally, we need update the pin position (since panning limits may have restricted it)
+	calculate_intersections()
+	# the pin needs a UV value
+	update_minimap_pin()
+
+func update_minimap_pin() -> void:
+	# update where the pin is on the mini-map
+	var pin_pos = (camera_intersect / MAP_PIXEL_SIZE)
+	$CanvasLayer/Overlay.update_map_pin(pin_pos)
