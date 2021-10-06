@@ -1,19 +1,19 @@
 TODO
 ====
 
-List of current goals
+List of current goals: Mark with ✓ when done, * when not
 
 
 Short Term:
 -----------
 
-* Add military strength and money to regions
+* Show military strength and money on regions
 * Remove region owner from region, calculate region owners from owners
 * Add 2 senators to map display
-* Add region borders and roads to map display
-* Add some more regions
-* Design an enemy soldier, and improve the current soldier
-* Add senators to screen
+✓ Add region borders and *roads to map display
+✓ Add some more regions
+✓ Design an enemy soldier
+* Improve the current soldier
 * Add pop-up ESC menu
 
 
