@@ -1,6 +1,7 @@
 extends Control
 
 signal map_clicked(pos)
+signal view_clicked(tab)
 
 const MAP_SIZE: Vector2 = Vector2(180.0, 120.0)
 
@@ -20,16 +21,19 @@ func _on_MapButton_pressed() -> void:
 	$VBox/HBox/MapButton.pressed = true
 	$VBox/HBox/ArmyButton.pressed = false
 	$VBox/HBox/CoinButton.pressed = false
+	emit_signal('view_clicked', cn.RegionDisplay.OWNERS)
 
 func _on_ArmyButton_pressed() -> void:
 	$VBox/HBox/MapButton.pressed = false
 	$VBox/HBox/ArmyButton.pressed = true
 	$VBox/HBox/CoinButton.pressed = false
+	emit_signal('view_clicked', cn.RegionDisplay.ARMY)
 
 func _on_CoinButton_pressed() -> void:
 	$VBox/HBox/MapButton.pressed = false
 	$VBox/HBox/ArmyButton.pressed = false
 	$VBox/HBox/CoinButton.pressed = true
+	emit_signal('view_clicked', cn.RegionDisplay.MONEY)
 
 func _on_Map_gui_input(event) -> void:
 	# left mouse click?

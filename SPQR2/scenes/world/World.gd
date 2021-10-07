@@ -241,3 +241,15 @@ func update_minimap_pin() -> void:
 	# update where the pin is on the mini-map
 	var pin_pos = (camera_intersect / MAP_PIXEL_SIZE)
 	$CanvasLayer/Overlay.update_map_pin(pin_pos)
+
+func _on_Overlay_change_view(index):
+	# update the shader graphics to change the view
+	print('Caught overlay signal')
+	if index == cn.RegionDisplay.OWNERS:
+		pass
+	elif index == cn.RegionDisplay.ARMY:
+		pass
+	elif index == cn.RegionDisplay.MONEY:
+		pass
+	else:
+		helpers.log('Caught incorrect overlay change: ' + str(index))

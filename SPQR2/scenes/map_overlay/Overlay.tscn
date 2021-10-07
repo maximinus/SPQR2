@@ -26,3 +26,4 @@ margin_right = -10.0
 margin_bottom = -10.0
 
 [connection signal="map_clicked" from="MiniMap" to="." method="_on_MiniMap_map_clicked"]
+[connection signal="view_clicked" from="MiniMap" to="." method="_on_MiniMap_view_clicked"]
