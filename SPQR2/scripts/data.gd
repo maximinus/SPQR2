@@ -36,19 +36,6 @@ func get_enemies(enemy_data: Array) -> Array:
 	helpers.log('Got %s enemies' % len(enemy_instances))
 	return enemy_instances
 
-func get_status(status: Dictionary) -> void:
-	var ownership: Array = status['ownership']
-	# this is an array of ints
-	var index: int = 0
-	# bounds checking is done on the file before running
-	for i in regions:
-		var owner:int = ownership[index]
-		if owner == 0:
-			i.owner_color = ROME_DEFAULT_COLOR
-		else:
-			i.owner_color = enemies[index].base_color
-		index += 1
-
 func load_all_data():
 	# return false if there was an issue
 	var file: File = File.new()
@@ -63,23 +50,38 @@ func load_all_data():
 		regions = get_regions(data['REGIONS'])
 		land_paths = get_paths(data['PATHS'])
 		enemies = get_enemies(data['ENEMIES'])
-		get_status(data['STATUS'])
 		return true
 	helpers.log('Failed to parse game data')
 	return false
 
 # all methods to get data follow here
+class RegionSorter:
+	static func sort(a, b):
+		if a[0] < b[0]:
+			return true
+		return false
+
+func get_ascending_region_colors() -> Array:
+	# get an array of [region_id, owner_color]
+	# sort by region id ascending and return
+	# get all regions and owners
+	var region_owners: Array = []
+	for i in data.enemies:
+		for j in i.regions:
+			region_owners.append([j, i.base_color])
+	# now we have [[region, color], [region, color], sort by region
+	region_owners.sort_custom(RegionSorter, 'sort')
+	return region_owners
+
 func get_region_owners_texture() -> Image:
-	# build a texture describing the owners of the regions
-	# regions are already in the correct order of the array
-	# we build with a texture region
 	var base_image = Image.new()
 	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
 	base_image.lock()
 	var ypos: int = 0
-	for i in regions:
-		base_image.set_pixel(0, ypos, regions[ypos].owner_color)
-		ypos += 1
+	for i in get_ascending_region_colors():
+		print(i[1])
+		base_image.set_pixel(0, ypos, i[1])
+		ypos += 1		
 	base_image.unlock()
 	var img = ImageTexture.new()
 	img.create_from_image(base_image)

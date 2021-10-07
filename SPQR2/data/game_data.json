@@ -7,8 +7,7 @@
 	 	 "wealth":12,
 	 	 "manpower":12,
 	 	 "loyalty":12,
-	 	 "color": [255, 0, 32],
-	 	 "id": 1
+	 	 "id": 0
 	 	},
 		{"name":"Corsica & Sardinia",
 	 	 "city":"Caralis",
@@ -17,8 +16,7 @@
 	 	 "wealth":12,
 	 	 "manpower":12,
 	  	 "loyalty":12,
-	 	 "color": [255, 0, 64],
-	 	 "id": 2
+	 	 "id": 1
 	 	},
 		{"name":"Latium",
 	 	 "city":"Rome",
@@ -27,8 +25,7 @@
 	 	 "wealth":16,
 	 	 "manpower":16,
 	 	 "loyalty":16,
-	 	 "color": [255, 0, 128],
-	 	 "id": 3
+	 	 "id": 2
 	 	},
 		{"name":"Sicilia",
 	 	 "city":"Syracuse",
@@ -37,9 +34,27 @@
 	 	 "wealth":12,
 	 	 "manpower":12,
 	 	 "loyalty":12,
-	 	 "color": [255, 0, 96],
+	 	 "id": 3
+	 	},
+	 	{"name":"Tunis",
+	 	 "city":"Carthage",
+	 	 "city_pos": [-4.339, 0.05, 171.76],
+	 	 "culture":12,
+	 	 "wealth":12,
+	 	 "manpower":12,
+	 	 "loyalty":12,
 	 	 "id": 4
-	 	}
+	 	},
+	 	{"name":"Numidia",
+	 	 "city":"",
+	 	 "city_pos": [-4.339, 0.05, 171.76],
+	 	 "culture":12,
+	 	 "wealth":12,
+	 	 "manpower":12,
+	 	 "loyalty":12,
+	 	 "id": 5
+	 	},
+
 	],
 	"PATHS": {
 		"LAND": [
@@ -50,12 +65,16 @@
 	},
 	"ENEMIES": [
 		{
+			"name": "Romans",
+			"color": [238, 17, 17],
+			"id": 0,
+			"regions": [2, 3, 4]
+		},
+		{
 			"name": "Celts",
 			"color": [36, 107, 206],
-			"id": 1
+			"id": 1,
+			"regions": [1, 5, 6]
 		}
-	],
-	"STATUS": {
-		"ownership": [1, 0, 0, 0]
-	}
+	]
 }

@@ -25,20 +25,32 @@ uniform vec3 region_color;
 // where is the mouse
 uniform vec2 mouse_pos;
 uniform float brightness;
+uniform float total_regions;
 
 
 void fragment() {
-	// start by getting the color of the map
+	// start by getting the color of the map regions
 	vec4 region_i = texture(region_map, UV);
 	vec4 border_px = texture(border_map, UV);
 	vec3 calculated_color;
 	if(region_i.a == 0.0) {
-		// no region, just draw the map
+		// no region at this pixel, just draw the map
 		ALBEDO = mix(texture(image_map, UV).rgb, border_px.rgb, border_px.a);
 	} else {
 		// get the region index of this colour
-		float index = ((region_i.b * 16.0) + (region_i.r * 256.0));
-		float owner_ypos = 0.125 + (index * 0.25);
+		// how is this maths calculated?
+		// the colors are created in gimp as integers in the rgb channels
+		// (0, 255, 0) -> 0, (0, 255, 32) -> 1, (32, 255, 64) -> ((32 / 32) * 8) + ((64 / 32) * 2)
+		// but our numbers are in floats so we would get 0/255, 255/255, 32/255
+		// the resulting index needs to be a whole number in the range 0 -> number_of_regions - 1
+		// we can ignore checking the range, we assume it is correct
+		// to get to 32/255 -> 1, we multiply by 255, giving us 32, then divide by 32. but 255 / 32 is a constant
+		// 256 is a much cleaner constant and accurate enough... 256 / 32 = 128 / 16 = 64 / 8 = 8
+		float index = ((region_i.b * 8.0) + (region_i.r * 256.0));
+		// calculate carefully
+		float offset = 1.0 / (total_regions * 2.0);
+		float index_offset = index * (1.0 / total_regions);
+		float owner_ypos = offset + index_offset;
 		//owner_ypos = 0.0;
 		calculated_color = texture(map_owners, vec2(0, owner_ypos)).rgb;
 		float tot = abs(region_i.r - region_color.r) + abs(region_i.g - region_color.g) + abs(region_i.b - region_color.b);
@@ -54,43 +66,7 @@ void fragment() {
 	}
 	ROUGHNESS = texture(rough_map, UV).r / roughness_scale;
 }
-
-
-/*
-void old_fragment() {
-	// if the col is not over a region, we get
-	// white = out of bounds
-	// black = no region
-	
-	// get color of where we are
-	vec3 map_color = texture(image_map, UV).rgb;
-	vec3 reg_color = texture(region_map, UV).rgb;
-	
-	// if the region color is white, this means we are out of bounds
-	// draw yellow in this case, else draw the map
-	
-	if(region_color == vec3(1.0, 1.0, 1.0)) {
-		// this works
-		ALBEDO = vec3(1.0, 1.0, 0.0);
-	} else {
-		if(region_color == vec3(0.0, 0.0, 0.0)) {
-			ALBEDO = map_color;
-		} else {
-			float delta = distance(reg_color, region_color);
-			// are we over our color?
-			// compare the blues
-			if(abs(reg_color.b - region_color.b) < 0.05) {
-				// display the colour of the region
-				ALBEDO = reg_color;	
-			} else {
-				// display the map
-				ALBEDO = map_color;
-			}
-		}
-	}
-	ROUGHNESS = texture(rough_map, UV).r / roughness_scale;
-}
-*/"
+"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
@@ -98,6 +74,7 @@ shader_param/roughness_scale = 1.2
 shader_param/region_color = Vector3( 0, 0, 0 )
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/brightness = 0.2
+shader_param/total_regions = 6.0
 shader_param/image_map = ExtResource( 5 )
 shader_param/rough_map = ExtResource( 4 )
 shader_param/region_map = ExtResource( 6 )
