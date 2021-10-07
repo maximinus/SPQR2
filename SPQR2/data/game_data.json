@@ -4,7 +4,7 @@
 	 	 "city":"Ravenna",
 	 	 "city_pos": [-4.979, -2.874, -125.6],
 	 	 "culture":12,
-	 	 "wealth":12,
+	 	 "wealth":9,
 	 	 "manpower":12,
 	 	 "loyalty":12,
 	 	 "id": 0
@@ -32,7 +32,7 @@
 	 	 "city_pos": [-4.339, 0.05, 171.76],
 	 	 "culture":12,
 	 	 "wealth":12,
-	 	 "manpower":12,
+	 	 "manpower":2,
 	 	 "loyalty":12,
 	 	 "id": 3
 	 	},
@@ -40,7 +40,7 @@
 	 	 "city":"Carthage",
 	 	 "city_pos": [-4.339, 0.05, 171.76],
 	 	 "culture":12,
-	 	 "wealth":12,
+	 	 "wealth":6,
 	 	 "manpower":12,
 	 	 "loyalty":12,
 	 	 "id": 4
@@ -49,7 +49,7 @@
 	 	 "city":"",
 	 	 "city_pos": [-4.339, 0.05, 171.76],
 	 	 "culture":12,
-	 	 "wealth":12,
+	 	 "wealth":4,
 	 	 "manpower":12,
 	 	 "loyalty":12,
 	 	 "id": 5

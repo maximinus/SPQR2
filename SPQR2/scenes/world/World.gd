@@ -246,10 +246,10 @@ func _on_Overlay_change_view(index):
 	# update the shader graphics to change the view
 	print('Caught overlay signal')
 	if index == cn.RegionDisplay.OWNERS:
-		pass
+		$map_board.set_region_owners(data.get_region_owners_texture())
 	elif index == cn.RegionDisplay.ARMY:
-		pass
+		$map_board.set_region_owners(data.get_army_stats_texture())
 	elif index == cn.RegionDisplay.MONEY:
-		pass
+		$map_board.set_region_owners(data.get_money_stats_texture())
 	else:
 		helpers.log('Caught incorrect overlay change: ' + str(index))

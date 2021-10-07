@@ -85,3 +85,33 @@ func get_region_owners_texture() -> Image:
 	var img = ImageTexture.new()
 	img.create_from_image(base_image)
 	return img
+
+func get_army_stats_texture() -> Image:
+	var base_image = Image.new()
+	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
+	base_image.lock()
+	var ypos: int = 0
+	for i in data.regions:
+		var c: float = (i.manpower * 10.0) / 256.0
+		var col: Color = Color(c, c / 1.5, c / 2.0)
+		base_image.set_pixel(0, ypos, col)
+		ypos += 1		
+	base_image.unlock()
+	var img = ImageTexture.new()
+	img.create_from_image(base_image)
+	return img
+
+func get_money_stats_texture() -> Image:
+	var base_image = Image.new()
+	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
+	base_image.lock()
+	var ypos: int = 0
+	for i in data.regions:
+		var c: float = (i.money * 14.0) / 256.0
+		var col: Color = Color(c / 2.0, c / 2.0, c)
+		base_image.set_pixel(0, ypos, col)
+		ypos += 1		
+	base_image.unlock()
+	var img = ImageTexture.new()
+	img.create_from_image(base_image)
+	return img
