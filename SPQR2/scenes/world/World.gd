@@ -58,11 +58,19 @@ func _process(delta):
 	# what are the mouse and camera looking at?
 	calculate_intersections()
 	update_minimap_pin()
+	check_ui_actions()
 	# what color are we over for the shader?
 	set_map_color()
 	# move the map
 	if check_mouse_drag() == false:
 		check_cursor_keys(delta)
+
+func check_ui_actions() -> void:
+	# check non-map ui actions
+	if Input.is_action_just_pressed('menu'):
+		$CanvasLayer/PauseMenu.choose_statue()
+		$CanvasLayer/PauseMenu.show()
+		get_tree().paused = true
 
 func set_map_color() -> void:
 	# just set mouse
