@@ -9,17 +9,34 @@ Short Term:
 
 ✓ Show military strength and money on regions
 ✓ Remove region owner from region, calculate region owners from owners
-* Add 2 senators to map display
+✓ Add 2 senators to map display
 ✓ Add region borders and *roads to map display
 ✓ Add some more regions
 ✓ Design an enemy soldier
 ✓ Improve the current soldier
-* Add pop-up ESC menu
+✓ Add pop-up ESC menu
+
+* Add 4 more regions
+* Make city menu actually work again
+* Make sure we have 3 models at a minimum: A Roman, a Greek and a Celt
+* Put the models on a small plinth
+* Store army locations (maybe > 1) per region in the json file
+* Parse, load and display armies via json
+* Click on army updates display
+* Define what an army is, and load that data from json
+* Add Year, gold and silver to bottom left of screen
+* Add highlight on leaders
 
 
 Medium Term
 -----------
 
-* Add leaders on left-hand-side
+✓ Add leaders on left-hand-side
+* Make the army data and models
 * Add a leader figure, allow movement
+	- I.e. a campaign
+	- Choose leader, choose region to go to
+	- Choose to move 1 extra unit
+	- Choose to move units next to leader
+	- Choose to attack
 * Code a move

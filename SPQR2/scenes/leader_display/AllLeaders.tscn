@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://gfx/fonts/regular_roman.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/leader_display/AllLeaders.gd" type="Script" id=2]
+[ext_resource path="res://gfx/portraits/consul1.png" type="Texture" id=3]
+[ext_resource path="res://gfx/portraits/consul2.png" type="Texture" id=4]
+
+[node name="AllLeaders" type="Control"]
+margin_right = 1024.0
+margin_bottom = 768.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mrg" type="MarginContainer" parent="."]
+margin_right = 156.0
+margin_bottom = 567.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Mrg"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 559.0
+custom_constants/separation = 30
+
+[node name="L1" type="VBoxContainer" parent="Mrg/VBox"]
+margin_right = 140.0
+margin_bottom = 164.0
+
+[node name="Image" type="TextureRect" parent="Mrg/VBox/L1"]
+margin_right = 140.0
+margin_bottom = 140.0
+texture = ExtResource( 4 )
+
+[node name="Name" type="Label" parent="Mrg/VBox/L1"]
+margin_top = 144.0
+margin_right = 140.0
+margin_bottom = 164.0
+custom_fonts/font = ExtResource( 1 )
+text = "Marcus Lepidus"
+align = 1
+
+[node name="L2" type="VBoxContainer" parent="Mrg/VBox"]
+margin_top = 194.0
+margin_right = 140.0
+margin_bottom = 358.0
+
+[node name="Image" type="TextureRect" parent="Mrg/VBox/L2"]
+margin_right = 140.0
+margin_bottom = 140.0
+texture = ExtResource( 3 )
+
+[node name="Name" type="Label" parent="Mrg/VBox/L2"]
+margin_top = 144.0
+margin_right = 140.0
+margin_bottom = 164.0
+custom_fonts/font = ExtResource( 1 )
+text = "Gnaeus Ahenobarbus"

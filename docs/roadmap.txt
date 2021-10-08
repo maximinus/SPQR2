@@ -116,6 +116,47 @@ In the Empire:
 	A card is needed to found a city, rather than randomly in the Republic
 
 
+Changing Emperors
+-----------------
+
+At the end of a turn, you may choose the next emperor / senators.
+3 - 4 candidates are given (4 - 5 if senators, or split empire)
+They are chosen as:
+	A family member (if good % chance is met)
+	Random others
+Each candidate has a set of traits, varying from terrible to fantastic, some neutral.
+Those traits will affect outcomes like:
+	- Battles
+	- Culture
+	- Money
+	- Romanisation
+	- Maybe adds some random events
+The outcome is not always what the player wants. They have a vote. The other votes are based on traits:
+	+ for popular / loved
+	- for unloved / hated
+	+ for ambitious
+	+ for family connections
+	- for peaceful
+The only real extra gameplay mechanic is the bribes.
+	Low level bribes result in the loss of money when they become consuls.
+	With Emperors, slowly the donative to the troops will become larger and larger.
+		- A key method of crippling the empire is to leave it cashless as a succession
+		  of Emperors spend all the money becoming emperor.
+In general, the player should usually be able to choose what they want
+	- The flipside is that they often only have a set of bad choices.
+
+If an emperor is selected who is truly awful (as decided by a set of metrics):
+	- The game immediatly switches to a campaign
+	- The Emperor starts in Rome and must defeat the other candidate
+	- If the Emperor loses, they are replaced by the victor
+	- This will reduce Roman troops if there are battles, will cost money
+	- The emperor can never campaign before enemies
+
+If an emperor is truly truly awful:
+	- They are murdered by the people of Rome on turn start
+	- You may choose a senator or general as emperor; likely they will be good
+
+
 Hiding Information
 ------------------
 
@@ -248,7 +289,7 @@ What do Boats do?
 Boats / Ports need a purpose. Ideas:
 	* Ports facilitate goods getting to Rome
 	* Ships prevent piracy
-	* 
+	* Troops move quicker / easier
 
 
 We need:
