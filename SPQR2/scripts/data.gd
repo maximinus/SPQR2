@@ -79,6 +79,7 @@ func get_region_owners_texture() -> Image:
 	base_image.lock()
 	var ypos: int = 0
 	for i in get_ascending_region_colors():
+		print(i[1])
 		base_image.set_pixel(0, ypos, i[1])
 		ypos += 1		
 	base_image.unlock()

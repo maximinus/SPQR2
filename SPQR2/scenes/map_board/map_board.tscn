@@ -13,6 +13,7 @@
 code = "shader_type spatial;
 
 // 3 textures: the map, it's roughness and the regions
+// if you add hint_albedo, we will get a color translation
 uniform sampler2D image_map : hint_albedo;
 uniform sampler2D rough_map;
 uniform sampler2D region_map;
@@ -46,7 +47,7 @@ void fragment() {
 		// we can ignore checking the range, we assume it is correct
 		// to get to 32/255 -> 1, we multiply by 255, giving us 32, then divide by 32. but 255 / 32 is a constant
 		// 256 is a much cleaner constant and accurate enough... 256 / 32 = 128 / 16 = 64 / 8 = 8
-		float index = ((region_i.b * 8.0) + (region_i.r * 256.0));
+		float index = (round(region_i.b * 8.0) + round(region_i.r * 64.0));
 		// calculate carefully
 		float offset = 1.0 / (total_regions * 2.0);
 		float index_offset = index * (1.0 / total_regions);
@@ -74,7 +75,7 @@ shader_param/roughness_scale = 1.2
 shader_param/region_color = Vector3( 0, 0, 0 )
 shader_param/mouse_pos = Vector2( 0.5, 0.5 )
 shader_param/brightness = 0.2
-shader_param/total_regions = 6.0
+shader_param/total_regions = 10.0
 shader_param/image_map = ExtResource( 5 )
 shader_param/rough_map = ExtResource( 4 )
 shader_param/region_map = ExtResource( 6 )
