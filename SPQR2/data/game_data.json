@@ -54,7 +54,42 @@
 	 	 "loyalty":12,
 	 	 "id": 5
 	 	},
-
+	 	{"name":"Africa",
+	 	 "city":"",
+	 	 "city_pos": [-4.339, 0.05, 171.76],
+	 	 "culture":12,
+	 	 "wealth":4,
+	 	 "manpower":12,
+	 	 "loyalty":12,
+	 	 "id": 6
+	 	},
+	 	{"name":"Narbonensis",
+	 	 "city":"",
+	 	 "city_pos": [-4.339, 0.05, 171.76],
+	 	 "culture":12,
+	 	 "wealth":4,
+	 	 "manpower":12,
+	 	 "loyalty":12,
+	 	 "id": 7
+	 	},
+	 	{"name":"Aquitania Inferiore",
+	 	 "city":"",
+	 	 "city_pos": [-4.339, 0.05, 171.76],
+	 	 "culture":12,
+	 	 "wealth":4,
+	 	 "manpower":12,
+	 	 "loyalty":12,
+	 	 "id": 8
+	 	},
+	 	{"name":"Hispania Superior",
+	 	 "city":"",
+	 	 "city_pos": [-4.339, 0.05, 171.76],
+	 	 "culture":12,
+	 	 "wealth":4,
+	 	 "manpower":12,
+	 	 "loyalty":12,
+	 	 "id": 9
+	 	}
 	],
 	"PATHS": {
 		"LAND": [
@@ -68,13 +103,13 @@
 			"name": "Romans",
 			"color": [238, 17, 17],
 			"id": 0,
-			"regions": [2, 3, 4]
+			"regions": [0, 1, 2, 3, 4, 7, 9]
 		},
 		{
 			"name": "Celts",
 			"color": [36, 107, 206],
 			"id": 1,
-			"regions": [1, 5, 6]
+			"regions": [5, 6, 8]
 		}
 	]
 }

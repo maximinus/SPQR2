@@ -123,6 +123,8 @@ At the end of a turn, you may choose the next emperor / senators.
 3 - 4 candidates are given (4 - 5 if senators, or split empire)
 They are chosen as:
 	A family member (if good % chance is met)
+		Competent leaders - or on a random event - can get to choose this person
+		With your vote
 	Random others
 Each candidate has a set of traits, varying from terrible to fantastic, some neutral.
 Those traits will affect outcomes like:
@@ -131,30 +133,42 @@ Those traits will affect outcomes like:
 	- Money
 	- Romanisation
 	- Maybe adds some random events
-The outcome is not always what the player wants. They have a vote. The other votes are based on traits:
+The outcome is not always what the player wants. They have a vote (maybe ++). The other votes are based on traits:
 	+ for popular / loved
 	- for unloved / hated
 	+ for ambitious
 	+ for family connections
 	- for peaceful
+	+ for bribes
 The only real extra gameplay mechanic is the bribes.
 	Low level bribes result in the loss of money when they become consuls.
 	With Emperors, slowly the donative to the troops will become larger and larger.
-		- A key method of crippling the empire is to leave it cashless as a succession
+	If a candidate is winning with their donative, you may choose to pay more for your candidate
+		- A key method of crippling Rome is to leave it cashless as a succession
 		  of Emperors spend all the money becoming emperor.
 In general, the player should usually be able to choose what they want
 	- The flipside is that they often only have a set of bad choices.
+		- A key method of crippling Rome is to only have terrible choices
 
 If an emperor is selected who is truly awful (as decided by a set of metrics):
 	- The game immediatly switches to a campaign
 	- The Emperor starts in Rome and must defeat the other candidate
 	- If the Emperor loses, they are replaced by the victor
-	- This will reduce Roman troops if there are battles, will cost money
+	- This will reduce Roman troops if there are battles, and will cost money
+	- If the emperor wins, the donative is paid; otherwise half is paid
 	- The emperor can never campaign before enemies
+		- Another key method of crippling Rome is starting every turn with a civil war
 
 If an emperor is truly truly awful:
 	- They are murdered by the people of Rome on turn start
 	- You may choose a senator or general as emperor; likely they will be good
+	- 80% of the donative will be returned
+
+When the empire splits to East / West (card based):
+	- 2 Emperors are chosen, however your votes are lopsided:
+		- You may allocate votes to either East or West, but only 1.
+		- This means one choice will be essentially random
+		- Civil wars will be contained in their own areas (east or west)
 
 
 Hiding Information
