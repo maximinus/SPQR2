@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://gfx/fonts/regular_roman.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/leader_display/AllLeaders.gd" type="Script" id=2]
 [ext_resource path="res://gfx/portraits/consul1.png" type="Texture" id=3]
-[ext_resource path="res://gfx/portraits/consul2.png" type="Texture" id=4]
+[ext_resource path="res://gfx/portraits/portrait_background.png" type="Texture" id=4]
+[ext_resource path="res://gfx/portraits/portrait_highlight.png" type="Texture" id=5]
+[ext_resource path="res://gfx/portraits/portrait_clicked.png" type="Texture" id=6]
+[ext_resource path="res://gfx/portraits/consul2.png" type="Texture" id=7]
 
 [node name="AllLeaders" type="Control"]
 margin_right = 1024.0
@@ -29,40 +32,61 @@ __meta__ = {
 [node name="VBox" type="VBoxContainer" parent="Mrg"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 148.0
+margin_right = 168.0
 margin_bottom = 559.0
 custom_constants/separation = 30
 
 [node name="L1" type="VBoxContainer" parent="Mrg/VBox"]
-margin_right = 140.0
-margin_bottom = 164.0
+margin_right = 160.0
+margin_bottom = 184.0
 
-[node name="Image" type="TextureRect" parent="Mrg/VBox/L1"]
-margin_right = 140.0
-margin_bottom = 140.0
-texture = ExtResource( 4 )
+[node name="Btn" type="TextureButton" parent="Mrg/VBox/L1"]
+margin_right = 160.0
+margin_bottom = 160.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+
+[node name="Image" type="TextureRect" parent="Mrg/VBox/L1/Btn"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Name" type="Label" parent="Mrg/VBox/L1"]
-margin_top = 144.0
-margin_right = 140.0
-margin_bottom = 164.0
+margin_top = 164.0
+margin_right = 160.0
+margin_bottom = 184.0
 custom_fonts/font = ExtResource( 1 )
 text = "Marcus Lepidus"
 align = 1
 
 [node name="L2" type="VBoxContainer" parent="Mrg/VBox"]
-margin_top = 194.0
-margin_right = 140.0
-margin_bottom = 358.0
+margin_top = 214.0
+margin_right = 160.0
+margin_bottom = 398.0
 
-[node name="Image" type="TextureRect" parent="Mrg/VBox/L2"]
-margin_right = 140.0
-margin_bottom = 140.0
+[node name="Btn2" type="TextureButton" parent="Mrg/VBox/L2"]
+margin_right = 160.0
+margin_bottom = 160.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+
+[node name="Image" type="TextureRect" parent="Mrg/VBox/L2/Btn2"]
+margin_right = 40.0
+margin_bottom = 40.0
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Name" type="Label" parent="Mrg/VBox/L2"]
-margin_top = 144.0
-margin_right = 140.0
-margin_bottom = 164.0
+margin_top = 164.0
+margin_right = 160.0
+margin_bottom = 184.0
 custom_fonts/font = ExtResource( 1 )
 text = "Gnaeus Ahenobarbus"
+align = 1
