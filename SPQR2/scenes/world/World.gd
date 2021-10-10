@@ -94,6 +94,27 @@ func _input(event) -> void:
 		set_zoom_level(zoom_level - ZOOM_FACTOR, true)
 	if event.is_action_pressed("zoom_out"):
 		set_zoom_level(zoom_level + ZOOM_FACTOR, false)
+	if (event.is_pressed() and event.button_index == BUTTON_LEFT):
+		check_region_click(event.position)
+
+func check_region_click(pos) -> void:
+	# update details if a region is clicked
+	# convert the mouse pos to real co-ords
+	var coords = get_mouse_map_coords(true)
+	if coords.x < 0 or coords.y < 0:
+		# out of bounds, do nothing
+		return
+	if coords.x < MAP_PIXEL_SIZE.x and coords.y < MAP_PIXEL_SIZE.y:
+		# was really clicked, get the region color
+		var col = region_map.get_pixel(coords.x, coords.y)
+		# calculate the index
+		var index = helpers.get_index_from_region_color(col)
+		# check range to be sure
+		if index >= 0 and index < len(data.regions):
+			# get the city details
+			$CanvasLayer/Overlay.update_region_info(data.regions[index])
+		else:
+			helpers.log('Error: Wrong index on region select: ' + str(col))
 
 func add_cities() -> void:
 	# add cities to scene from world data

@@ -6,8 +6,8 @@ signal change_view(index)
 func _ready():
 	pass
 
-func updateRegionInfo(region: MapRegion):
-	$Overlays/RegionGUI.updateInfo(region)
+func update_region_info(region: MapRegion):
+	$RegionGUI.update_info(region)
 
 func _on_MiniMap_map_clicked(pos):
 	emit_signal('mini_map', pos)
