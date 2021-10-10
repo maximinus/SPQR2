@@ -8,7 +8,7 @@ const ROME_DEFAULT_COLOR = Color(0.91, 0.0664, 0.0664, 1.0)
 
 # regions are loaded per id, i.e. id 1 is the first region
 var regions: Array = []
-var cities: Array = []
+var armies: Array = []
 var land_paths: Array = []
 var sea_paths: Array = []
 
@@ -18,7 +18,6 @@ func get_regions(region_data: Array) -> Array:
 	var region_instances: Array = []
 	for i in region_data:
 		region_instances.append(MapRegion.new(i))
-		cities.append(i['city_pos'])
 	helpers.log('Loaded %s regions' % str(len(region_instances)))
 	return region_instances
 
@@ -36,6 +35,13 @@ func get_enemies(enemy_data: Array) -> Array:
 	helpers.log('Got %s enemies' % len(enemy_instances))
 	return enemy_instances
 
+func get_armies(army_data: Array) -> Array:
+	var army_instances: Array = []
+	for i in army_data:
+		army_instances.append(Army.new(i))
+	helpers.log('Got %s armies' % len(army_instances))
+	return army_instances
+
 func load_all_data():
 	# return false if there was an issue
 	var file: File = File.new()
@@ -50,6 +56,7 @@ func load_all_data():
 		regions = get_regions(data['REGIONS'])
 		land_paths = get_paths(data['PATHS'])
 		enemies = get_enemies(data['ENEMIES'])
+		armies = get_armies(data['ARMIES'])
 		return true
 	helpers.log('Failed to parse game data')
 	return false
