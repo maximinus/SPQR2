@@ -25,10 +25,11 @@ transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, -
 [node name="Soldiers" type="Spatial" parent="."]
 
 [node name="Unit" parent="Soldiers" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.11286, 0, -1.97316 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63663, 0, -1.13761 )
 
 [node name="Unit2" parent="Soldiers" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.21838, 0, -1.38198 )
+visible = false
 
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 0.785663, 0.192817, 0.58784, -0.618655, 0.244869, 0.746529, 0, -0.95019, 0.311671, 0, 5.07581, 0 )

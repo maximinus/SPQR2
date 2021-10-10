@@ -8,15 +8,14 @@ Short Term:
 -----------
 
 ✓ Add 4 more regions
+✓ Add highlight on leaders
 * Make city menu actually work again
+* Add Year, gold and silver to bottom left of screen
 * Make sure we have 3 models at a minimum: A Roman, a Greek and a Celt
-* Put the models on a small plinth
 * Store army locations (maybe > 1) per region in the json file
 * Parse, load and display armies via json
-* Click on army updates display
+* Click on army updates the display
 * Define what an army is, and load that data from json
-* Add Year, gold and silver to bottom left of screen
-* Add highlight on leaders
 
 
 Medium Term

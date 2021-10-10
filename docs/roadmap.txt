@@ -155,7 +155,7 @@ If an emperor is selected who is truly awful (as decided by a set of metrics):
 	- The Emperor starts in Rome and must defeat the other candidate
 	- If the Emperor loses, they are replaced by the victor
 	- This will reduce Roman troops if there are battles, and will cost money
-	- If the emperor wins, the donative is paid; otherwise half is paid
+	- If the emperor wins, the donative is paid; otherwise half is paid (or rather, lost)
 	- The emperor can never campaign before enemies
 		- Another key method of crippling Rome is starting every turn with a civil war
 
@@ -165,8 +165,13 @@ If an emperor is truly truly awful:
 	- 80% of the donative will be returned
 
 When the empire splits to East / West (card based):
-	- 2 Emperors are chosen, however your votes are lopsided:
-		- You may allocate votes to either East or West, but only 1.
+	- 2 Emperors are chosen
+	- Unlike senators, these emperors act in their own area
+	- Your votes are lopsided:
+		- You may allocate votes to either East or West, but only one side.
+			* I.e. if you have 3 votes (cards or skill) they cannot be split
+			* To further detail, you can vote for ONE person only
+		- Your family member must be on the side you voted for
 		- This means one choice will be essentially random
 		- Civil wars will be contained in their own areas (east or west)
 

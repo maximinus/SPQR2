@@ -3,6 +3,7 @@
 		{"name":"Cisalpina",
 	 	 "city":"Ravenna",
 	 	 "city_pos": [-4.979, -2.874, -125.6],
+	 	 "army_pos": [[-5.34, -2.28], [-6.215, -2.462], [-5.622, -2.865]],
 	 	 "culture":12,
 	 	 "wealth":9,
 	 	 "manpower":12,
@@ -12,6 +13,7 @@
 		{"name":"Corsica & Sardinia",
 	 	 "city":"Caralis",
 	 	 "city_pos": [-5.971, -0.603, 152.56],
+	 	 "army_pos": [[-6.114, -0.769], [-5.974, -1.057], [-6.008, -1.493]],
 	 	 "culture":12,
 	 	 "wealth":12,
 	 	 "manpower":12,
@@ -21,6 +23,7 @@
 		{"name":"Latium",
 	 	 "city":"Rome",
 	 	 "city_pos": [-4.953, -1.421, -81.13],
+	 	 "army_pos": [[-5.113, -1.973], [-4.678, -1.774], [-4.586, -1.248]],
 	 	 "culture":16,
 	 	 "wealth":16,
 	 	 "manpower":16,
@@ -30,6 +33,7 @@
 		{"name":"Sicilia",
 	 	 "city":"Syracuse",
 	 	 "city_pos": [-4.339, 0.05, 171.76],
+	 	 "army_pos": [[-4.185, -1.129], [-4.539, 0.067], [-3.855, -0.459]],
 	 	 "culture":12,
 	 	 "wealth":12,
 	 	 "manpower":2,
@@ -39,6 +43,7 @@
 	 	{"name":"Tunis",
 	 	 "city":"Carthage",
 	 	 "city_pos": [-5.765, 0.375, 70.0],
+	 	 "army_pos": [[-6.227, 0.454], [-5.792, 1.152], [-5.687, 0.667]],
 	 	 "culture":12,
 	 	 "wealth":6,
 	 	 "manpower":12,
@@ -48,6 +53,7 @@
 	 	{"name":"Numidia",
 	 	 "city":"Icosium",
 	 	 "city_pos": [-7.37, 0.39, -85.5],
+	 	 "army_pos": [[-6.584, 0.445], [-7.351, 0.635], [-6.769, 1.033]],
 	 	 "culture":12,
 	 	 "wealth":4,
 	 	 "manpower":12,
@@ -57,6 +63,7 @@
 	 	{"name":"Africa",
 	 	 "city":"Oea",
 	 	 "city_pos": [-4.782, 1.74, -175.4],
+	 	 "army_pos": [[-5.698, 1.712], [-5.074, 1.812], [-4.329, 2.228]],
 	 	 "culture":12,
 	 	 "wealth":4,
 	 	 "manpower":12,
@@ -66,6 +73,7 @@
 	 	{"name":"Narbonensis",
 	 	 "city":"Massilia",
 	 	 "city_pos": [-7.12, -2.02, 127.45],
+	 	 "army_pos": [[-6.649, -2.401], [-7.322, -2.149], [-7.946, -2.063]],
 	 	 "culture":12,
 	 	 "wealth":4,
 	 	 "manpower":12,
@@ -74,7 +82,8 @@
 	 	},
 	 	{"name":"Aquitania Inferiore",
 	 	 "city":"Burdigala",
-	 	 "city_pos": [-8.949, -2.516, 1666.18],
+	 	 "city_pos": [-8.949, -2.516, -53.59],
+	 	 "army_pos": [[-9.013, -2.026], [-8.6, -2.462], [-8.437, -2.005]],
 	 	 "culture":12,
 	 	 "wealth":4,
 	 	 "manpower":12,
@@ -84,6 +93,7 @@
 	 	{"name":"Hispania Superior",
 	 	 "city":"Tarraco",
 	 	 "city_pos": [-8.433, -1.24, 115.72],
+	 	 "army_pos": [[-7.951, -1.667], [-8.308, -1.425], [-8.637, -1.138]],
 	 	 "culture":12,
 	 	 "wealth":4,
 	 	 "manpower":12,
@@ -98,12 +108,31 @@
 		],
 		"SEA": []
 	},
+	"ARMIES": [
+		{
+			"id": 0,
+			"name": "",
+			"strength": 0,
+			"morale": 0,
+			"equipment": 0,
+			"training": 0
+		},
+		{
+			"id": 1,
+			"name": "",
+			"strength": 0,
+			"morale": 0,
+			"equipment": 0,
+			"training": 0
+		}
+	],
 	"ENEMIES": [
 		{
 			"name": "Romans",
 			"color": [238, 17, 17],
 			"id": 0,
-			"regions": [0, 1, 2, 3, 4, 7, 9]
+			"regions": [0, 1, 2, 3, 4, 7, 9],
+			"armies": [0, 1]
 		},
 		{
 			"name": "Celts",
