@@ -13,10 +13,10 @@ Short Term:
 ✓ Parse, load and display armies via json
 ✓ Define what an army is, and load that data from json
 ✓ Make city menu actually work again
-* Add Year, gold and silver to bottom left of screen
+✓ Add Year, gold and silver to bottom left of screen
 * Make sure we have 3 models at a minimum: A Roman, a Greek and a Celt
 * Click on army updates the display
-
+* Add 3D glow shader to army unit when selected
 
 
 Medium Term

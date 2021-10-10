@@ -94,8 +94,9 @@ func _input(event) -> void:
 		set_zoom_level(zoom_level - ZOOM_FACTOR, true)
 	if event.is_action_pressed("zoom_out"):
 		set_zoom_level(zoom_level + ZOOM_FACTOR, false)
-	if (event.is_pressed() and event.button_index == BUTTON_LEFT):
-		check_region_click(event.position)
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			check_region_click(event.position)
 
 func check_region_click(pos) -> void:
 	# update details if a region is clicked
