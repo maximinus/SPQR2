@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://gfx/fonts/regular_roman.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gfx/ui_elements/year_info/silver_icon.png" type="Texture" id=2]
+[ext_resource path="res://gfx/fonts/year_roman.tres" type="DynamicFont" id=3]
+[ext_resource path="res://gfx/ui_elements/year_info/gold_icon.png" type="Texture" id=4]
+
+[node name="YearInfo" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mrg" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -98.0
+margin_right = 294.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Mrg"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 286.0
+margin_bottom = 90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Year" type="HBoxContainer" parent="Mrg/VBox"]
+margin_right = 278.0
+margin_bottom = 52.0
+
+[node name="Number" type="Label" parent="Mrg/VBox/Year"]
+margin_right = 257.0
+margin_bottom = 52.0
+custom_fonts/font = ExtResource( 3 )
+text = "200 BCE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Money" type="HBoxContainer" parent="Mrg/VBox"]
+margin_top = 56.0
+margin_right = 278.0
+margin_bottom = 81.0
+
+[node name="Gold" type="TextureRect" parent="Mrg/VBox/Money"]
+margin_right = 44.0
+margin_bottom = 25.0
+texture = ExtResource( 4 )
+
+[node name="GAmount" type="Label" parent="Mrg/VBox/Money"]
+margin_left = 48.0
+margin_right = 134.0
+margin_bottom = 25.0
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 1 )
+text = "2,300 Talents"
+valign = 2
+
+[node name="Silver" type="TextureRect" parent="Mrg/VBox/Money"]
+margin_left = 138.0
+margin_right = 182.0
+margin_bottom = 25.0
+texture = ExtResource( 2 )
+
+[node name="SAmount" type="Label" parent="Mrg/VBox/Money"]
+margin_left = 186.0
+margin_right = 278.0
+margin_bottom = 25.0
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 1 )
+text = "28,350 Talents"
+valign = 2

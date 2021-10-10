@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/region_display/RegionGUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/map_overlay/Overlay.gd" type="Script" id=2]
 [ext_resource path="res://scenes/minimap/MiniMap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/leader_display/AllLeaders.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/year_info/YearInfo.tscn" type="PackedScene" id=5]
 
 [node name="Overlay" type="Control"]
 anchor_right = 1.0
@@ -27,6 +28,8 @@ margin_right = -10.0
 margin_bottom = -10.0
 
 [node name="AllLeaders" parent="." instance=ExtResource( 4 )]
+
+[node name="YearInfo" parent="." instance=ExtResource( 5 )]
 
 [connection signal="map_clicked" from="MiniMap" to="." method="_on_MiniMap_map_clicked"]
 [connection signal="view_clicked" from="MiniMap" to="." method="_on_MiniMap_view_clicked"]
