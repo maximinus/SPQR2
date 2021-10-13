@@ -14,9 +14,14 @@ Short Term:
 ✓ Define what an army is, and load that data from json
 ✓ Make city menu actually work again
 ✓ Add Year, gold and silver to bottom left of screen
+✓ FIX: Leader mouse over highlight currently broken
+* FIX: Level zoom seems in wrong direction
 * Make sure we have 3 models at a minimum: A Roman, a Greek and a Celt
 * Click on army updates the display
 * Add 3D glow shader to army unit when selected
+* Add a game window minimum size
+* Experiment with full window
+* Fix massive screen-tearing when window re-sized
 
 
 Medium Term
@@ -24,6 +29,12 @@ Medium Term
 
 ✓ Add leaders on left-hand-side
 * Make the army data and models
+* Finish all current UI layout and handling, which is:
+	* All map moving
+	* All region highlighting
+	* All UI elements
+	* All data loaded from json
+	* No issues or bugs
 * Add a leader figure, allow movement
 	- I.e. a campaign
 	- Choose leader, choose region to go to

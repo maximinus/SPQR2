@@ -91,9 +91,9 @@ func set_map_color() -> void:
 func _input(event) -> void:
 	if event.is_action_pressed('zoom_in'):
 		# true: zoom in
-		set_zoom_level(zoom_level - ZOOM_FACTOR, true)
+		set_zoom_level(zoom_level - ZOOM_FACTOR)
 	if event.is_action_pressed("zoom_out"):
-		set_zoom_level(zoom_level + ZOOM_FACTOR, false)
+		set_zoom_level(zoom_level + ZOOM_FACTOR)
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			check_region_click(event.position)
@@ -162,7 +162,7 @@ func check_mouse_drag() -> bool:
 			$CanvasLayer/Overlay.set_default_cursor_shape(Input.CURSOR_ARROW)
 	return false
 
-func set_zoom_level(value, zoom_in) -> void:
+func set_zoom_level(value) -> void:
 	# zoom the camera with a tween. May also need to tween the x/z position
 	# We limit the value between min_zoom and max_zoom
 	zoom_level = clamp(value, MIN_ZOOM, MAX_ZOOM)
@@ -184,8 +184,6 @@ func set_zoom_level(value, zoom_in) -> void:
 	# cuurently we have the details per pixel, so apply scaling
 	var delta = (map_intersect - camera_intersect) / MOUSE_ZOOM_SCALING
 	# confirm the final destination
-	if zoom_in == false:
-		delta *= -1.0
 	var final_move = check_panning_limits(Vector3(delta.x, 0.0, delta.y))
 	# add the zoom
 	final_move.y = zoom_level
