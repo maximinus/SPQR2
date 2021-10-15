@@ -122,3 +122,11 @@ func get_money_stats_texture() -> Image:
 	var img = ImageTexture.new()
 	img.create_from_image(base_image)
 	return img
+
+func get_unit_owner(unit_id: int):
+	# get the owner id or -1
+	for i in enemies:
+		if unit_id in i.armies:
+			return i.id
+	helpers.log('Error: invalid unit id')
+	return -1

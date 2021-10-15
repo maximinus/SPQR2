@@ -7,7 +7,7 @@ List of current goals: Mark with ✓ when done, * when not
 Short Term:
 -----------
 
-* Make sure we have 3 models at a minimum: A Roman, a Greek and a Celt
+✓ Make sure we have 3 models at a minimum: A Roman, a Greek and a Celt
 * Add armies in region to region display
 * Capture a click on 3d models (towns, units)
 * Add highlight to army unit when selected

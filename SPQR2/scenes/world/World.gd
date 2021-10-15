@@ -134,6 +134,7 @@ func add_cities() -> void:
 func add_armies() -> void:
 	for i in data.armies:
 		var unit_instance = unit_scene.instance()
+		unit_instance.set_unit_type(data.get_unit_owner(i.id))
 		var unit_pos = i.get_map_position()
 		unit_instance.translation.x = unit_pos[0]
 		unit_instance.translation.z = unit_pos[1]
