@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/soldier.glb-c2de1ea74694316ba2cc68cb6eae676e.scn"
+path="res://.import/roman_spear.glb-d9b93efdb9e6a5240e92431c9b2fc87d.scn"
 
 [deps]
 
-source_file="res://gfx/units/soldier.glb"
-dest_files=[ "res://.import/soldier.glb-c2de1ea74694316ba2cc68cb6eae676e.scn" ]
+source_file="res://gfx/units/roman_spear/roman_spear.glb"
+dest_files=[ "res://.import/roman_spear.glb-d9b93efdb9e6a5240e92431c9b2fc87d.scn" ]
 
 [params]
 

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://gfx/units/celtic_spear/celtic_spearman.glb" type="PackedScene" id=1]
+
+[node name="celtic_spearman" instance=ExtResource( 1 )]

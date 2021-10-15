@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/test_soldier.glb-5efd23b302f83d93e7d9e668b0489f67.scn"
+path="res://.import/celtic_spearman.glb-614f850b07f92b92b867aca49566b74b.scn"
 
 [deps]
 
-source_file="res://gfx/units/test_unit/test_soldier.glb"
-dest_files=[ "res://.import/test_soldier.glb-5efd23b302f83d93e7d9e668b0489f67.scn" ]
+source_file="res://gfx/units/celtic_spear/celtic_spearman.glb"
+dest_files=[ "res://.import/celtic_spearman.glb-614f850b07f92b92b867aca49566b74b.scn" ]
 
 [params]
 

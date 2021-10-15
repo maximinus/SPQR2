@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/test_soldier_3.glb-c560b77c803d44e2683ad4f65c73f424.scn"
+path="res://.import/greek_axeman.glb-623d4c63b2e473617db3d8c1ffc12fec.scn"
 
 [deps]
 
-source_file="res://gfx/units/test3/test_soldier_3.glb"
-dest_files=[ "res://.import/test_soldier_3.glb-c560b77c803d44e2683ad4f65c73f424.scn" ]
+source_file="res://gfx/units/greek_axe/greek_axeman.glb"
+dest_files=[ "res://.import/greek_axeman.glb-623d4c63b2e473617db3d8c1ffc12fec.scn" ]
 
 [params]
 

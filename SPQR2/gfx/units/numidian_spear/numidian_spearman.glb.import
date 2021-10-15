@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/liv.glb-aa7429e6bc1ca0b3f7802b8e094c5972.scn"
+path="res://.import/numidian_spearman.glb-04a02c37d03d8dae2600476dc3241fd3.scn"
 
 [deps]
 
-source_file="res://gfx/units/test4/liv.glb"
-dest_files=[ "res://.import/liv.glb-aa7429e6bc1ca0b3f7802b8e094c5972.scn" ]
+source_file="res://gfx/units/numidian_spear/numidian_spearman.glb"
+dest_files=[ "res://.import/numidian_spearman.glb-04a02c37d03d8dae2600476dc3241fd3.scn" ]
 
 [params]
 
