@@ -7,21 +7,32 @@ List of current goals: Mark with ✓ when done, * when not
 Short Term:
 -----------
 
-✓ Add 4 more regions
-✓ Add highlight on leaders
-✓ Store army locations (maybe > 1) per region in the json file
-✓ Parse, load and display armies via json
-✓ Define what an army is, and load that data from json
-✓ Make city menu actually work again
-✓ Add Year, gold and silver to bottom left of screen
-✓ FIX: Leader mouse over highlight currently broken
-* FIX: Level zoom seems in wrong direction
 * Make sure we have 3 models at a minimum: A Roman, a Greek and a Celt
-* Click on army updates the display
-* Add 3D glow shader to army unit when selected
-* Add a game window minimum size
+* Add armies in region to region display
+* Capture a click on 3d models (towns, units)
+* Add highlight to army unit when selected
 * Experiment with full window
+* Get a senator / leader 3d unit and add to map (starts at Rome)
+	- This is only ever for a campaign
+	- But in a civil war, you'll want all of them displayed?
+	- Maybe display as a flag, or better an eagle
+	- Always with troops, otherwise we need have another location in the json
+* Add 4 regions
+* Add some roads
+	- Work out how the shader draws these
+	- Passing over a massive image isn't that bad
+* Make sure everything displayed on the screen is populated from data loaded
+
+
+Couldn't really be solved (add to issues):
+------------------------------------------
+
+* Add 3D glow shader to army unit when selected
+	The easy methods do not work on complex models
+	Replaced with "highlight the unit"
 * Fix massive screen-tearing when window re-sized
+	No obvious solution. Also no major reports. Not sure what to do for this.
+	The obvious solutions (vsync, frame buffering) did nothing.
 
 
 Medium Term

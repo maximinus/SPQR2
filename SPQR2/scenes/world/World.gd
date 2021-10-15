@@ -15,6 +15,7 @@ const PAN_SCALING = 10.0
 # amount to slow down the scale of panning the map during a zoom
 const MOUSE_ZOOM_SCALING = 500.0
 const MAP_REAL_SIZE = Vector2(25.0, 16.68)
+const WINDOW_MIN_SIZE = Vector2(800, 600)
 
 onready var zoom_tween: Tween = $Tweens/ZoomTween
 onready var camera_tween: Tween = $Tweens/CameraTween
@@ -41,6 +42,8 @@ var dragging: bool
 var drag_offset: Vector2
 
 func _ready():
+	# ensure window size has a minimum
+	OS.min_window_size = WINDOW_MIN_SIZE
 	# setup all data
 	data.load_all_data()
 	# load the region texture

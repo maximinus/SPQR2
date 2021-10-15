@@ -28,6 +28,7 @@ margin_right = -10.0
 margin_bottom = -10.0
 
 [node name="YearInfo" parent="." instance=ExtResource( 5 )]
+mouse_filter = 2
 
 [node name="AllLeaders" parent="." instance=ExtResource( 4 )]
 mouse_filter = 1
