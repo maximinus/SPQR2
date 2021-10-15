@@ -16,3 +16,11 @@ func set_unit_type(owner):
 	var model_instance = models[0].instance()
 	model_instance.scale(MODEL_SCALE)
 	$Unit.add_child(model_instance)
+
+func highlight_on():
+	$Circle.show()
+	$Highlight.play('HighlightRotate')
+
+func highlight_off():
+	$Circle.hide()
+	$Highlight.stop()

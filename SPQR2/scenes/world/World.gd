@@ -169,7 +169,11 @@ func check_mouse_drag() -> bool:
 func set_zoom_level(value) -> void:
 	# zoom the camera with a tween. May also need to tween the x/z position
 	# We limit the value between min_zoom and max_zoom
-	zoom_level = clamp(value, MIN_ZOOM, MAX_ZOOM)
+	# don't update if the zoom level doesn't change
+	var new_zoom_level = clamp(value, MIN_ZOOM, MAX_ZOOM)
+	if new_zoom_level == zoom_level:
+		return
+	zoom_level = new_zoom_level
 	# at maximum zoom out, our camera.x angle should -90, at max zoom in, -55
 	var zoom_c = 0.0
 	zoom_c = zoom_level - MIN_ZOOM
