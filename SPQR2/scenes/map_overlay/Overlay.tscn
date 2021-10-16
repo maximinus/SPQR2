@@ -16,8 +16,10 @@ __meta__ = {
 }
 
 [node name="RegionGUI" parent="." instance=ExtResource( 1 )]
-margin_left = -180.0
-margin_bottom = 210.0
+margin_left = -262.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 240.0
 
 [node name="MiniMap" parent="." instance=ExtResource( 3 )]
 margin_left = -1010.0

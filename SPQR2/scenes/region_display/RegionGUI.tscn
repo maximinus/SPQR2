@@ -28,7 +28,7 @@ bg_color = Color( 0.843137, 0.8, 0.654902, 1 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -260.0
-margin_bottom = 230.0
+margin_bottom = 233.0
 theme = SubResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -286,7 +286,7 @@ text = "10"
 align = 1
 valign = 1
 
-[node name="TrainingLabel" type="Label" parent="Mrg/VBox/Ar1/Ar"]
+[node name="TrainingLbl" type="Label" parent="Mrg/VBox/Ar1/Ar"]
 margin_left = 183.0
 margin_right = 240.0
 margin_bottom = 32.0
@@ -338,7 +338,7 @@ text = "10"
 align = 1
 valign = 1
 
-[node name="TrainingLabel" type="Label" parent="Mrg/VBox/Ar2/Ar"]
+[node name="TrainingLbl" type="Label" parent="Mrg/VBox/Ar2/Ar"]
 margin_left = 183.0
 margin_right = 240.0
 margin_bottom = 32.0
@@ -390,7 +390,7 @@ text = "10"
 align = 1
 valign = 1
 
-[node name="TrainingLabel" type="Label" parent="Mrg/VBox/Ar3/Ar"]
+[node name="TrainingLbl" type="Label" parent="Mrg/VBox/Ar3/Ar"]
 margin_left = 183.0
 margin_right = 240.0
 margin_bottom = 32.0

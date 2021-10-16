@@ -2,6 +2,7 @@ extends Node
 
 class_name MapRegion
 
+var id: int
 var region_name: String
 var culture: int
 var money: int
@@ -11,6 +12,7 @@ var army_pos: Array
 var city: City
 
 func _init(data: Dictionary):
+	id = data['id']
 	region_name = data['name']
 	culture = data['culture']
 	money = data['wealth']
