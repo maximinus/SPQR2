@@ -42,7 +42,7 @@ func get_armies(army_data: Array) -> Array:
 	helpers.log('Got %s armies' % len(army_instances))
 	return army_instances
 
-func load_all_data():
+func load_all_data() -> bool:
 	# return false if there was an issue
 	var file: File = File.new()
 	if file.open('res://data/game_data.json', file.READ) != OK:
@@ -63,7 +63,7 @@ func load_all_data():
 
 # all methods to get data follow here
 class RegionSorter:
-	static func sort(a, b):
+	static func sort(a, b) -> bool:
 		if a[0] < b[0]:
 			return true
 		return false
@@ -123,10 +123,17 @@ func get_money_stats_texture() -> Image:
 	img.create_from_image(base_image)
 	return img
 
-func get_unit_owner(unit_id: int):
+func get_unit_owner(unit_id: int) -> int:
 	# get the owner id or -1
 	for i in enemies:
 		if unit_id in i.armies:
 			return i.id
 	helpers.log('Error: invalid unit id')
 	return -1
+
+func get_armies_in_region(region_id: int) -> Array:
+	var in_region: Array = []
+	for i in armies:
+		if region_id == i.location:
+			in_region.append(i)
+	return in_region

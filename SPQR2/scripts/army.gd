@@ -18,6 +18,7 @@ func _init(data: Dictionary):
 	morale = data['morale']
 	equipment = data['equipment']
 	training = data['training']
+	# location is the id of the region we are in
 	location = data['location']
 	location_index = data['index']
 

@@ -14,5 +14,9 @@ Graphics
 		Coin by Chanut is Industries from the Noun Project
 		Sword by IYIKON from the Noun Project
 		Gold and silver by Teewara soontorn from the Noun Project
+		equipment by Justicon from the Noun Project
+		training by Chintuza from the Noun Project
+		Fist by Becris from the Noun Project
+		Learning by jai from the Noun Project
 	SPQR text on pause screen: Ssolbergj - Own work, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=2992630
 	Circle unit highlight: Background vector created by kbibibi - https://www.freepik.com/vectors/background

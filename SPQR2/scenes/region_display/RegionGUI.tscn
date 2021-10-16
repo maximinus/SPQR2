@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://gfx/fonts/regular_roman.tres" type="DynamicFont" id=1]
 [ext_resource path="res://gfx/ui_elements/region_sidebar/background_patch.png" type="Texture" id=2]
+[ext_resource path="res://gfx/fonts/large_roman.tres" type="DynamicFont" id=3]
+[ext_resource path="res://gfx/ui_elements/region_sidebar/army_icons/equipment.png" type="Texture" id=4]
 [ext_resource path="res://scenes/region_display/RegionGUI.gd" type="Script" id=5]
+[ext_resource path="res://gfx/ui_elements/region_sidebar/army_icons/morale.png" type="Texture" id=6]
+[ext_resource path="res://gfx/ui_elements/region_sidebar/army_icons/strength.png" type="Texture" id=7]
+[ext_resource path="res://gfx/ui_elements/region_sidebar/army_icons/training.png" type="Texture" id=8]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 1 )
@@ -16,11 +21,14 @@ Label/constants/shadow_offset_y = 1
 Label/fonts/font = ExtResource( 1 )
 Label/styles/normal = null
 
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.843137, 0.8, 0.654902, 1 )
+
 [node name="RegionGUI" type="Control"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -180.0
-margin_bottom = 210.0
+margin_left = -260.0
+margin_bottom = 230.0
 theme = SubResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -30,6 +38,7 @@ __meta__ = {
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = 212.0
 texture = ExtResource( 2 )
 patch_margin_left = 6
 patch_margin_top = 6
@@ -42,6 +51,7 @@ __meta__ = {
 [node name="Mrg" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = 206.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -53,15 +63,15 @@ __meta__ = {
 [node name="VBox" type="VBoxContainer" parent="Mrg"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 170.0
-margin_bottom = 200.0
+margin_right = 250.0
+margin_bottom = 430.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="Mrg/VBox"]
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 text = "Name of the place"
@@ -73,7 +83,7 @@ __meta__ = {
 
 [node name="HBCity" type="HBoxContainer" parent="Mrg/VBox"]
 margin_top = 40.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 60.0
 
 [node name="CityL" type="Label" parent="Mrg/VBox/HBCity"]
@@ -83,7 +93,7 @@ text = "City:"
 
 [node name="CityD" type="Label" parent="Mrg/VBox/HBCity"]
 margin_left = 35.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Rome"
@@ -91,7 +101,7 @@ align = 2
 
 [node name="HBCulture" type="HBoxContainer" parent="Mrg/VBox"]
 margin_top = 70.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 90.0
 
 [node name="CultureL" type="Label" parent="Mrg/VBox/HBCulture"]
@@ -101,7 +111,7 @@ text = "Culture:"
 
 [node name="CultureD" type="Label" parent="Mrg/VBox/HBCulture"]
 margin_left = 57.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "50"
@@ -109,7 +119,7 @@ align = 2
 
 [node name="HBWealth" type="HBoxContainer" parent="Mrg/VBox"]
 margin_top = 100.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 120.0
 
 [node name="WealthL" type="Label" parent="Mrg/VBox/HBWealth"]
@@ -119,7 +129,7 @@ text = "Wealth:"
 
 [node name="WealthD" type="Label" parent="Mrg/VBox/HBWealth"]
 margin_left = 55.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "120"
@@ -127,7 +137,7 @@ align = 2
 
 [node name="HBManpower" type="HBoxContainer" parent="Mrg/VBox"]
 margin_top = 130.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 150.0
 
 [node name="ManpowerL" type="Label" parent="Mrg/VBox/HBManpower"]
@@ -137,7 +147,7 @@ text = "Manpower:"
 
 [node name="ManpowerD" type="Label" parent="Mrg/VBox/HBManpower"]
 margin_left = 78.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "40"
@@ -145,7 +155,7 @@ align = 2
 
 [node name="HBLoyalty" type="HBoxContainer" parent="Mrg/VBox"]
 margin_top = 160.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 180.0
 
 [node name="LoyaltyL" type="Label" parent="Mrg/VBox/HBLoyalty"]
@@ -155,8 +165,237 @@ text = "Loyalty:"
 
 [node name="LoyaltyD" type="Label" parent="Mrg/VBox/HBLoyalty"]
 margin_left = 57.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "40"
 align = 2
+
+[node name="Spacer" type="Label" parent="Mrg/VBox"]
+margin_top = 190.0
+margin_right = 240.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 200, 0 )
+custom_fonts/font = ExtResource( 1 )
+valign = 1
+
+[node name="Army2" type="Label" parent="Mrg/VBox"]
+margin_top = 220.0
+margin_right = 240.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 200, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Armies"
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Mrg/VBox"]
+margin_top = 250.0
+margin_right = 240.0
+margin_bottom = 294.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="Center1" type="CenterContainer" parent="Mrg/VBox/HBoxContainer"]
+margin_right = 60.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+
+[node name="StrengthIcon" type="TextureRect" parent="Mrg/VBox/HBoxContainer/Center1"]
+margin_left = 10.0
+margin_right = 50.0
+margin_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource( 7 )
+
+[node name="Center2" type="CenterContainer" parent="Mrg/VBox/HBoxContainer"]
+margin_left = 60.0
+margin_right = 120.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+
+[node name="MoraleIcon" type="TextureRect" parent="Mrg/VBox/HBoxContainer/Center2"]
+margin_left = 10.0
+margin_right = 50.0
+margin_bottom = 44.0
+texture = ExtResource( 6 )
+
+[node name="Center3" type="CenterContainer" parent="Mrg/VBox/HBoxContainer"]
+margin_left = 120.0
+margin_right = 180.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+
+[node name="EquipmentIcon" type="TextureRect" parent="Mrg/VBox/HBoxContainer/Center3"]
+margin_left = 10.0
+margin_right = 50.0
+margin_bottom = 44.0
+texture = ExtResource( 4 )
+
+[node name="Center4" type="CenterContainer" parent="Mrg/VBox/HBoxContainer"]
+margin_left = 180.0
+margin_right = 240.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+
+[node name="TrainingIcon" type="TextureRect" parent="Mrg/VBox/HBoxContainer/Center4"]
+margin_left = 10.0
+margin_right = 50.0
+margin_bottom = 44.0
+texture = ExtResource( 8 )
+
+[node name="Ar1" type="PanelContainer" parent="Mrg/VBox"]
+margin_top = 304.0
+margin_right = 240.0
+margin_bottom = 336.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Ar" type="HBoxContainer" parent="Mrg/VBox/Ar1"]
+margin_right = 240.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StrengthLbl" type="Label" parent="Mrg/VBox/Ar1/Ar"]
+margin_right = 57.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="MoraleLbl" type="Label" parent="Mrg/VBox/Ar1/Ar"]
+margin_left = 61.0
+margin_right = 118.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="EquipmentLbl" type="Label" parent="Mrg/VBox/Ar1/Ar"]
+margin_left = 122.0
+margin_right = 179.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="TrainingLabel" type="Label" parent="Mrg/VBox/Ar1/Ar"]
+margin_left = 183.0
+margin_right = 240.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="Ar2" type="PanelContainer" parent="Mrg/VBox"]
+margin_top = 346.0
+margin_right = 240.0
+margin_bottom = 378.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Ar" type="HBoxContainer" parent="Mrg/VBox/Ar2"]
+margin_right = 240.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StrengthLbl" type="Label" parent="Mrg/VBox/Ar2/Ar"]
+margin_right = 57.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="MoraleLbl" type="Label" parent="Mrg/VBox/Ar2/Ar"]
+margin_left = 61.0
+margin_right = 118.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="EquipmentLbl" type="Label" parent="Mrg/VBox/Ar2/Ar"]
+margin_left = 122.0
+margin_right = 179.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="TrainingLabel" type="Label" parent="Mrg/VBox/Ar2/Ar"]
+margin_left = 183.0
+margin_right = 240.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="Ar3" type="PanelContainer" parent="Mrg/VBox"]
+margin_top = 388.0
+margin_right = 240.0
+margin_bottom = 420.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Ar" type="HBoxContainer" parent="Mrg/VBox/Ar3"]
+margin_right = 240.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StrengthLbl" type="Label" parent="Mrg/VBox/Ar3/Ar"]
+margin_right = 57.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="MoraleLbl" type="Label" parent="Mrg/VBox/Ar3/Ar"]
+margin_left = 61.0
+margin_right = 118.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="EquipmentLbl" type="Label" parent="Mrg/VBox/Ar3/Ar"]
+margin_left = 122.0
+margin_right = 179.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="TrainingLabel" type="Label" parent="Mrg/VBox/Ar3/Ar"]
+margin_left = 183.0
+margin_right = 240.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "10"
+align = 1
+valign = 1
