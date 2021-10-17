@@ -16,21 +16,19 @@ func _ready():
 func exit_editor():
 	get_tree().quit()
 
-func data_valid():
+func check_data():
 	if len(region_name) == 0:
 		helpers.log('Error: region name not set')
-		return false
+		exit_editor()
 	if region_name == 'None':
 		helpers.log('Error: region name not changed from default')
-		return false
+		exit_editor()
 	if len(city_name) == 0:
 		helpers.log('Error: city name not set')
-		return false
+		exit_editor()
 	if city_name == 'None':
 		helpers.log('Error: city name not changed from default')
-		return false
-	# all good
-	return true
+		exit_editor()
 
 func get_data() -> Dictionary:
 	# build up a dictionary of the data

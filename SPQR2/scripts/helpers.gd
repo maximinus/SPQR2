@@ -16,11 +16,11 @@ func get_index_from_region_color(col) -> int:
 	return int(round(col[2] * 8.0) + round(col[0] * 64.0))
 
 func pixel_on_map(pos: Vector2) -> bool:
-	if pos.x < cn.MAP_PIXEL_SIZE.x:
+	if pos.x < 0:
 		return false
 	if pos.x > cn.MAP_PIXEL_SIZE.x:
 		return false
-	if pos.y < cn.MAP_PIXEL_SIZE.y:
+	if pos.y < 0:
 		return false
 	if pos.y > cn.MAP_PIXEL_SIZE.y:
 		return false
