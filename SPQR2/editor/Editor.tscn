@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://gfx/editor/editor_map.png" type="Texture" id=1]
 [ext_resource path="res://editor/Editor.gd" type="Script" id=2]
+[ext_resource path="res://editor/scenes/EditorCity.tscn" type="PackedScene" id=3]
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 2 )
@@ -11,5 +12,106 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Cities" type="Node2D" parent="."]
+
+[node name="EditorCity" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1768.05, 1618.33 )
+rotation = -0.541052
+region_name = "Latium"
+city_name = "Rome"
+population = 10
+culture = 16
+wealth = 16
+manpower = 16
+loyalty = 16
+
+[node name="EditorCity2" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1958.09, 2020.28 )
+rotation = 1.35088
+region_name = "Sicilia"
+city_name = "Syracuse"
+culture = 12
+wealth = 12
+manpower = 12
+loyalty = 12
+
+[node name="EditorCity8" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1608.78, 2075.43 )
+rotation = -0.404916
+region_name = "Tunis"
+city_name = "Carthage"
+culture = 12
+wealth = 6
+manpower = 12
+loyalty = 12
+
+[node name="EditorCity9" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1243.91, 2098.06 )
+rotation = -2.02633
+region_name = "Numidia"
+city_name = "Icosium"
+culture = 12
+wealth = 4
+manpower = 12
+loyalty = 12
+
+[node name="EditorCity10" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1900.11, 2427.57 )
+rotation = -0.539307
+region_name = "Africa"
+city_name = "Oea"
+culture = 12
+wealth = 4
+manpower = 12
+loyalty = 12
+
+[node name="EditorCity3" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1565.39, 1855.46 )
+rotation = 0.809833
+region_name = "Corsica & Sardinia"
+city_name = "Caralis"
+culture = 12
+wealth = 12
+manpower = 12
+loyalty = 12
+
+[node name="EditorCity4" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1759.64, 1382.88 )
+rotation = -1.35263
+region_name = "Cisalpina"
+city_name = "Ravenna"
+culture = 12
+wealth = 9
+manpower = 12
+loyalty = 12
+
+[node name="EditorCity5" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1354.33, 1520.78 )
+rotation = 1.7558
+region_name = "Narbonensis"
+city_name = "Massilia"
+culture = 12
+wealth = 4
+manpower = 12
+loyalty = 12
+
+[node name="EditorCity6" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 1000.31, 1694.85 )
+rotation = 0.404916
+region_name = "Hispania Superior"
+city_name = "Tarraco"
+culture = 12
+wealth = 4
+manpower = 12
+loyalty = 12
+
+[node name="EditorCity7" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 856.515, 1402.22 )
+rotation = -2.43299
+region_name = "Aquitania Inferiore"
+city_name = "Burdigala"
+culture = 12
+wealth = 4
+manpower = 12
+loyalty = 12
 
 [node name="Units" type="Node2D" parent="."]

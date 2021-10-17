@@ -17,3 +17,9 @@ func get_region_color(pos: Vector2):
 	# error
 	helpers.log('Error: Got position outside of map: ' + str(pos))
 	get_tree().quit()
+
+func get_city_data():
+	# check the city data is at least correct and send it all back
+	for n in $Cities.get_children():
+		# names need to be non zero length and not none
+		pass

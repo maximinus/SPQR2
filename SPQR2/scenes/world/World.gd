@@ -9,12 +9,10 @@ const MAX_ZOOM = 10.0
 const ZOOM_FACTOR = 0.3
 # Duration of the zoom's tween animation.
 const ZOOM_DURATION = 0.2
-const MAP_PIXEL_SIZE = Vector2(6000.0, 4000.0)
 # amount to slow down mouse panning by
 const PAN_SCALING = 10.0
 # amount to slow down the scale of panning the map during a zoom
 const MOUSE_ZOOM_SCALING = 500.0
-const MAP_REAL_SIZE = Vector2(25.0, 16.68)
 const WINDOW_MIN_SIZE = Vector2(800, 600)
 
 onready var zoom_tween: Tween = $Tweens/ZoomTween
@@ -79,10 +77,10 @@ func check_ui_actions() -> void:
 
 func set_map_color() -> void:
 	# pass mouse position to shader
-	$map_board.set_mouse(map_intersect / MAP_PIXEL_SIZE)
+	$map_board.set_mouse(map_intersect / cn.MAP_PIXEL_SIZE)
 	# now test against the pixel map. In range?
-	if map_intersect.x >= 0.0 and map_intersect.x < MAP_PIXEL_SIZE.x:
-		if map_intersect.y >= 0.0 and map_intersect.y < MAP_PIXEL_SIZE.y:
+	if map_intersect.x >= 0.0 and map_intersect.x < cn.MAP_PIXEL_SIZE.x:
+		if map_intersect.y >= 0.0 and map_intersect.y < cn.MAP_PIXEL_SIZE.y:
 			# yes, we need to set a color
 			var col = region_map.get_pixel(map_intersect.x, map_intersect.y)
 			$map_board.set_region_color(Vector3(col.r, col.g, col.b))
@@ -107,7 +105,7 @@ func check_region_click(pos) -> void:
 	if coords.x < 0 or coords.y < 0:
 		# out of bounds, do nothing
 		return
-	if coords.x < MAP_PIXEL_SIZE.x and coords.y < MAP_PIXEL_SIZE.y:
+	if coords.x < cn.MAP_PIXEL_SIZE.x and coords.y < cn.MAP_PIXEL_SIZE.y:
 		# was really clicked, get the region color
 		var col = region_map.get_pixel(coords.x, coords.y)
 		# if the alpha is zero you clicked in a place with no region
@@ -206,8 +204,8 @@ func scale_plane_coords(x, y) -> Vector2:
 	# plane of (-12.5, -8.34) is (0,0) in pixels
 	# Since map is (12.5, 8.34) * 2 = (25.0, 16.68) in size,
 	# divide the pixel size by those values
-	return Vector2(round((x + 12.5) * (MAP_PIXEL_SIZE.x / 25.0)),
-				   round((y + 8.34) * (MAP_PIXEL_SIZE.y / 16.68)))
+	return Vector2(round((x + 12.5) * (cn.MAP_PIXEL_SIZE.x / 25.0)),
+				   round((y + 8.34) * (cn.MAP_PIXEL_SIZE.y / 16.68)))
 
 func get_mouse_map_coords(scaled: bool) -> Vector2:
 	# calculate what map pixel the mouse is looking at
@@ -268,12 +266,12 @@ func calculate_view_area() -> void:
 func _on_Overlay_mini_map(pos) -> void:
 	# the mini-map has been clicked. The co-ords are the UV of the map,
 	# i.e. 0 to 1 on both the axis. Update the map and the map pin
-	var half_map = MAP_REAL_SIZE / 2.0
-	pos *= MAP_REAL_SIZE
+	var half_map = cn.MAP_REAL_SIZE / 2.0
+	pos *= cn.MAP_REAL_SIZE
 	pos -= half_map
 	# the "move" would be where we are, compared to where we want to be
 	# the camera intersect in is pixels, so recalculate
-	var camera_pos = (camera_intersect / MAP_PIXEL_SIZE) * MAP_REAL_SIZE
+	var camera_pos = (camera_intersect / cn.MAP_PIXEL_SIZE) * cn.MAP_REAL_SIZE
 	camera_pos -= half_map
 	pos -= camera_pos
 	var new_pos = check_panning_limits(Vector3(pos.x, 0.0, pos.y))
@@ -287,7 +285,7 @@ func _on_Overlay_mini_map(pos) -> void:
 
 func update_minimap_pin() -> void:
 	# update where the pin is on the mini-map
-	var pin_pos = (camera_intersect / MAP_PIXEL_SIZE)
+	var pin_pos = (camera_intersect / cn.MAP_PIXEL_SIZE)
 	$CanvasLayer/Overlay.update_map_pin(pin_pos)
 
 func _on_Overlay_change_view(index):
