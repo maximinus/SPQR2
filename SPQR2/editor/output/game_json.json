@@ -10,6 +10,7 @@
       "population": 10
     },
     "culture": 16,
+    "id": 2,
     "loyalty": 16,
     "manpower": 16,
     "name": "Latium",
@@ -26,6 +27,7 @@
       "population": 0
     },
     "culture": 12,
+    "id": 3,
     "loyalty": 12,
     "manpower": 12,
     "name": "Sicilia",
@@ -42,6 +44,7 @@
       "population": 0
     },
     "culture": 12,
+    "id": 4,
     "loyalty": 12,
     "manpower": 12,
     "name": "Tunis",
@@ -58,6 +61,7 @@
       "population": 0
     },
     "culture": 12,
+    "id": 5,
     "loyalty": 12,
     "manpower": 12,
     "name": "Numidia",
@@ -74,6 +78,7 @@
       "population": 0
     },
     "culture": 12,
+    "id": 6,
     "loyalty": 12,
     "manpower": 12,
     "name": "Africa",
@@ -90,6 +95,7 @@
       "population": 0
     },
     "culture": 12,
+    "id": 1,
     "loyalty": 12,
     "manpower": 12,
     "name": "Corsica & Sardinia",
@@ -106,6 +112,7 @@
       "population": 0
     },
     "culture": 12,
+    "id": 0,
     "loyalty": 12,
     "manpower": 12,
     "name": "Cisalpina",
@@ -122,6 +129,7 @@
       "population": 0
     },
     "culture": 12,
+    "id": 7,
     "loyalty": 12,
     "manpower": 12,
     "name": "Narbonensis",
@@ -138,6 +146,7 @@
       "population": 0
     },
     "culture": 12,
+    "id": 9,
     "loyalty": 12,
     "manpower": 12,
     "name": "Hispania Superior",
@@ -154,6 +163,7 @@
       "population": 0
     },
     "culture": 12,
+    "id": 8,
     "loyalty": 12,
     "manpower": 12,
     "name": "Aquitania Inferiore",

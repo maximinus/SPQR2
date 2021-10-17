@@ -26,7 +26,13 @@ func get_city_data():
 	for city_node in $Cities.get_children():
 		# names need to be non zero length and not none
 		city_node.check_data()
-		cities.append(city_node.get_data())
+		var data = city_node.get_data()
+		var rcol = get_region_color(city_node.position)
+		var index = helpers.get_index_from_region_color(rcol)
+		# add this to the city data
+		data['id'] = index
+		cities.append(data)
+		# we need the region id, which is obtained from the region color
 	return JSON.print(cities, '  ', true)
 
 func save_data(data):
