@@ -78,17 +78,16 @@ func check_ui_actions() -> void:
 		get_tree().paused = true
 
 func set_map_color() -> void:
-	# just set mouse
+	# pass mouse position to shader
 	$map_board.set_mouse(map_intersect / MAP_PIXEL_SIZE)
-	# in x range?
+	# now test against the pixel map. In range?
 	if map_intersect.x >= 0.0 and map_intersect.x < MAP_PIXEL_SIZE.x:
-		# in y range?
 		if map_intersect.y >= 0.0 and map_intersect.y < MAP_PIXEL_SIZE.y:
 			# yes, we need to set a color
 			var col = region_map.get_pixel(map_intersect.x, map_intersect.y)
 			$map_board.set_region_color(Vector3(col.r, col.g, col.b))
 			return
-	# set color to white
+	# set color to white, i.e. tell the shader there is no region
 	$map_board.set_region_color(Vector3(1.0, 1.0, 1.0))
 
 func _input(event) -> void:
@@ -111,14 +110,15 @@ func check_region_click(pos) -> void:
 	if coords.x < MAP_PIXEL_SIZE.x and coords.y < MAP_PIXEL_SIZE.y:
 		# was really clicked, get the region color
 		var col = region_map.get_pixel(coords.x, coords.y)
+		# if the alpha is zero you clicked in a place with no region
+		if col.a == 0.0:
+			return
 		# calculate the index
 		var index = helpers.get_index_from_region_color(col)
 		# check range to be sure
 		if index >= 0 and index < len(data.regions):
 			# get the city details
 			$CanvasLayer/Overlay.update_region_info(data.regions[index])
-		else:
-			helpers.log('Error: Wrong index on region select: ' + str(col))
 
 func add_cities() -> void:
 	# add cities to scene from world data

@@ -1,0 +1,17 @@
+
+Game Editor Details:
+--------------------
+
+It's a scene in Godot
+
+Can add a city and units
+Checks:
+	Every region must have a city
+	Every region must have 2-3 unit locations
+All in 2D
+
+* Get relative sizes
+* Make a city and unit disc
+* Export json
+* Check against regions
+* Make the json work with the game json

@@ -172,6 +172,7 @@ When the empire splits to East / West (card based):
 			* I.e. if you have 3 votes (cards or skill) they cannot be split
 			* To further detail, you can vote for ONE person only
 		- Your family member must be on the side you voted for
+			* I.e. you must vote for the region your family member is in
 		- This means one choice will be essentially random
 		- Civil wars will be contained in their own areas (east or west)
 
