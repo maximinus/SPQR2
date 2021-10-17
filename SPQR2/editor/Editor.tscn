@@ -9,3 +9,7 @@ script = ExtResource( 2 )
 [node name="RegionMap" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
+
+[node name="Cities" type="Node2D" parent="."]
+
+[node name="Units" type="Node2D" parent="."]
