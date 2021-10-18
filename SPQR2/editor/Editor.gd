@@ -3,16 +3,19 @@ extends Node2D
 const MAP_PIXEL_SIZE = Vector2(6000.0, 4000.0)
 
 var region_map: Image
+var complete = false
 
 func _ready():
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
 	region_map = image.get_data()
 	region_map.lock()
 
-func _process(_delta):
-	# this code will run and exit immediatly
-	# do on the process to allow all other nodes to be populated
-	save_all_data()
+func _process(delta):
+	if complete == false:
+		save_all_data()
+		complete = true
+	if Input.is_action_just_pressed('quit_editor'):
+		get_tree().quit()
 
 func get_region_color(pos: Vector2):
 	if pos.x >= 0.0 and pos.x < MAP_PIXEL_SIZE.x:
@@ -58,8 +61,8 @@ func get_unit_locations():
 
 func get_road_name(start: Vector2, end: Vector2) -> String:
 	# get a name for the road
-	var s = '%02d' % get_region_index(start)
-	var e = '%02d' % get_region_index(end)
+	var s = '%03d' % get_region_index(start)
+	var e = '%03d' % get_region_index(end)
 	return s + '_' + e
 
 func get_all_roads() -> Dictionary:
@@ -90,11 +93,42 @@ func get_road_texture(rnode, rname):
 		area_max.y = max(area_max.y, i[1])
 	# size can now be calculated
 	var area_size = area_max - area_min
-	area_size.x = ceil(area_size.x)
-	area_size.y = ceil(area_size.y)
-	print(area_size)
-	#var filename = 'res://editor/road_images/' + rname + '.png'
-	#rname.save_png()
+	# allow a border of 4 pixels all sides
+	area_size.x = ceil(area_size.x) + 8.0
+	area_size.y = ceil(area_size.y) + 8.0
+	# now create a viewpoint the requred size
+	$ViewC.rect_size = area_size
+	$ViewC/Viewport.size = area_size
+	# create a new line 2D using the points - area_min so we are at the origin
+	# add an offset of (4,4)
+	var nline1 = Line2D.new()
+	var nline2 = Line2D.new()
+	for i in rnode.points:
+		var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(4.0, 4.0)
+		nline1.add_point(lp)
+		nline2.add_point(lp)
+	# set aesthetics
+	nline1.width = 3.0
+	nline1.default_color = Color(1.0, 1.0, 1.0, 1.0)
+	# draw line2d at (0,0) on the viewport
+	nline1.position = Vector2(0.0, 0.0)
+
+	nline2.width = 4.0
+	nline2.default_color = Color(1.0, 1.0, 1.0, 0.8)
+	# draw line2d at (0,0) on the viewport
+	nline2.position = Vector2(0.0, 0.0)	
+	$ViewC/Viewport.add_child(nline1)
+	$ViewC/Viewport.add_child(nline2)
+	# wait 2 frames is the standard advice
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	var img = $ViewC/Viewport.get_texture().get_data()
+	# due to opengl, image is flipped on the y axis
+	img.flip_y()
+	# finally, save it
+	var filename = 'res://editor/road_images/' + rname + '.png'
+	img.save_png(filename)
+	helpers.log('Saved ' + filename)
 
 func save_data(data):
 	var file = File.new()
@@ -109,4 +143,3 @@ func save_all_data():
 	var data = get_city_data(uloc)
 	save_data(data)
 	helpers.log('All data exported as JSON')
-	get_tree().quit()
