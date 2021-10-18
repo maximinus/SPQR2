@@ -151,13 +151,13 @@ position = Vector2( 1710, 1377 )
 position = Vector2( 2009, 1673 )
 
 [node name="EditorUnit12" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1426, 1465 )
+position = Vector2( 1401.97, 1395.59 )
 
 [node name="EditorUnit13" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 1061, 1470 )
 
 [node name="EditorUnit14" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1305, 1464 )
+position = Vector2( 1295.66, 1465.33 )
 
 [node name="EditorUnit15" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 1002, 1413 )
@@ -181,13 +181,13 @@ position = Vector2( 1077, 1567 )
 position = Vector2( 1628.38, 2121.37 )
 
 [node name="EditorUnit22" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1604.4, 2265.21 )
+position = Vector2( 1608.4, 2229.84 )
 
 [node name="EditorUnit23" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1493.53, 2097.4 )
+position = Vector2( 1516.89, 2116.76 )
 
 [node name="EditorUnit24" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1394.64, 2100.4 )
+position = Vector2( 1391.3, 2121.76 )
 
 [node name="EditorUnit25" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 1193.87, 2166.32 )
@@ -199,7 +199,7 @@ position = Vector2( 1427.6, 2251.73 )
 position = Vector2( 1592.42, 2374.59 )
 
 [node name="EditorUnit28" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1833.65, 2425.53 )
+position = Vector2( 1833.65, 2444.22 )
 
 [node name="EditorUnit29" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 1978.98, 2534.91 )
@@ -213,6 +213,36 @@ default_color = Color( 1, 1, 1, 1 )
 
 [node name="Line2D2" type="Line2D" parent="Roads"]
 points = PoolVector2Array( 1760.52, 1612.09, 1735.16, 1597.41, 1740.49, 1568.04, 1757.85, 1550.69, 1789.88, 1519.99, 1796.56, 1490.62, 1784.54, 1474.6, 1771.2, 1455.92, 1755.18, 1433.22, 1755.18, 1421.21, 1755.18, 1401.19 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D3" type="Line2D" parent="Roads"]
+points = PoolVector2Array( 1369.41, 1517.32, 1397.44, 1501.3, 1426.81, 1482.61, 1444.16, 1474.6, 1468.19, 1467.93, 1494.88, 1449.24, 1525.59, 1418.54, 1545.61, 1385.17, 1577.64, 1357.14, 1631.04, 1350.46, 1652.4, 1347.79, 1691.11, 1345.12, 1729.82, 1345.12, 1744.5, 1363.81, 1755.18, 1373.16 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D4" type="Line2D" parent="Roads"]
+points = PoolVector2Array( 1369.41, 1517.32, 1397.44, 1501.3, 1426.81, 1482.61, 1444.16, 1474.6, 1468.19, 1467.93, 1494.88, 1449.24, 1525.59, 1418.54, 1562.11, 1423.85, 1604.32, 1439.6, 1643.38, 1467.94, 1658.5, 1505.11, 1684.33, 1554.88, 1711.42, 1587.64, 1735.35, 1596.46, 1760.55, 1612.2 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D5" type="Line2D" parent="Roads"]
+points = PoolVector2Array( 855.293, 1409.35, 840.174, 1455.97, 852.773, 1468.57, 885.531, 1482.43, 933.408, 1498.81, 985.065, 1505.11, 1012.78, 1498.81, 1055.62, 1505.11, 1119.88, 1505.11, 1191.69, 1496.29, 1234.53, 1492.51, 1279.89, 1508.89, 1315.16, 1516.45, 1341.62, 1524.01 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D6" type="Line2D" parent="Roads"]
+points = PoolVector2Array( 1007.5, 1684.14, 1031.48, 1654.92, 1064.44, 1651.93, 1097.4, 1646.68, 1114.63, 1626.46, 1105.64, 1600.24, 1111.64, 1577.76, 1118.38, 1549.29, 1135.61, 1524.57, 1191.69, 1496.29, 1234.53, 1492.51, 1279.89, 1508.89, 1315.16, 1516.45, 1341.62, 1524.01 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D7" type="Line2D" parent="Roads"]
+points = PoolVector2Array( 1604.55, 2068.01, 1575.85, 2066.67, 1550.49, 2071.34, 1524.46, 2076.68, 1498.43, 2081.35, 1471.73, 2082.02, 1444.37, 2077.35, 1420.34, 2081.35, 1395.65, 2082.69, 1362.94, 2084.69, 1327.57, 2098.04, 1295.54, 2100.04, 1267.5, 2101.38, 1259.49, 2099.37 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D8" type="Line2D" parent="Roads"]
+points = PoolVector2Array( 1608.56, 2090.03, 1604.55, 2112.72, 1606.55, 2136.75, 1627.91, 2154.77, 1641.26, 2188.81, 1646.6, 2202.82, 1646.6, 2222.85, 1643.93, 2239.53, 1634.58, 2256.89, 1620.57, 2271.57, 1613.23, 2286.92, 1613.23, 2302.94, 1617.9, 2322.96, 1641.93, 2342.98, 1663.95, 2359, 1692.65, 2373.68, 1714.68, 2381.03, 1738.04, 2389.04, 1766.07, 2399.71, 1789.43, 2405.05, 1818.79, 2405.72, 1838.15, 2403.05, 1862.18, 2405.72, 1879.53, 2412.39, 1890.87, 2420.4 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 
