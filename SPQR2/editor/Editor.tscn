@@ -211,6 +211,11 @@ points = PoolVector2Array( 1781.73, 1633.81, 1786.14, 1649.56, 1791.81, 1657.12,
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 
+[node name="Line2D2" type="Line2D" parent="Roads"]
+points = PoolVector2Array( 1760.52, 1612.09, 1735.16, 1597.41, 1740.49, 1568.04, 1757.85, 1550.69, 1789.88, 1519.99, 1796.56, 1490.62, 1784.54, 1474.6, 1771.2, 1455.92, 1755.18, 1433.22, 1755.18, 1421.21, 1755.18, 1401.19 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
 [node name="ViewC" type="ViewportContainer" parent="."]
 margin_right = 200.0
 margin_bottom = 200.0

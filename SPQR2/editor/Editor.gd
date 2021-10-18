@@ -13,6 +13,7 @@ func _ready():
 func _process(delta):
 	if complete == false:
 		save_all_data()
+		get_road_textures()
 		complete = true
 	if Input.is_action_just_pressed('quit_editor'):
 		get_tree().quit()
@@ -72,63 +73,72 @@ func get_all_roads() -> Dictionary:
 		var pts = []
 		for i in road_node.points:
 			pts.append(i)
-		# now get the texture image
+		# check the name
 		var rname = get_road_name(pts[0], pts[-1])
-		var img = get_road_texture(road_node, rname)
 		if rname in roads:
 			helpers.log('Error: Road between regions already exists')
 		else:
 			roads[rname] = pts
 	return roads
 
-func get_road_texture(rnode, rname):
-	# get the size and create a viewport of the same size
-	# ouch, has to be manual. Invert the logic; min must start big and reduce
-	var area_min = Vector2(0.0, 0.0) + cn.MAP_PIXEL_SIZE
-	var area_max = Vector2(0.0, 0.0)
-	for i in rnode.points:
-		area_min.x = min(area_min.x, i[0])
-		area_min.y = min(area_min.y, i[1])
-		area_max.x = max(area_max.x, i[0])
-		area_max.y = max(area_max.y, i[1])
-	# size can now be calculated
-	var area_size = area_max - area_min
-	# allow a border of 4 pixels all sides
-	area_size.x = ceil(area_size.x) + 8.0
-	area_size.y = ceil(area_size.y) + 8.0
-	# now create a viewpoint the requred size
-	$ViewC.rect_size = area_size
-	$ViewC/Viewport.size = area_size
-	# create a new line 2D using the points - area_min so we are at the origin
-	# add an offset of (4,4)
-	var nline1 = Line2D.new()
-	var nline2 = Line2D.new()
-	for i in rnode.points:
-		var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(4.0, 4.0)
-		nline1.add_point(lp)
-		nline2.add_point(lp)
-	# set aesthetics
-	nline1.width = 3.0
-	nline1.default_color = Color(1.0, 1.0, 1.0, 1.0)
-	# draw line2d at (0,0) on the viewport
-	nline1.position = Vector2(0.0, 0.0)
+func get_road_textures():
+	for rnode in $Roads.get_children():
+		var rname = get_road_name(rnode.points[0], rnode.points[-1])
 
-	nline2.width = 4.0
-	nline2.default_color = Color(1.0, 1.0, 1.0, 0.8)
-	# draw line2d at (0,0) on the viewport
-	nline2.position = Vector2(0.0, 0.0)	
-	$ViewC/Viewport.add_child(nline1)
-	$ViewC/Viewport.add_child(nline2)
-	# wait 2 frames is the standard advice
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	var img = $ViewC/Viewport.get_texture().get_data()
-	# due to opengl, image is flipped on the y axis
-	img.flip_y()
-	# finally, save it
-	var filename = 'res://editor/road_images/' + rname + '.png'
-	img.save_png(filename)
-	helpers.log('Saved ' + filename)
+		# get the size and create a viewport of the same size
+		# clear the data from the last time
+		for i in $ViewC/Viewport.get_children():
+			i.queue_free()
+		# wait a frame for that to be done
+		yield(get_tree(), "idle_frame")
+
+		# ouch, has to be manual. Invert the logic; min must start big and reduce
+		var area_min = Vector2(0.0, 0.0) + cn.MAP_PIXEL_SIZE
+		var area_max = Vector2(0.0, 0.0)
+		for i in rnode.points:
+			area_min.x = min(area_min.x, i[0])
+			area_min.y = min(area_min.y, i[1])
+			area_max.x = max(area_max.x, i[0])
+			area_max.y = max(area_max.y, i[1])
+		# size can now be calculated
+		var area_size = area_max - area_min
+		# allow a border of 4 pixels all sides
+		area_size.x = ceil(area_size.x) + 8.0
+		area_size.y = ceil(area_size.y) + 8.0
+		# adjust viewport sizes
+		$ViewC.rect_size = area_size
+		$ViewC/Viewport.size = area_size
+		# create a new line 2D using the points - area_min so we are at the origin
+		# add an offset of (4,4)
+		var nline1 = Line2D.new()
+		var nline2 = Line2D.new()
+		for i in rnode.points:
+			var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(4.0, 4.0)
+			nline1.add_point(lp)
+			nline2.add_point(lp)
+		# set aesthetics
+		nline1.width = 3.0
+		nline1.default_color = Color(1.0, 1.0, 1.0, 1.0)
+		# draw line2d at (0,0) on the viewport
+		nline1.position = Vector2(0.0, 0.0)
+
+		nline2.width = 4.0
+		nline2.default_color = Color(1.0, 1.0, 1.0, 0.8)
+		# draw line2d at (0,0) on the viewport
+		nline2.position = Vector2(0.0, 0.0)	
+		$ViewC/Viewport.add_child(nline1)
+		$ViewC/Viewport.add_child(nline2)
+		# wait 2 frames is the standard advice
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		var img = $ViewC/Viewport.get_texture().get_data()
+		# due to opengl, image is flipped on the y axis
+		img.flip_y()
+		# finally, save it
+		var filename = 'res://editor/road_images/' + rname + '.png'
+		img.save_png(filename)
+		helpers.log('Saved ' + filename)
+		helpers.log('quitting...')
 
 func save_data(data):
 	var file = File.new()
