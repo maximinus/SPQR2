@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://gfx/editor/editor_map.png" type="Texture" id=1]
 [ext_resource path="res://editor/Editor.gd" type="Script" id=2]
 [ext_resource path="res://editor/scenes/EditorCity.tscn" type="PackedScene" id=3]
 [ext_resource path="res://editor/scenes/EditorUnit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gfx/editor/node_join.png" type="Texture" id=5]
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 2 )
@@ -222,7 +223,7 @@ width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="Line2D4" type="Line2D" parent="Roads"]
-points = PoolVector2Array( 1369.41, 1517.32, 1397.44, 1501.3, 1426.81, 1482.61, 1444.16, 1474.6, 1468.19, 1467.93, 1494.88, 1449.24, 1525.59, 1418.54, 1562.11, 1423.85, 1604.32, 1439.6, 1643.38, 1467.94, 1658.5, 1505.11, 1684.33, 1554.88, 1711.42, 1587.64, 1735.35, 1596.46, 1760.55, 1612.2 )
+points = PoolVector2Array( 1369.41, 1517.32, 1397.44, 1501.3, 1426.81, 1482.61, 1444.16, 1474.6, 1468.19, 1467.93, 1494.88, 1449.24, 1525.59, 1418.54, 1562.11, 1423.85, 1604.32, 1439.6, 1643.38, 1467.94, 1658.5, 1505.11, 1684.33, 1554.88, 1711.42, 1587.64, 1735.27, 1597.44 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 
@@ -232,7 +233,7 @@ width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="Line2D6" type="Line2D" parent="Roads"]
-points = PoolVector2Array( 1007.5, 1684.14, 1031.48, 1654.92, 1064.44, 1651.93, 1097.4, 1646.68, 1114.63, 1626.46, 1105.64, 1600.24, 1111.64, 1577.76, 1118.38, 1549.29, 1135.61, 1524.57, 1191.69, 1496.29, 1234.53, 1492.51, 1279.89, 1508.89, 1315.16, 1516.45, 1341.62, 1524.01 )
+points = PoolVector2Array( 1007.5, 1684.14, 1031.48, 1654.92, 1064.44, 1651.93, 1097.4, 1646.68, 1114.63, 1626.46, 1105.64, 1600.24, 1111.64, 1577.76, 1118.38, 1549.29, 1135.61, 1524.57, 1191.69, 1496.29, 1212.33, 1494.47, 1234.53, 1492.51, 1279.89, 1508.89, 1315.16, 1516.45, 1341.62, 1524.01 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 
@@ -245,6 +246,20 @@ default_color = Color( 1, 1, 1, 1 )
 points = PoolVector2Array( 1608.56, 2090.03, 1604.55, 2112.72, 1606.55, 2136.75, 1627.91, 2154.77, 1641.26, 2188.81, 1646.6, 2202.82, 1646.6, 2222.85, 1643.93, 2239.53, 1634.58, 2256.89, 1620.57, 2271.57, 1613.23, 2286.92, 1613.23, 2302.94, 1617.9, 2322.96, 1641.93, 2342.98, 1663.95, 2359, 1692.65, 2373.68, 1714.68, 2381.03, 1738.04, 2389.04, 1766.07, 2399.71, 1789.43, 2405.05, 1818.79, 2405.72, 1838.15, 2403.05, 1862.18, 2405.72, 1879.53, 2412.39, 1890.87, 2420.4 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
+
+[node name="RoadJoins" type="Node2D" parent="."]
+
+[node name="Join" type="Sprite" parent="RoadJoins"]
+position = Vector2( 1734.92, 1595.84 )
+texture = ExtResource( 5 )
+
+[node name="Join2" type="Sprite" parent="RoadJoins"]
+position = Vector2( 1526.41, 1418.99 )
+texture = ExtResource( 5 )
+
+[node name="Join3" type="Sprite" parent="RoadJoins"]
+position = Vector2( 1190.41, 1496.81 )
+texture = ExtResource( 5 )
 
 [node name="ViewC" type="ViewportContainer" parent="."]
 margin_right = 200.0
