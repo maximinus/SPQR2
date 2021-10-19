@@ -13,10 +13,10 @@ export(int) var rural_pop = 0
 func _ready():
 	pass
 
-func exit_editor():
+func exit_editor() -> void:
 	get_tree().quit()
 
-func check_data():
+func check_data() -> void:
 	if len(region_name) == 0:
 		helpers.log('Error: region name not set')
 		exit_editor()
@@ -47,6 +47,6 @@ func get_data() -> Dictionary:
 	all_data['wealth'] = wealth
 	all_data['manpower'] = manpower
 	all_data['loyalty'] = loyalty
-	# TODO: Add id from region and unit locations 
+	# TODO: Add id in some way
 	all_data['city_stats'] = city_data
 	return all_data

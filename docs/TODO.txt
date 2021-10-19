@@ -37,15 +37,16 @@ Editor
 ✓ UnitLocations are where units are placed
 ✓ We can check against the region image to work out what regions they are in
 ✓ Roads are 2D lines we render to an Image
-We also save the routes, so a unit can walk along the route, and the arrow graphic for moving.
-All this is generated to a json file and a dir of images when the scene is played
+✓ We also save the routes, so a unit can walk along the route, and the arrow graphic for moving.
+	Note: Arror generation left to later, as it depends on route
+✓ All this is generated to a json file and a dir of images when the scene is played
 
 
 Couldn't really be solved (add to issues):
 ------------------------------------------
 
 * Add 3D glow shader to army unit when selected
-	The easy methods do not work on complex models
+	The easy methods do not work on our models as we suffer edge splits
 	Replaced with "highlight the unit"
 * Fix massive screen-tearing when window re-sized
 	No obvious solution. Also no major reports. Not sure what to do for this.
@@ -73,11 +74,20 @@ Medium Term
 * We must add sound into the game at some point. But it needs to be decided how to make the sound.
 
 
+Music & Sound
+-------------
+
+We certainly need little clicks and effects for selections and actions
+I think we need music of some form
+Better to think of "a sound here would be good" and write them out, rather than think ahead
+	- Most of our design is graphic led, so think of how a sound might be useful in that context
+
 
 Wish-List Of Graphical Improvements
 -----------------------------------
 
 I want to make the map feel alive, and your gaming changes it.
+So the map starts sparse and then you slowly bring a world to life
 Since we have roads, and units move along roads, we know the safe spaces on the map and can draw there.
 
 Cities:
@@ -86,6 +96,7 @@ Cities:
 Vary from empire to empire
 Show changes in size
 Have something animated (a little flag?)
+Visually display they have troops
 
 Roads:
 ------
@@ -98,6 +109,7 @@ Units:
 
 Can see stats overlaid
 The Roman units should look Roman
+Adding variety with horses and ships
 
 Detail:
 -------

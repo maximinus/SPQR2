@@ -61,7 +61,7 @@ func get_matched_node(cities, joins, position):
 		return null
 	return pos
 
-func update_road_coords():
+func update_road_coords() -> void:
 	# A road must start or end at a node (a city or a join)
 	# all the nodes at that point are placed at the position of the node
 	# first gather all the locations of the cities and joins
@@ -82,7 +82,7 @@ func update_road_coords():
 		if end != null:
 			road.points[-1] = end
 
-func get_city_data(locations):
+func get_city_data(locations) -> String:
 	# check the city data is at least correct and send it all back
 	var cities = []
 	for city_node in $Cities.get_children():
@@ -98,7 +98,7 @@ func get_city_data(locations):
 		cities.append(data)
 	return JSON.print(cities, '  ', true)
 
-func get_unit_locations():
+func get_unit_locations() -> Dictionary:
 	# stuff results in a dictionary against the id
 	var locations = {}
 	for unit in $Units.get_children():
@@ -132,7 +132,8 @@ func get_all_roads() -> Dictionary:
 			roads[rname] = pts
 	return roads
 
-func get_road_textures():
+func get_road_textures() -> void:
+	# this code was quite experimental, thus the length
 	var json_data = []
 	for rnode in $Roads.get_children():
 		var rname = get_road_name(rnode.points[0], rnode.points[-1])
@@ -191,27 +192,36 @@ func get_road_textures():
 		img.save_png(filename)
 		# save the required json data - subtract 4 to allow for spacing
 		var loc = area_min - Vector2(4.0, 4.0)
-		json_data.append([filename, [loc.x, loc.y]])
+		
+		# TODO: this needs the index!
+		var start_region = get_region_index(rnode.points[0])
+		var end_region = get_region_index(rnode.points[-1])
+		var all_data = {'file': filename,
+						'position': [loc.x, loc.y],
+						'start_region': start_region,
+						'end_region': end_region}
+		json_data.append(all_data)
+		
 		helpers.log('Saved ' + str(json_data[-1]))
 	save_road_data(json_data)
 	helpers.log('quitting...')
 
-func save_road_data(road_data):
-	var json_string = JSON.print(road_data, '  ', true)
+func save_road_data(road_data) -> void:
+	var json_string = JSON.print(road_data, '  ', false)
 	var file = File.new()
 	file.open(JSON_FILE, File.WRITE)
 	file.store_string(json_string)
 	file.close()
 	helpers.log('Saved road data to ' + JSON_FILE)
 
-func save_data(data):
+func save_data(data) -> void:
 	var file = File.new()
 	file.open(DATA_FILE, File.WRITE)
 	file.store_string(data)
 	file.close()
 	helpers.log('Saved region data to ' + DATA_FILE)
 
-func save_all_data():
+func save_all_data() -> void:
 	var uloc = get_unit_locations()
 	var rpos = get_all_roads()
 	var data = get_city_data(uloc)

@@ -9,7 +9,7 @@ var models = [preload('res://scenes/units/roman_spear.tscn'),
 func _ready():
 	pass
 
-func set_unit_type(owner):
+func set_unit_type(owner) -> void:
 	if owner >= 0 and owner < len(models):
 		return
 	$roman_spear.queue_free()
@@ -17,10 +17,10 @@ func set_unit_type(owner):
 	model_instance.scale(MODEL_SCALE)
 	$Unit.add_child(model_instance)
 
-func highlight_on():
+func highlight_on() -> void:
 	$Circle.show()
 	$Highlight.play('HighlightRotate')
 
-func highlight_off():
+func highlight_off() -> void:
 	$Circle.hide()
 	$Highlight.stop()

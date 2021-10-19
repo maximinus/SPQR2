@@ -22,5 +22,5 @@ func _init(data: Dictionary):
 	location = data['location']
 	location_index = data['index']
 
-func get_map_position():
+func get_map_position() -> int:
 	return data.regions[location].army_pos[location_index]

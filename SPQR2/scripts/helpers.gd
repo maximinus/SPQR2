@@ -6,7 +6,7 @@ enum LogType {
 	ERROR
 }
 
-func log(text: String):
+func log(text: String) -> void:
 	# probably want a better logger eventually
 	print(text)
 
@@ -26,7 +26,7 @@ func pixel_on_map(pos: Vector2) -> bool:
 		return false
 	return true
 
-func pixel_to_map(pos: Vector2):
+func pixel_to_map(pos: Vector2) -> Vector2:
 	# given the pixel co-ords, return the map co-ords
 	# on this and the following function, we do not check for range
 	return Vector2(((pos.x / cn.MAP_PIXEL_SIZE.x) * 25.0) - 12.5,

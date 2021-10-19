@@ -270,7 +270,7 @@ func _on_Overlay_mini_map(pos) -> void:
 	pos *= cn.MAP_REAL_SIZE
 	pos -= half_map
 	# the "move" would be where we are, compared to where we want to be
-	# the camera intersect in is pixels, so recalculate
+	# the camera intersect is in pixels, so recalculate
 	var camera_pos = (camera_intersect / cn.MAP_PIXEL_SIZE) * cn.MAP_REAL_SIZE
 	camera_pos -= half_map
 	pos -= camera_pos
@@ -280,7 +280,6 @@ func _on_Overlay_mini_map(pos) -> void:
 	camera.translation = new_pos	
 	# finally, we need update the pin position (since panning limits may have restricted it)
 	calculate_intersections()
-	# the pin needs a UV value
 	update_minimap_pin()
 
 func update_minimap_pin() -> void:
@@ -288,9 +287,8 @@ func update_minimap_pin() -> void:
 	var pin_pos = (camera_intersect / cn.MAP_PIXEL_SIZE)
 	$CanvasLayer/Overlay.update_map_pin(pin_pos)
 
-func _on_Overlay_change_view(index):
+func _on_Overlay_change_view(index) -> void:
 	# update the shader graphics to change the view
-	print('Caught overlay signal')
 	if index == cn.RegionDisplay.OWNERS:
 		$map_board.set_region_owners(data.get_region_owners_texture())
 	elif index == cn.RegionDisplay.ARMY:
