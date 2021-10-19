@@ -57,6 +57,10 @@ window/size/width=1400
 window/size/height=800
 window/stretch/aspect="keep"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/zylann.project_stats/plugin.cfg" )
+
 [importer_defaults]
 
 texture={

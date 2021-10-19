@@ -18,22 +18,25 @@ Short Term:
 * Make sure everything displayed on the screen is populated from data loaded
 ✓ FIX: Click on water shows units in region
 * Add an event: A modal dialog with an image, a question and a range of text answers.
+* The enemy must have some troops, i.e. models added at startup
+* Build at minimum a Windows and Linux release of this
 * This the end of the 0.1 release.
+* Post on Reddit, with info
 
 
 Editor
 ------
 
-A 2d map, on which are placed:
-	Cities
-	UnitLocations
-	Roads
+✓ A 2d map, on which are placed:
+	✓ Cities
+	✓ UnitLocations
+	✓ Roads
 
-Cities are a scene that exposes the data requirements for a region
+✓ Cities are a scene that exposes the data requirements for a region
 	Since all regions have at least a city location
-UnitLocations are where units are placed
-We can check against the region image to work out what regions they are in
-Roads are 2D lines we render to an Image
+✓ UnitLocations are where units are placed
+✓ We can check against the region image to work out what regions they are in
+✓ Roads are 2D lines we render to an Image
 We also save the routes, so a unit can walk along the route, and the arrow graphic for moving.
 All this is generated to a json file and a dir of images when the scene is played
 
