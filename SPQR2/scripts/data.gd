@@ -14,6 +14,7 @@ var armies: Array = []
 var land_paths: Array = []
 var sea_paths: Array = []
 var roads: Array = []
+var road_images: Array = []
 
 var enemies: Array = []
 
@@ -57,6 +58,7 @@ func load_all_data() -> bool:
 		enemies = get_enemies(data['ENEMIES'])
 		armies = get_armies(data['ARMIES'])
 	if get_road_data() == true:
+		load_road_images()
 		return true
 	helpers.log('Failed to parse ' + GAME_DATA)
 	return false
@@ -70,14 +72,14 @@ func get_road_data() -> bool:
 	file.close()
 	var result: JSONParseResult = JSON.parse(text)
 	if result.error == OK:
+		# now we have the data, let's parse it
+		var data = result.result
+		for single_road in data:
+			roads.append(Road.new(single_road))
+		# sort the roads by index
+		roads.sort_custom(Road, 'sort')
 		return true
 	helpers.log('Failed to parse ' + ROAD_DATA)
-	# now we have the data, let's parse it
-	var data = result.result
-	for single_road in data:
-		roads.append(Road.new(single_road))
-	# sort the roads by index
-	roads.sort_custom(Road, 'sort')
 	return false
 
 func get_regions(region_data: Array) -> Array:
@@ -184,3 +186,21 @@ func get_armies_in_region(region_id: int) -> Array:
 		if region_id == i.location:
 			in_region.append(i)
 	return in_region
+
+# code for road image generation
+func load_road_images() -> void:
+	# we have the filenames, so load them. They are already in index order
+	road_images = []
+	for i in roads:
+		var new_image = Image.new()
+		new_image.load('res://gfx/roads/road_' + str(i.id) + '.png')
+		road_images.append(new_image)
+	helpers.log('Loaded ' + str(len(road_images)) + ' road images')
+
+func build_roads() -> void:
+	var road_image = Image.new()
+	road_image.storage = ImageTexture.STORAGE_COMPRESS_LOSSLESS
+	road_image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
+	# now blit all the roads (all just for testing)
+	for i in roads:
+		pass

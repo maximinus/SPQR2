@@ -234,6 +234,7 @@ id = 4
 
 [node name="RoadLine7" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1760.27, 1386.64, 1762.95, 1407.13, 1765.62, 1430.3, 1771.86, 1452.57, 1792.35, 1468.61, 1809.27, 1489.1, 1817.29, 1520.28, 1798.58, 1539.88, 1772.75, 1563.04, 1743.35, 1579.08, 1735.21, 1594.86 )
+id = 10
 
 [node name="RoadLine8" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1736, 1596, 1737.5, 1606.5, 1744, 1613, 1755.5, 1618, 1768, 1619 )
