@@ -118,7 +118,7 @@ func get_all_roads() -> Dictionary:
 		# let's obtain as a list of points first
 		var pts = []
 		for i in road_node.points:
-			pts.append(i)
+			pts.append([i[0], i[1]])
 		if road_node.id in roads:
 			helpers.log('Error: Road between regions already exists')
 		else:

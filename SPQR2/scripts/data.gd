@@ -2,17 +2,83 @@ extends Node
 
 # all main data is kept here, as well as the code to load it
 # JSON error checking is a different step;
-# it should be run in the build step
+# it should be run in a pre-build step
 
 const ROME_DEFAULT_COLOR = Color(0.91, 0.0664, 0.0664, 1.0)
+const GAME_DATA = 'res://data/game_data.json'
+const ROAD_DATA = 'res://data/road_data.json'
 
-# regions are loaded per id, i.e. id 1 is the first region
+# regions are loaded per id, i.e. id 0 is the first region
 var regions: Array = []
 var armies: Array = []
 var land_paths: Array = []
 var sea_paths: Array = []
+var roads: Array = []
 
 var enemies: Array = []
+
+# define a light-weight road class
+class Road:
+	var id: int
+	var filepath: String
+	var pos: Vector2
+	var points: Array
+	var start_region: int
+	var end_region: int
+	
+	func _init(data: Dictionary):
+		id = data['id']
+		filepath = data['file']
+		pos = Vector2(data['position'][0], data['position'][1])
+		points = data['points']
+		start_region = data['start_region']
+		end_region = data['end_region']
+	
+	static func sort(a, b) -> bool:
+		if a.id < b.id:
+			return true
+		return false
+
+
+# this is main() function: it should be called when the game scene starts
+func load_all_data() -> bool:
+	# return false if there was an issue
+	var file: File = File.new()
+	if file.open(GAME_DATA, file.READ) != OK:
+		helpers.log('Could not read ' + GAME_DATA)
+		return false
+	var text: String = file.get_as_text()
+	file.close()
+	var result: JSONParseResult = JSON.parse(text)
+	if result.error == OK:
+		var data = result.result
+		regions = get_regions(data['REGIONS'])
+		land_paths = get_paths(data['PATHS'])
+		enemies = get_enemies(data['ENEMIES'])
+		armies = get_armies(data['ARMIES'])
+	if get_road_data() == true:
+		return true
+	helpers.log('Failed to parse ' + GAME_DATA)
+	return false
+
+func get_road_data() -> bool:
+	var file: File = File.new()
+	if file.open(ROAD_DATA, file.READ) != OK:
+		helpers.log('Could not read ' + ROAD_DATA)
+		return false
+	var text: String = file.get_as_text()
+	file.close()
+	var result: JSONParseResult = JSON.parse(text)
+	if result.error == OK:
+		return true
+	helpers.log('Failed to parse ' + ROAD_DATA)
+	# now we have the data, let's parse it
+	var data = result.result
+	for single_road in data:
+		roads.append(Road.new(single_road))
+	# sort the roads by index
+	roads.sort_custom(Road, 'sort')
+	return false
 
 func get_regions(region_data: Array) -> Array:
 	var region_instances: Array = []
@@ -41,25 +107,6 @@ func get_armies(army_data: Array) -> Array:
 		army_instances.append(Army.new(i))
 	helpers.log('Got %s armies' % len(army_instances))
 	return army_instances
-
-func load_all_data() -> bool:
-	# return false if there was an issue
-	var file: File = File.new()
-	if file.open('res://data/game_data.json', file.READ) != OK:
-		helpers.log('Could not read the game data JSON file')
-		return false
-	var text: String = file.get_as_text()
-	file.close()
-	var result: JSONParseResult = JSON.parse(text)
-	if result.error == OK:
-		var data = result.result
-		regions = get_regions(data['REGIONS'])
-		land_paths = get_paths(data['PATHS'])
-		enemies = get_enemies(data['ENEMIES'])
-		armies = get_armies(data['ARMIES'])
-		return true
-	helpers.log('Failed to parse game data')
-	return false
 
 # all methods to get data follow here
 class RegionSorter:
