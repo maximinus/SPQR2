@@ -7,6 +7,7 @@ const DATA_FILE = 'res://editor/output/game_data.json'
 
 var region_map: Image
 var complete = false
+var road_points: Dictionary = {}
 
 func _ready():
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
@@ -111,12 +112,6 @@ func get_unit_locations() -> Dictionary:
 			locations[region_id] = [[map_pos.x, map_pos.y]]
 	return locations
 
-func get_road_name(start: Vector2, end: Vector2) -> String:
-	# get a name for the road
-	var s = '%03d' % get_region_index(start)
-	var e = '%03d' % get_region_index(end)
-	return s + '_' + e
-
 func get_all_roads() -> Dictionary:
 	var roads = {}
 	for road_node in $Roads.get_children():
@@ -124,20 +119,16 @@ func get_all_roads() -> Dictionary:
 		var pts = []
 		for i in road_node.points:
 			pts.append(i)
-		# check the name
-		var rname = get_road_name(pts[0], pts[-1])
-		if rname in roads:
+		if road_node.id in roads:
 			helpers.log('Error: Road between regions already exists')
 		else:
-			roads[rname] = pts
+			roads[road_node.id] = pts
 	return roads
 
 func get_road_textures() -> void:
 	# this code was quite experimental, thus the length
 	var json_data = []
 	for rnode in $Roads.get_children():
-		var rname = get_road_name(rnode.points[0], rnode.points[-1])
-
 		# get the size and create a viewport of the same size
 		# clear the data from the last time
 		for i in $ViewC/Viewport.get_children():
@@ -188,21 +179,25 @@ func get_road_textures() -> void:
 		# due to opengl, image is flipped on the y axis
 		img.flip_y()
 		# finally, save it
-		var filename = 'res://editor/road_images/' + rname + '.png'
+		var filename = 'res://editor/road_images/road_' + str(rnode.id) + '.png'
 		img.save_png(filename)
 		# save the required json data - subtract 4 to allow for spacing
 		var loc = area_min - Vector2(4.0, 4.0)
 		
-		# TODO: this needs the index!
+		# if this doesn't exist the data is faulty
+		var points_data = road_points[rnode.id]
+		
 		var start_region = get_region_index(rnode.points[0])
 		var end_region = get_region_index(rnode.points[-1])
-		var all_data = {'file': filename,
+		var all_data = {'id': rnode.id,
+						'file': filename,
 						'position': [loc.x, loc.y],
+						'points': points_data,
 						'start_region': start_region,
 						'end_region': end_region}
 		json_data.append(all_data)
 		
-		helpers.log('Saved ' + str(json_data[-1]))
+		helpers.log('Saved ' + filename)
 	save_road_data(json_data)
 	helpers.log('quitting...')
 
@@ -223,7 +218,7 @@ func save_data(data) -> void:
 
 func save_all_data() -> void:
 	var uloc = get_unit_locations()
-	var rpos = get_all_roads()
+	road_points = get_all_roads()
 	var data = get_city_data(uloc)
 	save_data(data)
 	helpers.log('All data exported as JSON')

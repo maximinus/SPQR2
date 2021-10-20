@@ -3,13 +3,21 @@
 .import/
 export.cfg
 export_presets.cfg
+*.import
 
 # Mono-specific ignores
 .mono/
 data_*/
 
+# addons
+SPQR2/addons/*
+
 # the really big files
 raw_gfx/*
+
+# editor creations
+SPQR2/editor/road_images/*
+SPQR2/editor/output/*
 
 # nim build folders
 nimcache/*
