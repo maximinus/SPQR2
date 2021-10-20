@@ -15,8 +15,9 @@ var land_paths: Array = []
 var sea_paths: Array = []
 var roads: Array = []
 var road_images: Array = []
-
 var enemies: Array = []
+
+var road_texture: Image = null
 
 # define a light-weight road class
 class Road:
@@ -26,6 +27,7 @@ class Road:
 	var points: Array
 	var start_region: int
 	var end_region: int
+	var rimage: Image
 	
 	func _init(data: Dictionary):
 		id = data['id']
@@ -34,6 +36,7 @@ class Road:
 		points = data['points']
 		start_region = data['start_region']
 		end_region = data['end_region']
+		rimage = null
 	
 	static func sort(a, b) -> bool:
 		if a.id < b.id:
@@ -59,6 +62,7 @@ func load_all_data() -> bool:
 		armies = get_armies(data['ARMIES'])
 	if get_road_data() == true:
 		load_road_images()
+		build_roads()
 		return true
 	helpers.log('Failed to parse ' + GAME_DATA)
 	return false
@@ -190,17 +194,18 @@ func get_armies_in_region(region_id: int) -> Array:
 # code for road image generation
 func load_road_images() -> void:
 	# we have the filenames, so load them. They are already in index order
-	road_images = []
+	var count = 0
 	for i in roads:
 		var new_image = Image.new()
-		new_image.load('res://gfx/roads/road_' + str(i.id) + '.png')
-		road_images.append(new_image)
-	helpers.log('Loaded ' + str(len(road_images)) + ' road images')
+		var foo = new_image.load('res://gfx/roads/road_' + str(i.id) + '.png')
+		i.rimage = new_image
+		count += 1
+	helpers.log('Loaded ' + str(count) + ' road images')
 
 func build_roads() -> void:
-	var road_image = Image.new()
-	road_image.storage = ImageTexture.STORAGE_COMPRESS_LOSSLESS
-	road_image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
+	road_texture = Image.new()
+	road_texture.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
 	# now blit all the roads (all just for testing)
 	for i in roads:
-		pass
+		var rect = Rect2(0.0, 0.0, i.rimage.get_width(), i.rimage.get_height())
+		road_texture.blit_rect(i.rimage, rect, i.pos)
