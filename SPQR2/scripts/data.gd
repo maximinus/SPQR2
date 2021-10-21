@@ -7,6 +7,7 @@ extends Node
 const ROME_DEFAULT_COLOR = Color(0.91, 0.0664, 0.0664, 1.0)
 const GAME_DATA = 'res://data/game_data.json'
 const ROAD_DATA = 'res://data/road_data.json'
+const REGION_DATA = 'res://data/region_data.json'
 
 # regions are loaded per id, i.e. id 0 is the first region
 var regions: Array = []
@@ -14,6 +15,7 @@ var armies: Array = []
 var land_paths: Array = []
 var sea_paths: Array = []
 var roads: Array = []
+var roads_built: Array = []
 var road_images: Array = []
 var enemies: Array = []
 
@@ -43,23 +45,37 @@ class Road:
 			return true
 		return false
 
-
-# this is main() function: it should be called when the game scene starts
-func load_all_data() -> bool:
-	# return false if there was an issue
+func get_json_data(filepath):
+	# read the data and convert
+	# return null if failed
 	var file: File = File.new()
-	if file.open(GAME_DATA, file.READ) != OK:
-		helpers.log('Could not read ' + GAME_DATA)
-		return false
+	if file.open(filepath, file.READ) != OK:
+		helpers.log('Could not read ' + filepath)
+		return null
 	var text: String = file.get_as_text()
 	file.close()
 	var result: JSONParseResult = JSON.parse(text)
 	if result.error == OK:
-		var data = result.result
-		regions = get_regions(data['REGIONS'])
-		land_paths = get_paths(data['PATHS'])
-		enemies = get_enemies(data['ENEMIES'])
-		armies = get_armies(data['ARMIES'])
+		return result.result
+	return null
+
+# this is main() function: it should be called when the game scene starts
+func load_all_data() -> bool:
+	# return false if there was an issue
+	var region_json = get_json_data(REGION_DATA)
+	if region_json == null:
+		return false
+	regions = get_regions(region_json)
+	
+	var data = get_json_data(GAME_DATA)
+	if data == null:
+		return false
+	
+	# grab all normal_data
+	roads_built = data['ROADS']
+	enemies = get_enemies(data['ENEMIES'])
+	armies = get_armies(data['ARMIES'])
+	
 	if get_road_data() == true:
 		load_road_images()
 		build_roads()
@@ -68,37 +84,28 @@ func load_all_data() -> bool:
 	return false
 
 func get_road_data() -> bool:
-	var file: File = File.new()
-	if file.open(ROAD_DATA, file.READ) != OK:
-		helpers.log('Could not read ' + ROAD_DATA)
+	var data = get_json_data(ROAD_DATA)
+	if data == null:
 		return false
-	var text: String = file.get_as_text()
-	file.close()
-	var result: JSONParseResult = JSON.parse(text)
-	if result.error == OK:
-		# now we have the data, let's parse it
-		var data = result.result
-		for single_road in data:
-			roads.append(Road.new(single_road))
-		# sort the roads by index
-		roads.sort_custom(Road, 'sort')
-		return true
-	helpers.log('Failed to parse ' + ROAD_DATA)
-	return false
+	for single_road in data:
+		roads.append(Road.new(single_road))
+	# sort the roads by index
+	roads.sort_custom(Road, 'sort')
+	return true
+
+class RegionIndexSorter:
+	static func sort(a, b) -> bool:
+		if a.id < b.id:
+			return true
+		return false
 
 func get_regions(region_data: Array) -> Array:
 	var region_instances: Array = []
 	for i in region_data:
 		region_instances.append(MapRegion.new(i))
 	helpers.log('Loaded %s regions' % str(len(region_instances)))
+	region_instances.sort_custom(RegionIndexSorter, 'sort')
 	return region_instances
-
-func get_paths(path_data) -> Array:
-	var path_instances: Array = []
-	for i in path_data['LAND']:
-		path_instances.append(i)
-	helpers.log('Got %s paths' % len(path_instances))
-	return path_instances
 
 func get_enemies(enemy_data: Array) -> Array:
 	var enemy_instances: Array = []
@@ -206,9 +213,10 @@ func build_roads() -> void:
 	var road_image = Image.new()
 	road_image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
 	# now blit all the roads (all just for testing)
-	for i in roads:
-		var rect = Rect2(0.0, 0.0, i.rimage.get_width(), i.rimage.get_height())
-		road_image.blit_rect(i.rimage, rect, i.pos)
+	for i in roads_built:
+		var road_data = roads[i]
+		var rect = Rect2(0.0, 0.0, road_data.rimage.get_width(), road_data.rimage.get_height())
+		road_image.blit_rect(road_data.rimage, rect, road_data.pos)
 	# the resultant needs to be an ImageTexture
 	var texture = ImageTexture.new()
 	road_texture = ImageTexture.new()
