@@ -17,7 +17,7 @@ var roads: Array = []
 var road_images: Array = []
 var enemies: Array = []
 
-var road_texture: Image = null
+var road_texture: ImageTexture = null
 
 # define a light-weight road class
 class Road:
@@ -203,9 +203,13 @@ func load_road_images() -> void:
 	helpers.log('Loaded ' + str(count) + ' road images')
 
 func build_roads() -> void:
-	road_texture = Image.new()
-	road_texture.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
+	var road_image = Image.new()
+	road_image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
 	# now blit all the roads (all just for testing)
 	for i in roads:
 		var rect = Rect2(0.0, 0.0, i.rimage.get_width(), i.rimage.get_height())
-		road_texture.blit_rect(i.rimage, rect, i.pos)
+		road_image.blit_rect(i.rimage, rect, i.pos)
+	# the resultant needs to be an ImageTexture
+	var texture = ImageTexture.new()
+	road_texture = ImageTexture.new()
+	road_texture.create_from_image(road_image)

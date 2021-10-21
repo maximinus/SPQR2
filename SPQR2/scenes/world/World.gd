@@ -56,6 +56,8 @@ func _ready():
 	calculate_intersections()
 	# do the initial setup, this should happen every change in the future
 	$map_board.set_region_owners(data.get_region_owners_texture())
+	# roads are done by this point, so set those up as well
+	$map_board.set_road_texture(data.road_texture)
 
 func _process(delta):
 	# what are the mouse and camera looking at?

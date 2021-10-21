@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://gfx/map/map_board.glb" type="PackedScene" id=1]
 [ext_resource path="res://gfx/map_table/table.glb" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://gfx/map/map_regions.png" type="Texture" id=6]
 [ext_resource path="res://gfx/map/map_borders.png" type="Texture" id=7]
 [ext_resource path="res://gfx/map/map_owners_polyfill.png" type="Texture" id=8]
+[ext_resource path="res://gfx/map/empty_roads.png" type="Texture" id=9]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -36,9 +37,10 @@ void fragment() {
 	vec4 border_px = texture(border_map, UV);
 	vec4 roads_px = texture(road_map, UV);
 	vec3 calculated_color;
+	vec3 final_color;
 	if(region_i.a == 0.0) {
 		// no region at this pixel, just draw the map
-		ALBEDO = mix(texture(image_map, UV).rgb, border_px.rgb, border_px.a);
+		final_color = mix(texture(image_map, UV).rgb, border_px.rgb, border_px.a);
 	} else {
 		// get the region index of this colour
 		// how is this maths calculated?
@@ -60,13 +62,13 @@ void fragment() {
 		// this value probably needs fine-tuning
 		if(tot < 0.05) {
 			// make a highlight, i.e. make the display brighter
-			ALBEDO = mix(calculated_color + brightness, border_px.rgb, border_px.a);
+			final_color = mix(calculated_color + brightness, border_px.rgb, border_px.a);
 		} else {
-			// display the map#
-			vec3 mix_color = mix(calculated_color, border_px.rgb, border_px.a);
-			ALBEDO = mix(mix_color, roads_px.rgb, roads_px.a);			
+			// display the map
+			final_color = mix(calculated_color, border_px.rgb, border_px.a);
 		}
 	}
+	ALBEDO = mix(final_color, roads_px.rgb, roads_px.a);
 	ROUGHNESS = texture(rough_map, UV).r / roughness_scale;
 }
 "
@@ -82,6 +84,7 @@ shader_param/image_map = ExtResource( 5 )
 shader_param/rough_map = ExtResource( 4 )
 shader_param/region_map = ExtResource( 6 )
 shader_param/border_map = ExtResource( 7 )
+shader_param/road_map = ExtResource( 9 )
 shader_param/map_owners = ExtResource( 8 )
 
 [node name="map_board" instance=ExtResource( 1 )]

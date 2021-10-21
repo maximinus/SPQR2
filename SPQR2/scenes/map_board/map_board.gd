@@ -15,3 +15,7 @@ func set_mouse(mouse_pos):
 func set_region_owners(owners: ImageTexture):
 	var mat = $GameBoard.get_surface_material(1)
 	mat.set_shader_param('map_owners', owners)
+
+func set_road_texture(road_image: ImageTexture):
+	var mat = $GameBoard.get_surface_material(1)
+	mat.set_shader_param('road_map', road_image)
