@@ -37,6 +37,39 @@ wealth = 12
 manpower = 12
 loyalty = 12
 
+[node name="EditorCity11" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2320.15, 1775.86 )
+rotation = 1.48528
+region_name = "Epirus"
+city_name = "Onchesmus"
+population = 2
+culture = 14
+wealth = 8
+manpower = 6
+loyalty = 12
+
+[node name="EditorCity12" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2585.51, 1963.86 )
+rotation = 0.945968
+region_name = "Achea"
+city_name = "Athens"
+population = 6
+culture = 16
+wealth = 10
+manpower = 6
+loyalty = 12
+
+[node name="EditorCity13" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2509.07, 1738.47 )
+rotation = 0.809833
+region_name = "Macedonia"
+city_name = "Pella"
+population = 6
+culture = 9
+wealth = 10
+manpower = 5
+loyalty = 12
+
 [node name="EditorCity8" parent="Cities" instance=ExtResource( 3 )]
 position = Vector2( 1608.78, 2075.43 )
 rotation = -0.404916
@@ -62,6 +95,16 @@ position = Vector2( 1900.11, 2427.57 )
 rotation = -0.539307
 region_name = "Africa"
 city_name = "Oea"
+culture = 12
+wealth = 4
+manpower = 12
+loyalty = 12
+
+[node name="EditorCity14" parent="Cities" instance=ExtResource( 3 )]
+position = Vector2( 2473.69, 2409.61 )
+rotation = -2.56563
+region_name = "Cyrenaica"
+city_name = "Cyrene"
 culture = 12
 wealth = 4
 manpower = 12
@@ -152,6 +195,33 @@ position = Vector2( 1710, 1377 )
 [node name="EditorUnit11" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 2009, 1673 )
 
+[node name="EditorUnit30" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2331.08, 1606.25 )
+
+[node name="EditorUnit31" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2422.19, 1861.58 )
+
+[node name="EditorUnit32" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2487.88, 1620.03 )
+
+[node name="EditorUnit33" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2702.95, 1660.29 )
+
+[node name="EditorUnit34" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2575.81, 1715.38 )
+
+[node name="EditorUnit35" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2364.98, 1737.63 )
+
+[node name="EditorUnit36" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2502.71, 2044.87 )
+
+[node name="EditorUnit37" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2456.09, 1924.09 )
+
+[node name="EditorUnit38" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2523.9, 1932.57 )
+
 [node name="EditorUnit12" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 1401.97, 1395.59 )
 
@@ -205,6 +275,15 @@ position = Vector2( 1833.65, 2444.22 )
 
 [node name="EditorUnit29" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 1978.98, 2534.91 )
+
+[node name="EditorUnit39" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2050.82, 2549.5 )
+
+[node name="EditorUnit40" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2495.31, 2460.83 )
+
+[node name="EditorUnit41" parent="Units" instance=ExtResource( 4 )]
+position = Vector2( 2432.45, 2579.81 )
 
 [node name="Roads" type="Node2D" parent="."]
 

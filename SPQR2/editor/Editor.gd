@@ -3,7 +3,7 @@ extends Node2D
 const CITY_RADIUS: float = 24.5
 const JOIN_RADIUS: float = 8.0
 const JSON_FILE = 'res://editor/output/road_data.json'
-const DATA_FILE = 'res://editor/output/game_data.json'
+const DATA_FILE = 'res://editor/output/region_data.json'
 
 var region_map: Image
 var complete = false
