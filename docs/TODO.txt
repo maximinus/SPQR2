@@ -7,22 +7,20 @@ List of current goals: Mark with ✓ when done, * when not
 Short Term:
 -----------
 
-✓ Make sure we have 3 models at a minimum: A Roman, a Greek and a Celt
-✓ Add armies in region to region display
 ✓ Add highlight to army unit
 ✓ Add some roads, and work out how these are generated
-* Draw the current roads
+✓ Draw the current roads
+* Remove the current road data from the json and use the editor json
 * Capture a click on 3d models (towns, units). This highlights soldiers for now.
 * Get a senator / leader 3d unit and add to map. Starts at home. it's an eagle on stick
 * Add 4 regions
 * Make sure everything displayed on the screen is populated from data loaded
-✓ FIX: Click on water shows units in region
 * Add an event: A modal dialog with an image, a question and a range of text answers.
 * The enemy must have some troops, i.e. models added at startup
 * Build at minimum a Windows and Linux release of this
 * This is the end of the 0.1 release.
 * Post on Reddit, with info
-? Make a simple website with blog updates
+? Make a simple website with blog updates (i.e., a subreddit)
 
 
 Editor
