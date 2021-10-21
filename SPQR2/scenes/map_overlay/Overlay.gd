@@ -6,6 +6,9 @@ signal change_view(index)
 func _ready():
 	pass
 
+func set_gold_silver(gold: int, silver: int):
+	$YearInfo.set_gold_silver(gold, silver)
+
 func update_region_info(region: MapRegion) -> void:
 	$RegionGUI.update_info(region)
 

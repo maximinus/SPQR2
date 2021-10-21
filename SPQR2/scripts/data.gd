@@ -221,3 +221,10 @@ func build_roads() -> void:
 	var texture = ImageTexture.new()
 	road_texture = ImageTexture.new()
 	road_texture.create_from_image(road_image)
+
+# code for handling money
+func get_player_gold():
+	return enemies[0].gold
+
+func get_player_silver():
+	return enemies[0].silver

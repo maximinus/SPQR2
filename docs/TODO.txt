@@ -7,9 +7,8 @@ List of current goals: Mark with ✓ when done, * when not
 Short Term:
 -----------
 
-✓ Add highlight to army unit
-✓ Add some roads, and work out how these are generated
 ✓ Draw the current roads
+* FIX: map joins not joining in images
 * Remove the current road data from the json and use the editor json
 * Capture a click on 3d models (towns, units). This highlights soldiers for now.
 * Get a senator / leader 3d unit and add to map. Starts at home. it's an eagle on stick
