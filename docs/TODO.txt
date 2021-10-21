@@ -10,18 +10,19 @@ Short Term:
 ✓ Draw the current roads
 ✓ Remove the current road data from the json and use the editor json
 ✓ Make sure everything displayed on the screen is populated from data loaded
+✓ Add 4 regions
 * FIX: map joins not joining in images
-* Capture a click on 3d models (towns, units). This highlights soldiers for now.
-* Get a senator / leader 3d unit and add to map. Starts at home. it's an eagle on stick
-* Add 4 regions
-
 * Add an event: A modal dialog with an image, a question and a range of text answers.
+* Capture a click on 3d models (towns, units). This highlights soldiers for now.
+* Get a senator / leader 3d unit and add to map. Starts at home. It's an eagle on stick
+
 * The enemy must have some troops, i.e. models added at startup
+* Add click sounds on events
 * FIX: Godot crashes on Windows when importing project
 * Build at minimum a Windows and Linux release of this
-* This is the end of the 0.1 release.
+* This is the 0.1 release.
 * Post on Reddit, with info
-? Make a simple website with blog updates (i.e., a subreddit)
+* Make a simple website with blog updates (i.e., a subreddit)
 
 
 Editor
