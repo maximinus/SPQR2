@@ -18,6 +18,7 @@ uniform sampler2D image_map : hint_albedo;
 uniform sampler2D rough_map;
 uniform sampler2D region_map;
 uniform sampler2D border_map;
+uniform sampler2D road_map;
 // ownership of regions
 uniform sampler2D map_owners;
 uniform float roughness_scale = 1.2;
@@ -33,6 +34,7 @@ void fragment() {
 	// start by getting the color of the map regions
 	vec4 region_i = texture(region_map, UV);
 	vec4 border_px = texture(border_map, UV);
+	vec4 roads_px = texture(road_map, UV);
 	vec3 calculated_color;
 	if(region_i.a == 0.0) {
 		// no region at this pixel, just draw the map
@@ -60,9 +62,9 @@ void fragment() {
 			// make a highlight, i.e. make the display brighter
 			ALBEDO = mix(calculated_color + brightness, border_px.rgb, border_px.a);
 		} else {
-			// display the map
-			ALBEDO = mix(calculated_color, border_px.rgb, border_px.a);
-			
+			// display the map#
+			vec3 mix_color = mix(calculated_color, border_px.rgb, border_px.a);
+			ALBEDO = mix(mix_color, roads_px.rgb, roads_px.a);			
 		}
 	}
 	ROUGHNESS = texture(rough_map, UV).r / roughness_scale;

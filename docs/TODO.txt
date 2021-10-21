@@ -20,8 +20,9 @@ Short Term:
 * Add an event: A modal dialog with an image, a question and a range of text answers.
 * The enemy must have some troops, i.e. models added at startup
 * Build at minimum a Windows and Linux release of this
-* This the end of the 0.1 release.
+* This is the end of the 0.1 release.
 * Post on Reddit, with info
+? Make a simple website with blog updates
 
 
 Editor
@@ -38,7 +39,7 @@ Editor
 ✓ We can check against the region image to work out what regions they are in
 ✓ Roads are 2D lines we render to an Image
 ✓ We also save the routes, so a unit can walk along the route, and the arrow graphic for moving.
-	Note: Arror generation left to later, as it depends on route
+	Note: Arrow image generation left to later, as it depends on route and there are far too many possible variations
 ✓ All this is generated to a json file and a dir of images when the scene is played
 
 
@@ -57,11 +58,11 @@ Medium Term
 -----------
 
 ✓ Add leaders on left-hand-side
-* Make the army data and models
+✓ Make the army data and models
 * Finish all current UI layout and handling, which is:
-	* All map moving
-	* All region highlighting
-	* All UI elements
+	✓ All map moving
+	✓ All region highlighting
+	✓ All UI elements
 	* All data loaded from json
 	* No issues or bugs
 * Add a leader figure, allow movement
@@ -81,6 +82,9 @@ We certainly need little clicks and effects for selections and actions
 I think we need music of some form
 Better to think of "a sound here would be good" and write them out, rather than think ahead
 	- Most of our design is graphic led, so think of how a sound might be useful in that context
+	- Card swooshes, "bang" on arrival, leaving sound (on dialogs), click sound when touching things
+Background music would be good, but hard to source 5+ hours of free good music that fits with the theme
+	- Obvious is slow classical. But we can experiment
 
 
 Wish-List Of Graphical Improvements
