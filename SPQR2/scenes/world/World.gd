@@ -78,6 +78,10 @@ func check_ui_actions() -> void:
 		$CanvasLayer/PauseMenu.choose_statue()
 		$CanvasLayer/PauseMenu.show()
 		get_tree().paused = true
+	if Input.is_action_just_pressed('test_event'):
+		helpers.log('Testing events')
+		$CanvasLayer/Event.ask('Congress wishes to end conflict with Eygpt',
+			['Refuse the request', 'Withdraw forces', 'Ignore the request'])
 
 func set_map_color() -> void:
 	# pass mouse position to shader
