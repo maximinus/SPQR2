@@ -337,6 +337,7 @@ position = Vector2( 1734.92, 1595.84 )
 texture = ExtResource( 5 )
 
 [node name="Join2" type="Sprite" parent="RoadJoins"]
+visible = false
 position = Vector2( 1526.41, 1418.99 )
 texture = ExtResource( 5 )
 

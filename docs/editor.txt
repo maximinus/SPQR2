@@ -14,7 +14,7 @@ All in 2D
 ✓ Make a city and unit disc
 ✓ Export json
 ✓ Check against regions
-* Make the json work with the game json
-* Make road drawing work
-* Add roads
-* Work turning this into a path
+✓ Make the json work with the game json
+✓ Make road drawing work
+✓ Add roads
+✓ Work turning this into a path

@@ -214,11 +214,10 @@ func build_roads() -> void:
 	road_image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
 	# now blit all the roads (all just for testing)
 	for i in roads_built:
-		var road_data = roads[i]
+		var road_data = roads[i]		
 		var rect = Rect2(0.0, 0.0, road_data.rimage.get_width(), road_data.rimage.get_height())
-		road_image.blit_rect(road_data.rimage, rect, road_data.pos)
+		road_image.blend_rect(road_data.rimage, rect, road_data.pos)
 	# the resultant needs to be an ImageTexture
-	var texture = ImageTexture.new()
 	road_texture = ImageTexture.new()
 	road_texture.create_from_image(road_image)
 
