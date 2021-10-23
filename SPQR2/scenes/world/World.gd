@@ -305,3 +305,8 @@ func _on_Overlay_change_view(index) -> void:
 		$map_board.set_region_owners(data.get_money_stats_texture())
 	else:
 		helpers.log('Caught incorrect overlay change: ' + str(index))
+
+func _on_Event_answer_given(answer: int):
+	# we raised an event, now we have the answer
+	# since the screen was frozen, nothing else happened	
+	helpers.log('Got answer to an event')
