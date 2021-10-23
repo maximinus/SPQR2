@@ -1,16 +1,47 @@
 extends Control
 
+var answer_scene = preload('res://scenes/events/EventButton.tscn')
+const CLICK_CALLBACKS = ['a1_click', 'a2_click', 'a3_click', 'a4_click']
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal answer_given
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	hide()
+	for i in $Center/Bck/Mrg/Inner/Answers.get_children():
+		i.queue_free()
 
+func ask(question: String, answers: Array) -> void:
+	# this will block all other input (except the pause screen)
+	if len(answers) == 0:
+		helpers.log('Error: Event with no answers')
+		return
+	if len(answers) > 4:
+		helpers.log('Error: Too many possible answers')
+	$Center/Bck/Mrg/Inner/Mrg3/Question.text = question
+	# Answers always starts empty
+	var click_index = 1
+	for i in answers:
+		var new_answer = answer_scene.instance()
+		new_answer.text = i
+		# add callback
+		new_answer.connect('pressed', self, CLICK_CALLBACKS[click_index])
+		click_index += 1
+		$Center/Bck/Mrg/Inner/Answers.add_child(new_answer)
+	show()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func hide_dialog(answer):
+	emit_signal('answer_given', 1)
+	hide()
+
+func a1_click():
+	# hide and raise signal with data
+	hide_dialog(1)
+
+func a2_click():
+	hide_dialog(2)
+	
+func a3_click():
+	hide_dialog(3)
+	
+func a4_click():
+	hide_dialog(4)
