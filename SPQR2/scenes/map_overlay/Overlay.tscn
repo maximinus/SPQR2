@@ -19,19 +19,19 @@ __meta__ = {
 margin_left = -262.0
 margin_top = 8.0
 margin_right = -8.0
-margin_bottom = 240.0
+margin_bottom = 241.0
 
 [node name="MiniMap" parent="." instance=ExtResource( 3 )]
 margin_left = -1010.0
 margin_top = -610.0
 margin_right = -10.0
 margin_bottom = -10.0
-
-[node name="YearInfo" parent="." instance=ExtResource( 5 )]
 mouse_filter = 2
 
+[node name="YearInfo" parent="." instance=ExtResource( 5 )]
+
 [node name="AllLeaders" parent="." instance=ExtResource( 4 )]
-mouse_filter = 1
+mouse_filter = 2
 
 [connection signal="map_clicked" from="MiniMap" to="." method="_on_MiniMap_map_clicked"]
 [connection signal="view_clicked" from="MiniMap" to="." method="_on_MiniMap_view_clicked"]
