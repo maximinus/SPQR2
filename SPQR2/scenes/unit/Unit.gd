@@ -10,12 +10,17 @@ func _ready():
 	pass
 
 func set_unit_type(owner) -> void:
-	if owner >= 0 and owner < len(models):
+	
+	print(owner)
+	
+	if owner < 0 or owner >= len(models):
+		helpers.log('Error: Owner id is out of range')
 		return
 	$roman_spear.queue_free()
-	var model_instance = models[0].instance()
-	model_instance.scale(MODEL_SCALE)
-	$Unit.add_child(model_instance)
+	var model_instance = models[owner].instance()
+	# set scale on first child of node
+	model_instance.get_children()[0].scale = MODEL_SCALE
+	add_child(model_instance)
 
 func highlight_on() -> void:
 	$Circle.show()

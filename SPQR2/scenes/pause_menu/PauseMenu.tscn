@@ -133,7 +133,7 @@ custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )
 custom_fonts/font = ExtResource( 5 )
-text = "Quit"
+text = "OK"
 
 [connection signal="pressed" from="Panel/VBox/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="Panel/VBox/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

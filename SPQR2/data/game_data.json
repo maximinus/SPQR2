@@ -19,6 +19,26 @@
 			"training": 10,
 			"location": 2,
 			"index": 0
+		},
+		{
+			"id": 2,
+			"name": "",
+			"strength": 5,
+			"morale": 8,
+			"equipment": 10,
+			"training": 8,
+			"location": 10,
+			"index": 0
+		},
+		{
+			"id": 3,
+			"name": "",
+			"strength": 3,
+			"morale": 7,
+			"equipment": 6,
+			"training": 4,
+			"location": 8,
+			"index": 0
 		}
 	],
 	"ENEMIES": [
@@ -36,7 +56,7 @@
 			"color": [36, 107, 206],
 			"id": 1,
 			"regions": [5, 6, 8, 10, 11, 12, 13],
-			"armies": [],
+			"armies": [2, 3],
 			"gold": 100,
 			"silver": 3000
 		}
