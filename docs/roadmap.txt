@@ -1,21 +1,28 @@
 SPQR II
 =======
 
+This is essentially the "how the game plays" document
+
+
+Overal idea:
+
 Player controls Rome
 Game is turn-based
 Map is region based
+Goal: Create the best Empire
 
 
 Turn Sequence
 -------------
 
-Player deals with cards
-Player decides the budget spend
-Player performs a series of campaigns
-Player can then move troops long range
+Player plays with cards
+Player decides the budget spend for the turn
+Player performs a series of military campaigns
+Player can then shuffle Roman troops around the board
 Player spends one more card
 Next emperor is chosen
 Year moves on 20 years. Loop back to start
+Game ends when there no regions are controlled by the Roman player.
 
 
 Overview
@@ -28,20 +35,19 @@ All regions have:
 	A possible city
 	Paths between the places and other regions
 
-Each consul can conduct a certain (low) number of campaigns
+For each turn, any consul, emperor or general can conduct a certain (low) number of campaigns
 A campaign is conducted this way:
-	* A friendly region is chosen, and the consul moved there
+	* A friendly region is chosen, and the leader moved there
 	* First, you may Support:
-		- The consul may choose to move ONE unit from ONE region from anywhere on the board to their region
+		- The leader may choose to move ONE unit from ONE region from anywhere on the board to their region
 	* Then you may Prepare:
         - **A loop starts from here**
-		- The consul can move, by one region (which may be >1 node), all the units in this region and all controlled adjacent ones
+		- The leader can move, by one region (which may be >1 node), all the units in this region and all controlled adjacent ones
+		- The leader must always be with a unit - the player can choose
 	
-	* And then you may Attack:
-		- After this move, the player can choose any controlled region unit to attack a non-controlled region
+	* Clicking an enemy region or unit will start an attack and declare war.
 
-	With tougher enemies, they can also support and prepare.
-	Enemies may move after all of your moves.
+	Enemies may move after all of your moves. They may prepare for your possible attack.
 	You may or may not see this.
 
 	* On attacking, we add another element: the purpose of the invade. The player chooses a goal:
@@ -97,13 +103,13 @@ A campaign is conducted this way:
         * Possible: Autumn arrives. Continuing will cost in GDP as crops are not brought in
                     Winter arrives. All units remain where they. 
                         Unsupported units will die, supported units in unconqured regions (unless a city) cost some factor more
+    * Campaigns cost money. They may make money, but they do always cost... and it should be expensive in some way.
 	* It is important to note the AI should be able to play between these moves (i.e., defend if obvious, attack if obvious, keep it simple)
 	* A player can choose to "wait" between campaigns so they can react to enemy events
 	* If they do, the wait costs a campaign. Emperors that have average or better strategy can wait once for free if they only have 1 campaign left.
         - The chance of an event after a wait is very low
 Once all campaigns are done, maybe the enemy chooses now to attack
-If all campaigns are done, the player may choose to campaign an extra time at some expense
-	* The expense is borne by the following emperor, since it is funded by money borrowed or spent during their reign
+If all campaigns are done, the player may choose to campaign an extra time at double the usual expense
     * And by "some expense" it should also reduce GDP as it represents a massive military spend
     * Essentially, it's free at the point of access, but possibly very damaging long term
 Now cultural and city growth is done (TODO)
@@ -122,14 +128,16 @@ In a civil war:
 	You must beat the other rival(s)
 	Unlimited campaigns but success begats success and you should steamroll (or lose fast)
 	A civil war can happen at any time in the turn, but is most common at the start. The turn sequence should go:
-		* An emperor is chosen in the normal way / The emperor is challenged
+		* An emperor is chosen in the normal way with rivals OR the emperor is challenged
 		* Civil war is declared
-		* All those that could have been chosen become claimants
-		* Player now chooses who to be
+		* All the rivals fight
+		* Player must be the de jure emperor
 		* A non-stop campaign is held until there is a winner
 		* It is more likely that a Roman army will "turn" rather than be defeated heavily
 			- Thus, battles will likely have less casualties
 		* The player now continues as the winner - which may be someone different
+        * If you know you will lose, then obviously you would not fight
+            - Ideas to prevent meta-gaming and trying to lose?
 
 Game is played as expected, except:
 	The goal is to:
@@ -137,7 +145,7 @@ Game is played as expected, except:
 		B: Go to Rome
 	For all participants:
 		You can only rarely recruit new army members (if you beat an opponent)
-		All Rome regions are friendly, including Rome
+		All Roman regions are friendly, including Rome
 		Moving to Rome gives a chance your rivals give up, especially if your army is much bigger
 			* By "give up" we likely mean "killed by the soldiers"
 		No challenger will want to not accept a fight, typically they all march to Rome ASAP
@@ -145,10 +153,9 @@ Game is played as expected, except:
 In the Empire:
 	On the first emperors turn, all cards removed and replaced with all good cards
 	Only 1 emperor, and not 2 consuls, so war is harder
-		- A Later card allows an "East" and a "West" emperor, of course
-	Tax revenue goes up - more to play with
-	Cities increase tax revenue even more
-	A card is needed to found a city, rather than randomly in the Republic
+		- A later card allows an "East" and a "West" emperor, of course
+	Tax revenue goes up - more to play with. This comes with more micro-management though.
+	Forming new cities in new regions becomes harder
 
 
 Changing Emperors
@@ -156,11 +163,20 @@ Changing Emperors
 
 At the end of a turn, you may choose the next emperor / senators.
 3 - 4 candidates are given (4 - 5 if senators, or split empire)
-They are chosen as:
+They are chosen from these people:
 	A family member (if good % chance is met)
-		Competent leaders - or on a random event - can get to choose this person
-		With your vote
+		You may have an event to choose this person, or choose no family member
 	Random others
+It should be possible (but rare - 1/2 time per playthrough) to keep the current Emperor (but not senators)
+	In this case, there is no choice and the next turn continues
+Likewise, it is possible (maybe quite common) to choose an heir
+	- To the player, this will be a random character in the main
+		* This character already gets a vote from "family connections" so they are in the running by default
+	- So the reasons to choose this random character:
+		* Lower donative
+		* Less chance of immediate civil war
+	- And against:
+		* Other candidates likely better
 Each candidate has a set of traits, varying from terrible to fantastic, some neutral.
 Those traits will affect outcomes like:
 	- Battles
@@ -175,15 +191,20 @@ The outcome is not always what the player wants. They have a vote (maybe ++). Th
 	+ for family connections
 	- for peaceful
 	+ for bribes
+As can be seen, a popular, ambitious family member who bribes is a likely winner
+
 The only real extra gameplay mechanic is the bribes.
-	Low level bribes result in the loss of money when they become consuls.
+	Low level bribes result in the loss of money when they become leaders.
 	With Emperors, slowly the donative to the troops will become larger and larger.
 	If a candidate is winning with their donative, you may choose to pay more for your candidate
+		- To the player this should be a question: is it worth it to do this?
+			* So the money involved has to gamed in some way to be like 20% of spending next turn
 		- A key method of crippling Rome is to leave it cashless as a succession
 		  of Emperors spend all the money becoming emperor.
 In general, the player should usually be able to choose what they want
 	- The flipside is that they often only have a set of bad choices.
 		- A key method of crippling Rome is to only have terrible choices
+	- Key point is to have agency. Choosing the best of the worst is more fun, and sometimes a diamond can come along.
 
 If an emperor is selected who is truly awful (as decided by a set of metrics):
 	- The game immediatly switches to a campaign
@@ -196,27 +217,35 @@ If an emperor is selected who is truly awful (as decided by a set of metrics):
 
 If an emperor is truly truly awful:
 	- They are murdered by the people of Rome on turn start
-	- You may choose a senator or general as emperor; likely they will be good
-	- 80% of the donative will be returned
+	- You may choose the next emperor from some given candidates; they will be good
+	- 90% of the donative will be returned
 
 When the empire splits to East / West (card based):
 	- 2 Emperors are chosen
-	- Unlike senators, these emperors act in their own area
+	- Unlike senators, these emperors act only in their own area
 	- Your votes are lopsided:
 		- You may allocate votes to either East or West, but only one side.
 			* I.e. if you have 3 votes (cards or skill) they cannot be split
 			* To further detail, you can vote for ONE person only
-		- Your family member must be on the side you voted for
-			* I.e. you must vote for the region your family member is in
+			* You get an extra vote in the side you are Emperor of
 		- This means one choice will be essentially random
 		- Civil wars will be contained in their own areas (east or west)
 
 Emperors can change in a turn due to civil war
 	- The "total campaigns" of any emperor is against ALL the campaigns of the turn
-	- So if you start with 4 and have 2 canpaigns, and then we change to an emperor who starts with 3 campaigns, you only have 1 campaign left
+	- So if you start with 4 and have 2 campaigns, and then we change to an emperor who should have with 3 campaigns, you only have 1 campaign left
 	- The campaign for the civil war is a free campaign on both sides
 	- Obviously a war with yourself is twice as costly as a normal war and damages only your territory
 	- A "decent" (to be defined) Emperor may have the option to kill themselves, avoiding bloodshed
+
+
+Generals
+--------
+
+Generals are characters who can campaign
+They can be employed by emperors or the senate
+Generals are dangerous, and may start civil wars or dictatorships
+They add campaigns and are generally better than random emperors
 
 
 Hiding Information
@@ -294,9 +323,42 @@ Cards:
 	Player is given 6 cards at start of game
 	They are divided into "good", "neutral" and "bad" cards which are mixed
 	Two must be played at the start of a turn, and another at the end
-		* Player gets 1 card, then must play 2. Then they get another card
-		* After playing cards, player may discard any good or neutral cards.
+		* For the start of the turn, player gets 1 card, then must play 2. Then they get another card
+		* For the end, they get one and play one.
+		* After playing cards at start or end, player may discard any good or neutral cards.
+			- Some cards are auto played on discards. With awesome luck, sometimes a good card
 		* For every 2 cards they discard (1 of which must be a good card), they may also discard 1 bad card
+			- For this, they get back an equal number of new random cards
+		* Some cards cannot be discarded
+		 - The point of this is to "move history on" as it were
+		 - So the player can put off these changes but then they have less cards to play with
+		 - Possible card every 100 years:
+		 	100 BC: Military reforms / more power to the people
+		 	0 AD: Change to Emperor
+		 	100 AD: Stagnation of Empire (growth is hard)
+		 	200 AD: Rise of Persia
+		 		- Almost a warning villian. They'll hit hard but generally go home
+		 	300 AD: Rise of Germania
+		 		- Hit hard and don't go home
+		 	400 AD: Rise of the Huns
+		 		- Hit hard and destroy everybodies homes
+		 	500 AD: ???
+		 - There needs to be some meta as to why a player would play these last 5
+		 - So imagine it arrives in your hand. Only one, you'd never play it
+		 	* So let's add a meta. The more you have of these cards, the more tension in the Empire
+		 	* So having 1 is no big problem. 2 is an issue and 3 is a major issue
+		 	* OR: add a bonus so each issue is mixed:
+		 		100 BC: Is a bonus
+		 		0 AD: Is mainly a bonus in that it stops civil wars
+		 		100 AD: Improved civil service, better roads, GDP growth, even less civil wars
+		 		200 AD: Armenia as ally. More money to be made by sacking.
+		 		300 AD: Germanian allies cheap and good. Allows German generals (good)
+		 		400 AD: Less in-fighting.
+		 		500 AD: ???
+		 	* OR: Takes up 2 cards
+		 	* OR: Gets rid of bad cards when played
+		 	* OR: Comes with random positive card
+
 		* Thats about 90 "natural" cards per game, they should and will be important
 
 	After playing, another is picked up
@@ -352,117 +414,3 @@ Boats / Ports need a purpose. Ideas:
 	* Ports facilitate goods getting to Rome
 	* Ships prevent piracy
 	* Troops move quicker / easier
-
-
-We need:
---------
-
-	The map, split into regions
-	The cities / ports and other things to be drawn on the map
-	Images for all the unit types
-	Stats and names for all the regions
-	Some way for the AI to work
-
-
-Milestone #1:
--------------
-
-	Get a drawn map on screen.
-	Allow map to be scrolled / moved around with cursor and mouse
-	Click a region and see stats on sidebar
-
-	Details (started writing:7th August 2021 coding: 7th August 2021):
-		* Cursor keys move smoothly ✓. Should be fast ✓ and fluid
-		* Middle mouse grab overules keys and also moves smoothly
-		* Click detection by lookup on texture ✓
-		* MapRegion is a class instanced from json data ✓, it is stored in a meta "engine" class
-		* Stats are UI, make it a simple text box and get the sizing right for now ✓
-		* The UI is going to need a dropshadow, and insetting a little ✓
-		* Not clicking a region (i.e., the sea) should do nothing ✓
-
-Milestone #2:
--------------
-	Add cities ✓ and roads to the map (some artwork needed here)
-	GUI overlay shows current year and a person (the emperor) - get the layout right
-
-	Details (started writing:7th August 2021)
-		* Not all regions need roads between them.
-		* Cities should be easy enough. Like an icon probably ✓
-		* They'll need to be pulled from json again ✓
-		* The stats are likely to be:
-			- Size
-		* When clicking a city or region, the stat panel should be the same size and display both sets of stats ✓
-		* ESC brings up a menu (this is a ton of work, it means "decide the UI look and do it")
-
-Milestone #3:
--------------
-	Add units
-	Allow movement
-	Turn: Move units -> click turn button
-
-	Details (started writing:7th August 2021)
-		* Needs some easy way to read a display of strength on the map
-		* Allow a unit to move ONCE. 1 move away with no road, and 2 with a road
-		* You need to display the move options AND calculate them. A ton of work!
-
-Milestone #4:
--------------
-	Add front end.
-	Enable save / load
-	Solve and set any resolution / windowing issues
-
-	Details (started writing:7th August 2021)
-		* Mainly this is switching scenes and data manipulation
-		* Only allow a set number of saves
-		* Add scenarios (a save with some flavour text)
-		* SPQR is about old shit. No need to jazz the UI up, just make it work and easy to use
-
-Milestone #5:
--------------
-	Add cards
-	Always have X cards (a card can give you more.. or less)
-	You must play a card at the start of each turn
-	You are given a random one after playing
-
-	Details (started writing:7th August 2021)
-		* Make the cards simple - just text!
-		* Player will need a way to see the cards - add a button and some bar showing current empire info
-		* There really should not be a lot of "screens with menus", the game should aim to present choices, not endless build options for endless cities
-			- By which I mean, I don't want the player micro-managing. They need to play the game turn by turn based on the options they have.
-
-Milestone #6:
--------------
-	Add select emperor
-	At the end of a turn, the new emperor is selected
-
-	Details (started writing:7th August 2021)
-		* Apart from the overlay, this is more or less graphical for now
-
-Milestone #7:
-------------
-	Add a way to spend money
-	This means having a budget screen
-	Bad emperors might prevent access to this screen!
-	Improve buildings, religion, imports, military, food
-
-	Details (started writing:7th August 2021)
-		* Rather than a screen that is always viewable, make it a flow
-		* Will see after getting the emperor (and before being able to move)
-		* Will see after combat - correct your mistakes
-		* Combat is blocked in this turn - you'll need to add to the "next turn" button
-
-Milestone #8:
--------------
-	Make the cards and emperor stat changes work
-	Show "people", generals, emperor or consuls on side panel
-	Restrict attacks to where these people are
-
-Milestone #9:
--------------
-	Add combat, and keep it simple!
-	It should be definitive more than attritional
-	This will need some animations
-
-Milestone #10:
---------------
-	Go back and improve steps #1 -> #9 and finalise each step.

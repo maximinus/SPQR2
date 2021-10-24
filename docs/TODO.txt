@@ -12,7 +12,7 @@ Short Term:
 ✓ Make sure everything displayed on the screen is populated from data loaded
 ✓ Add 4 regions
 ✓ FIX: map joins not joining in images
-* Add an event: A modal dialog with an image, a question and a range of text answers.
+✓ Add an event: A modal dialog with an image, a question and a range of text answers.
 * Capture a click on 3d models (towns, units). This highlights soldiers for now.
 * Get a senator / leader 3d unit and add to map. Starts at home. It's an eagle on stick
 
@@ -36,25 +36,40 @@ Couldn't really be solved (add to issues):
 	The obvious solutions (vsync, frame buffering) did nothing.
 
 
-Medium Term
------------
+Goals for v0.2
+--------------
 
-✓ Add leaders on left-hand-side
-✓ Make the army data and models
-* Finish all current UI layout and handling, which is:
-	✓ All map moving
-	✓ All region highlighting
-	✓ All UI elements
-	✓ All data loaded from json
-	* No issues or bugs
-* Add a leader figure, allow movement
-	- I.e. a campaign
-	- Choose leader, choose region to go to
-	- Choose to move 1 extra unit
-	- Choose to move units next to leader
-	- Choose to attack
-* Code a move
-* We must add sound into the game at some point. But it needs to be decided how to make the sound.
+We now move to a making a game.
+Best to implement the most common stuff first, as it's the most important.
+	1: Clicking a unit allows you to move it. Any unit, any route. Just have one unit.
+		- you need: Arrows, Sounds, Follow a Path, Select from shown paths, Move in world data
+	2: Add an enemy unit
+		- you need: show possible danger on routes
+		- when moving against an enemy in the same region, it is clearly a battle you want
+		- when moving against an enemy in a enemy region, you get to choose what to do (raid, attack etc)
+		- when enemies and Romans are in the same region, show a striped region with the map shader
+	3: Add battle screen and battle resolution.
+
+Goals for v0.3
+--------------
+
+1: Add turn based mechanics: after a move, either wait or must move a currently unmoved unit
+	- Purely to let the player know how it works
+2: Add basic AI to the enemy to decide to retreat, attack or what-not
+3: Enemies can move between your moves. Decide a mechanism
+4: Add heuristics to game AI. No need to code war aims, give the goal at the start
+
+Goals for 0.4
+-------------
+
+Complete a campaign
+
+0.5: Emperors
+0.6: Cards
+0.7: An economy
+0.8: More events (this is the start of the cream)
+0.9: Front end, saving, loading, high scores, scenarios, credits
+1.0: More events, polish and more data
 
 
 Music & Sound
