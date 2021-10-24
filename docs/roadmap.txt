@@ -414,3 +414,28 @@ Boats / Ports need a purpose. Ideas:
 	* Ports facilitate goods getting to Rome
 	* Ships prevent piracy
 	* Troops move quicker / easier
+
+
+AI Hueristics
+-------------
+
+AI has rewards:
+	Money
+	Regions owned
+	Population
+	Cities
+
+Large Scale (turn based):
+	Decide what you want, i.e. prioritise from the above (maybe based on leader)
+	Decide what possible actions there are. Such as:
+		Raid / invade / destroy / sack an enemy region
+		Invest in something internal - army, trade,
+	From there, guess what the cost would be of those actions
+	Now you should have a risk / reward kind of ratio
+
+	Note: All interactions between 2 non-players is played as simple as possible, pratically random
+
+Small scale:
+	This is simply moving troops to achieve objectives
+	There needs to be heuristics for every of combo of raid / sack / invade / destroy, but that's not too many
+	There needs to be a "meta-AI" for deciding when to change strategy
