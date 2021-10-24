@@ -12,10 +12,9 @@ Short Term:
 ✓ FIX: map joins not joining in images
 ✓ Add an event: A modal dialog with an image, a question and a range of text answers.
 ✓ The enemy must have some troops, i.e. models added at startup
-* Capture a click on 3d models (towns, units). This highlights soldiers for now.
+✓ Capture a click on 3d models (towns, units). This highlights soldiers for now.
 * Get a senator / leader 3d unit and add to map. Starts at home. It's an eagle on stick
 * Add click sounds on events
-* Add 4 more regions
 * FIX: Godot not displaying map on Windows
 * Build at minimum a Windows and Linux release of this
 * This is the 0.1 release.
