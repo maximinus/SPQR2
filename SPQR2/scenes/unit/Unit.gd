@@ -6,6 +6,7 @@ const MODEL_SCALE = Vector3(0.07, 0.07, 0.07)
 var models = [preload('res://scenes/units/roman_spear.tscn'),
 			  preload('res://scenes/units/celtic_spearman.tscn')]
 var highlight = false
+var id = -1
 
 func _ready():
 	pass

@@ -23,3 +23,6 @@ Graphics
 	Yellow paper opn events dialog by studiopratisaad0 from Pixabay
 	Sousse mosaic © Ad Meskens / Wikimedia Commons
 	Leaders eagle by Phillip Handy
+
+Sound
+	UI sounds from Kenny - https://www.kenney.nl/assets/ui-audio
