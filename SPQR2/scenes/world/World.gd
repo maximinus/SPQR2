@@ -75,8 +75,7 @@ func _process(delta):
 func check_ui_actions() -> void:
 	# check non-map ui actions
 	if Input.is_action_just_pressed('menu'):
-		$CanvasLayer/PauseMenu.choose_statue()
-		$CanvasLayer/PauseMenu.show()
+		$CanvasLayer/PauseMenu.display()
 		get_tree().paused = true
 	if Input.is_action_just_pressed('test_event'):
 		helpers.log('Testing events')

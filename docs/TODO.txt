@@ -18,7 +18,7 @@ Short Term:
 ✓ Leader unit start position from json
 ✓ Leader unit position and decided and added in code
 ✓ Try toning down the region highlight
-* Remove the pause menu button "About"
+✓ Remove the pause menu button "About"
 * ESC should close the pause window
 * Fix the issue where the starting region display is incorrect
 * Add 4 new regions
