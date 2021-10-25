@@ -36,3 +36,9 @@ func highlight_on() -> void:
 func highlight_off() -> void:
 	$Circle.hide()
 	$Highlight.stop()
+
+func set_leader_status(status: bool):
+	if status == true:
+		$eagle.show()
+	else:
+		$eagle.hide()

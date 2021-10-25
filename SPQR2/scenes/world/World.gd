@@ -139,11 +139,14 @@ func add_cities() -> void:
 
 func add_armies() -> void:
 	for i in data.armies:
+		print(i.id)
 		var unit_instance = unit_scene.instance()
 		unit_instance.set_unit_type(data.get_unit_owner(i.id))
 		var unit_pos = i.get_map_position()
 		unit_instance.translation.x = unit_pos[0]
 		unit_instance.translation.z = unit_pos[1]
+		if data.leader_unit == i.id:
+			unit_instance.set_leader_status(true)
 		$Soldiers.add_child(unit_instance)
 
 func check_mouse_drag() -> bool:

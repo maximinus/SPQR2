@@ -18,6 +18,7 @@ var roads: Array = []
 var roads_built: Array = []
 var road_images: Array = []
 var enemies: Array = []
+var leader_unit: int = 0
 
 var road_texture: ImageTexture = null
 
@@ -75,6 +76,7 @@ func load_all_data() -> bool:
 	roads_built = data['ROADS']
 	enemies = get_enemies(data['ENEMIES'])
 	armies = get_armies(data['ARMIES'])
+	leader_unit = data['LEADER']
 	
 	if get_road_data() == true:
 		load_road_images()
