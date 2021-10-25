@@ -19,8 +19,8 @@ Short Term:
 ✓ Leader unit position and decided and added in code
 ✓ Try toning down the region highlight
 ✓ Remove the pause menu button "About"
-* ESC should close the pause window
-* Fix the issue where the starting region display is incorrect
+✓ ESC should close the pause window
+✓ Fix the issue where the starting region display is incorrect
 * Add 4 new regions
 * Add a few more roads, mainly to help the next phase
 * FIX: Godot not displaying map on Windows

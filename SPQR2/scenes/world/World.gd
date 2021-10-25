@@ -60,6 +60,8 @@ func _ready():
 	$map_board.set_road_texture(data.road_texture)
 	# display correct money values
 	$CanvasLayer/Overlay.set_gold_silver(data.get_player_gold(), data.get_player_silver())
+	# force a click on the Rome region to force update
+	check_region_click(cn.ROME_PROVINCE_COORDS)
 
 func _process(delta):
 	# what are the mouse and camera looking at?
@@ -103,12 +105,13 @@ func _input(event) -> void:
 		set_zoom_level(zoom_level + ZOOM_FACTOR)
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			check_region_click(event.position)
+			check_region_click(null)
 
-func check_region_click(pos) -> void:
+func check_region_click(coords) -> void:
 	# update details if a region is clicked
 	# convert the mouse pos to real co-ords
-	var coords = get_mouse_map_coords(true)
+	if coords == null:
+		coords = get_mouse_map_coords(true)
 	if coords.x < 0 or coords.y < 0:
 		# out of bounds, do nothing
 		return
