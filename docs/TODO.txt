@@ -15,21 +15,14 @@ Short Term:
 ✓ Capture a click on 3d models (towns, units). This highlights soldiers for now.
 ✓ Get a senator / leader 3d unit and add to map. Starts at home. It's an eagle on stick
 * Add click sounds on events
-* Minor things to clear up:
-	* Leader unit start position from json
-	* Leader unit position and decided and added in code
-	✓ Try toning down the region highlight
-	* Add a UI dialog, looks like the pause menu
-	* Change the pause menu button "About" to "Quit"
-	* Confim the quit with the UI dialog
-	* ESC should close the pause window (but not any dialog on top)
-	* Fix the issue where the starting region display is incorrect
-	* When a region is clicked, it stays highlighted until another click
-	* A click on a unit highlights the region display unit
-	* A mouse-over on the region display unit highlights the unit in a different way
-	* A click on the region display unit is the same as a click on the unit
-	* Add 4 new regions
-	* Add a few more roads, mainly to help the next phase
+✓ Leader unit start position from json
+✓ Leader unit position and decided and added in code
+✓ Try toning down the region highlight
+* Remove the pause menu button "About"
+* ESC should close the pause window
+* Fix the issue where the starting region display is incorrect
+* Add 4 new regions
+* Add a few more roads, mainly to help the next phase
 * FIX: Godot not displaying map on Windows
 * Build at minimum a Windows and Linux release of this
 * This is the 0.1 release.

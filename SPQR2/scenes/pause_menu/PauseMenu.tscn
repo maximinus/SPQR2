@@ -113,18 +113,7 @@ margin_bottom = 370.0
 custom_constants/separation = 64
 alignment = 2
 
-[node name="OptionsButton" type="Button" parent="Panel/VBox/Buttons"]
-margin_left = 296.0
-margin_right = 456.0
-margin_bottom = 54.0
-rect_min_size = Vector2( 160, 54 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = ExtResource( 5 )
-text = "About"
-
-[node name="QuitButton" type="Button" parent="Panel/VBox/Buttons"]
+[node name="OkButton" type="Button" parent="Panel/VBox/Buttons"]
 margin_left = 520.0
 margin_right = 680.0
 margin_bottom = 54.0
@@ -135,5 +124,4 @@ custom_styles/normal = SubResource( 4 )
 custom_fonts/font = ExtResource( 5 )
 text = "OK"
 
-[connection signal="pressed" from="Panel/VBox/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="Panel/VBox/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="Panel/VBox/Buttons/OkButton" to="." method="_on_QuitButton_pressed"]
