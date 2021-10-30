@@ -8,24 +8,28 @@ This is essentially the "how I will program the game" document
 Short Term:
 -----------
 
-✓ Add 4 regions
-✓ FIX: map joins not joining in images
-✓ Add an event: A modal dialog with an image, a question and a range of text answers.
-✓ The enemy must have some troops, i.e. models added at startup
-✓ Capture a click on 3d models (towns, units). This highlights soldiers for now.
-✓ Get a senator / leader 3d unit and add to map. Starts at home. It's an eagle on stick
 * Add click sounds on events
-✓ Leader unit start position from json
-✓ Leader unit position and decided and added in code
-✓ Try toning down the region highlight
-✓ Remove the pause menu button "About"
-✓ ESC should close the pause window
-✓ Fix the issue where the starting region display is incorrect
-* Add 4 new regions
-✓ Add a few more roads, mainly to help the next phase
+	Pause menu or event appears
+	Pause menu or event hides
+	Mouse over buttons on:
+		✓ pause menu
+		✓ event screen
+	Clicks on:
+		✓ mini-map
+		✓ mini-map buttons
+		✓ units
+		✓ pause menu buttons
+		✓ event screen buttons
+
+Sounds needed:
+	"Arrive"
+	"Leave"
+	✓ "Mouse over click"
+	✓ "Select click"
+
 * FIX: Godot not displaying map on Windows
 * Build at minimum a Windows and Linux release of this
-* This is the 0.1 release.
+* This is the 0.1 release
 
 
 Couldn't really be solved (add to issues):
@@ -54,12 +58,17 @@ Best to implement the most common stuff first, as it's the most important.
 		- when moving against an enemy in a enemy region, you get to choose what to do (raid, attack etc)
 		- when enemies and Romans are in the same region, show a striped region with the map shader
 	3: Add battle screen and battle resolution.
+		- Add up the totals, add a random value - there's the winner
+		- Some other quesi-random elements for casualties
+		- Loser has to go somewhere
+		- No need to animate or even show the scores, just show the result as an event and then any moves
 
 Goals for v0.3
 --------------
 
 1: Add turn based mechanics: after a move, either wait or must move a currently unmoved unit
-	- Purely to let the player know how it works
+	- All moves occur in order but "technically" at the same time
+	- So all units CAN move at the same time - the "wait" button means "I have finished moving everything"
 2: Add basic AI to the enemy to decide to retreat, attack or what-not
 3: Enemies can move between your moves. Decide a mechanism
 4: Add heuristics to game AI. No need to code war aims, give the goal at the start
@@ -67,13 +76,13 @@ Goals for v0.3
 Goals for 0.4
 -------------
 
-Complete a campaign
+Complete a years worth of campaigns, with possible multiple leaders.
 
 0.5: Emperors
 0.6: Cards
-0.7: An economy and culture
-0.8: More events (this is the start of the cream)
-0.9: Front end, saving, loading, high scores, scenarios, credits
+0.7: An economy
+0.8: Adding culture in some way - art, literature, religion, laws, music
+0.9: Front end, saving, loading, high scores, scenarios, credits, events
 1.0: More events, polish and more data
 
 

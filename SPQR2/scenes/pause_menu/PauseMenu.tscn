@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://gfx/ui_elements/button/button_highlight.png" type="Texture" id=1]
 [ext_resource path="res://gfx/ui_elements/pause_screen/window.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://gfx/ui_elements/button/button_normal.png" type="Texture" id=6]
 [ext_resource path="res://scenes/pause_menu/PauseMenu.gd" type="Script" id=7]
 [ext_resource path="res://gfx/ui_elements/pause_screen/statue_alternate.png" type="Texture" id=8]
+[ext_resource path="res://sfx/ui/button_rollover.wav" type="AudioStream" id=9]
+[ext_resource path="res://sfx/ui/button_click.wav" type="AudioStream" id=10]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -124,4 +126,13 @@ custom_styles/normal = SubResource( 4 )
 custom_fonts/font = ExtResource( 5 )
 text = "OK"
 
+[node name="Rollover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -5.0
+pitch_scale = 0.5
+
+[node name="MouseClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[connection signal="mouse_entered" from="Panel/VBox/Buttons/OkButton" to="." method="_on_OkButton_mouse_entered"]
 [connection signal="pressed" from="Panel/VBox/Buttons/OkButton" to="." method="_on_QuitButton_pressed"]

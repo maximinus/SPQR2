@@ -23,6 +23,9 @@ func set_unit_type(owner) -> void:
 	add_child(model_instance)
 
 func unit_clicked():
+	if $MouseClick.playing == true:
+		$MouseClick.stop()
+	$MouseClick.play()
 	if highlight == false:
 		highlight_on()
 	else:

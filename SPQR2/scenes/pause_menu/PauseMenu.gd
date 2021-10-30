@@ -8,7 +8,8 @@ const CHANCE_OF_ALTERNATE_STATUE = 0.25
 var can_escape_out = false
 
 func _ready():
-	pass
+	$Rollover.stop()
+	$MouseClick.stop()
 
 func display():
 	can_escape_out = false
@@ -41,4 +42,10 @@ func _on_OptionsButton_pressed():
 	helpers.log('Option button pressed')
 
 func _on_QuitButton_pressed():
+	$MouseClick.play()	
 	exit_menu()
+
+func _on_OkButton_mouse_entered():
+	if $Rollover.playing == true:
+		$Rollover.stop()
+	$Rollover.play()

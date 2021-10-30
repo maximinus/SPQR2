@@ -20,19 +20,22 @@ func set_map_cursor(pos: Vector2) -> void:
 func _on_MapButton_pressed() -> void:
 	$VBox/HBox/MapButton.pressed = true
 	$VBox/HBox/ArmyButton.pressed = false
-	$VBox/HBox/CoinButton.pressed = false
+	$VBox/HBox/CoinButton.pressed = false#
+	play_mouse_click()
 	emit_signal('view_clicked', cn.RegionDisplay.OWNERS)
 
 func _on_ArmyButton_pressed() -> void:
 	$VBox/HBox/MapButton.pressed = false
 	$VBox/HBox/ArmyButton.pressed = true
 	$VBox/HBox/CoinButton.pressed = false
+	play_mouse_click()
 	emit_signal('view_clicked', cn.RegionDisplay.ARMY)
 
 func _on_CoinButton_pressed() -> void:
 	$VBox/HBox/MapButton.pressed = false
 	$VBox/HBox/ArmyButton.pressed = false
 	$VBox/HBox/CoinButton.pressed = true
+	play_mouse_click()
 	emit_signal('view_clicked', cn.RegionDisplay.MONEY)
 
 func _on_Map_gui_input(event) -> void:
@@ -40,4 +43,10 @@ func _on_Map_gui_input(event) -> void:
 	if event.is_pressed() and event.button_index == BUTTON_LEFT:
 		# reduce to UV co-ords and signal
 		var pos = event.position / MAP_SIZE
+		play_mouse_click()
 		emit_signal('map_clicked', pos)
+
+func play_mouse_click():
+	if $MouseClick.playing == true:
+		$MouseClick.stop()
+	$MouseClick.play()
