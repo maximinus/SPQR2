@@ -8,9 +8,14 @@ This is essentially the "how I will program the game" document
 Short Term:
 -----------
 
-* FIX: Godot not displaying map on Windows
-* Build a Linux release of this
-* This is the 0.1 release
+Maps are a collection of nodes, and a road is a section from one node to another
+A node can be a city or a unit base
+Unit can only move between unit bases and cities, and only by one region per move. Thus:
+
+* The editor must generate a "full roads" overlay: this will be on the base map
+* Cities and unit bases act as road junctions in the editor
+* All cities and unit bases must be shown on this map
+* When a unit is clicked, all the possible move nodes are highlighted
 
 
 Couldn't really be solved (add to issues):
