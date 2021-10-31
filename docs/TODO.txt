@@ -8,27 +8,8 @@ This is essentially the "how I will program the game" document
 Short Term:
 -----------
 
-* Add click sounds on events
-	Pause menu or event appears
-	Pause menu or event hides
-	Mouse over buttons on:
-		✓ pause menu
-		✓ event screen
-	Clicks on:
-		✓ mini-map
-		✓ mini-map buttons
-		✓ units
-		✓ pause menu buttons
-		✓ event screen buttons
-
-Sounds needed:
-	"Arrive"
-	"Leave"
-	✓ "Mouse over click"
-	✓ "Select click"
-
 * FIX: Godot not displaying map on Windows
-* Build at minimum a Windows and Linux release of this
+* Build a Linux release of this
 * This is the 0.1 release
 
 
