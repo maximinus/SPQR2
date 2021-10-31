@@ -48,7 +48,7 @@ func _ready():
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
 	region_map = image.get_data()
 	region_map.lock()
-	helpers.log('Loaded region map')
+	helpers.log('Loaded region map data')
 	dragging = false
 	add_cities()
 	add_armies()
