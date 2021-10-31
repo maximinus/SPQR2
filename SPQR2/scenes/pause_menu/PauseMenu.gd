@@ -21,7 +21,7 @@ func exit_menu():
 	hide()
 	get_tree().paused = false
 
-func _process(delta):
+func _process(_delta):
 	# done this way to catch a seperate pressed event other
 	# than the first one that opened this window
 	if Input.is_action_just_released('menu'):

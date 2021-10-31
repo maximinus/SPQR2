@@ -205,9 +205,8 @@ func load_road_images() -> void:
 	# we have the filenames, so load them. They are already in index order
 	var count = 0
 	for i in roads:
-		var new_image = Image.new()
-		var foo = new_image.load('res://gfx/roads/road_' + str(i.id) + '.png')
-		i.rimage = new_image
+		var limage = load('res://gfx/roads/road_' + str(i.id) + '.png')
+		i.rimage = limage.get_data()
 		count += 1
 	helpers.log('Loaded ' + str(count) + ' road images')
 

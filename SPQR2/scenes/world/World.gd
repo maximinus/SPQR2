@@ -141,7 +141,6 @@ func add_cities() -> void:
 
 func add_armies() -> void:
 	for i in data.armies:
-		print(i.id)
 		var unit_instance = unit_scene.instance()
 		unit_instance.set_unit_type(data.get_unit_owner(i.id))
 		var unit_pos = i.get_map_position()
@@ -314,4 +313,4 @@ func _on_Overlay_change_view(index) -> void:
 func _on_Event_answer_given(answer: int):
 	# we raised an event, now we have the answer
 	# since the screen was frozen, nothing else happened	
-	helpers.log('Got answer to an event')
+	helpers.log('Got answer to an event: ' + str(answer))
