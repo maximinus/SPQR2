@@ -9,6 +9,8 @@ export(int) var manpower = 0
 export(int) var loyalty = 0
 export(int) var rural_pop = 0
 # ID taken from the region it is in
+# but we still need a "node" id
+export(int) var id = 0
 
 func _ready():
 	pass

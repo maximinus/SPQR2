@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://gfx/editor/editor_map.png" type="Texture" id=1]
 [ext_resource path="res://editor/Editor.gd" type="Script" id=2]
 [ext_resource path="res://editor/scenes/EditorCity.tscn" type="PackedScene" id=3]
-[ext_resource path="res://editor/scenes/EditorUnit.tscn" type="PackedScene" id=4]
-[ext_resource path="res://gfx/editor/node_join.png" type="Texture" id=5]
+[ext_resource path="res://editor/scenes/RegionData.tscn" type="PackedScene" id=5]
 [ext_resource path="res://editor/scenes/RoadLine.tscn" type="PackedScene" id=6]
 
 [node name="Editor" type="Node2D"]
@@ -18,7 +17,6 @@ centered = false
 
 [node name="RoadLine" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 858.823, 1404.13, 884.021, 1402.87, 912.999, 1409.17, 931.898, 1428.07, 949.537, 1444.45, 957.096, 1462.09, 974.735, 1486.03, 1001.19, 1499.89, 1022.61, 1515.01, 1044.03, 1515.01, 1073.01, 1515.01, 1103.25, 1509.97, 1138.53, 1507.45, 1167.5, 1501.15, 1190.78, 1498.28 )
-id = 9
 
 [node name="RoadLine36" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 2490.3, 1619.69, 2475.22, 1644.29, 2452.2, 1671.28, 2453.79, 1700.64, 2435.54, 1726.84 )
@@ -28,39 +26,31 @@ points = PoolVector2Array( 852.772, 1405.48, 838.614, 1435.69, 832.951, 1455.51,
 
 [node name="RoadLine2" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1001.91, 1692.08, 1013.25, 1670.67, 1025.22, 1663.74, 1048.53, 1647.99, 1073.1, 1637.28, 1085.7, 1640.43, 1095.15, 1625.94, 1098.93, 1606.41, 1107.74, 1588.77, 1110.26, 1570.5, 1111.52, 1547.82, 1119.71, 1531.44, 1143.02, 1518.85, 1166.96, 1511.92, 1189.64, 1498.06 )
-id = 8
 
 [node name="RoadLine3" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1193.42, 1496.8, 1210.43, 1496.8, 1232.48, 1497.43, 1253.27, 1504.99, 1274.68, 1510.66, 1301.14, 1519.47, 1324.45, 1531.44, 1343.35, 1530.81, 1355.32, 1524.51 )
-id = 7
 
 [node name="RoadLine4" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1357.21, 1521.36, 1370.44, 1504.99, 1401.31, 1493.65, 1423.98, 1486.09, 1437.84, 1470.34, 1461.15, 1470.34, 1472.49, 1466.56, 1488.87, 1451.44, 1508.4, 1433.8, 1525.41, 1419.31 )
-id = 6
 
 [node name="RoadLine5" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1528.87, 1418.97, 1545.52, 1420.16, 1570.49, 1429.67, 1596.65, 1439.19, 1621.62, 1454.65, 1638.27, 1466.54, 1654.92, 1480.81, 1664.44, 1499.84, 1672.76, 1526, 1681.09, 1553.35, 1702.49, 1578.32, 1719.14, 1587.84, 1736.98, 1597.35 )
-id = 5
 
 [node name="RoadLine6" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1527.75, 1419.61, 1548.24, 1397.33, 1561.6, 1368.83, 1557.15, 1351.01, 1588.33, 1332.3, 1612.39, 1346.55, 1640.89, 1349.23, 1669.4, 1331.41, 1706.82, 1318.94 )
-id = 4
 
 [node name="RoadLine7" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1760.27, 1386.64, 1762.95, 1407.13, 1765.62, 1430.3, 1771.86, 1452.57, 1792.35, 1468.61, 1809.27, 1489.1, 1817.29, 1520.28, 1798.58, 1539.88, 1772.75, 1563.04, 1743.35, 1579.08, 1735.21, 1594.86 )
-id = 10
 
 [node name="RoadLine8" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1736, 1596, 1737.5, 1606.5, 1744, 1613, 1755.5, 1618, 1768, 1619 )
 
 [node name="RoadLine9" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1771.29, 1620.22, 1775.7, 1631.56, 1780.74, 1646.05, 1799.01, 1661.17, 1812.24, 1674.4, 1831.14, 1687, 1862, 1691.41, 1885.31, 1697.71, 1907.36, 1714.09, 1931.93, 1735.51, 1967.21, 1750, 1984.85, 1768.9, 2002.48, 1789.68, 2030.83, 1797.24, 2044.06, 1818.66, 2049.73, 1849.53, 2062.96, 1870.32, 2064.85, 1893.63, 2067.37, 1911.27, 2048.73, 1932.67, 2040.71, 1948.71, 2028.24, 1962.07, 2007.74, 1962.96, 1996.16, 1976.33, 1982.8, 1995.04, 1961.42, 2019.09 )
-id = 1
 
 [node name="RoadLine12" parent="Roads" instance=ExtResource( 6 )]
+position = Vector2( 0, 3 )
 points = PoolVector2Array( 1819.92, 1519.22, 1847.29, 1522.99, 1875.61, 1545.65, 1881.27, 1570.19, 1891.65, 1592.84, 1910.53, 1611.72, 1922.8, 1631.54, 1923.74, 1644.75, 1922.8, 1660.8 )
-
-[node name="RoadLine13" parent="Roads" instance=ExtResource( 6 )]
 
 [node name="RoadLine14" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1710.11, 1319.07, 1726.76, 1324.42, 1736.27, 1329.18, 1738.65, 1338.1, 1741.62, 1349.99, 1745.78, 1356.53, 1754.7, 1372.59, 1757.68, 1379.13 )
@@ -79,8 +69,6 @@ points = PoolVector2Array( 2523.64, 1933.94, 2507, 1932.75, 2491.54, 1926.21, 24
 
 [node name="RoadLine19" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 2457.64, 1923.23, 2423.38, 1911.4, 2412.05, 1881.2, 2395.06, 1878.37, 2386.57, 1849.11 )
-
-[node name="RoadLine20" parent="Roads" instance=ExtResource( 6 )]
 
 [node name="RoadLine21" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 2319.46, 1776.43, 2337.73, 1775.8, 2361.04, 1774.54, 2379.94, 1767.61, 2402.62, 1749.34, 2414.59, 1733.59, 2432.23, 1726.03 )
@@ -180,131 +168,8 @@ points = PoolVector2Array( 2481.74, 2412.42, 2493.73, 2417.67, 2510.21, 2429.65,
 
 [node name="Units" type="Node2D" parent="."]
 
-[node name="EditorUnit" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1817.05, 1517.36 )
-
-[node name="EditorUnit2" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1924.72, 1663.53 )
-
-[node name="EditorUnit3" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1733.57, 1598.24 )
-
-[node name="EditorUnit4" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2067.3, 1870.76 )
-
-[node name="EditorUnit5" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1867.64, 2004.93 )
-
-[node name="EditorUnit6" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1574, 1770 )
-
-[node name="EditorUnit7" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1560, 1626 )
-attach_road = false
-
-[node name="EditorUnit8" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1538.4, 1414.41 )
-
-[node name="EditorUnit9" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1829, 1269 )
-
-[node name="EditorUnit10" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1710, 1316.35 )
-
-[node name="EditorUnit11" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2002.73, 1780.11 )
-
-[node name="EditorUnit30" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2331.08, 1606.25 )
-
-[node name="EditorUnit31" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2388.21, 1850.25 )
-
-[node name="EditorUnit32" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2487.88, 1620.03 )
-
-[node name="EditorUnit33" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2702.95, 1660.29 )
-
-[node name="EditorUnit34" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2575.81, 1715.38 )
-
-[node name="EditorUnit35" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2432.94, 1727.25 )
-
-[node name="EditorUnit36" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2502.71, 2044.87 )
-
-[node name="EditorUnit37" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2456.09, 1924.09 )
-
-[node name="EditorUnit38" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2523.9, 1932.57 )
-
-[node name="EditorUnit12" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1423.68, 1484.31 )
-
-[node name="EditorUnit13" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1187.48, 1494.54 )
-
-[node name="EditorUnit14" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1317.37, 1428.52 )
-
-[node name="EditorUnit15" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1002, 1413 )
-
-[node name="EditorUnit16" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 835.357, 1504.18 )
-
-[node name="EditorUnit17" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 989.444, 1490.97 )
-
-[node name="EditorUnit18" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1045.11, 1655.57 )
-
-[node name="EditorUnit19" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 914, 1705 )
-
-[node name="EditorUnit20" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1106.26, 1580.21 )
-
-[node name="EditorUnit21" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1627.63, 2146.84 )
-
-[node name="EditorUnit22" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1661.59, 2213.36 )
-
-[node name="EditorUnit23" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1519.89, 2077.8 )
-
-[node name="EditorUnit24" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1392.05, 2085.8 )
-
-[node name="EditorUnit25" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1182.63, 2125.12 )
-
-[node name="EditorUnit26" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1397.63, 2223.26 )
-
-[node name="EditorUnit27" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1677.82, 2383.58 )
-
-[node name="EditorUnit28" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1799.94, 2427.74 )
-
-[node name="EditorUnit29" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 1978.23, 2471.23 )
-
-[node name="EditorUnit39" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2163.94, 2567.48 )
-
-[node name="EditorUnit40" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2513.29, 2439.85 )
-
-[node name="EditorUnit41" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( 2398.74, 2432.23 )
-
 [node name="Cities" type="Node2D" parent="."]
+position = Vector2( 0, -1.41418 )
 
 [node name="EditorCity" parent="Cities" instance=ExtResource( 3 )]
 position = Vector2( 1768.05, 1618.33 )
@@ -316,16 +181,6 @@ culture = 16
 wealth = 16
 manpower = 16
 loyalty = 16
-
-[node name="EditorCity2" parent="Cities" instance=ExtResource( 3 )]
-position = Vector2( 1958.09, 2020.28 )
-rotation = 1.35088
-region_name = "Sicilia"
-city_name = "Syracuse"
-culture = 12
-wealth = 12
-manpower = 12
-loyalty = 12
 
 [node name="EditorCity11" parent="Cities" instance=ExtResource( 3 )]
 position = Vector2( 2320.15, 1775.86 )
@@ -450,32 +305,19 @@ wealth = 4
 manpower = 12
 loyalty = 12
 
-[node name="RoadJoins" type="Node2D" parent="."]
+[node name="Regions" type="CanvasLayer" parent="."]
 
-[node name="Join" type="Sprite" parent="RoadJoins"]
-position = Vector2( 1734.92, 1595.84 )
-texture = ExtResource( 5 )
+[node name="RegionData" parent="Regions" instance=ExtResource( 5 )]
+margin_left = 1806.55
+margin_top = 1617.27
+margin_right = 1904.55
+margin_bottom = 1649.27
 
-[node name="Join4" type="Sprite" parent="RoadJoins"]
-position = Vector2( 1817.98, 1518.44 )
-texture = ExtResource( 5 )
-
-[node name="Join6" type="Sprite" parent="RoadJoins"]
-position = Vector2( 2432.93, 1726.5 )
-texture = ExtResource( 5 )
-
-[node name="Join5" type="Sprite" parent="RoadJoins"]
-position = Vector2( 1709.76, 1318.06 )
-texture = ExtResource( 5 )
-
-[node name="Join2" type="Sprite" parent="RoadJoins"]
-visible = false
-position = Vector2( 1526.41, 1418.99 )
-texture = ExtResource( 5 )
-
-[node name="Join3" type="Sprite" parent="RoadJoins"]
-position = Vector2( 1190.41, 1496.81 )
-texture = ExtResource( 5 )
+[node name="RegionData2" parent="Regions" instance=ExtResource( 5 )]
+margin_left = 2031.41
+margin_top = 1729.0
+margin_right = 2156.41
+margin_bottom = 1761.0
 
 [node name="ViewC" type="ViewportContainer" parent="."]
 margin_right = 200.0

@@ -16,12 +16,23 @@ func _ready():
 
 func _process(delta):
 	if complete == false:
+		fix_node_ids()
 		save_all_data()
 		update_road_coords()
 		get_road_textures()
 		complete = true
 	if Input.is_action_just_pressed('quit_editor'):
 		get_tree().quit()
+
+func fix_node_ids():
+	# for now, we only care that the ID's of roads are unique
+	var index = 0
+	for i in $Roads.get_children():
+		i.id = index
+		index += 1
+	for i in $Cities.get_children():
+		i.id = index
+		index += 1
 
 func get_region_color(pos: Vector2):
 	if pos.x >= 0.0 and pos.x < cn.MAP_PIXEL_SIZE.x:
@@ -53,30 +64,27 @@ func get_closest_node(nodes, position, radius):
 	# none found, we still have null
 	return detected
 
-func get_matched_node(cities, joins, position):
-	var pos = get_closest_node(cities, position, CITY_RADIUS)
-	if pos == null:
-		pos = get_closest_node(joins, position, JOIN_RADIUS)
+func get_matched_node(nodes, position):
+	var pos = get_closest_node(nodes, position, CITY_RADIUS)
 	if pos == null:
 		helpers.log('Error: No matching node')
 		return null
 	return pos
 
 func update_road_coords() -> void:
-	# A road must start or end at a node (a city or a join)
+	# A road must start or end at a node (a city or a unit)
 	# all the nodes at that point are placed at the position of the node
 	# first gather all the locations of the cities and joins
-	var city_nodes = []
-	var join_nodes = []
+	var nodes = []
 	for i in $Cities.get_children():
-		city_nodes.append(i.position)
-	for i in $RoadJoins.get_children():
-		join_nodes.append(i.position)
+		nodes.append(i.position)
+	for i in $Units.get_children():
+		nodes.append(i.position)
 	# now cycle through all the roads
 	for road in $Roads.get_children():
 		# get the start position
-		var start = get_matched_node(city_nodes, join_nodes, road.points[0])
-		var end = get_matched_node(city_nodes, join_nodes, road.points[-1])
+		var start = get_matched_node(nodes, road.points[0])
+		var end = get_matched_node(nodes, road.points[-1])
 		# update the points if not null
 		if start != null:
 			road.points[0] = start
@@ -201,6 +209,12 @@ func get_road_textures() -> void:
 	save_road_data(json_data)
 	helpers.log('quitting...')
 
+func get_astar_data(units, roads):
+	# we will repeat some work here, but it makes the code easier
+	# we need to make a list of nodes and joins between them
+	print(units)
+	print(roads)
+
 func save_road_data(road_data) -> void:
 	var json_string = JSON.print(road_data, '  ', false)
 	var file = File.new()
@@ -219,6 +233,7 @@ func save_data(data) -> void:
 func save_all_data() -> void:
 	var uloc = get_unit_locations()
 	road_points = get_all_roads()
+	var astar_data = get_astar_data(uloc, road_points)
 	var data = get_city_data(uloc)
 	save_data(data)
 	helpers.log('All data exported as JSON')

@@ -1,11 +1,8 @@
 tool
 extends Line2D
 
-export(int) var id setget update_lbl
+export(float) var road_state = 1.0
+export(int) var id = 0
 
 func _ready():
 	pass # Replace with function body.
-
-func update_lbl(value) -> void:
-	$Label.text = str(value)
-	id = value
