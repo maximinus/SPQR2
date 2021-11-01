@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://gfx/editor/editor_map.png" type="Texture" id=1]
 [ext_resource path="res://editor/Editor.gd" type="Script" id=2]
 [ext_resource path="res://editor/scenes/EditorCity.tscn" type="PackedScene" id=3]
+[ext_resource path="res://editor/scenes/MapNode.tscn" type="PackedScene" id=4]
 [ext_resource path="res://editor/scenes/RegionData.tscn" type="PackedScene" id=5]
 [ext_resource path="res://editor/scenes/RoadLine.tscn" type="PackedScene" id=6]
 
@@ -166,7 +167,11 @@ points = PoolVector2Array( 2401.58, 2429.65, 2417.31, 2415.42, 2436.04, 2407.93,
 [node name="RoadLine52" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 2481.74, 2412.42, 2493.73, 2417.67, 2510.21, 2429.65, 2516.2, 2440.14 )
 
-[node name="Units" type="Node2D" parent="."]
+[node name="Nodes" type="Node2D" parent="."]
+
+[node name="MapNode" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1959.88, 2021.66 )
+population = 3
 
 [node name="Cities" type="Node2D" parent="."]
 position = Vector2( 0, -1.41418 )
