@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://gfx/editor/editor_map.png" type="Texture" id=1]
 [ext_resource path="res://editor/Editor.gd" type="Script" id=2]
-[ext_resource path="res://editor/scenes/EditorCity.tscn" type="PackedScene" id=3]
 [ext_resource path="res://editor/scenes/MapNode.tscn" type="PackedScene" id=4]
 [ext_resource path="res://editor/scenes/RegionData.tscn" type="PackedScene" id=5]
 [ext_resource path="res://editor/scenes/RoadLine.tscn" type="PackedScene" id=6]
@@ -182,6 +181,69 @@ population = 3
 position = Vector2( 2076.88, 1872.66 )
 city_name = ""
 
+[node name="MapNode31" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2336.45, 1610.97 )
+city_name = ""
+
+[node name="MapNode32" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2427.56, 1724.34 )
+city_name = ""
+
+[node name="MapNode35" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2427.56, 1724.34 )
+city_name = ""
+
+[node name="MapNode36" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2387.3, 1850.41 )
+city_name = ""
+
+[node name="MapNode38" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2387.3, 1850.41 )
+city_name = ""
+
+[node name="MapNode37" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2452.99, 1927.75 )
+city_name = ""
+
+[node name="MapNode39" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2452.99, 1927.75 )
+city_name = ""
+
+[node name="MapNode40" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2522.91, 1935.17 )
+city_name = ""
+
+[node name="MapNode44" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2584.36, 1964.83 )
+city_name = "Athens"
+population = 3
+
+[node name="MapNode41" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2503.84, 2051.71 )
+city_name = ""
+
+[node name="MapNode33" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2493.25, 1614.15 )
+city_name = ""
+
+[node name="MapNode34" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2708.32, 1659.71 )
+city_name = ""
+
+[node name="MapNode43" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2578.01, 1719.04 )
+city_name = ""
+
+[node name="MapNode42" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2508.08, 1743.41 )
+city_name = "Pella"
+population = 3
+
+[node name="MapNode30" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2319.06, 1778.48 )
+city_name = "Onchesmus"
+population = 3
+
 [node name="MapNode4" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1926.88, 1667.66 )
 city_name = ""
@@ -203,6 +265,14 @@ population = 3
 
 [node name="MapNode9" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1532.31, 1418.76 )
+city_name = ""
+
+[node name="MapNode20" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1707.44, 1319.22 )
+city_name = ""
+
+[node name="MapNode21" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1833.44, 1271.98 )
 city_name = ""
 
 [node name="MapNode11" parent="Nodes" instance=ExtResource( 4 )]
@@ -255,81 +325,52 @@ city_name = ""
 [node name="MapNode2" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1863.88, 2002.66 )
 
+[node name="MapNode45" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1610.2, 2076.74 )
+city_name = "Carthage"
+population = 3
+
+[node name="MapNode22" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1665.43, 2216.25 )
+
+[node name="MapNode23" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1399.7, 2224.66 )
+
+[node name="MapNode24" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1181.07, 2126.27 )
+
+[node name="MapNode46" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1243.93, 2100.46 )
+city_name = "Icosium"
+population = 3
+
+[node name="MapNode25" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1676.36, 2387.79 )
+
+[node name="MapNode26" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1980.76, 2475.24 )
+
+[node name="MapNode47" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1899.95, 2429.22 )
+city_name = "Oea"
+population = 3
+
+[node name="MapNode27" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2163.24, 2566.9 )
+
+[node name="MapNode28" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2400.37, 2430.68 )
+
+[node name="MapNode29" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2518.1, 2442.45 )
+
+[node name="MapNode48" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 2479.93, 2414.39 )
+city_name = "Cyrene"
+population = 3
+
 [node name="Cities" type="Node2D" parent="."]
 position = Vector2( 0, -1.41418 )
-
-[node name="EditorCity11" parent="Cities" instance=ExtResource( 3 )]
-position = Vector2( 2320.15, 1775.86 )
-rotation = 1.48528
-region_name = "Epirus"
-city_name = "Onchesmus"
-population = 2
-culture = 14
-wealth = 8
-manpower = 6
-loyalty = 12
-
-[node name="EditorCity12" parent="Cities" instance=ExtResource( 3 )]
-position = Vector2( 2585.51, 1963.86 )
-rotation = 0.945968
-region_name = "Achea"
-city_name = "Athens"
-population = 6
-culture = 16
-wealth = 10
-manpower = 6
-loyalty = 12
-
-[node name="EditorCity13" parent="Cities" instance=ExtResource( 3 )]
-position = Vector2( 2509.07, 1738.47 )
-rotation = 0.809833
-region_name = "Macedonia"
-city_name = "Pella"
-population = 6
-culture = 9
-wealth = 10
-manpower = 5
-loyalty = 12
-
-[node name="EditorCity8" parent="Cities" instance=ExtResource( 3 )]
-position = Vector2( 1608.78, 2075.43 )
-rotation = -0.404916
-region_name = "Tunis"
-city_name = "Carthage"
-culture = 12
-wealth = 6
-manpower = 12
-loyalty = 12
-
-[node name="EditorCity9" parent="Cities" instance=ExtResource( 3 )]
-position = Vector2( 1243.91, 2098.06 )
-rotation = -2.02633
-region_name = "Numidia"
-city_name = "Icosium"
-culture = 12
-wealth = 4
-manpower = 12
-loyalty = 12
-
-[node name="EditorCity10" parent="Cities" instance=ExtResource( 3 )]
-position = Vector2( 1900.11, 2427.57 )
-rotation = -0.539307
-region_name = "Africa"
-city_name = "Oea"
-culture = 12
-wealth = 4
-manpower = 12
-loyalty = 12
-
-[node name="EditorCity14" parent="Cities" instance=ExtResource( 3 )]
-position = Vector2( 2473.69, 2409.61 )
-rotation = -2.56563
-region_name = "Cyrenaica"
-city_name = "Cyrene"
-culture = 12
-wealth = 4
-manpower = 12
-loyalty = 12
 
 [node name="Regions" type="CanvasLayer" parent="."]
 
@@ -344,6 +385,24 @@ margin_left = 1522.25
 margin_top = 1784.9
 margin_right = 1746.25
 margin_bottom = 1816.9
+
+[node name="RegionData12" parent="Regions" instance=ExtResource( 5 )]
+margin_left = 1246.12
+margin_top = 2165.42
+margin_right = 1470.12
+margin_bottom = 2197.42
+
+[node name="RegionData11" parent="Regions" instance=ExtResource( 5 )]
+margin_left = 1558.17
+margin_top = 2114.9
+margin_right = 1782.17
+margin_bottom = 2146.9
+
+[node name="RegionData13" parent="Regions" instance=ExtResource( 5 )]
+margin_left = 1696.23
+margin_top = 2435.93
+margin_right = 1920.23
+margin_bottom = 2467.93
 
 [node name="RegionData3" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 1556.23
@@ -366,17 +425,45 @@ margin_bottom = 1466.83
 rect_pivot_offset = Vector2( 60.5443, 16 )
 
 [node name="RegionData5" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1004.77
-margin_top = 1621.29
-margin_right = 1163.77
-margin_bottom = 1653.29
+margin_left = 940.143
+margin_top = 1631.88
+margin_right = 1156.14
+margin_bottom = 1663.88
 rect_pivot_offset = Vector2( 60.5443, 16 )
 
 [node name="RegionData2" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 2031.41
+margin_left = 2012.91
 margin_top = 1729.0
-margin_right = 2156.41
+margin_right = 2137.91
 margin_bottom = 1761.0
+
+[node name="RegionData8" parent="Regions" instance=ExtResource( 5 )]
+anchor_left = 0.000756836
+anchor_right = 0.000756836
+margin_left = 2329.09
+margin_top = 1678.55
+margin_right = 2454.09
+margin_bottom = 1710.55
+
+[node name="RegionData10" parent="Regions" instance=ExtResource( 5 )]
+anchor_left = 0.000756836
+anchor_right = 0.000756836
+margin_left = 2501.78
+margin_top = 1642.52
+margin_right = 2626.78
+margin_bottom = 1674.52
+
+[node name="RegionData9" parent="Regions" instance=ExtResource( 5 )]
+margin_left = 2457.28
+margin_top = 1988.97
+margin_right = 2582.28
+margin_bottom = 2020.97
+
+[node name="RegionData14" parent="Regions" instance=ExtResource( 5 )]
+margin_left = 2352.89
+margin_top = 2478.36
+margin_right = 2477.89
+margin_bottom = 2510.36
 
 [node name="ViewC" type="ViewportContainer" parent="."]
 margin_right = 200.0
