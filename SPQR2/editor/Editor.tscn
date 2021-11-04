@@ -369,9 +369,6 @@ position = Vector2( 2479.93, 2414.39 )
 city_name = "Cyrene"
 population = 3
 
-[node name="Cities" type="Node2D" parent="."]
-position = Vector2( 0, -1.41418 )
-
 [node name="Regions" type="CanvasLayer" parent="."]
 
 [node name="RegionData" parent="Regions" instance=ExtResource( 5 )]

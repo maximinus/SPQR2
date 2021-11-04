@@ -7,7 +7,7 @@ const DATA_FILE = 'res://editor/output/region_data.json'
 
 var region_map: Image
 var complete = false
-var road_points: Dictionary = {}
+var road_points: Array = []
 
 func _ready():
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
@@ -15,17 +15,18 @@ func _ready():
 	region_map.lock()
 
 func _process(delta):
+	# all data has been loaded by now
 	if complete == false:
 		fix_node_ids()
 		save_all_data()
 		update_road_coords()
-		get_road_textures()
+		#get_road_textures()
 		complete = true
 	if Input.is_action_just_pressed('quit_editor'):
 		get_tree().quit()
 
 func fix_node_ids():
-	# for now, we only care that the ID's of roads are unique
+	# for now, we only care that the ID's of nodes are unique
 	var index = 0
 	for i in $Roads.get_children():
 		i.id = index
@@ -107,30 +108,28 @@ func get_city_data(locations) -> String:
 		cities.append(data)
 	return JSON.print(cities, '  ', true)
 
-func get_unit_locations() -> Dictionary:
+func get_nodes() -> Array:
 	# stuff results in a dictionary against the id
-	var locations = {}
-	for unit in $Units.get_children():
-		var region_id = get_region_index(unit.position)
+	var locations = []
+	for i in $Nodes.get_children():
+		var node_data: Dictionary = i.get_data()
+		var region_id = get_region_index(i.position)
 		# convert position to map position
-		var map_pos = helpers.pixel_to_map(unit.position)
-		if region_id in locations:
-			locations[region_id].append([map_pos.x, map_pos.y])
-		else:
-			locations[region_id] = [[map_pos.x, map_pos.y]]
+		var map_pos = helpers.pixel_to_map(i.position)
+		node_data['region_id'] = region_id
+		node_data['position'] = map_pos
+		node_data['angle'] = i.rotation_degrees
+		locations.append(node_data)
 	return locations
 
-func get_all_roads() -> Dictionary:
-	var roads = {}
+func get_all_roads() -> Array:
+	var roads = []
 	for road_node in $Roads.get_children():
 		# let's obtain as a list of points first
 		var pts = []
 		for i in road_node.points:
 			pts.append([i[0], i[1]])
-		if road_node.id in roads:
-			helpers.log('Error: Road between regions already exists')
-		else:
-			roads[road_node.id] = pts
+		roads.append(pts)
 	return roads
 
 func get_road_textures() -> void:
@@ -210,10 +209,10 @@ func get_road_textures() -> void:
 	helpers.log('quitting...')
 
 func get_astar_data(units, roads):
-	# we will repeat some work here, but it makes the code easier
-	# we need to make a list of nodes and joins between them
+	# we need the nodes and the roads that connect them
 	print(units)
 	print(roads)
+	
 
 func save_road_data(road_data) -> void:
 	var json_string = JSON.print(road_data, '  ', false)
@@ -231,9 +230,10 @@ func save_data(data) -> void:
 	helpers.log('Saved region data to ' + DATA_FILE)
 
 func save_all_data() -> void:
-	var uloc = get_unit_locations()
+	# this returns a dict of region_id:nodes_in_region
+	var all_nodes = get_nodes()
 	road_points = get_all_roads()
-	var astar_data = get_astar_data(uloc, road_points)
-	var data = get_city_data(uloc)
+	var astar_data = get_astar_data(all_nodes, road_points)
+	var all_data = {'nodes': all_nodes, 'map': astar_data}
 	save_data(data)
 	helpers.log('All data exported as JSON')

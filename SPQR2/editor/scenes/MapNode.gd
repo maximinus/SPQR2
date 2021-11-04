@@ -21,3 +21,13 @@ func set_population(new_pop: int) -> void:
 	else:
 		$Nodeimage.show()
 		$CityImage.hide()
+
+func get_data():
+	return {
+		'city_name': city_name,
+		'population': population,
+		'culture': culture,
+		'wealth': wealth,
+		'manpower': manpower,
+		'romanisation': romanisation
+	}
