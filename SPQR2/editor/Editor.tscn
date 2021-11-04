@@ -379,36 +379,42 @@ margin_left = 1806.55
 margin_top = 1617.27
 margin_right = 1904.55
 margin_bottom = 1649.27
+region_name = "Latium"
 
 [node name="RegionData7" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 1522.25
 margin_top = 1784.9
 margin_right = 1746.25
 margin_bottom = 1816.9
+region_name = "Corsica & Sardinia"
 
 [node name="RegionData12" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1246.12
-margin_top = 2165.42
-margin_right = 1470.12
-margin_bottom = 2197.42
+margin_left = 1246.0
+margin_top = 2165.0
+margin_right = 1383.0
+margin_bottom = 2197.0
+region_name = "Numidia"
 
 [node name="RegionData11" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1558.17
-margin_top = 2114.9
-margin_right = 1782.17
-margin_bottom = 2146.9
+margin_left = 1558.0
+margin_top = 2115.0
+margin_right = 1670.0
+margin_bottom = 2147.0
+region_name = "Tunis"
 
 [node name="RegionData13" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 1696.23
 margin_top = 2435.93
 margin_right = 1920.23
 margin_bottom = 2467.93
+region_name = "Africa"
 
 [node name="RegionData3" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 1556.23
 margin_top = 1289.88
 margin_right = 1681.23
 margin_bottom = 1321.88
+region_name = "Cisalpina"
 
 [node name="RegionData4" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 1195.42
@@ -416,6 +422,7 @@ margin_top = 1439.55
 margin_right = 1354.42
 margin_bottom = 1471.55
 rect_pivot_offset = Vector2( 60.5443, 16 )
+region_name = "Narbonensis"
 
 [node name="RegionData6" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 875.447
@@ -423,6 +430,7 @@ margin_top = 1434.83
 margin_right = 1034.45
 margin_bottom = 1466.83
 rect_pivot_offset = Vector2( 60.5443, 16 )
+region_name = "Aquitania Inferiore"
 
 [node name="RegionData5" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 940.143
@@ -430,12 +438,14 @@ margin_top = 1631.88
 margin_right = 1156.14
 margin_bottom = 1663.88
 rect_pivot_offset = Vector2( 60.5443, 16 )
+region_name = "Hispania Superior"
 
 [node name="RegionData2" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 2012.91
 margin_top = 1729.0
 margin_right = 2137.91
 margin_bottom = 1761.0
+region_name = "Sicilia"
 
 [node name="RegionData8" parent="Regions" instance=ExtResource( 5 )]
 anchor_left = 0.000756836
@@ -444,6 +454,7 @@ margin_left = 2329.09
 margin_top = 1678.55
 margin_right = 2454.09
 margin_bottom = 1710.55
+region_name = "Epirus"
 
 [node name="RegionData10" parent="Regions" instance=ExtResource( 5 )]
 anchor_left = 0.000756836
@@ -452,18 +463,21 @@ margin_left = 2501.78
 margin_top = 1642.52
 margin_right = 2626.78
 margin_bottom = 1674.52
+region_name = "Macedonia"
 
 [node name="RegionData9" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 2457.28
 margin_top = 1988.97
 margin_right = 2582.28
 margin_bottom = 2020.97
+region_name = "Achea"
 
 [node name="RegionData14" parent="Regions" instance=ExtResource( 5 )]
 margin_left = 2352.89
 margin_top = 2478.36
 margin_right = 2477.89
 margin_bottom = 2510.36
+region_name = "Cyrenaica"
 
 [node name="ViewC" type="ViewportContainer" parent="."]
 margin_right = 200.0
