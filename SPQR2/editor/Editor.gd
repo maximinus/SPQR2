@@ -28,10 +28,7 @@ func _process(delta):
 func fix_node_ids():
 	# for now, we only care that the ID's of nodes are unique
 	var index = 0
-	for i in $Roads.get_children():
-		i.id = index
-		index += 1
-	for i in $Cities.get_children():
+	for i in $Nodes.get_children():
 		i.id = index
 		index += 1
 
@@ -53,10 +50,8 @@ func get_closest_node(nodes, position, radius):
 	var detected = null
 	for i in nodes:
 		var offset = position - i
-		offset.x = abs(offset.x)
-		offset.y = abs(offset.y)
-		var distance = (offset.x * offset.x) + (offset.y * offset.y)
-		if sqrt(distance) < CITY_RADIUS:
+		var distance = sqrt((offset.x * offset.x) + (offset.y * offset.y))
+		if distance < CITY_RADIUS:
 			# we got our match
 			if detected != null:
 				helpers.log('Error: Matched path to >1 node')
@@ -75,11 +70,9 @@ func get_matched_node(nodes, position):
 func update_road_coords() -> void:
 	# A road must start or end at a node (a city or a unit)
 	# all the nodes at that point are placed at the position of the node
-	# first gather all the locations of the cities and joins
+	# first gather all the locations of the nodes
 	var nodes = []
-	for i in $Cities.get_children():
-		nodes.append(i.position)
-	for i in $Units.get_children():
+	for i in $Nodes.get_children():
 		nodes.append(i.position)
 	# now cycle through all the roads
 	for road in $Roads.get_children():
@@ -119,6 +112,7 @@ func get_nodes() -> Array:
 		node_data['region_id'] = region_id
 		node_data['position'] = map_pos
 		node_data['angle'] = i.rotation_degrees
+		node_data['id'] = i.id
 		locations.append(node_data)
 	return locations
 
@@ -210,9 +204,9 @@ func get_road_textures() -> void:
 
 func get_astar_data(units, roads):
 	# we need the nodes and the roads that connect them
-	print(units)
-	print(roads)
-	
+	#print(units)
+	#print(roads)
+	pass
 
 func save_road_data(road_data) -> void:
 	var json_string = JSON.print(road_data, '  ', false)
@@ -225,7 +219,8 @@ func save_road_data(road_data) -> void:
 func save_data(data) -> void:
 	var file = File.new()
 	file.open(DATA_FILE, File.WRITE)
-	file.store_string(data)
+	var json_data = JSON.print(data, '  ', false)
+	file.store_string(json_data)
 	file.close()
 	helpers.log('Saved region data to ' + DATA_FILE)
 
@@ -235,5 +230,5 @@ func save_all_data() -> void:
 	road_points = get_all_roads()
 	var astar_data = get_astar_data(all_nodes, road_points)
 	var all_data = {'nodes': all_nodes, 'map': astar_data}
-	save_data(data)
+	save_data(all_data)
 	helpers.log('All data exported as JSON')
