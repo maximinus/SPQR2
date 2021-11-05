@@ -46,11 +46,8 @@ points = PoolVector2Array( 1527.75, 1419.61, 1548.24, 1397.33, 1561.6, 1368.83, 
 [node name="RoadLine7" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1760.27, 1386.64, 1762.95, 1407.13, 1765.62, 1430.3, 1771.86, 1452.57, 1792.35, 1468.61, 1809.27, 1489.1, 1817.29, 1520.28 )
 
-[node name="RoadLine8" parent="Roads" instance=ExtResource( 6 )]
-points = PoolVector2Array( 1736, 1596, 1737.5, 1606.5, 1744, 1613, 1755.5, 1618, 1768, 1619 )
-
 [node name="RoadLine9" parent="Roads" instance=ExtResource( 6 )]
-points = PoolVector2Array( 1771.29, 1620.22, 1775.7, 1631.56, 1780.74, 1646.05, 1799.01, 1661.17, 1812.24, 1674.4, 1831.14, 1687, 1862, 1691.41, 1885.31, 1697.71, 1907.36, 1714.09, 1931.93, 1735.51, 1967.21, 1750, 1984.85, 1768.9, 2002.48, 1789.68, 2030.83, 1797.24, 2044.06, 1818.66, 2049.73, 1849.53, 2062.96, 1870.32 )
+points = PoolVector2Array( 1739.91, 1600.97, 1757.87, 1619.77, 1776.95, 1641.38, 1799.01, 1661.17, 1812.24, 1674.4, 1831.14, 1687, 1862, 1691.41, 1885.31, 1697.71, 1907.36, 1714.09, 1931.93, 1735.51, 1967.21, 1750, 1984.85, 1768.9, 2002.48, 1789.68, 2030.83, 1797.24, 2044.06, 1818.66, 2049.73, 1849.53, 2062.96, 1870.32 )
 
 [node name="RoadLine12" parent="Roads" instance=ExtResource( 6 )]
 position = Vector2( 0.840942, 3 )
@@ -135,7 +132,7 @@ points = PoolVector2Array( 1183.46, 2125.5, 1205.93, 2109.76, 1210.43, 2091.78, 
 points = PoolVector2Array( 1605.98, 2076.05, 1582.76, 2060.32, 1566.27, 2059.57, 1552.79, 2067.81, 1522.82, 2078.3 )
 
 [node name="RoadLine42" parent="Roads" instance=ExtResource( 6 )]
-points = PoolVector2Array( 1520.58, 2078.3, 1495.1, 2078.3, 1471.13, 2078.3, 1445.66, 2075.3, 1421.69, 2079.8, 1392.47, 2085.79 )
+points = PoolVector2Array( 1520.58, 2078.3, 1495.1, 2078.3, 1471.13, 2078.3, 1445.66, 2075.3, 1421.69, 2079.8, 1396.58, 2088.12 )
 
 [node name="RoadLine43" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1395.47, 2086.54, 1364, 2086.54, 1337.03, 2082.04, 1313.06, 2094.78, 1280.85, 2098.53, 1243.39, 2102.27 )
@@ -195,23 +192,11 @@ city_name = ""
 position = Vector2( 2427.56, 1724.34 )
 city_name = ""
 
-[node name="MapNode35" parent="Nodes" instance=ExtResource( 4 )]
-position = Vector2( 2427.56, 1724.34 )
-city_name = ""
-
 [node name="MapNode36" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2387.3, 1850.41 )
 city_name = ""
 
-[node name="MapNode38" parent="Nodes" instance=ExtResource( 4 )]
-position = Vector2( 2387.3, 1850.41 )
-city_name = ""
-
 [node name="MapNode37" parent="Nodes" instance=ExtResource( 4 )]
-position = Vector2( 2452.99, 1927.75 )
-city_name = ""
-
-[node name="MapNode39" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2452.99, 1927.75 )
 city_name = ""
 
@@ -351,6 +336,9 @@ position = Vector2( 1399.7, 2224.66 )
 
 [node name="MapNode51" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1395.92, 2089.85 )
+
+[node name="MapNode53" parent="Nodes" instance=ExtResource( 4 )]
+position = Vector2( 1522.87, 2084.18 )
 
 [node name="MapNode24" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1181.07, 2126.27 )

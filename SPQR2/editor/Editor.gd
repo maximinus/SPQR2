@@ -46,7 +46,7 @@ func get_region_index(pos: Vector2) -> int:
 	return helpers.get_index_from_region_color(rcol)
 
 func get_closest_node(nodes, position, radius):
-	# get the city position or return null as an error
+	# get the node position or return null as an error
 	var detected = null
 	for i in nodes:
 		var offset = position - i
@@ -54,10 +54,12 @@ func get_closest_node(nodes, position, radius):
 		if distance < CITY_RADIUS:
 			# we got our match
 			if detected != null:
-				helpers.log('Error: Matched path to >1 node')
+				helpers.log('Error: Matched path to >1 node at ' + str(i))
 				return null
 			detected = i
 	# none found, we still have null
+	if detected == null:
+		print('No node at ' + str(position))
 	return detected
 
 func get_matched_node(nodes, position):
