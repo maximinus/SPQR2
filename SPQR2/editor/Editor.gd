@@ -1,7 +1,6 @@
 extends Node2D
 
-const CITY_RADIUS: float = 24.5
-const JOIN_RADIUS: float = 8.0
+const NODE_RADIUS: float = 24.5
 const JSON_FILE = 'res://editor/output/road_data.json'
 const DATA_FILE = 'res://editor/output/region_data.json'
 
@@ -51,7 +50,7 @@ func get_closest_node(nodes, position, radius):
 	for i in nodes:
 		var offset = position - i
 		var distance = sqrt((offset.x * offset.x) + (offset.y * offset.y))
-		if distance < CITY_RADIUS:
+		if distance < NODE_RADIUS:
 			# we got our match
 			if detected != null:
 				helpers.log('Error: Matched path to >1 node at ' + str(i))
@@ -63,7 +62,7 @@ func get_closest_node(nodes, position, radius):
 	return detected
 
 func get_matched_node(nodes, position):
-	var pos = get_closest_node(nodes, position, CITY_RADIUS)
+	var pos = get_closest_node(nodes, position, NODE_RADIUS)
 	if pos == null:
 		helpers.log('Error: No matching node')
 		return null
@@ -204,11 +203,27 @@ func get_road_textures() -> void:
 	save_road_data(json_data)
 	helpers.log('quitting...')
 
-func get_astar_data(units, roads):
-	# we need the nodes and the roads that connect them
-	#print(units)
-	#print(roads)
-	pass
+func get_node_matching_point(position: Array) -> int:
+	var vpos: Vector2 = Vector2(position[0], position[1])
+	for i in $Nodes.get_children():
+		var offset = vpos - i.position
+		var distance = sqrt((offset.x * offset.x) + (offset.y * offset.y))
+		if distance < NODE_RADIUS:
+			# we got our match
+			return i.id
+	# this should never happen because of earlier checks
+	print('Error: No node to match road')
+	return -1
+	
+func get_astar_data(road_points):
+	var road_data = []
+	for i in road_points:
+		# for every road, we need to compute the start and end nodes
+		var start_point = get_node_matching_point(i[0])
+		var end_point = get_node_matching_point(i[-1])
+		var road = {'points': i, 'start':start_point, 'end':end_point}
+		road_data.append(road)
+	return road_data
 
 func save_road_data(road_data) -> void:
 	var json_string = JSON.print(road_data, '  ', false)
@@ -230,7 +245,7 @@ func save_all_data() -> void:
 	# this returns a dict of region_id:nodes_in_region
 	var all_nodes = get_nodes()
 	road_points = get_all_roads()
-	var astar_data = get_astar_data(all_nodes, road_points)
-	var all_data = {'nodes': all_nodes, 'map': astar_data}
+	var astar_data = get_astar_data(road_points)
+	var all_data = {'nodes': all_nodes, 'roads': astar_data}
 	save_data(all_data)
 	helpers.log('All data exported as JSON')
