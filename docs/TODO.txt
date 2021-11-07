@@ -14,7 +14,7 @@ Short Term:
 Generate all roads as:
 * A line with borders
 ✓ A single line
-* A dotted line
+✓ A dotted line
 * All nodes must be shown on the in-game map (NOT the mini map)
 * When a unit is clicked, all the possible move nodes are highlighted
 

@@ -1,6 +1,8 @@
 extends Node2D
 
 const DOTTED_LENGTH: float = 6.0
+const BORDER_COLOR = Color(0.7, 0.6, 0.5, 1.0)
+const ROAD_COLOR = Color(0.8, 0.8, 0.8, 1.0)
 
 var complete: bool = false
 
@@ -11,8 +13,25 @@ func _process(_delta) -> void:
 	if complete == true:
 		return
 	#build_dotted_line()
-	build_curved_dotted()
+	#build_curved_dotted()
+	build_road_line()
 	complete = true
+
+func build_road_line():
+	# much much easier
+	var border_line: Line2D = Line2D.new()
+	var center_line: Line2D = Line2D.new()
+	for i in $RoadLine.points:
+		border_line.add_point(i)
+		center_line.add_point(i)
+	border_line.width = 3.0
+	center_line.width = 1.0
+	border_line.antialiased = true
+	center_line.antialiased = true
+	border_line.default_color = BORDER_COLOR
+	center_line.default_color = ROAD_COLOR
+	$RoadTest.add_child(border_line)
+	$RoadTest.add_child(center_line)
 
 func build_curved_dotted():
 	# calculate the length of the line

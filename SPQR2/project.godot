@@ -61,6 +61,10 @@ window/stretch/aspect="keep"
 
 enabled=PoolStringArray( "res://addons/zylann.project_stats/plugin.cfg" )
 
+[global]
+
+hdr=false
+
 [importer_defaults]
 
 texture={
