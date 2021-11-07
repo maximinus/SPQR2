@@ -21,3 +21,6 @@ width = 4.0
 default_color = Color( 0.321569, 0.176471, 0.211765, 0.380392 )
 
 [node name="DottedLine" type="Node2D" parent="."]
+visible = false
+
+[node name="CurveTest" type="Node2D" parent="."]
