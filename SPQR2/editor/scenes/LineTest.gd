@@ -15,7 +15,12 @@ func _process(_delta) -> void:
 	complete = true
 
 func build_curved_dotted():
-	pass
+	# calculate the length of the line
+	var all_points = $CurvedLine.points
+	var length = 0.0
+	for i in range(len(all_points) - 1):
+		length += all_points[i].distance_to(all_points[i + 1])
+	print(length)
 
 func build_dotted_line() -> void:
 	var start = $SampleLine.points[0]
