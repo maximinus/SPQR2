@@ -8,16 +8,15 @@ This is essentially the "how I will program the game" document
 Short Term:
 -----------
 
-Maps are a collection of nodes joined by paths
-A node can be a city or a unit base. A node can have meta-data (has a port / makes good wine / famouse for sculpture etc..)
-	* Has the advantage of being able to give a region flavour, as it is now a city + 3 nodes + state of roads + armies + region specific stats
-Unit can only move between nodes. A "move" stop when it ends in an unfriendly node or no more than 1 region away
-
-* The editor must generate a "full roads" overlay: this will be on the base map
-* There is only a single "node" type in the editor, and it can display as a city or a plain node
+✓ Maps are a collection of nodes joined by paths
+✓ A node can be a city or a unit base. A node can have meta-data (has a port / makes good wine / famouse for sculpture etc..)
+✓ There is only a single "node" type in the editor, and it can display as a city or a plain node
+Generate all roads as:
+* A line with borders
+✓ A single line
+* A dotted line
 * All nodes must be shown on the in-game map (NOT the mini map)
 * When a unit is clicked, all the possible move nodes are highlighted
-* An arrow is drawn as visual confirmation between the start and end nodes
 
 
 Couldn't really be solved (add to issues):
