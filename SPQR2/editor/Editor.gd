@@ -167,30 +167,11 @@ func get_road_textures() -> void:
 				
 		var new_points = []
 		for i in rnode.points:
+			# offset so the image is not clipped at the border
 			var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(4.0, 4.0)
 			new_points.append(lp)
-		
-		# go and get what we need to add to the viewport
-		
-		# add an offset of (4,4) to all points
-		#var nline1 = Line2D.new()
-		#var nline2 = Line2D.new()
-		#for i in rnode.points:
-		#	var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(4.0, 4.0)
-		#	nline1.add_point(lp)
-		#	nline2.add_point(lp)
-		# set aesthetics
-		#nline1.width = 3.0
-		#nline1.default_color = Color(1.0, 1.0, 1.0, 1.0)
-		# draw line2d at (0,0) on the viewport
-		#nline1.position = Vector2(0.0, 0.0)
-
-		#nline2.width = 4.0
-		#nline2.default_color = Color(1.0, 1.0, 1.0, 0.8)
-		# draw line2d at (0,0) on the viewport
-		#nline2.position = Vector2(0.0, 0.0)
-		
-		# this section needs to be done 3 times
+				
+		# draw all the lines
 		var road_types = [[build_default_line(new_points), 'default'],
 						  [build_road_line(new_points), 'road'],
 						  [build_dotted_line(new_points), 'dotted']]
@@ -201,9 +182,7 @@ func get_road_textures() -> void:
 		
 			for j in all_lines:
 				$ViewC/Viewport.add_child(j)
-		
-			#$ViewC/Viewport.add_child(nline1)
-			#$ViewC/Viewport.add_child(nline2)
+
 			# wait 2 frames is the standard advice
 			yield(get_tree(), 'idle_frame')
 			yield(get_tree(), 'idle_frame')
@@ -233,6 +212,7 @@ func get_road_textures() -> void:
 						'file': filename,
 						'position': [loc.x, loc.y],
 						'points': points_data,
+						'condition': rnode.road_state,
 						'start_region': start_region,
 						'end_region': end_region}
 		json_data.append(all_data)
