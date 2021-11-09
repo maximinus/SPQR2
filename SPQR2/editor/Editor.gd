@@ -4,6 +4,11 @@ const NODE_RADIUS: float = 24.5
 const JSON_FILE = 'res://editor/output/road_data.json'
 const DATA_FILE = 'res://editor/output/region_data.json'
 
+const DOTTED_LENGTH: float = 6.0
+const BORDER_COLOR = Color(0.7, 0.6, 0.5, 1.0)
+const ROAD_COLOR = Color(0.8, 0.8, 0.8, 1.0)
+const NORMAL_ROAD = Color(0.7, 0.5, 0.3, 1.0)
+
 var region_map: Image
 var complete = false
 var road_points: Array = []
@@ -19,7 +24,7 @@ func _process(delta):
 		fix_node_ids()
 		save_all_data()
 		update_road_coords()
-		#get_road_textures()
+		get_road_textures()
 		complete = true
 	if Input.is_action_just_pressed('quit_editor'):
 		get_tree().quit()
@@ -28,6 +33,11 @@ func fix_node_ids():
 	# for now, we only care that the ID's of nodes are unique
 	var index = 0
 	for i in $Nodes.get_children():
+		i.id = index
+		index += 1
+	# same for roads
+	index = 0
+	for i in $Roads.get_children():
 		i.id = index
 		index += 1
 
@@ -132,12 +142,6 @@ func get_road_textures() -> void:
 	var json_data = []
 	for rnode in $Roads.get_children():
 		# get the size and create a viewport of the same size
-		# clear the data from the last time
-		for i in $ViewC/Viewport.get_children():
-			i.queue_free()
-		# wait a frame for that to be done
-		yield(get_tree(), 'idle_frame')
-
 		# ouch, has to be manual. Invert the logic; min must start big and reduce
 		var area_min = Vector2(0.0, 0.0) + cn.MAP_PIXEL_SIZE
 		var area_max = Vector2(0.0, 0.0)
@@ -155,34 +159,68 @@ func get_road_textures() -> void:
 		$ViewC.rect_size = area_size
 		$ViewC/Viewport.size = area_size
 		# create a new line 2D using the points - area_min so we are at the origin
-		# add an offset of (4,4)
-		var nline1 = Line2D.new()
-		var nline2 = Line2D.new()
+		
+		# now we need to create the lines so we can add to the viewport
+		# we have images to create, so this will take a little time
+		# for each image we just need the viewport and the points
+		# first of all, update the points
+				
+		var new_points = []
 		for i in rnode.points:
 			var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(4.0, 4.0)
-			nline1.add_point(lp)
-			nline2.add_point(lp)
+			new_points.append(lp)
+		
+		# go and get what we need to add to the viewport
+		
+		# add an offset of (4,4) to all points
+		#var nline1 = Line2D.new()
+		#var nline2 = Line2D.new()
+		#for i in rnode.points:
+		#	var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(4.0, 4.0)
+		#	nline1.add_point(lp)
+		#	nline2.add_point(lp)
 		# set aesthetics
-		nline1.width = 3.0
-		nline1.default_color = Color(1.0, 1.0, 1.0, 1.0)
+		#nline1.width = 3.0
+		#nline1.default_color = Color(1.0, 1.0, 1.0, 1.0)
 		# draw line2d at (0,0) on the viewport
-		nline1.position = Vector2(0.0, 0.0)
+		#nline1.position = Vector2(0.0, 0.0)
 
-		nline2.width = 4.0
-		nline2.default_color = Color(1.0, 1.0, 1.0, 0.8)
+		#nline2.width = 4.0
+		#nline2.default_color = Color(1.0, 1.0, 1.0, 0.8)
 		# draw line2d at (0,0) on the viewport
-		nline2.position = Vector2(0.0, 0.0)	
-		$ViewC/Viewport.add_child(nline1)
-		$ViewC/Viewport.add_child(nline2)
-		# wait 2 frames is the standard advice
-		yield(get_tree(), 'idle_frame')
-		yield(get_tree(), 'idle_frame')
-		var img = $ViewC/Viewport.get_texture().get_data()
-		# due to opengl, image is flipped on the y axis
-		img.flip_y()
-		# finally, save it
-		var filename = 'res://editor/road_images/road_' + str(rnode.id) + '.png'
-		img.save_png(filename)
+		#nline2.position = Vector2(0.0, 0.0)
+		
+		# this section needs to be done 3 times
+		var road_types = [[build_default_line(new_points), 'default'],
+						  [build_road_line(new_points), 'road'],
+						  [build_dotted_line(new_points), 'dotted']]
+		
+		for i in road_types:
+			var all_lines = i[0]
+			var folder = i[1]
+		
+			for j in all_lines:
+				$ViewC/Viewport.add_child(j)
+		
+			#$ViewC/Viewport.add_child(nline1)
+			#$ViewC/Viewport.add_child(nline2)
+			# wait 2 frames is the standard advice
+			yield(get_tree(), 'idle_frame')
+			yield(get_tree(), 'idle_frame')
+			var img = $ViewC/Viewport.get_texture().get_data()
+			# due to opengl, image is flipped on the y axis
+			img.flip_y()
+			# finally, save it
+			var filename = 'res://editor/road_images/' + folder + '/road_' + str(rnode.id) + '.png'
+			img.save_png(filename)
+			helpers.log('Saved ' + filename)
+			
+			# remove all children ready for next time
+			for j in $ViewC/Viewport.get_children():
+				j.queue_free()
+			# wait a frame for that to be done
+			yield(get_tree(), 'idle_frame')
+		
 		# save the required json data - subtract 4 to allow for spacing
 		var loc = area_min - Vector2(4.0, 4.0)
 		
@@ -198,8 +236,7 @@ func get_road_textures() -> void:
 						'start_region': start_region,
 						'end_region': end_region}
 		json_data.append(all_data)
-		
-		helpers.log('Saved ' + filename)
+
 	save_road_data(json_data)
 	helpers.log('quitting...')
 
@@ -249,3 +286,113 @@ func save_all_data() -> void:
 	var all_data = {'nodes': all_nodes, 'roads': astar_data}
 	save_data(all_data)
 	helpers.log('All data exported as JSON')
+
+# code to render lines
+func build_road_line(all_points) -> Array:
+	# return all the lines we need to add
+	var border_line: Line2D = Line2D.new()
+	var center_line: Line2D = Line2D.new()
+	for i in all_points:
+		border_line.add_point(i)
+		center_line.add_point(i)
+	border_line.width = 3.0
+	center_line.width = 1.0
+	border_line.antialiased = true
+	center_line.antialiased = true
+	border_line.default_color = BORDER_COLOR
+	center_line.default_color = ROAD_COLOR
+	return [border_line, center_line]
+
+func build_default_line(all_points):
+	# return the single line as an array
+	var road_line: Line2D = Line2D.new()
+	for i in all_points:
+		road_line.add_point(i)
+	road_line.width = 3.0
+	road_line.antialiased = true
+	road_line.default_color = NORMAL_ROAD
+	return [road_line]
+
+func build_dotted_line(all_points) -> Array:
+	# return all the lines we need to add
+	var all_lines: Array = []
+	
+	# calculate the length of the line
+	var full_length = 0.0
+	for i in range(len(all_points) - 1):
+		full_length += all_points[i].distance_to(all_points[i + 1])
+	
+	# now we do essentially the same thing. We loop over all the lines
+	var index: int = 0
+	var start: Vector2 = all_points[index]
+	var end: Vector2 = all_points[index + 1]
+
+	var short_length = all_points[index].distance_to(all_points[index + 1])
+
+	var angle: float = atan2(end.y - start.y, end.x - start.x)
+	var offset: Vector2 = Vector2(DOTTED_LENGTH * cos(angle), DOTTED_LENGTH * sin(angle))
+	var start_point: Vector2 = start - Vector2(0.0, -1.0)
+	
+	var dots: float = full_length / DOTTED_LENGTH
+	var frac_dots: float = dots - floor(dots)
+	var start_length: float = frac_dots / 2.0
+	
+	start_point += offset * start_length
+	var end_point = start_point + offset
+	full_length -= start_length
+	short_length -= start_length
+	
+	var draw = true
+	while(true):
+		# keep calculating until length is exceeded, just as before
+		if draw == true:
+			var new_line: Line2D = Line2D.new()
+			new_line.add_point(start_point)
+			
+			if short_length < DOTTED_LENGTH:
+				end_point = start_point + (offset * (short_length / DOTTED_LENGTH))
+			
+			new_line.add_point(end_point)
+			new_line.width = 2.0
+			new_line.antialiased = true
+			new_line.default_color = NORMAL_ROAD
+			all_lines.append(new_line)
+			draw = false
+		else:
+			draw = true
+		start_point += offset
+		end_point += offset
+		short_length -= DOTTED_LENGTH
+		
+		if short_length < 0:
+			# we have moved onto the next point
+			# invert the negative value we have
+			short_length *= -1
+			# move onto next points
+			index += 1
+			# have we moved too far?
+			if index >= (len(all_points) - 1):
+				return all_lines
+			# calculate the new offset
+			start = all_points[index]
+			end = all_points[index + 1]
+			angle = atan2(end.y - start.y, end.x - start.x)
+			offset = Vector2(DOTTED_LENGTH * cos(angle), DOTTED_LENGTH * sin(angle))				
+			start_point = start
+			# just need a small line to draw
+			end_point = start + (offset * (short_length / DOTTED_LENGTH))
+			# calculate new short length
+			short_length = all_points[index].distance_to(all_points[index + 1]) - short_length
+			# do we need to draw this? (logic has swapped due to loop above)
+			if draw == false:
+				var corner_line = Line2D.new()
+				corner_line.add_point(start_point)
+				corner_line.add_point(end_point)
+				corner_line.width = 2.0
+				corner_line.antialiased = true
+				corner_line.default_color = NORMAL_ROAD
+				all_lines.append(corner_line)
+			start_point = end_point
+			end_point += offset
+	# needed to make the editor happy
+	return(all_lines)
