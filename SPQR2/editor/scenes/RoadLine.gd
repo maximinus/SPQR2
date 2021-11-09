@@ -1,8 +1,24 @@
 tool
 extends Line2D
 
-export(float) var road_state = 1.0
+const NO_ROAD = Color(0.8, 0.6, 0.4, 1.0)
+const BAD_ROAD = Color(1.0, 0.8, 0.6, 1.0)
+const GOOD_ROAD = Color(1.0, 1.0, 1.0, 1.0)
+
+export(float) var road_state = 1.0 setget set_road_state
 export(int) var id = 0
 
 func _ready():
-	pass # Replace with function body.
+	set_road_color()
+
+func set_road_color():
+	if road_state <= 1.0:
+		default_color = NO_ROAD
+	elif road_state <= 2.0:
+		default_color = BAD_ROAD
+	else:
+		default_color = GOOD_ROAD
+
+func set_road_state(new_state):
+	road_state = new_state
+	set_road_color()

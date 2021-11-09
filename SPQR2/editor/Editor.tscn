@@ -30,28 +30,42 @@ points = PoolVector2Array( 852.772, 1405.48, 838.614, 1435.69, 832.951, 1455.51,
 
 [node name="RoadLine2" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1001.91, 1692.08, 1013.25, 1670.67, 1025.22, 1663.74, 1048.53, 1647.99, 1073.1, 1637.28, 1085.7, 1640.43, 1095.15, 1625.94, 1098.93, 1606.41, 1107.74, 1588.77, 1110.26, 1570.5, 1111.52, 1547.82, 1119.71, 1531.44, 1143.02, 1518.85, 1166.96, 1511.92, 1189.64, 1498.06 )
+default_color = Color( 1, 0.8, 0.6, 1 )
+road_state = 2.0
 
 [node name="RoadLine3" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1193.42, 1496.8, 1210.43, 1496.8, 1232.48, 1497.43, 1253.27, 1504.99, 1274.68, 1510.66, 1301.14, 1519.47, 1324.45, 1531.44, 1343.35, 1530.81, 1355.32, 1524.51 )
+default_color = Color( 1, 0.8, 0.6, 1 )
+road_state = 2.0
 
 [node name="RoadLine4" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1357.21, 1521.36, 1370.44, 1504.99, 1401.31, 1493.65, 1423.98, 1486.09, 1437.84, 1470.34, 1461.15, 1470.34, 1472.49, 1466.56, 1488.87, 1451.44, 1508.4, 1433.8, 1525.41, 1419.31 )
+default_color = Color( 1, 1, 1, 1 )
+road_state = 3.0
 
 [node name="RoadLine5" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1528.87, 1418.97, 1545.52, 1420.16, 1570.49, 1429.67, 1596.65, 1439.19, 1621.62, 1454.65, 1638.27, 1466.54, 1654.92, 1480.81, 1664.44, 1499.84, 1672.76, 1526, 1681.09, 1553.35, 1702.49, 1578.32, 1719.14, 1587.84, 1736.98, 1597.35 )
+default_color = Color( 1, 0.8, 0.6, 1 )
+road_state = 2.0
 
 [node name="RoadLine6" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1527.75, 1419.61, 1548.24, 1397.33, 1561.6, 1368.83, 1557.15, 1351.01, 1588.33, 1332.3, 1612.39, 1346.55, 1640.89, 1349.23, 1669.4, 1331.41, 1706.82, 1318.94 )
 
 [node name="RoadLine7" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1760.27, 1386.64, 1762.95, 1407.13, 1765.62, 1430.3, 1771.86, 1452.57, 1792.35, 1468.61, 1809.27, 1489.1, 1817.29, 1520.28 )
+default_color = Color( 1, 0.8, 0.6, 1 )
+road_state = 2.0
 
 [node name="RoadLine9" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1739.91, 1600.97, 1757.87, 1619.77, 1776.95, 1641.38, 1799.01, 1661.17, 1812.24, 1674.4, 1831.14, 1687, 1862, 1691.41, 1885.31, 1697.71, 1907.36, 1714.09, 1931.93, 1735.51, 1967.21, 1750, 1984.85, 1768.9, 2002.48, 1789.68, 2030.83, 1797.24, 2044.06, 1818.66, 2049.73, 1849.53, 2062.96, 1870.32 )
+default_color = Color( 1, 1, 1, 1 )
+road_state = 3.0
 
 [node name="RoadLine12" parent="Roads" instance=ExtResource( 6 )]
 position = Vector2( 0.840942, 3 )
 points = PoolVector2Array( 1819.92, 1519.22, 1847.29, 1522.99, 1875.61, 1545.65, 1881.27, 1570.19, 1891.65, 1592.84, 1910.53, 1611.72, 1922.8, 1631.54, 1923.74, 1644.75, 1922.8, 1660.8 )
+default_color = Color( 1, 1, 1, 1 )
+road_state = 3.0
 
 [node name="RoadLine14" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1710.11, 1319.07, 1726.76, 1324.42, 1736.27, 1329.18, 1738.65, 1338.1, 1741.62, 1349.99, 1745.78, 1356.53, 1754.7, 1372.59, 1757.68, 1379.13 )
@@ -61,6 +75,8 @@ points = PoolVector2Array( 1709.51, 1317.29, 1726.76, 1303.02, 1750.54, 1298.26,
 
 [node name="RoadLine16" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 2504.62, 2044.53, 2514.73, 2034.42, 2520.67, 2024.91, 2518.89, 2013.61, 2524.24, 2003.51, 2530.78, 1995.78, 2536.73, 1987.45, 2545.64, 1980.91, 2557.54, 1975.56, 2572.4, 1969.61, 2586.67, 1966.64 )
+default_color = Color( 1, 0.8, 0.6, 1 )
+road_state = 2.0
 
 [node name="RoadLine17" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 2583.1, 1960.69, 2569.43, 1955.34, 2558.13, 1951.18, 2548.02, 1947.61, 2534.94, 1938.69, 2525.43, 1933.94 )
@@ -79,6 +95,8 @@ points = PoolVector2Array( 2432.48, 1727.91, 2420, 1706.53, 2408.42, 1686.04, 23
 
 [node name="RoadLine24" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1565.63, 1854.42, 1580.78, 1833.93, 1580.78, 1809.88, 1579, 1790.28, 1574.54, 1770.68 )
+default_color = Color( 1, 0.8, 0.6, 1 )
+road_state = 2.0
 
 [node name="RoadLine26" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1402.21, 2220.64, 1448, 2219, 1492, 2222, 1541, 2235, 1575, 2212, 1576, 2175, 1544, 2137, 1560, 2106, 1609, 2074 )
@@ -88,6 +106,8 @@ points = PoolVector2Array( 1869.66, 2006.62, 1900.84, 2018.2, 1919.55, 2019.98, 
 
 [node name="RoadLine28" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1929.35, 1665.54, 1968.55, 1665.54, 1992.92, 1677.19, 2022.59, 1690.96, 2055.43, 1711.09, 2095.69, 1730.16, 2098.87, 1756.65, 2085.1, 1788.43, 2070.26, 1813.86, 2071.32, 1832.93, 2063.91, 1871.07 )
+default_color = Color( 1, 0.8, 0.6, 1 )
+road_state = 2.0
 
 [node name="RoadLine29" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1353.03, 1518.75, 1338.87, 1500.82, 1325.65, 1471.56, 1325.65, 1451.73, 1317.16, 1430.97 )
@@ -118,12 +138,18 @@ points = PoolVector2Array( 913.377, 1706.35, 952.268, 1709.18, 975.603, 1705.65,
 
 [node name="RoadLine11" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1614.22, 2078.3, 1630.7, 2097.78, 1641.19, 2112.01, 1641.19, 2121.75, 1630.7, 2134.49, 1629.95, 2146.47 )
+default_color = Color( 1, 1, 1, 1 )
+road_state = 3.0
 
 [node name="RoadLine39" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1629.95, 2149.47, 1650.93, 2168.2, 1658.42, 2187.68, 1662.92, 2213.15 )
+default_color = Color( 1, 1, 1, 1 )
+road_state = 3.0
 
 [node name="RoadLine40" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1663.66, 2214.64, 1659.92, 2240.87, 1635.2, 2258.84, 1608.98, 2272.33, 1614.97, 2296.3, 1617.22, 2312.78, 1628.45, 2325.52, 1642.69, 2341.25, 1660.67, 2349.49, 1665.91, 2359.98, 1680.15, 2381.71 )
+default_color = Color( 1, 0.8, 0.6, 1 )
+road_state = 2.0
 
 [node name="RoadLine41" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1183.46, 2125.5, 1205.93, 2109.76, 1210.43, 2091.78, 1242.64, 2097.03 )
@@ -169,6 +195,8 @@ points = PoolVector2Array( 2481.74, 2412.42, 2493.73, 2417.67, 2510.21, 2429.65,
 
 [node name="RoadLine13" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 2070, 1881, 2068, 1899, 2065, 1918, 2047, 1931, 2043, 1947, 2026, 1963, 2009, 1962, 1995, 1976, 1984, 1990, 1974, 2019 )
+default_color = Color( 1, 0.8, 0.6, 1 )
+road_state = 2.0
 
 [node name="RoadLine53" parent="Roads" instance=ExtResource( 6 )]
 points = PoolVector2Array( 1736.52, 1596.44, 1745.77, 1573.74, 1747.45, 1554.4, 1760.91, 1535.9, 1782.77, 1535.9, 1793.7, 1535.9, 1818.93, 1522.44 )
