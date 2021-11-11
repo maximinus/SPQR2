@@ -8,7 +8,7 @@ const ROME_DEFAULT_COLOR = Color(0.91, 0.0664, 0.0664, 1.0)
 const GAME_DATA = 'res://data/game_data.json'
 const ROAD_DATA = 'res://data/road_data.json'
 const REGION_DATA = 'res://data/region_data.json'
-const REGION2_DATA = 'res://data/region_data2.json'
+const MAP_DATA = 'res://data/map_data.json'
 
 # regions are loaded per id, i.e. id 0 is the first region
 var regions: Array = []
@@ -27,22 +27,22 @@ var road_texture: ImageTexture = null
 # define a light-weight road class
 class Road:
 	var id: int
-	var filepath: String
 	var pos: Vector2
 	var points: Array
 	var start_region: int
 	var end_region: int
-	var rimage: Image
+	var condition: float
+	var rimages: Array
 	
 	func _init(data: Dictionary):
 		id = data['id']
-		filepath = data['file']
 		pos = Vector2(data['position'][0], data['position'][1])
 		points = data['points']
-		start_region = data['start_region']
-		end_region = data['end_region']
-		rimage = null
-	
+		start_region = int(data['start_region'])
+		end_region = int(data['end_region'])
+		condition = float(data['condition'])
+		rimages = []
+
 	static func sort(a, b) -> bool:
 		if a.id < b.id:
 			return true
@@ -103,7 +103,7 @@ func get_json_data(filepath):
 # this is main() function: it should be called when the game scene starts
 func load_all_data() -> bool:
 	# return false if there was an issue
-	var r2_data = get_json_data(REGION2_DATA)
+	var r2_data = get_json_data(MAP_DATA)
 	if r2_data == null:
 		return false
 	
@@ -135,7 +135,8 @@ func get_node_data(data):
 	for i in data['nodes']:
 		rnodes.append(RNode.new(i))
 	for i in data['roads']:
-		pass
+		roads.append(Road.new(i))
+	helpers.log('Map data loaded')
 
 func get_road_data() -> bool:
 	var data = get_json_data(ROAD_DATA)
