@@ -22,6 +22,7 @@ func _ready():
 func _process(delta):
 	# all data has been loaded by now
 	if complete == false:
+		complete = true
 		# ensure ids are consistent
 		fix_node_ids()
 		# make sure roads start and end at node junctions
@@ -30,9 +31,8 @@ func _process(delta):
 		road_points = get_all_roads()
 		# build and save all textures
 		get_road_textures()
-		# save as json
-		save_all_data()
-		complete = true
+		# do NOT save data here, as multiple _process() will be called
+		# as the roads are all rendered from the previous call
 	if Input.is_action_just_pressed('quit_editor'):
 		get_tree().quit()
 
@@ -215,13 +215,14 @@ func get_road_textures() -> void:
 		var start_region = get_region_index(rnode.points[0])
 		var end_region = get_region_index(rnode.points[-1])
 		var all_data = {'id': rnode.id,
-						'file': filename,
 						'position': [loc.x, loc.y],
 						'points': points_data,
 						'condition': rnode.road_state,
 						'start_region': start_region,
 						'end_region': end_region}
 		road_data.append(all_data)
+	# now we can save data!
+	save_all_data()
 
 func get_node_matching_point(position: Array) -> int:
 	var vpos: Vector2 = Vector2(position[0], position[1])
@@ -241,7 +242,7 @@ func save_data(data) -> void:
 	var json_data = JSON.print(data, '  ', false)
 	file.store_string(json_data)
 	file.close()
-	helpers.log('Saved region data to ' + DATA_FILE)
+	helpers.log('Saved roads + nodes data to ' + DATA_FILE)
 
 func save_all_data() -> void:
 	# this returns a dict of region_id:nodes_in_region
@@ -250,8 +251,9 @@ func save_all_data() -> void:
 	save_data(all_data)
 	helpers.log('All data exported as JSON')
 
-# ============================================
+# ==========================================================
 # code to render lines
+# ==========================================================
 func build_road_line(all_points) -> Array:
 	# return all the lines we need to add
 	var border_line: Line2D = Line2D.new()
