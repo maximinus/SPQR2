@@ -26,7 +26,7 @@ const VIEW_AREA_ZOOM_MAX = Vector3(6.0, 5.2, -7.2)
 # and then recalculated per zoom level
 var view_area = Vector3(7.0, 4.0, -4.0)
 
-var city_scene = preload('res://scenes/city/City.tscn')
+var city_scene = preload('res://scenes/road_node/RoadNode.tscn')
 var unit_scene = preload("res://scenes/unit/Unit.tscn")
 
 var zoom_level = 3.5

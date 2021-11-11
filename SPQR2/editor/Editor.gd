@@ -12,6 +12,7 @@ const NORMAL_ROAD = Color(0.7, 0.5, 0.3, 1.0)
 var region_map: Image
 var complete = false
 var road_points: Array = []
+var road_data: Array = []
 
 func _ready():
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
@@ -21,10 +22,16 @@ func _ready():
 func _process(delta):
 	# all data has been loaded by now
 	if complete == false:
+		# ensure ids are consistent
 		fix_node_ids()
-		save_all_data()
+		# make sure roads start and end at node junctions
 		update_road_coords()
+		# get all the road points
+		road_points = get_all_roads()
+		# build and save all textures
 		get_road_textures()
+		# save as json
+		save_all_data()
 		complete = true
 	if Input.is_action_just_pressed('quit_editor'):
 		get_tree().quit()
@@ -139,7 +146,6 @@ func get_all_roads() -> Array:
 
 func get_road_textures() -> void:
 	# this code was quite experimental, thus the length
-	var json_data = []
 	for rnode in $Roads.get_children():
 		# get the size and create a viewport of the same size
 		# ouch, has to be manual. Invert the logic; min must start big and reduce
@@ -215,10 +221,7 @@ func get_road_textures() -> void:
 						'condition': rnode.road_state,
 						'start_region': start_region,
 						'end_region': end_region}
-		json_data.append(all_data)
-
-	save_road_data(json_data)
-	helpers.log('quitting...')
+		road_data.append(all_data)
 
 func get_node_matching_point(position: Array) -> int:
 	var vpos: Vector2 = Vector2(position[0], position[1])
@@ -232,24 +235,6 @@ func get_node_matching_point(position: Array) -> int:
 	print('Error: No node to match road')
 	return -1
 	
-func get_astar_data(road_points):
-	var road_data = []
-	for i in road_points:
-		# for every road, we need to compute the start and end nodes
-		var start_point = get_node_matching_point(i[0])
-		var end_point = get_node_matching_point(i[-1])
-		var road = {'points': i, 'start':start_point, 'end':end_point}
-		road_data.append(road)
-	return road_data
-
-func save_road_data(road_data) -> void:
-	var json_string = JSON.print(road_data, '  ', false)
-	var file = File.new()
-	file.open(JSON_FILE, File.WRITE)
-	file.store_string(json_string)
-	file.close()
-	helpers.log('Saved road data to ' + JSON_FILE)
-
 func save_data(data) -> void:
 	var file = File.new()
 	file.open(DATA_FILE, File.WRITE)
@@ -261,12 +246,11 @@ func save_data(data) -> void:
 func save_all_data() -> void:
 	# this returns a dict of region_id:nodes_in_region
 	var all_nodes = get_nodes()
-	road_points = get_all_roads()
-	var astar_data = get_astar_data(road_points)
-	var all_data = {'nodes': all_nodes, 'roads': astar_data}
+	var all_data = {'nodes': all_nodes, 'roads': road_data}
 	save_data(all_data)
 	helpers.log('All data exported as JSON')
 
+# ============================================
 # code to render lines
 func build_road_line(all_points) -> Array:
 	# return all the lines we need to add

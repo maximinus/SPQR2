@@ -8,9 +8,11 @@ const ROME_DEFAULT_COLOR = Color(0.91, 0.0664, 0.0664, 1.0)
 const GAME_DATA = 'res://data/game_data.json'
 const ROAD_DATA = 'res://data/road_data.json'
 const REGION_DATA = 'res://data/region_data.json'
+const REGION2_DATA = 'res://data/region_data2.json'
 
 # regions are loaded per id, i.e. id 0 is the first region
 var regions: Array = []
+var rnodes: Array = []
 var armies: Array = []
 var land_paths: Array = []
 var sea_paths: Array = []
@@ -46,6 +48,44 @@ class Road:
 			return true
 		return false
 
+# do the same for the nodes
+class RNode:
+	var city_name: String
+	var population: float
+	var culture: float
+	var wealth: int
+	var manpower: int
+	var romanisation: float
+	var region_id: int
+	var position: Vector2
+	var angle: float
+	var id: int
+
+	static func get_pos_data(data) -> Vector2:
+		# format is "(value1, value2)"
+		var pos_data: String = data['position']
+		pos_data = pos_data.substr(1, len(pos_data) - 2)
+		var pos_values = pos_data.split(',')
+		pos_values[1] = pos_values[1].dedent()
+		return Vector2(float(pos_values[0]), float(pos_values[1]))
+
+	func _init(data: Dictionary):
+		city_name = data['city_name']
+		population = data['population']
+		culture = data['culture']
+		wealth = int(data['wealth'])
+		manpower = int(data['manpower'])
+		romanisation = data['romanisation']
+		region_id = int(data['region_id'])
+		position = RNode.get_pos_data(data)
+		angle = data['angle']
+		id = data['id']
+
+	static func sort(a, b) -> bool:
+		if a.id < b.id:
+			return true
+		return false
+
 func get_json_data(filepath):
 	# read the data and convert
 	# return null if failed
@@ -63,6 +103,12 @@ func get_json_data(filepath):
 # this is main() function: it should be called when the game scene starts
 func load_all_data() -> bool:
 	# return false if there was an issue
+	var r2_data = get_json_data(REGION2_DATA)
+	if r2_data == null:
+		return false
+	
+	var rn = get_node_data(r2_data)
+		
 	var region_json = get_json_data(REGION_DATA)
 	if region_json == null:
 		return false
@@ -84,6 +130,12 @@ func load_all_data() -> bool:
 		return true
 	helpers.log('Failed to parse ' + GAME_DATA)
 	return false
+
+func get_node_data(data):
+	for i in data['nodes']:
+		rnodes.append(RNode.new(i))
+	for i in data['roads']:
+		pass
 
 func get_road_data() -> bool:
 	var data = get_json_data(ROAD_DATA)
