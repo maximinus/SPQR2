@@ -9,7 +9,7 @@ func _ready():
 func set_gold_silver(gold: int, silver: int):
 	$YearInfo.set_gold_silver(gold, silver)
 
-func update_region_info(region: MapRegion) -> void:
+func update_region_info(region) -> void:
 	$RegionGUI.update_info(region)
 
 func _on_MiniMap_map_clicked(pos) -> void:

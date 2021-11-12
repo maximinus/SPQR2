@@ -15,25 +15,13 @@ _global_script_classes=[ {
 "path": "res://scripts/army.gd"
 }, {
 "base": "Node",
-"class": "City",
-"language": "GDScript",
-"path": "res://scripts/city.gd"
-}, {
-"base": "Node",
 "class": "EnemyAI",
 "language": "GDScript",
 "path": "res://scripts/enemy.gd"
-}, {
-"base": "Node",
-"class": "MapRegion",
-"language": "GDScript",
-"path": "res://scripts/region.gd"
 } ]
 _global_script_class_icons={
 "Army": "",
-"City": "",
-"EnemyAI": "",
-"MapRegion": ""
+"EnemyAI": ""
 }
 
 [application]
@@ -46,9 +34,7 @@ config/icon="res://icon.png"
 
 cn="*res://scripts/constants.gd"
 helpers="*res://scripts/helpers.gd"
-region="*res://scripts/region.gd"
 enemy="*res://scripts/enemy.gd"
-city="*res://scripts/city.gd"
 data="*res://scripts/data.gd"
 
 [display]

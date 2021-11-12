@@ -21,5 +21,6 @@ func _init(data: Dictionary):
 	gold = data['gold']
 	silver = data['silver']
 
-func add_region(new_region: MapRegion) -> void:
+# currently (v3.3) cannot add type info for a class in another class
+func add_region(new_region) -> void:
 	regions.append(new_region)

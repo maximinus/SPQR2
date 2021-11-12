@@ -20,7 +20,7 @@ transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, -
 
 [node name="CameraTween" type="Tween" parent="Tweens"]
 
-[node name="Cities" type="Spatial" parent="."]
+[node name="Nodes" type="Spatial" parent="."]
 
 [node name="Soldiers" type="Spatial" parent="."]
 

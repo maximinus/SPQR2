@@ -3,17 +3,15 @@ extends Control
 func _ready():
 	pass
 	
-func update_info(region: MapRegion) -> void:
+func update_info(region) -> void:
 	# update info according to the region details
+	# TODO: Fix this
 	$Mrg/VBox/Title.text = region.region_name
-	$Mrg/VBox/HBCulture/CultureD.text = str(region.culture)
-	$Mrg/VBox/HBWealth/WealthD.text = str(region.money)
-	$Mrg/VBox/HBManpower/ManpowerD.text = str(region.manpower)
-	$Mrg/VBox/HBLoyalty/LoyaltyD.text = str(region.loyalty)
-	if region.city != null:
-		$Mrg/VBox/HBCity/CityD.text = region.city.city_name
-	else:
-		$Mrg/VBox/HBCity/CityD.text = "N/A"
+	$Mrg/VBox/HBCulture/CultureD.text = '12'
+	$Mrg/VBox/HBWealth/WealthD.text = '12'
+	$Mrg/VBox/HBManpower/ManpowerD.text = '12'
+	$Mrg/VBox/HBLoyalty/LoyaltyD.text = '12'
+	$Mrg/VBox/HBCity/CityD.text = "N/A"
 	update_army_list(region.id)
 
 func update_army_list(region_id: int) -> void:

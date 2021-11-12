@@ -6,7 +6,6 @@ extends Node
 
 const ROME_DEFAULT_COLOR = Color(0.91, 0.0664, 0.0664, 1.0)
 const GAME_DATA = 'res://data/game_data.json'
-const ROAD_DATA = 'res://data/road_data.json'
 const REGION_DATA = 'res://data/region_data.json'
 const MAP_DATA = 'res://data/map_data.json'
 
@@ -14,8 +13,6 @@ const MAP_DATA = 'res://data/map_data.json'
 var regions: Array = []
 var rnodes: Array = []
 var armies: Array = []
-var land_paths: Array = []
-var sea_paths: Array = []
 var roads: Array = []
 var roads_built: Array = []
 var road_images: Array = []
@@ -86,33 +83,27 @@ class RNode:
 			return true
 		return false
 
-func get_json_data(filepath):
-	# read the data and convert
-	# return null if failed
-	var file: File = File.new()
-	if file.open(filepath, file.READ) != OK:
-		helpers.log('Could not read ' + filepath)
-		return null
-	var text: String = file.get_as_text()
-	file.close()
-	var result: JSONParseResult = JSON.parse(text)
-	if result.error == OK:
-		return result.result
-	return null
+class MapRegion:
+	var id: int
+	var region_name: String
+
+	func _init(data: Dictionary):
+		id = data['id']
+		region_name = data['name']
+	
+	static func sort(a, b) -> bool:
+		if a.id < b.id:
+			return true
+		return false
 
 # this is main() function: it should be called when the game scene starts
 func load_all_data() -> bool:
 	# return false if there was an issue
-	var r2_data = get_json_data(MAP_DATA)
-	if r2_data == null:
+	var map_data = get_json_data(MAP_DATA)
+	if map_data == null:
+		helpers.log('Error: Could not load ' + MAP_DATA)
 		return false
-	
-	var rn = get_node_data(r2_data)
-		
-	var region_json = get_json_data(REGION_DATA)
-	if region_json == null:
-		return false
-	regions = get_regions(region_json)
+	get_node_data(map_data)
 	
 	var data = get_json_data(GAME_DATA)
 	if data == null:
@@ -124,43 +115,35 @@ func load_all_data() -> bool:
 	armies = get_armies(data['ARMIES'])
 	leader_unit = data['LEADER']
 	
-	if get_road_data() == true:
-		load_road_images()
-		build_roads()
-		return true
-	helpers.log('Failed to parse ' + GAME_DATA)
-	return false
+	load_road_images()
+	build_roads()
+	return true
+
+func get_json_data(filepath):
+	# load a json file, check for errors and then return the data
+	# read the data and convert - return null if failed
+	var file: File = File.new()
+	if file.open(filepath, file.READ) != OK:
+		helpers.log('Could not read ' + filepath)
+		return null
+	var text: String = file.get_as_text()
+	file.close()
+	var result: JSONParseResult = JSON.parse(text)
+	if result.error == OK:
+		return result.result
+	return null
 
 func get_node_data(data):
 	for i in data['nodes']:
 		rnodes.append(RNode.new(i))
+	rnodes.sort_custom(RNode, 'sort')
 	for i in data['roads']:
 		roads.append(Road.new(i))
-	helpers.log('Map data loaded')
-
-func get_road_data() -> bool:
-	var data = get_json_data(ROAD_DATA)
-	if data == null:
-		return false
-	for single_road in data:
-		roads.append(Road.new(single_road))
-	# sort the roads by index
 	roads.sort_custom(Road, 'sort')
-	return true
-
-class RegionIndexSorter:
-	static func sort(a, b) -> bool:
-		if a.id < b.id:
-			return true
-		return false
-
-func get_regions(region_data: Array) -> Array:
-	var region_instances: Array = []
-	for i in region_data:
-		region_instances.append(MapRegion.new(i))
-	helpers.log('Loaded %s regions' % str(len(region_instances)))
-	region_instances.sort_custom(RegionIndexSorter, 'sort')
-	return region_instances
+	for i in data['regions']:
+		regions.append(MapRegion.new(i))
+	regions.sort_custom(MapRegion, 'sort')
+	helpers.log('Map data loaded')
 
 func get_enemies(enemy_data: Array) -> Array:
 	var enemy_instances: Array = []
@@ -176,7 +159,11 @@ func get_armies(army_data: Array) -> Array:
 	helpers.log('Got %s armies' % len(army_instances))
 	return army_instances
 
+# =======================================================
 # all methods to get data follow here
+# This is essentially the API to the data stored above
+# =======================================================
+
 class RegionSorter:
 	static func sort(a, b) -> bool:
 		if a[0] < b[0]:
@@ -255,22 +242,25 @@ func get_armies_in_region(region_id: int) -> Array:
 
 # code for road image generation
 func load_road_images() -> void:
-	# we have the filenames, so load them. They are already in index order
+	# we just id's, but we can guarentee the image is there
+	# roads are sorted by id at this point
+	# named from worst to best
+	var folder_names = ['dotted', 'default', 'road']
 	var count = 0
 	for i in roads:
-		var limage = load('res://gfx/roads/road_' + str(i.id) + '.png')
-		i.rimage = limage.get_data()
-		count += 1
+		for j in folder_names:
+			var limage = load('res://gfx/roads/' + j + '/road_' + str(i.id) + '.png')
+			i.rimages.append(limage.get_data())
+			count += 1
 	helpers.log('Loaded ' + str(count) + ' road images')
 
 func build_roads() -> void:
 	var road_image = Image.new()
 	road_image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
 	# now blit all the roads (all just for testing)
-	for i in roads_built:
-		var road_data = roads[i]		
-		var rect = Rect2(0.0, 0.0, road_data.rimage.get_width(), road_data.rimage.get_height())
-		road_image.blend_rect(road_data.rimage, rect, road_data.pos)
+	for i in roads:
+		var rect = Rect2(0.0, 0.0, i.rimages[0].get_width(), i.rimages[0].get_height())
+		road_image.blend_rect(i.rimages[0], rect, i.pos)
 	# the resultant needs to be an ImageTexture
 	road_texture = ImageTexture.new()
 	road_texture.create_from_image(road_image)

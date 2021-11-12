@@ -13,6 +13,7 @@ var region_map: Image
 var complete = false
 var road_points: Array = []
 var road_data: Array = []
+var region_data: Array = []
 
 func _ready():
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
@@ -29,6 +30,8 @@ func _process(delta):
 		update_road_coords()
 		# get all the road points
 		road_points = get_all_roads()
+		# get all the regions
+		get_all_regions()
 		# build and save all textures
 		get_road_textures()
 		# do NOT save data here, as multiple _process() will be called
@@ -57,11 +60,16 @@ func get_region_color(pos: Vector2):
 	helpers.log('Error: Got position outside of map: ' + str(pos))
 	get_tree().quit()
 
+func get_all_regions():
+	for i in $Regions.get_children():
+		var region_id = get_region_index(i.rect_position)
+		region_data.append({'id':region_id, 'name':i.region_name})
+
 func get_region_index(pos: Vector2) -> int:
 	var rcol = get_region_color(pos)
 	return helpers.get_index_from_region_color(rcol)
 
-func get_closest_node(nodes, position, radius):
+func get_closest_node(nodes, position):
 	# get the node position or return null as an error
 	var detected = null
 	for i in nodes:
@@ -79,7 +87,7 @@ func get_closest_node(nodes, position, radius):
 	return detected
 
 func get_matched_node(nodes, position):
-	var pos = get_closest_node(nodes, position, NODE_RADIUS)
+	var pos = get_closest_node(nodes, position)
 	if pos == null:
 		helpers.log('Error: No matching node')
 		return null
@@ -242,12 +250,12 @@ func save_data(data) -> void:
 	var json_data = JSON.print(data, '  ', false)
 	file.store_string(json_data)
 	file.close()
-	helpers.log('Saved roads + nodes data to ' + DATA_FILE)
+	helpers.log('Saved roads, nodes and regions to ' + DATA_FILE)
 
 func save_all_data() -> void:
 	# this returns a dict of region_id:nodes_in_region
 	var all_nodes = get_nodes()
-	var all_data = {'nodes': all_nodes, 'roads': road_data}
+	var all_data = {'nodes':all_nodes, 'roads':road_data, 'regions':region_data}
 	save_data(all_data)
 	helpers.log('All data exported as JSON')
 

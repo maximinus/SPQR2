@@ -26,7 +26,7 @@ const VIEW_AREA_ZOOM_MAX = Vector3(6.0, 5.2, -7.2)
 # and then recalculated per zoom level
 var view_area = Vector3(7.0, 4.0, -4.0)
 
-var city_scene = preload('res://scenes/road_node/RoadNode.tscn')
+var node_scene = preload('res://scenes/road_node/RoadNode.tscn')
 var unit_scene = preload("res://scenes/unit/Unit.tscn")
 
 var zoom_level = 3.5
@@ -50,7 +50,7 @@ func _ready():
 	region_map.lock()
 	helpers.log('Loaded region map data')
 	dragging = false
-	add_cities()
+	add_nodes()
 	add_armies()
 	calculate_view_area()
 	calculate_intersections()
@@ -128,16 +128,8 @@ func check_region_click(coords) -> void:
 			# get the city details
 			$CanvasLayer/Overlay.update_region_info(data.regions[index])
 
-func add_cities() -> void:
-	# add cities to scene from world data
-	for i in data.regions:
-		if i.city != null:
-			var city_instance = city_scene.instance()
-			var city_pos = i.city.city_pos
-			city_instance.translation.x = city_pos[0]
-			city_instance.translation.z = city_pos[1]
-			city_instance.rotation_degrees.y = city_pos[2]
-			$Cities.add_child(city_instance)
+func add_nodes() -> void:
+	pass
 
 func add_armies() -> void:
 	for i in data.armies:
