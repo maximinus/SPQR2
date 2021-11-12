@@ -20,9 +20,10 @@ Graphics
 		Learning by jai from the Noun Project
 	SPQR text on pause screen: Ssolbergj - Own work, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=2992630
 	Circle unit highlight: Background vector created by kbibibi - https://www.freepik.com/vectors/background
-	Yellow paper opn events dialog by studiopratisaad0 from Pixabay
+	Yellow paper on events dialog by studiopratisaad0 from Pixabay
 	Sousse mosaic © Ad Meskens / Wikimedia Commons
 	Leaders eagle by Phillip Handy
+	Editor army sprites taken from Freeciv, GPL 2.0, https://github.com/freeciv/freeciv
 
 Sound
 	UI sounds from Kenny - https://www.kenney.nl/assets/ui-audio

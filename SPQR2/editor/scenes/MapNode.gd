@@ -7,6 +7,8 @@ export(int) var culture = 0
 export(int) var wealth = 0
 export(int) var manpower = 0
 export(int) var romanisation = 0
+export(String, 'None', 'Roman', 'Enemy') var unit_type setget set_unit_type
+export(int) var unit_strength
 
 var id:int = 0
 
@@ -21,6 +23,19 @@ func set_population(new_pop: int) -> void:
 	else:
 		$Nodeimage.show()
 		$CityImage.hide()
+
+func set_unit_type(new_unit: String) -> void:
+	unit_type = new_unit
+	if unit_type == 'None':
+		$RomanImage.hide()
+		$Enemyimage.hide()
+		return
+	if unit_type == 'Roman':
+		$RomanImage.show()
+		$Enemyimage.hide()
+	else:
+		$RomanImage.hide()
+		$Enemyimage.show()
 
 func get_data():
 	return {
