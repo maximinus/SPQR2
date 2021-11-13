@@ -28,14 +28,14 @@ func set_unit_type(new_unit: String) -> void:
 	unit_type = new_unit
 	if unit_type == 'None':
 		$RomanImage.hide()
-		$Enemyimage.hide()
+		$EnemyImage.hide()
 		return
 	if unit_type == 'Roman':
 		$RomanImage.show()
-		$Enemyimage.hide()
+		$EnemyImage.hide()
 	else:
 		$RomanImage.hide()
-		$Enemyimage.show()
+		$EnemyImage.show()
 
 func get_data():
 	return {

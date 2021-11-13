@@ -1,18 +1,190 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://gfx/editor/editor_map.png" type="Texture" id=1]
 [ext_resource path="res://editor/Editor.gd" type="Script" id=2]
+[ext_resource path="res://gfx/map/map_final.png" type="Texture" id=3]
 [ext_resource path="res://editor/scenes/MapNode.tscn" type="PackedScene" id=4]
 [ext_resource path="res://editor/scenes/RegionData.tscn" type="PackedScene" id=5]
 [ext_resource path="res://editor/scenes/RoadLine.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gfx/map/map_regions.png" type="Texture" id=7]
+[ext_resource path="res://editor/RegionMap.gd" type="Script" id=8]
+[ext_resource path="res://gfx/map/map_regions_uncompressed.png" type="Texture" id=9]
+[ext_resource path="res://gfx/map/map_borders.png" type="Texture" id=10]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D map_image;
+uniform sampler2D region_image;
+uniform sampler2D region_cols;
+uniform sampler2D map_borders;
+uniform float total_regions;
+
+void fragment() {
+	COLOR = texture(map_image, UV);
+	vec4 region_i = texture(region_image, UV);
+	if(region_i.a != 0.0) {
+		float index = (round(region_i.b * 8.0) + round(region_i.r * 64.0));
+		float offset = 1.0 / (total_regions * 2.0);
+		float index_offset = index * (1.0 / total_regions);
+		float owner_ypos = offset + index_offset;
+		COLOR = texture(region_cols, vec2(0, owner_ypos));
+	}
+	vec4 border = texture(map_borders, UV);
+	if(border.a != 0.0) {
+		COLOR = border;
+	}
+}
+"
+
+[sub_resource type="Image" id=3]
+data = {
+"data": PoolByteArray( 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206 ),
+"format": "RGB8",
+"height": 14,
+"mipmaps": false,
+"width": 1
+}
+
+[sub_resource type="ImageTexture" id=4]
+image = SubResource( 3 )
+size = Vector2( 1, 14 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/total_regions = 14.0
+shader_param/map_image = ExtResource( 3 )
+shader_param/region_image = ExtResource( 7 )
+shader_param/region_cols = SubResource( 4 )
+shader_param/map_borders = ExtResource( 10 )
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="RegionMap" type="Sprite" parent="."]
-position = Vector2( 1.18921, 3.56763 )
+material = SubResource( 2 )
+position = Vector2( 2.60352, 2.15345 )
 texture = ExtResource( 1 )
 centered = false
+script = ExtResource( 8 )
+region_tex = ExtResource( 9 )
+
+[node name="Regions" type="CanvasLayer" parent="RegionMap"]
+
+[node name="RegionData" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 1806.55
+margin_top = 1617.27
+margin_right = 1904.55
+margin_bottom = 1649.27
+region_name = "Latium"
+
+[node name="RegionData7" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 1522.25
+margin_top = 1784.9
+margin_right = 1746.25
+margin_bottom = 1816.9
+region_name = "Corsica & Sardinia"
+
+[node name="RegionData12" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 1246.0
+margin_top = 2165.0
+margin_right = 1383.0
+margin_bottom = 2197.0
+region_name = "Numidia"
+owned_by = "Celt"
+
+[node name="RegionData11" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 1558.0
+margin_top = 2115.0
+margin_right = 1670.0
+margin_bottom = 2147.0
+region_name = "Tunis"
+owned_by = "Roman"
+
+[node name="RegionData13" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 1696.23
+margin_top = 2435.93
+margin_right = 1920.23
+margin_bottom = 2467.93
+region_name = "Africa"
+owned_by = "Celt"
+
+[node name="RegionData3" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 1556.23
+margin_top = 1289.88
+margin_right = 1681.23
+margin_bottom = 1321.88
+region_name = "Cisalpina"
+
+[node name="RegionData4" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 1195.42
+margin_top = 1439.55
+margin_right = 1354.42
+margin_bottom = 1471.55
+rect_pivot_offset = Vector2( 60.5443, 16 )
+region_name = "Narbonensis"
+owned_by = "Celt"
+
+[node name="RegionData6" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 875.447
+margin_top = 1434.83
+margin_right = 1034.45
+margin_bottom = 1466.83
+rect_pivot_offset = Vector2( 60.5443, 16 )
+region_name = "Aquitania Inferiore"
+owned_by = "Celt"
+
+[node name="RegionData5" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 940.143
+margin_top = 1631.88
+margin_right = 1156.14
+margin_bottom = 1663.88
+rect_pivot_offset = Vector2( 60.5443, 16 )
+region_name = "Hispania Superior"
+owned_by = "Celt"
+
+[node name="RegionData2" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 2012.91
+margin_top = 1729.0
+margin_right = 2137.91
+margin_bottom = 1761.0
+region_name = "Sicilia"
+
+[node name="RegionData8" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+anchor_left = 0.000756836
+anchor_right = 0.000756836
+margin_left = 2329.09
+margin_top = 1678.55
+margin_right = 2454.09
+margin_bottom = 1710.55
+region_name = "Epirus"
+owned_by = "Celt"
+
+[node name="RegionData10" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+anchor_left = 0.000756836
+anchor_right = 0.000756836
+margin_left = 2501.78
+margin_top = 1642.52
+margin_right = 2626.78
+margin_bottom = 1674.52
+region_name = "Macedonia"
+owned_by = "Celt"
+
+[node name="RegionData9" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 2457.28
+margin_top = 1990.09
+margin_right = 2582.28
+margin_bottom = 2022.09
+region_name = "Achea"
+owned_by = "Celt"
+
+[node name="RegionData14" parent="RegionMap/Regions" instance=ExtResource( 5 )]
+margin_left = 2351.77
+margin_top = 2477.24
+margin_right = 2480.77
+margin_bottom = 2509.24
+region_name = "Cyrenaica"
+owned_by = "Celt"
 
 [node name="Roads" type="Node2D" parent="."]
 
@@ -411,113 +583,6 @@ position = Vector2( 2518.1, 2442.45 )
 position = Vector2( 2479.93, 2414.39 )
 city_name = "Cyrene"
 population = 3
-
-[node name="Regions" type="CanvasLayer" parent="."]
-
-[node name="RegionData" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1806.55
-margin_top = 1617.27
-margin_right = 1904.55
-margin_bottom = 1649.27
-region_name = "Latium"
-
-[node name="RegionData7" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1522.25
-margin_top = 1784.9
-margin_right = 1746.25
-margin_bottom = 1816.9
-region_name = "Corsica & Sardinia"
-
-[node name="RegionData12" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1246.0
-margin_top = 2165.0
-margin_right = 1383.0
-margin_bottom = 2197.0
-region_name = "Numidia"
-
-[node name="RegionData11" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1558.0
-margin_top = 2115.0
-margin_right = 1670.0
-margin_bottom = 2147.0
-region_name = "Tunis"
-
-[node name="RegionData13" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1696.23
-margin_top = 2435.93
-margin_right = 1920.23
-margin_bottom = 2467.93
-region_name = "Africa"
-
-[node name="RegionData3" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1556.23
-margin_top = 1289.88
-margin_right = 1681.23
-margin_bottom = 1321.88
-region_name = "Cisalpina"
-
-[node name="RegionData4" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 1195.42
-margin_top = 1439.55
-margin_right = 1354.42
-margin_bottom = 1471.55
-rect_pivot_offset = Vector2( 60.5443, 16 )
-region_name = "Narbonensis"
-
-[node name="RegionData6" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 875.447
-margin_top = 1434.83
-margin_right = 1034.45
-margin_bottom = 1466.83
-rect_pivot_offset = Vector2( 60.5443, 16 )
-region_name = "Aquitania Inferiore"
-
-[node name="RegionData5" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 940.143
-margin_top = 1631.88
-margin_right = 1156.14
-margin_bottom = 1663.88
-rect_pivot_offset = Vector2( 60.5443, 16 )
-region_name = "Hispania Superior"
-
-[node name="RegionData2" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 2012.91
-margin_top = 1729.0
-margin_right = 2137.91
-margin_bottom = 1761.0
-region_name = "Sicilia"
-
-[node name="RegionData8" parent="Regions" instance=ExtResource( 5 )]
-anchor_left = 0.000756836
-anchor_right = 0.000756836
-margin_left = 2329.09
-margin_top = 1678.55
-margin_right = 2454.09
-margin_bottom = 1710.55
-region_name = "Epirus"
-
-[node name="RegionData10" parent="Regions" instance=ExtResource( 5 )]
-anchor_left = 0.000756836
-anchor_right = 0.000756836
-margin_left = 2501.78
-margin_top = 1642.52
-margin_right = 2626.78
-margin_bottom = 1674.52
-region_name = "Macedonia"
-
-[node name="RegionData9" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 2457.28
-margin_top = 1988.97
-margin_right = 2582.28
-margin_bottom = 2020.97
-region_name = "Achea"
-
-[node name="RegionData14" parent="Regions" instance=ExtResource( 5 )]
-margin_left = 2352.89
-margin_top = 2478.36
-margin_right = 2477.89
-margin_bottom = 2510.36
-region_name = "Cyrenaica"
 
 [node name="ViewC" type="ViewportContainer" parent="."]
 margin_right = 200.0

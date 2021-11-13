@@ -61,7 +61,7 @@ func get_region_color(pos: Vector2):
 	get_tree().quit()
 
 func get_all_regions():
-	for i in $Regions.get_children():
+	for i in $RegionMap/Regions.get_children():
 		var region_id = get_region_index(i.rect_position)
 		region_data.append({'id':region_id, 'name':i.region_name})
 

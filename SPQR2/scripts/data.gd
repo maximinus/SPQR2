@@ -4,7 +4,6 @@ extends Node
 # JSON error checking is a different step;
 # it should be run in a pre-build step
 
-const ROME_DEFAULT_COLOR = Color(0.91, 0.0664, 0.0664, 1.0)
 const GAME_DATA = 'res://data/game_data.json'
 const REGION_DATA = 'res://data/region_data.json'
 const MAP_DATA = 'res://data/map_data.json'

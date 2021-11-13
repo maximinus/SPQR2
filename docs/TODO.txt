@@ -8,15 +8,18 @@ This is essentially the "how I will program the game" document
 Short Term:
 -----------
 
-✓ Maps are a collection of nodes joined by paths
-✓ A node can be a city or a unit base. A node can have meta-data (has a port / makes good wine / famouse for sculpture etc..)
-✓ There is only a single "node" type in the editor, and it can display as a city or a plain node
-✓ Generate all roads as:
-✓ A line with borders
-✓ A single line
-✓ A dotted line
-* Import all road data via the new json file
+Editor Improvements:
+
+✓ Unit data held in nodes
+* Add shader to editor for regions
+* Allow changing region ownership in RegionData
+* Remove Nim code for checking JSON data
 * All nodes must be shown on the in-game map (NOT the mini map)
+* Add meta-item for Roman money and year start
+* All json data exported from editor
+* Soldiers, vities
+* Allow click only Roman units
+* A click removes the other highlights
 * When a unit is clicked, all the possible move nodes are highlighted
 
 
