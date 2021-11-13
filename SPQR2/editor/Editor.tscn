@@ -80,6 +80,7 @@ margin_top = 1617.27
 margin_right = 1904.55
 margin_bottom = 1649.27
 region_name = "Latium"
+owned_by = "Roman"
 
 [node name="RegionData7" parent="RegionMap/Regions" instance=ExtResource( 5 )]
 margin_left = 1522.25
