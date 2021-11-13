@@ -37,7 +37,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="Image" id=3]
+[sub_resource type="Image" id=5]
 data = {
 "data": PoolByteArray( 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206 ),
 "format": "RGB8",
@@ -47,7 +47,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id=4]
-image = SubResource( 3 )
+image = SubResource( 5 )
 size = Vector2( 1, 14 )
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -60,6 +60,9 @@ shader_param/map_borders = ExtResource( 10 )
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 2 )
+year = -200
+gold = 2300
+silver = 28350
 
 [node name="RegionMap" type="Sprite" parent="."]
 material = SubResource( 2 )

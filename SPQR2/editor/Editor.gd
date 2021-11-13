@@ -9,6 +9,11 @@ const BORDER_COLOR = Color(0.7, 0.6, 0.5, 1.0)
 const ROAD_COLOR = Color(0.8, 0.8, 0.8, 1.0)
 const NORMAL_ROAD = Color(0.7, 0.5, 0.3, 1.0)
 
+# Some met-information
+export(int) var year
+export(int) var gold
+export(int) var silver
+
 var region_map: Image
 var complete = false
 var road_points: Array = []
