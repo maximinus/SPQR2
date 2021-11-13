@@ -28,7 +28,10 @@ func update_army_list(region_id: int) -> void:
 			rows[i].hide()
 		else:
 			rows[i].show()
-			rows[i].get_node('Ar/StrengthLbl').text = str(all_armies[i].strength)
-			rows[i].get_node('Ar/MoraleLbl').text = str(all_armies[i].strength)
-			rows[i].get_node('Ar/EquipmentLbl').text = str(all_armies[i].strength)
-			rows[i].get_node('Ar/TrainingLbl').text = str(all_armies[i].strength)
+			var strength = str(all_armies[i].strength)
+			# strip last 3 values and add k
+			strength = strength.substr(0, len(strength) - 3) + 'k'
+			rows[i].get_node('Ar/StrengthLbl').text = strength
+			rows[i].get_node('Ar/MoraleLbl').text = '1'
+			rows[i].get_node('Ar/EquipmentLbl').text = '1'
+			rows[i].get_node('Ar/TrainingLbl').text = '1'
