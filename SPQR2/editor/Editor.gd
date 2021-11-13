@@ -1,8 +1,7 @@
 extends Node2D
 
 const NODE_RADIUS: float = 24.5
-const JSON_FILE = 'res://editor/output/road_data.json'
-const DATA_FILE = 'res://editor/output/region_data.json'
+const DATA_FILE = 'res://editor/output/game_data.json'
 
 const DOTTED_LENGTH: float = 6.0
 const BORDER_COLOR = Color(0.7, 0.6, 0.5, 1.0)
@@ -118,22 +117,6 @@ func update_road_coords() -> void:
 		if end != null:
 			road.points[-1] = end
 
-func get_city_data(locations) -> String:
-	# check the city data is at least correct and send it all back
-	var cities = []
-	for city_node in $Cities.get_children():
-		# names need to be non zero length and not none
-		city_node.check_data()
-		var data = city_node.get_data()
-		# we need the region id, which is obtained from the region color
-		var region_id = get_region_index(city_node.position)
-		data['id'] = region_id
-		# update with unit locations
-		if region_id in locations:
-			data['army_pos'] = locations[region_id]
-		cities.append(data)
-	return JSON.print(cities, '  ', true)
-
 func get_nodes() -> Array:
 	# stuff results in a dictionary against the id
 	var locations = []
@@ -238,18 +221,6 @@ func get_road_textures() -> void:
 		road_data.append(all_data)
 	# now we can save data!
 	save_all_data()
-
-func get_node_matching_point(position: Array) -> int:
-	var vpos: Vector2 = Vector2(position[0], position[1])
-	for i in $Nodes.get_children():
-		var offset = vpos - i.position
-		var distance = sqrt((offset.x * offset.x) + (offset.y * offset.y))
-		if distance < NODE_RADIUS:
-			# we got our match
-			return i.id
-	# this should never happen because of earlier checks
-	print('Error: No node to match road')
-	return -1
 
 func get_player_data():
 	var romans = {'name': 'Roman',
