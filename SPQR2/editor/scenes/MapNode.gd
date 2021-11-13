@@ -46,3 +46,13 @@ func get_data():
 		'manpower': manpower,
 		'romanisation': romanisation
 	}
+
+func get_unit_data():
+	var roman = true if unit_type == 'Roman' else false
+	if unit_type == 'None':
+		return {'strength':0, 'Roman':roman}
+
+func has_unit() -> bool:
+	if unit_type == 'None':
+		return false
+	return true
