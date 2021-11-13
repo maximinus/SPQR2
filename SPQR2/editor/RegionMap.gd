@@ -21,7 +21,7 @@ class RegHighlightSorter:
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	# have an regions been updated?
 	for i in $Regions.get_children():
 		if i.needs_update == true:

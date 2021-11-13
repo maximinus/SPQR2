@@ -5,22 +5,20 @@ class_name EnemyAI
 var enemy_name: String
 var id: int
 var base_color: Color
-var regions: Array
-var armies: Array
 var gold: int
 var silver: int
 
 func _init(data: Dictionary):
 	enemy_name = data['name']
 	id = data['id']
-	regions = data['regions']
-	armies = data['armies']
-	var c: Array = data['color']
-	var base: float = 1.0 / 256.0
-	base_color = Color(base * float(c[0]), base * float(c[1]), base * float(c[2]), 1.0)
+	if id == 0:
+		base_color = cn.ROME_DEFAULT_COLOR
+	else:
+		base_color = cn.CELT_COLOR
 	gold = data['gold']
 	silver = data['silver']
 
-# currently (v3.3) cannot add type info for a class in another class
-func add_region(new_region) -> void:
-	regions.append(new_region)
+static func sort(a, b) -> bool:
+	if a.id < b.id:
+		return true
+	return false

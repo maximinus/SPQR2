@@ -13,7 +13,7 @@ var armies: Array = []
 var roads: Array = []
 var roads_built: Array = []
 var road_images: Array = []
-var enemies: Array = []
+var players: Array = []
 var leader_unit: int = 0
 
 var road_texture: ImageTexture = null
@@ -82,10 +82,12 @@ class RNode:
 
 class MapRegion:
 	var id: int
+	var owner_id: int
 	var region_name: String
 
 	func _init(data: Dictionary):
 		id = data['id']
+		owner_id = data['owner_id']
 		region_name = data['name']
 	
 	static func sort(a, b) -> bool:
@@ -101,13 +103,6 @@ func load_all_data() -> bool:
 		helpers.log('Error: Could not load ' + GAME_DATA)
 		return false
 	get_node_data(game_data)
-		
-	# grab all normal_data
-	roads_built = data['ROADS']
-	enemies = get_enemies(data['ENEMIES'])
-	armies = get_armies(data['ARMIES'])
-	leader_unit = data['LEADER']
-	
 	load_road_images()
 	build_roads()
 	return true
@@ -136,21 +131,22 @@ func get_node_data(data):
 	for i in data['regions']:
 		regions.append(MapRegion.new(i))
 	regions.sort_custom(MapRegion, 'sort')
-	helpers.log('Map data loaded')
+	for i in data['players']:
+		players.append(EnemyAI.new(i))
+	players.sort_custom(EnemyAI, 'sort')
+	armies = get_armies(data['nodes'])
+	helpers.log('Game data loaded')
 
-func get_enemies(enemy_data: Array) -> Array:
-	var enemy_instances: Array = []
-	for i in enemy_data:
-		enemy_instances.append(EnemyAI.new(i))
-	helpers.log('Got %s enemies' % len(enemy_instances))
-	return enemy_instances
-
-func get_armies(army_data: Array) -> Array:
-	var army_instances: Array = []
-	for i in army_data:
-		army_instances.append(Army.new(i))
-	helpers.log('Got %s armies' % len(army_instances))
-	return army_instances
+func get_armies(nodes: Array) -> Array:
+	var new_armies: Array = []
+	var army_id = 0
+	for i in nodes:
+		if i['unit'] >= 0:
+			var army_owner = regions[int(i['region_id'])].owner_id
+			new_armies.append(Army.new(i, army_owner, army_id))
+			army_id += 1
+	helpers.log('Got %s armies' % len(new_armies))
+	return new_armies
 
 # =======================================================
 # all methods to get data follow here
@@ -220,11 +216,10 @@ func get_money_stats_texture() -> Image:
 
 func get_unit_owner(unit_id: int) -> int:
 	# get the owner id or -1
-	for i in enemies:
-		if unit_id in i.armies:
-			return i.id
-	helpers.log('Error: invalid unit id')
-	return -1
+	if unit_id < 0 or unit_id >= len(armies):
+		helpers.log('Error: invalid unit id')
+		return -1
+	return armies[unit_id].owner_id
 
 func get_armies_in_region(region_id: int) -> Array:
 	var in_region: Array = []
@@ -260,7 +255,7 @@ func build_roads() -> void:
 
 # code for handling money
 func get_player_gold():
-	return enemies[0].gold
+	return players[0].gold
 
 func get_player_silver():
-	return enemies[0].silver
+	return players[0].silver

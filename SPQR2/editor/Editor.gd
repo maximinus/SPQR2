@@ -24,7 +24,7 @@ func _ready():
 	region_map = image.get_data()
 	region_map.lock()
 
-func _process(delta):
+func _process(_delta):
 	# all data has been loaded by now
 	if complete == false:
 		complete = true
