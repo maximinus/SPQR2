@@ -22,3 +22,9 @@ func set_region_owner(new_owner:String) -> void:
 		else:
 			current_color = cn.CELT_COLOR
 		needs_update = true
+
+func get_owner_id() -> int:
+	# 0 if owned by Rome
+	if owned_by == 'Roman':
+		return 0
+	return 1

@@ -11,9 +11,11 @@ export(String, 'None', 'Roman', 'Enemy') var unit_type setget set_unit_type
 export(int) var unit_strength
 
 var id:int = 0
+var fully_loaded = false
 
 func _ready():
-	pass
+	fully_loaded = true
+	set_unit_type(unit_type)
 
 func set_population(new_pop: int) -> void:
 	population = new_pop
@@ -26,6 +28,8 @@ func set_population(new_pop: int) -> void:
 
 func set_unit_type(new_unit: String) -> void:
 	unit_type = new_unit
+	if fully_loaded == false:
+		return
 	if unit_type == 'None':
 		$RomanImage.hide()
 		$EnemyImage.hide()

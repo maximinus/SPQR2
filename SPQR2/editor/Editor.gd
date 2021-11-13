@@ -68,7 +68,9 @@ func get_region_color(pos: Vector2):
 func get_all_regions():
 	for i in $RegionMap/Regions.get_children():
 		var region_id = get_region_index(i.rect_position)
-		region_data.append({'id':region_id, 'name':i.region_name})
+		region_data.append({'id':region_id,
+							'name':i.region_name,
+							'owner_id':i.get_owner_id()})
 
 func get_region_index(pos: Vector2) -> int:
 	var rcol = get_region_color(pos)
@@ -248,7 +250,22 @@ func get_node_matching_point(position: Array) -> int:
 	# this should never happen because of earlier checks
 	print('Error: No node to match road')
 	return -1
-	
+
+func get_player_data():
+	var romans = {'name': 'Roman',
+				  'id': 0,
+				  'gold': gold,
+				  'silver': silver}
+	var celts = {'name': 'Celts',
+				 'id': 1,
+				 'gold': 0,
+				 'silver': 0}
+	return [romans, celts]
+
+func get_game_data():
+	return {'game_name':'Test scenario',
+			'year': year}
+
 func save_data(data) -> void:
 	var file = File.new()
 	file.open(DATA_FILE, File.WRITE)
@@ -260,7 +277,11 @@ func save_data(data) -> void:
 func save_all_data() -> void:
 	# this returns a dict of region_id:nodes_in_region
 	var all_nodes = get_nodes()
-	var all_data = {'nodes':all_nodes, 'roads':road_data, 'regions':region_data}
+	var all_data = {'nodes': all_nodes,
+					'roads': road_data,
+					'regions': region_data,
+					'players': get_player_data(),
+					'game': get_game_data()}
 	save_data(all_data)
 	helpers.log('All data exported as JSON')
 

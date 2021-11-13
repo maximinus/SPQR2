@@ -46,16 +46,16 @@ data = {
 "width": 1
 }
 
-[sub_resource type="ImageTexture" id=4]
+[sub_resource type="ImageTexture" id=6]
 image = SubResource( 5 )
 size = Vector2( 1, 14 )
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 1 )
 shader_param/total_regions = 14.0
 shader_param/map_image = ExtResource( 3 )
 shader_param/region_image = ExtResource( 7 )
-shader_param/region_cols = SubResource( 4 )
+shader_param/region_cols = SubResource( 6 )
 shader_param/map_borders = ExtResource( 10 )
 
 [node name="Editor" type="Node2D"]
@@ -65,7 +65,7 @@ gold = 2300
 silver = 28350
 
 [node name="RegionMap" type="Sprite" parent="."]
-material = SubResource( 2 )
+material = SubResource( 4 )
 position = Vector2( 2.60352, 2.15345 )
 texture = ExtResource( 1 )
 centered = false
@@ -466,11 +466,13 @@ population = 3
 [node name="MapNode9" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1532.31, 1418.76 )
 city_name = ""
+unit_type = "Roman"
 unit_strength = 12000
 
 [node name="MapNode20" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1707.44, 1319.22 )
 city_name = ""
+unit_type = "Roman"
 unit_strength = 10000
 
 [node name="MapNode21" parent="Nodes" instance=ExtResource( 4 )]
@@ -492,6 +494,7 @@ city_name = ""
 [node name="MapNode16" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1002.96, 1416.88 )
 city_name = ""
+unit_type = "Enemy"
 unit_strength = 15000
 
 [node name="MapNode18" parent="Nodes" instance=ExtResource( 4 )]
@@ -506,6 +509,7 @@ city_name = ""
 [node name="MapNode13" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 913.14, 1706.52 )
 city_name = ""
+unit_type = "Enemy"
 unit_strength = 18000
 
 [node name="MapNode14" parent="Nodes" instance=ExtResource( 4 )]
@@ -517,6 +521,7 @@ population = 3
 position = Vector2( 1359.48, 1522.1 )
 city_name = "Massilia"
 population = 3
+unit_type = "Roman"
 unit_strength = 3000
 
 [node name="MapNode5" parent="Nodes" instance=ExtResource( 4 )]
@@ -529,6 +534,7 @@ city_name = ""
 
 [node name="MapNode2" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1863.88, 2002.66 )
+unit_type = "Roman"
 unit_strength = 6000
 
 [node name="MapNode45" parent="Nodes" instance=ExtResource( 4 )]
