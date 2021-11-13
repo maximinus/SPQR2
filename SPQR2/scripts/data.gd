@@ -5,8 +5,6 @@ extends Node
 # it should be run in a pre-build step
 
 const GAME_DATA = 'res://data/game_data.json'
-const REGION_DATA = 'res://data/region_data.json'
-const MAP_DATA = 'res://data/map_data.json'
 
 # regions are loaded per id, i.e. id 0 is the first region
 var regions: Array = []
@@ -98,16 +96,12 @@ class MapRegion:
 # this is main() function: it should be called when the game scene starts
 func load_all_data() -> bool:
 	# return false if there was an issue
-	var map_data = get_json_data(MAP_DATA)
-	if map_data == null:
-		helpers.log('Error: Could not load ' + MAP_DATA)
+	var game_data = get_json_data(GAME_DATA)
+	if game_data == null:
+		helpers.log('Error: Could not load ' + GAME_DATA)
 		return false
-	get_node_data(map_data)
-	
-	var data = get_json_data(GAME_DATA)
-	if data == null:
-		return false
-	
+	get_node_data(game_data)
+		
 	# grab all normal_data
 	roads_built = data['ROADS']
 	enemies = get_enemies(data['ENEMIES'])

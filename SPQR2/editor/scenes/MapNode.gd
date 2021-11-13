@@ -7,7 +7,7 @@ export(int) var culture = 0
 export(int) var wealth = 0
 export(int) var manpower = 0
 export(int) var romanisation = 0
-export(String, 'None', 'Roman', 'Enemy') var unit_type setget set_unit_type
+export(String, 'None', 'Roman', 'Celt') var unit_type setget set_unit_type
 export(int) var unit_strength
 
 var id:int = 0
@@ -42,13 +42,20 @@ func set_unit_type(new_unit: String) -> void:
 		$EnemyImage.show()
 
 func get_data():
+	var id_owner = -1
+	if unit_type == 'Roman':
+		id_owner = 0
+	elif unit_type == 'Celt':
+		id_owner = 1
 	return {
 		'city_name': city_name,
 		'population': population,
 		'culture': culture,
 		'wealth': wealth,
 		'manpower': manpower,
-		'romanisation': romanisation
+		'romanisation': romanisation,
+		'unit': id_owner,
+		'unit_strength': unit_strength
 	}
 
 func get_unit_data():

@@ -88,6 +88,7 @@ margin_top = 1784.9
 margin_right = 1746.25
 margin_bottom = 1816.9
 region_name = "Corsica & Sardinia"
+owned_by = "Roman"
 
 [node name="RegionData12" parent="RegionMap/Regions" instance=ExtResource( 5 )]
 margin_left = 1246.0
@@ -119,6 +120,7 @@ margin_top = 1289.88
 margin_right = 1681.23
 margin_bottom = 1321.88
 region_name = "Cisalpina"
+owned_by = "Roman"
 
 [node name="RegionData4" parent="RegionMap/Regions" instance=ExtResource( 5 )]
 margin_left = 1195.42
@@ -153,6 +155,7 @@ margin_top = 1729.0
 margin_right = 2137.91
 margin_bottom = 1761.0
 region_name = "Sicilia"
+owned_by = "Roman"
 
 [node name="RegionData8" parent="RegionMap/Regions" instance=ExtResource( 5 )]
 anchor_left = 0.000756836
@@ -495,7 +498,7 @@ city_name = ""
 [node name="MapNode16" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1002.96, 1416.88 )
 city_name = ""
-unit_type = "Enemy"
+unit_type = "Celt"
 unit_strength = 15000
 
 [node name="MapNode18" parent="Nodes" instance=ExtResource( 4 )]
@@ -510,7 +513,7 @@ city_name = ""
 [node name="MapNode13" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 913.14, 1706.52 )
 city_name = ""
-unit_type = "Enemy"
+unit_type = "Celt"
 unit_strength = 18000
 
 [node name="MapNode14" parent="Nodes" instance=ExtResource( 4 )]
@@ -522,7 +525,7 @@ population = 3
 position = Vector2( 1359.48, 1522.1 )
 city_name = "Massilia"
 population = 3
-unit_type = "Roman"
+unit_type = "Celt"
 unit_strength = 3000
 
 [node name="MapNode5" parent="Nodes" instance=ExtResource( 4 )]
