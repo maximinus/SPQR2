@@ -272,7 +272,7 @@ position = Vector2( 1818.4, 1521.34 )
 city_name = ""
 
 [node name="MapNode7" parent="Nodes" instance=ExtResource( 4 )]
-position = Vector2( 1737.38, 1597.66 )
+position = Vector2( 1737.38, 1599.07 )
 city_name = "Rome"
 population = 3
 unit_type = "Roman"
@@ -291,13 +291,11 @@ population = 3
 [node name="MapNode9" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1532.31, 1418.76 )
 city_name = ""
-unit_type = "Roman"
 unit_strength = 12000
 
 [node name="MapNode20" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1707.44, 1319.22 )
 city_name = ""
-unit_type = "Roman"
 unit_strength = 10000
 
 [node name="MapNode21" parent="Nodes" instance=ExtResource( 4 )]
@@ -319,7 +317,6 @@ city_name = ""
 [node name="MapNode16" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1002.96, 1416.88 )
 city_name = ""
-unit_type = "Enemy"
 unit_strength = 15000
 
 [node name="MapNode18" parent="Nodes" instance=ExtResource( 4 )]
@@ -334,7 +331,6 @@ city_name = ""
 [node name="MapNode13" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 913.14, 1706.52 )
 city_name = ""
-unit_type = "Enemy"
 unit_strength = 18000
 
 [node name="MapNode14" parent="Nodes" instance=ExtResource( 4 )]
@@ -346,7 +342,6 @@ population = 3
 position = Vector2( 1359.48, 1522.1 )
 city_name = "Massilia"
 population = 3
-unit_type = "Enemy"
 unit_strength = 3000
 
 [node name="MapNode5" parent="Nodes" instance=ExtResource( 4 )]
@@ -359,7 +354,6 @@ city_name = ""
 
 [node name="MapNode2" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1863.88, 2002.66 )
-unit_type = "Roman"
 unit_strength = 6000
 
 [node name="MapNode45" parent="Nodes" instance=ExtResource( 4 )]
@@ -372,7 +366,6 @@ position = Vector2( 1665.43, 2216.25 )
 
 [node name="MapNode50" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1631.41, 2149.47 )
-unit_type = "None"
 
 [node name="MapNode23" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1399.7, 2224.66 )
