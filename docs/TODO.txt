@@ -11,8 +11,8 @@ Short Term:
 Editor Improvements:
 
 ✓ Unit data held in nodes
-* Add shader to editor for regions
-* Allow changing region ownership in RegionData
+✓ Add shader to editor for regions
+✓ Allow changing region ownership in RegionData
 * Remove Nim code for checking JSON data
 * All nodes must be shown on the in-game map (NOT the mini map)
 * Add meta-item for Roman money and year start
