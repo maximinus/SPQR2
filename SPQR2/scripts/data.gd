@@ -164,9 +164,8 @@ func get_ascending_region_colors() -> Array:
 	# sort by region id ascending and return
 	# get all regions and owners
 	var region_owners: Array = []
-	for i in data.enemies:
-		for j in i.regions:
-			region_owners.append([j, i.base_color])
+	for i in regions:
+		region_owners.append([i.id, players[i.owner_id].base_color])
 	# now we have [[region, color], [region, color], sort by region
 	region_owners.sort_custom(RegionSorter, 'sort')
 	return region_owners
@@ -224,9 +223,12 @@ func get_unit_owner(unit_id: int) -> int:
 func get_armies_in_region(region_id: int) -> Array:
 	var in_region: Array = []
 	for i in armies:
-		if region_id == i.location:
+		if region_id == i.get_region_id():
 			in_region.append(i)
 	return in_region
+
+func get_node_position(node_id):
+	return rnodes[node_id].position
 
 # code for road image generation
 func load_road_images() -> void:

@@ -18,3 +18,10 @@ func _init(data: Dictionary, c_owner, new_id):
 	training = 10
 	node_id = data['id']
 	owner_id = c_owner
+
+func get_map_position() -> Vector2:
+	# just need the position of the node	
+	return data.get_node_position(node_id)
+
+func get_region_id() -> int:
+	return data.rnodes[node_id].region_id
