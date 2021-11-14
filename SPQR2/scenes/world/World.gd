@@ -138,8 +138,7 @@ func add_armies() -> void:
 		var unit_pos = i.get_map_position()
 		unit_instance.translation.x = unit_pos[0]
 		unit_instance.translation.z = unit_pos[1]
-		if data.leader_unit == i.id:
-			unit_instance.set_leader_status(true)
+		# no leader status for now
 		$Soldiers.add_child(unit_instance)
 
 func check_mouse_drag() -> bool:

@@ -14,7 +14,8 @@ var roads: Array = []
 var roads_built: Array = []
 var road_images: Array = []
 var players: Array = []
-var leader_unit: int = 0
+# this is the id of the unit with the scenario leader
+var leader_unit: int = -1
 
 var road_texture: ImageTexture = null
 
