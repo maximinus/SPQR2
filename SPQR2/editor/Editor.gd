@@ -18,6 +18,7 @@ var complete = false
 var road_points: Array = []
 var road_data: Array = []
 var region_data: Array = []
+var all_nodes: Array = []
 
 func _ready():
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
@@ -30,6 +31,8 @@ func _process(_delta):
 		complete = true
 		# ensure ids are consistent
 		fix_node_ids()
+		# get the nodes
+		all_nodes = get_nodes()
 		# make sure roads start and end at node junctions
 		update_road_coords()
 		# get all the road points
@@ -78,9 +81,12 @@ func get_region_index(pos: Vector2) -> int:
 func get_closest_node(nodes, position):
 	# get the node position or return null as an error
 	var detected = null
+	var shortest = 100000.0
 	for i in nodes:
-		var offset = position - i
+		var offset = position - i['pixel_pos']
 		var distance = sqrt((offset.x * offset.x) + (offset.y * offset.y))
+		if distance < shortest:
+			shortest = distance
 		if distance < NODE_RADIUS:
 			# we got our match
 			if detected != null:
@@ -89,42 +95,32 @@ func get_closest_node(nodes, position):
 			detected = i
 	# none found, we still have null
 	if detected == null:
-		print('No node at ' + str(position))
+		print('No node at ' + str(position) + '. Shortest: ' + str(shortest))
 	return detected
-
-func get_matched_node(nodes, position):
-	var pos = get_closest_node(nodes, position)
-	if pos == null:
-		helpers.log('Error: No matching node')
-		return null
-	return pos
 
 func update_road_coords() -> void:
 	# A road must start or end at a node (a city or a unit)
 	# all the nodes at that point are placed at the position of the node
-	# first gather all the locations of the nodes
-	var nodes = []
-	for i in $Nodes.get_children():
-		nodes.append(i.position)
 	# now cycle through all the roads
 	for road in $Roads.get_children():
 		# get the start position
-		var start = get_matched_node(nodes, road.points[0])
-		var end = get_matched_node(nodes, road.points[-1])
+		var start = get_closest_node(all_nodes, road.points[0])
+		var end = get_closest_node(all_nodes, road.points[-1])
 		# update the points if not null
 		if start != null:
-			road.points[0] = start
+			road.points[0] = start['pixel_pos']
 		if end != null:
-			road.points[-1] = end
+			road.points[-1] = end['pixel_pos']
 
 func get_nodes() -> Array:
-	# stuff results in a dictionary against the id
+	# stuff results into a dictionary against the id
 	var locations = []
 	for i in $Nodes.get_children():
 		var node_data: Dictionary = i.get_data()
 		var region_id = get_region_index(i.position)
 		# convert position to map position
 		var map_pos = helpers.pixel_to_map(i.position)
+		node_data['pixel_pos'] = i.position
 		node_data['region_id'] = region_id
 		node_data['position'] = map_pos
 		node_data['angle'] = i.rotation_degrees
@@ -210,14 +206,15 @@ func get_road_textures() -> void:
 		# if this doesn't exist the data is faulty
 		var points_data = road_points[rnode.id]
 		
-		var start_region = get_region_index(rnode.points[0])
-		var end_region = get_region_index(rnode.points[-1])
+		# we want the start and end NODES, not the regions
+		var start_node = get_closest_node(all_nodes, rnode.points[0])
+		var end_node = get_closest_node(all_nodes, rnode.points[-1])
 		var all_data = {'id': rnode.id,
 						'position': [loc.x, loc.y],
 						'points': points_data,
 						'condition': rnode.road_state,
-						'start_region': start_region,
-						'end_region': end_region}
+						'start_node': start_node.id,
+						'end_node': end_node.id}
 		road_data.append(all_data)
 	# now we can save data!
 	save_all_data()
@@ -247,7 +244,6 @@ func save_data(data) -> void:
 
 func save_all_data() -> void:
 	# this returns a dict of region_id:nodes_in_region
-	var all_nodes = get_nodes()
 	var all_data = {'nodes': all_nodes,
 					'roads': road_data,
 					'regions': region_data,

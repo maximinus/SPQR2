@@ -10,7 +10,7 @@ Short Term:
 
 Editor Improvements:
 
-* Make sure the correct roads are drawn
+✓ Make sure the correct roads are drawn
 * When a unit is clicked, all the possible move nodes are highlighted. Consists of:
 * Work out what nodes can be travelled to
 * Highlight those modes in some way

@@ -24,8 +24,8 @@ class Road:
 	var id: int
 	var pos: Vector2
 	var points: Array
-	var start_region: int
-	var end_region: int
+	var start_node: int
+	var end_node: int
 	var condition: float
 	var rimages: Array
 	
@@ -33,8 +33,8 @@ class Road:
 		id = data['id']
 		pos = Vector2(data['position'][0], data['position'][1])
 		points = data['points']
-		start_region = int(data['start_region'])
-		end_region = int(data['end_region'])
+		start_node = int(data['start_node'])
+		end_node = int(data['end_node'])
 		condition = float(data['condition'])
 		rimages = []
 
