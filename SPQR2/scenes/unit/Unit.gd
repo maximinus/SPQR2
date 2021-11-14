@@ -32,7 +32,7 @@ func unit_clicked():
 	$MouseClick.play()
 	if highlight == false:
 		highlight_on()
-		emit_signal('unit_clicked')
+		emit_signal('unit_clicked', id)
 	else:
 		highlight_off()
 	highlight = !highlight

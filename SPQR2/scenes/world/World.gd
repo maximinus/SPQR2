@@ -144,8 +144,12 @@ func add_units() -> void:
 		var unit_pos = i.get_map_position()
 		unit_instance.translation.x = unit_pos[0]
 		unit_instance.translation.z = unit_pos[1]
-		# no leader status for now
+		# add a manual callback
+		unit_instance.connect('unit_clicked', self, 'unit_clicked')
 		$Soldiers.add_child(unit_instance)
+
+func unit_clicked(unit_id):
+	print('Clicked:' + str(unit_id))
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing
