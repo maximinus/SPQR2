@@ -37,7 +37,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="Image" id=7]
+[sub_resource type="Image" id=5]
 data = {
 "data": PoolByteArray( 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206 ),
 "format": "RGB8",
@@ -46,8 +46,8 @@ data = {
 "width": 1
 }
 
-[sub_resource type="ImageTexture" id=6]
-image = SubResource( 7 )
+[sub_resource type="ImageTexture" id=3]
+image = SubResource( 5 )
 size = Vector2( 1, 14 )
 
 [sub_resource type="ShaderMaterial" id=4]
@@ -55,7 +55,7 @@ shader = SubResource( 1 )
 shader_param/total_regions = 14.0
 shader_param/map_image = ExtResource( 3 )
 shader_param/region_image = ExtResource( 7 )
-shader_param/region_cols = SubResource( 6 )
+shader_param/region_cols = SubResource( 3 )
 shader_param/map_borders = ExtResource( 10 )
 
 [node name="Editor" type="Node2D"]
@@ -454,8 +454,6 @@ city_name = ""
 position = Vector2( 1737.38, 1599.07 )
 city_name = "Rome"
 population = 3
-unit_type = "Roman"
-unit_strength = 8000
 
 [node name="MapNode19" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1564.35, 1859.58 )
@@ -476,8 +474,6 @@ unit_strength = 12000
 [node name="MapNode20" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1707.44, 1319.22 )
 city_name = ""
-unit_type = "Roman"
-unit_strength = 10000
 
 [node name="MapNode21" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1833.44, 1271.98 )
@@ -498,8 +494,6 @@ city_name = ""
 [node name="MapNode16" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1002.96, 1416.88 )
 city_name = ""
-unit_type = "Celt"
-unit_strength = 15000
 
 [node name="MapNode18" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 853.829, 1405.55 )
@@ -513,8 +507,6 @@ city_name = ""
 [node name="MapNode13" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 913.14, 1706.52 )
 city_name = ""
-unit_type = "Celt"
-unit_strength = 18000
 
 [node name="MapNode14" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 999.557, 1696.72 )
@@ -525,8 +517,6 @@ population = 3
 position = Vector2( 1359.48, 1522.1 )
 city_name = "Massilia"
 population = 3
-unit_type = "Celt"
-unit_strength = 3000
 
 [node name="MapNode5" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1574.88, 1764.66 )
@@ -538,8 +528,6 @@ city_name = ""
 
 [node name="MapNode2" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1863.88, 2002.66 )
-unit_type = "Roman"
-unit_strength = 6000
 
 [node name="MapNode45" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1610.2, 2076.74 )

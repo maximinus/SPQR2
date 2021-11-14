@@ -16,8 +16,8 @@ Editor Improvements:
 ✓ Remove Nim code for checking JSON data
 * All nodes must be shown on the in-game map (NOT the mini map)
 ✓ Add meta-item for Roman money and year start
-* All json data exported from editor
-* Soldiers, vities
+✓ All json data exported from editor
+* Add ✓ soldiers, cities
 * Allow click only Roman units
 * A click removes the other highlights
 * When a unit is clicked, all the possible move nodes are highlighted
@@ -52,7 +52,7 @@ Best to implement the most common stuff first, as it's the most important.
 		- Add up the totals, add a random value - there's the winner
 		- Some other quesi-random elements for casualties
 		- Loser has to go somewhere
-		- No need to animate or even show the scores, just show the result as an event and then any moves
+		- Show the result as an event and animate any retreating moves
 
 Goals for v0.3
 --------------
