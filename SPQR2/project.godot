@@ -10,18 +10,18 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "Army",
-"language": "GDScript",
-"path": "res://scripts/army.gd"
-}, {
-"base": "Node",
 "class": "EnemyAI",
 "language": "GDScript",
 "path": "res://scripts/enemy.gd"
+}, {
+"base": "Node",
+"class": "Unit",
+"language": "GDScript",
+"path": "res://scripts/unit.gd"
 } ]
 _global_script_class_icons={
-"Army": "",
-"EnemyAI": ""
+"EnemyAI": "",
+"Unit": ""
 }
 
 [application]
@@ -37,6 +37,7 @@ helpers="*res://scripts/helpers.gd"
 enemy="*res://scripts/enemy.gd"
 data="*res://scripts/data.gd"
 graph="*res://scripts/graph.gd"
+unit="*res://scripts/unit.gd"
 
 [display]
 

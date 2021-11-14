@@ -9,7 +9,7 @@ const GAME_DATA = 'res://data/game_data.json'
 # regions are loaded per id, i.e. id 0 is the first region
 var regions: Array = []
 var rnodes: Array = []
-var armies: Array = []
+var units: Array = []
 var roads: Array = []
 var road_images: Array = []
 var players: Array = []
@@ -105,6 +105,7 @@ func load_all_data() -> bool:
 	get_node_data(game_data)
 	load_road_images()
 	build_roads()
+	graph.setup()
 	return true
 
 func get_json_data(filepath):
@@ -134,19 +135,19 @@ func get_node_data(data):
 	for i in data['players']:
 		players.append(EnemyAI.new(i))
 	players.sort_custom(EnemyAI, 'sort')
-	armies = get_armies(data['nodes'])
+	units = get_units(data['nodes'])
 	helpers.log('Game data loaded')
 
-func get_armies(nodes: Array) -> Array:
-	var new_armies: Array = []
-	var army_id = 0
+func get_units(nodes: Array) -> Array:
+	var new_units: Array = []
+	var unit_id = 0
 	for i in nodes:
 		if i['unit'] >= 0:
-			var army_owner = regions[int(i['region_id'])].owner_id
-			new_armies.append(Army.new(i, army_owner, army_id))
-			army_id += 1
-	helpers.log('Got %s armies' % len(new_armies))
-	return new_armies
+			var unit_owner = regions[int(i['region_id'])].owner_id
+			new_units.append(Unit.new(i, unit_owner, unit_id))
+			unit_id += 1
+	helpers.log('Got %s units' % len(new_units))
+	return new_units
 
 # =======================================================
 # all methods to get data follow here
@@ -183,7 +184,7 @@ func get_region_owners_texture() -> Image:
 	img.create_from_image(base_image)
 	return img
 
-func get_army_stats_texture() -> Image:
+func get_unit_stats_texture() -> Image:
 	var base_image = Image.new()
 	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
 	base_image.lock()
@@ -215,14 +216,14 @@ func get_money_stats_texture() -> Image:
 
 func get_unit_owner(unit_id: int) -> int:
 	# get the owner id or -1
-	if unit_id < 0 or unit_id >= len(armies):
-		helpers.log('Error: invalid unit id')
+	if unit_id < 0 or unit_id >= len(units):
+		helpers.log('Error: Out of range unit id')
 		return -1
-	return armies[unit_id].owner_id
+	return units[unit_id].owner_id
 
-func get_armies_in_region(region_id: int) -> Array:
+func get_units_in_region(region_id: int) -> Array:
 	var in_region: Array = []
-	for i in armies:
+	for i in units:
 		if region_id == i.get_region_id():
 			in_region.append(i)
 	return in_region

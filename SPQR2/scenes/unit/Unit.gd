@@ -1,6 +1,7 @@
 extends Spatial
 
 const MODEL_SCALE = Vector3(0.07, 0.07, 0.07)
+signal unit_clicked
 
 # preload the models
 var models = [preload('res://scenes/units/roman_spear.tscn'),
@@ -28,6 +29,7 @@ func unit_clicked():
 	$MouseClick.play()
 	if highlight == false:
 		highlight_on()
+		emit_signal('unit_clicked')
 	else:
 		highlight_off()
 	highlight = !highlight

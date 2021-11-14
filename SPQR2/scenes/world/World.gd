@@ -51,7 +51,7 @@ func _ready():
 	helpers.log('Loaded region map data')
 	dragging = false
 	add_nodes()
-	add_armies()
+	add_units()
 	calculate_view_area()
 	calculate_intersections()
 	# do the initial setup, this should happen every change in the future
@@ -137,8 +137,8 @@ func add_nodes() -> void:
 		new_node.rotation_degrees.y = i.angle
 		$Nodes.add_child(new_node)
 
-func add_armies() -> void:
-	for i in data.armies:
+func add_units() -> void:
+	for i in data.units:
 		var unit_instance = unit_scene.instance()
 		unit_instance.set_unit_type(data.get_unit_owner(i.id))
 		var unit_pos = i.get_map_position()
@@ -301,9 +301,9 @@ func _on_Overlay_change_view(index) -> void:
 	if index == cn.RegionDisplay.OWNERS:
 		$map_board.set_region_owners(data.get_region_owners_texture())
 	elif index == cn.RegionDisplay.ARMY:
-		$map_board.set_region_owners(data.get_army_stats_texture())
+		$map_board.set_region_owners(data.get_unit_stats_texture())
 	elif index == cn.RegionDisplay.MONEY:
-		$map_board.set_region_owners(data.get_money_stats_texture())
+		$map_board.set_region_owners(data.get_unit_stats_texture())
 	else:
 		helpers.log('Caught incorrect overlay change: ' + str(index))
 
