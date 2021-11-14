@@ -10,15 +10,12 @@ Short Term:
 
 Editor Improvements:
 
-✓ Unit data held in nodes
-✓ Add shader to editor for regions
-✓ Allow changing region ownership in RegionData
-✓ Remove Nim code for checking JSON data
-✓ Add meta-item for Roman money and year start
-✓ All json data exported from editor
-* Add ✓ soldiers, cities
-* All nodes must be shown on the in-game map (NOT the mini map)
-* When a unit is clicked, all the possible move nodes are highlighted
+* Make sure the correct roads are drawn
+* When a unit is clicked, all the possible move nodes are highlighted. Consists of:
+* Work out what nodes can be travelled to
+* Highlight those modes in some way
+* Work out which of the nodes is closest to the mouse
+* Render it as a road with an arrow
 
 
 Couldn't really be solved (add to issues):

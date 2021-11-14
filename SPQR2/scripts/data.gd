@@ -245,13 +245,22 @@ func load_road_images() -> void:
 			count += 1
 	helpers.log('Loaded ' + str(count) + ' road images')
 
+func get_road_index_from_condition(condition: float) -> int:
+	if condition >= 3.0:
+		return 2
+	if condition >= 2.0:
+		return 1
+	return 0
+
 func build_roads() -> void:
 	var road_image = Image.new()
 	road_image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
-	# now blit all the roads (all just for testing)
+	# now blit all the roads
 	for i in roads:
 		var rect = Rect2(0.0, 0.0, i.rimages[0].get_width(), i.rimages[0].get_height())
-		road_image.blend_rect(i.rimages[0], rect, i.pos)
+		# which image to use?
+		var image_index = get_road_index_from_condition(i.condition)
+		road_image.blend_rect(i.rimages[image_index], rect, i.pos)
 	# the resultant needs to be an ImageTexture
 	road_texture = ImageTexture.new()
 	road_texture.create_from_image(road_image)
