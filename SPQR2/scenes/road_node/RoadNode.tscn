@@ -4,9 +4,12 @@
 [ext_resource path="res://scenes/road_node/RoadNode.gd" type="Script" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.423529, 0.627451, 0.435294, 1 )
+flags_transparent = true
+albedo_color = Color( 0.862745, 0.862745, 0.941176, 0.313726 )
+roughness = 0.5
 
 [sub_resource type="CylinderMesh" id=2]
+resource_local_to_scene = true
 material = SubResource( 1 )
 top_radius = 0.07
 bottom_radius = 0.07
@@ -20,6 +23,6 @@ script = ExtResource( 2 )
 [node name="city" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.003, 0 )
 
-[node name="node" type="CSGMesh" parent="."]
+[node name="counter" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003, 0 )
 mesh = SubResource( 2 )

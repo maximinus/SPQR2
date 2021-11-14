@@ -15,10 +15,9 @@ func hide_city():
 func set_display(data: data.RNode) -> void:
 	if data.population < 3.0:
 		hide_city()
-		helpers.log('Small')
-		$node.mesh.top_radius = NORMAL_SIZE
-		$node.mesh.bottom_radius = NORMAL_SIZE
+		$counter.mesh.top_radius = NORMAL_SIZE
+		$counter.mesh.bottom_radius = NORMAL_SIZE
 	else:
 		show_city()
-		$node.mesh.top_radius = CITY_SIZE
-		$node.mesh.bottom_radius = CITY_SIZE
+		$counter.mesh.top_radius = CITY_SIZE
+		$counter.mesh.bottom_radius = CITY_SIZE
