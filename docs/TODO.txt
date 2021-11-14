@@ -12,8 +12,10 @@ Editor Improvements:
 
 ✓ Make sure the correct roads are drawn
 * When a unit is clicked, all the possible move nodes are highlighted. Consists of:
-* Work out what nodes can be travelled to
-* Highlight those modes in some way
+✓ Work out what nodes can be travelled to
+✓ Highlight those modes in some way
+* Write code to handle the seperation of movement phases
+* I.e., implement "Select a unit" and "Select a move"
 * Work out which of the nodes is closest to the mouse
 * Render it as a road with an arrow
 

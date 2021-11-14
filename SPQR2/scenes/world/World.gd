@@ -39,6 +39,8 @@ var region_material: Material
 var dragging: bool
 var drag_offset: Vector2
 
+var unit_selected: bool = false
+
 func _ready():
 	# ensure window size has a minimum
 	OS.min_window_size = WINDOW_MIN_SIZE
@@ -64,6 +66,7 @@ func _ready():
 	check_region_click(cn.ROME_PROVINCE_COORDS)
 
 func _process(delta):
+	# this must be split, according to the turn state
 	# what are the mouse and camera looking at?
 	calculate_intersections()
 	update_minimap_pin()
@@ -149,13 +152,20 @@ func add_units() -> void:
 		$Soldiers.add_child(unit_instance)
 
 func unit_clicked(unit_id):
-	var region_ids = Array(data.get_unit_move_nodes(unit_id))
-	for i in $Nodes.get_children():
-		# update these regions only, else clear
-		if region_ids.has(i.id):
-			i.show_move_highlight()
-		else:
+	print(unit_selected)
+	if unit_selected == false:
+		var region_ids = Array(data.get_unit_move_nodes(unit_id))
+		for i in $Nodes.get_children():
+			# update these regions only, else clear
+			if region_ids.has(i.id):
+				i.show_move_highlight()
+			else:
+				i.hide_move_highlight()
+		unit_selected = true
+	else:
+		for i in $Nodes.get_children():
 			i.hide_move_highlight()
+		unit_selected = false
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing
