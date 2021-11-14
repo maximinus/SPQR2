@@ -149,14 +149,13 @@ func add_units() -> void:
 		$Soldiers.add_child(unit_instance)
 
 func unit_clicked(unit_id):
-	var region_ids = data.get_unit_move_nodes(unit_id)
-	print('---')
-	for i in region_ids:
-		print('Can move to:' + str(i))
-	# clear all current move highlights
+	var region_ids = Array(data.get_unit_move_nodes(unit_id))
 	for i in $Nodes.get_children():
-		i.hide_move_highlight()
-	
+		# update these regions only, else clear
+		if region_ids.has(i.id):
+			i.show_move_highlight()
+		else:
+			i.hide_move_highlight()
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing
