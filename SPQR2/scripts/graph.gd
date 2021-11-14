@@ -15,4 +15,9 @@ func setup():
 		astar_data.add_point(i.id, pos, DEFAULT_WEIGHT)
 	
 	# now we add the connections
-	
+	for i in data.roads:
+		astar_data.connect_points(i.start_node, i.end_node)
+
+func get_connected_nodes(node_id: int) -> PoolIntArray:
+	# return a list of all nodes that are connected to this node
+	return astar_data.get_point_connections(node_id)

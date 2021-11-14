@@ -11,7 +11,6 @@ var regions: Array = []
 var rnodes: Array = []
 var armies: Array = []
 var roads: Array = []
-var roads_built: Array = []
 var road_images: Array = []
 var players: Array = []
 # this is the id of the unit with the scenario leader
