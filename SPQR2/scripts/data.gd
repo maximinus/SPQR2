@@ -221,6 +221,10 @@ func get_unit_owner(unit_id: int) -> int:
 		return -1
 	return units[unit_id].owner_id
 
+func get_unit_move_nodes(unit_id: int) -> PoolIntArray:
+	# get the node the unit is in
+	return graph.get_connected_nodes(units[unit_id].node_id)
+
 func get_units_in_region(region_id: int) -> Array:
 	var in_region: Array = []
 	for i in units:

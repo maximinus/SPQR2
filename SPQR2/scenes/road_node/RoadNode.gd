@@ -21,3 +21,11 @@ func set_display(data: data.RNode) -> void:
 		show_city()
 		$counter.mesh.top_radius = CITY_SIZE
 		$counter.mesh.bottom_radius = CITY_SIZE
+
+func show_move_highlight() -> void:
+	$counter.hide()
+	$move_display.show()
+
+func hide_move_highlight() -> void:
+	$counter.show()
+	$move_display.hide()

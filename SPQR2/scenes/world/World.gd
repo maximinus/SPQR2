@@ -149,7 +149,10 @@ func add_units() -> void:
 		$Soldiers.add_child(unit_instance)
 
 func unit_clicked(unit_id):
-	print('Clicked:' + str(unit_id))
+	var region_ids = data.get_unit_move_nodes(unit_id)
+	print('---')
+	for i in region_ids:
+		print('Can move to:' + str(i))
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing

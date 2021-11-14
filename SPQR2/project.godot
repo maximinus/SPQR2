@@ -35,9 +35,9 @@ config/icon="res://icon.png"
 cn="*res://scripts/constants.gd"
 helpers="*res://scripts/helpers.gd"
 enemy="*res://scripts/enemy.gd"
-data="*res://scripts/data.gd"
-graph="*res://scripts/graph.gd"
 unit="*res://scripts/unit.gd"
+graph="*res://scripts/graph.gd"
+data="*res://scripts/data.gd"
 
 [display]
 
