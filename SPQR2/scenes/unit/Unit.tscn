@@ -49,5 +49,5 @@ mesh = SubResource( 3 )
 transform = Transform( -0.09, 0, -6.99382e-09, 0, 0.09, 0, 7.86805e-09, 0, -0.08, 0, 0, -0.07 )
 visible = false
 
-[node name="MouseClick" type="AudioStreamPlayer2D" parent="."]
+[node name="MouseClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
