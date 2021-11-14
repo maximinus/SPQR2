@@ -3,8 +3,14 @@ extends Spatial
 const CITY_SIZE = 0.113
 const NORMAL_SIZE = 0.07
 
+var id: int = -1
+
 func _ready():
 	pass
+
+func setup(rnode: data.RNode) -> void:
+	id = rnode.id
+	set_display(rnode)
 
 func show_city():
 	$city.show()

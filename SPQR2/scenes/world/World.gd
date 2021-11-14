@@ -131,7 +131,7 @@ func check_region_click(coords) -> void:
 func add_nodes() -> void:
 	for i in data.rnodes:
 		var new_node = node_scene.instance()
-		new_node.set_display(i)
+		new_node.setup(i)
 		var pos = Vector3(i.position.x, 0.0, i.position.y)
 		new_node.translation = pos
 		new_node.rotation_degrees.y = i.angle
@@ -153,6 +153,10 @@ func unit_clicked(unit_id):
 	print('---')
 	for i in region_ids:
 		print('Can move to:' + str(i))
+	# clear all current move highlights
+	for i in $Nodes.get_children():
+		i.hide_move_highlight()
+	
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing
