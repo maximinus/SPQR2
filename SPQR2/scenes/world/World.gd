@@ -129,7 +129,13 @@ func check_region_click(coords) -> void:
 			$CanvasLayer/Overlay.update_region_info(data.regions[index])
 
 func add_nodes() -> void:
-	pass
+	for i in data.rnodes:
+		var new_node = node_scene.instance()
+		new_node.set_display(i)
+		var pos = Vector3(i.position.x, 0.0, i.position.y)
+		new_node.translation = pos
+		new_node.rotation_degrees.y = i.angle
+		$Nodes.add_child(new_node)
 
 func add_armies() -> void:
 	for i in data.armies:

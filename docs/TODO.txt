@@ -14,12 +14,10 @@ Editor Improvements:
 ✓ Add shader to editor for regions
 ✓ Allow changing region ownership in RegionData
 ✓ Remove Nim code for checking JSON data
-* All nodes must be shown on the in-game map (NOT the mini map)
 ✓ Add meta-item for Roman money and year start
 ✓ All json data exported from editor
 * Add ✓ soldiers, cities
-* Allow click only Roman units
-* A click removes the other highlights
+* All nodes must be shown on the in-game map (NOT the mini map)
 * When a unit is clicked, all the possible move nodes are highlighted
 
 

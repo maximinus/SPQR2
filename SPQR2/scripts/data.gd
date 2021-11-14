@@ -70,10 +70,10 @@ class RNode:
 		culture = data['culture']
 		wealth = int(data['wealth'])
 		manpower = int(data['manpower'])
-		romanisation = data['romanisation']
+		romanisation = int(data['romanisation'])
 		region_id = int(data['region_id'])
 		position = RNode.get_pos_data(data)
-		angle = data['angle']
+		angle = float(data['angle'])
 		id = data['id']
 
 	static func sort(a, b) -> bool:
