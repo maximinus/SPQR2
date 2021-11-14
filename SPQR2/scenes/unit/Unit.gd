@@ -7,12 +7,15 @@ signal unit_clicked
 var models = [preload('res://scenes/units/roman_spear.tscn'),
 			  preload('res://scenes/units/celtic_spearman.tscn')]
 var highlight = false
-var id = -1
+var id: int = -1
+var owner_id: int = -1
 
 func _ready():
 	pass
 
-func set_unit_type(owner) -> void:
+func setup(owner: int, unit_id: int) -> void:
+	owner_id = owner
+	id = unit_id
 	if owner < 0 or owner >= len(models):
 		helpers.log('Error: Owner id is out of range')
 		return

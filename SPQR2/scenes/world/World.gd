@@ -140,7 +140,7 @@ func add_nodes() -> void:
 func add_units() -> void:
 	for i in data.units:
 		var unit_instance = unit_scene.instance()
-		unit_instance.set_unit_type(data.get_unit_owner(i.id))
+		unit_instance.setup(data.get_unit_owner(i.id), i.id)
 		var unit_pos = i.get_map_position()
 		unit_instance.translation.x = unit_pos[0]
 		unit_instance.translation.z = unit_pos[1]
