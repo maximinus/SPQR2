@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/test/Node2D.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 188.987, 632.027, 360.987, 490.027, 504.987, 466.027, 700.987, 592.027, 1018.99, 502.027, 1138.99, 316.027, 1066.99, 152.027 )
+default_color = Color( 1, 0.584314, 0.4, 1 )

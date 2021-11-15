@@ -34,8 +34,8 @@ func pixel_to_map(pos: Vector2) -> Vector2:
 	
 func map_to_pixel(pos: Vector2) -> Vector2:
 	# given the map co-ords, return the pixel co-ords
-	# plane of (-12.5, -8.34) is (0,0) in pixels
+	# move plane origin of (-12.5, -8.34) to (0,0) by adding an offset
 	# Since map is (12.5, 8.34) * 2 = (25.0, 16.68) in size,
-	# divide the pixel size by those values
+	# divide the pixel size by those values. Multiply by the offset map co-ords
 	return Vector2(round((pos.x + 12.5) * (cn.MAP_PIXEL_SIZE.x / 25.0)),
 				   round((pos.y + 8.34) * (cn.MAP_PIXEL_SIZE.y / 16.68)))

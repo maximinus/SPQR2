@@ -152,7 +152,6 @@ func add_units() -> void:
 		$Soldiers.add_child(unit_instance)
 
 func unit_clicked(unit_id):
-	print(unit_selected)
 	if unit_selected == false:
 		var region_ids = Array(data.get_unit_move_nodes(unit_id))
 		for i in $Nodes.get_children():

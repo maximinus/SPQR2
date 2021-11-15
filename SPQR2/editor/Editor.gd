@@ -3,7 +3,11 @@ extends Node2D
 const NODE_RADIUS: float = 24.5
 const DATA_FILE = 'res://editor/output/game_data.json'
 
+const ARROW_ANGLE: float = 40.0
+const ARROW_LENGTH: float = 7.0
+const ARROW_WIDTH: float = 3.0
 const DOTTED_LENGTH: float = 6.0
+const ARROW_COLOR = Color(0.1, 0.1, 0.1, 1.0)
 const BORDER_COLOR = Color(0.7, 0.6, 0.5, 1.0)
 const ROAD_COLOR = Color(0.8, 0.8, 0.8, 1.0)
 const NORMAL_ROAD = Color(0.7, 0.5, 0.3, 1.0)
@@ -153,8 +157,8 @@ func get_road_textures() -> void:
 		# size can now be calculated
 		var area_size = area_max - area_min
 		# allow a border of 4 pixels all sides
-		area_size.x = ceil(area_size.x) + 8.0
-		area_size.y = ceil(area_size.y) + 8.0
+		area_size.x = ceil(area_size.x) + 16.0
+		area_size.y = ceil(area_size.y) + 16.0
 		# adjust viewport sizes
 		$ViewC.rect_size = area_size
 		$ViewC/Viewport.size = area_size
@@ -168,13 +172,15 @@ func get_road_textures() -> void:
 		var new_points = []
 		for i in rnode.points:
 			# offset so the image is not clipped at the border
-			var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(4.0, 4.0)
+			var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(8.0, 8.0)
 			new_points.append(lp)
 				
 		# draw all the lines
 		var road_types = [[build_default_line(new_points), 'default'],
 						  [build_road_line(new_points), 'road'],
-						  [build_dotted_line(new_points), 'dotted']]
+						  [build_dotted_line(new_points), 'dotted'],
+						  [build_arrow_away(new_points), 'arrow_away'],
+						  [build_arrow_towards(new_points), 'arrow_towards']]
 		
 		for i in road_types:
 			var all_lines = i[0]
@@ -199,7 +205,7 @@ func get_road_textures() -> void:
 				j.queue_free()
 			# wait a frame for that to be done
 			yield(get_tree(), 'idle_frame')
-		
+
 		# save the required json data - subtract 4 to allow for spacing
 		var loc = area_min - Vector2(4.0, 4.0)
 		
@@ -252,10 +258,58 @@ func save_all_data() -> void:
 	save_data(all_data)
 	helpers.log('All data exported as JSON')
 
-# ==========================================================
+# ================================================
 # code to render lines
-# ==========================================================
-func build_road_line(all_points) -> Array:
+# ================================================
+func build_arrow_away(all_points) -> Array:
+	var new_lines: Array = []
+	# calculate final angle
+	var p2: Vector2 = all_points[-2]
+	var p1: Vector2 = all_points[-1]
+	var last_angle: float = rad2deg((p2 - p1).angle())
+	# make the 2 new angles
+	var angle1: float = last_angle - ARROW_ANGLE
+	var angle2: float = last_angle + ARROW_ANGLE
+	# we need to move from this point to a new point on the same angle
+	var new_pos1: Vector2 = Vector2(ARROW_LENGTH * cos(deg2rad(angle1)),
+									ARROW_LENGTH * sin(deg2rad(angle1))) + p1
+	var new_pos2: Vector2 = Vector2(ARROW_LENGTH * cos(deg2rad(angle2)),
+									ARROW_LENGTH * sin(deg2rad(angle2))) + p1
+	# create the 2 new lines
+	var line1 = Line2D.new()
+	line1.add_point(p1)
+	line1.add_point(new_pos1)
+	line1.antialiased = true
+	line1.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	line1.end_cap_mode = Line2D.LINE_CAP_ROUND
+	var line2 = Line2D.new()
+	line2.add_point(p1)
+	line2.add_point(new_pos2)
+	line2.antialiased = true
+	line2.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	line2.end_cap_mode = Line2D.LINE_CAP_ROUND
+	line1.default_color = ARROW_COLOR
+	line2.default_color = ARROW_COLOR
+	new_lines.append(line1)
+	new_lines.append(line2)
+	# and the original
+	var oline = Line2D.new()
+	for i in all_points:
+		oline.add_point(i)
+	oline.antialiased = true
+	oline.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	oline.end_cap_mode = Line2D.LINE_CAP_ROUND
+	oline.default_color = ARROW_COLOR
+	new_lines.append(oline)
+	return new_lines
+
+func build_arrow_towards(all_points: Array) -> Array:
+	# reverse list and draw as arrow away
+	var inverse = all_points.duplicate()
+	inverse.invert()
+	return build_arrow_away(inverse)
+
+func build_road_line(all_points: Array) -> Array:
 	# return all the lines we need to add
 	var border_line: Line2D = Line2D.new()
 	var center_line: Line2D = Line2D.new()
@@ -270,7 +324,7 @@ func build_road_line(all_points) -> Array:
 	center_line.default_color = ROAD_COLOR
 	return [border_line, center_line]
 
-func build_default_line(all_points):
+func build_default_line(all_points: Array) -> Array:
 	# return the single line as an array
 	var road_line: Line2D = Line2D.new()
 	for i in all_points:
@@ -280,7 +334,7 @@ func build_default_line(all_points):
 	road_line.default_color = NORMAL_ROAD
 	return [road_line]
 
-func build_dotted_line(all_points) -> Array:
+func build_dotted_line(all_points: Array) -> Array:
 	# return all the lines we need to add
 	var all_lines: Array = []
 	
