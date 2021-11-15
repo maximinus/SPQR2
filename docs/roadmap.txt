@@ -31,9 +31,8 @@ Overview
 Starting in 200 BC, you have 2 consuls and a small number of regions.
 
 All regions have:
-	3 places a unit can be
-	A possible city
-	Paths between the places and other regions
+	Nodes a unit or city can be placed on
+	Paths between the nodes and nodes in other regions
 
 For each turn, any consul, emperor or general can conduct a certain (low) number of campaigns
 A campaign is conducted this way:
@@ -42,60 +41,26 @@ A campaign is conducted this way:
 		- The leader may choose to move ONE unit from ONE region from anywhere on the board to their region
 	* Then you may Prepare:
         - **A loop starts from here**
-		- The leader can move, by one region (which may be >1 node), all the units in this region and all controlled adjacent ones
-		- The leader must always be with a unit - the player can choose
+		- The leader can move, by one node, all the units in this region and all controlled adjacent ones
+		- The leader must always be with a unit - the player can choose which one
 	
-	* Clicking an enemy region or unit will start an attack and declare war.
+	* Clicking an enemy region or unit will start an attack and declare war (makes the defender want to attack you).
 
-	Enemies may move after all of your moves. They may prepare for your possible attack.
+	Enemies may move after any of your moves. They may prepare for your possible attack.
 	You may or may not see this.
 
-	* On attacking, we add another element: the purpose of the invade. The player chooses a goal:
-		1: Raid: Avoid combat and leave after stealing money
-		2: Destroy enemy forces: Find the enemy forces and engage them, destroy them, grab any loot and go home (more loot than 1)
-		3: Invade: Capture the region and the city (loot: not that much, you want to keep not destroy!)
-		4: Sack: Capture the region and the city, steal everything, burn it all, and go home (this will gain a lot more money than 2)
-
-	Enemy choices (and the player when you are invaded) and outcomes for 1-4 above:
-
-		1: (Raid) Choice: Attack / Don't Attack
-			First leads to battle on random number (i.e., you want to fight)
-				* Enemy may simply run away at this point - option is given to player raiding, fails on random number
-				* If failed runaway, battle engaged
-				* Game: Choose a unit in the region to attack. If they run, you move and they move away
-						If they do not move away (or unlucky), battle ensues
-						Smart raider send 2 units in and retreat when threatened
-			Second (or failed check) leads to losing money and enemy leaving
-		2: (Destroy) Engage, or choose not to on a check
-			If you try to engage, there is a guarenteed battle
-			Not engage, needs a random check: fail is the battle
-			Pass is move to a friendly region or battle if no move avaliable
-			Game: Either move the unit to a different node or don't
-				  If you don't, there must be a battle
-				  If you do move, there's still a chance you have to fight
-		3: (Invade) Engage or not as above.
-			If you do not engage (checked), the attackers have a chance to attack the city
-				If they win, they have the city. You may attack the city or retreat to another region.
-				If they lose, you may attack on their retreat
-			If you engage (or failed check), there is a battle. If the attackers win, they move on to attack the city.
-		4: (Sack) Plays out as 3, except you have the extra option to withdraw:
-			The attackers attack the city.
-			If they lose, they go home
-			If they win, they steal everything and go home
-			You may not attack if they lose the city battle
-			There is no check on a random meeting (so there's no chance you'll lose the army if the city isn't worth it)
-            Game: Move all units in the region to another region
-                - I suppose the other region could be non-friendly, like the Goths against Valens.
-
-
-	* Combat is decided per unit vs unit, and the player can see the results of the 1st region attack before deciding on others
+	* Combat is decided per unit vs unit immedietly after the move
 	* For combat, the results could be:
         * Units move back to a unoccupied or friendly node. Nobody takes damage.
 		* Units retreat to previous node. Both sides take some form of damage.
-		* Units push into the territory but enemy units remain
+		* Units push into the node and cause the enemy units to move
 		* No enemy units remain but the city is not taken
         * No enemy units remain and any city is captured
 	* We repeat from "The consul can move"
+
+	* The decision to end the loop is made by the player
+	* Any further play needed after this will be performed by the AI, with a different simple AI for Rome (which will play badly)
+
     ** END LOOP! **
 
 	* A certain amount of "fatigue" builds up every cycle, and units start to lose effeciency fairly quickly (on both sides)
@@ -103,11 +68,15 @@ A campaign is conducted this way:
         * Possible: Autumn arrives. Continuing will cost in GDP as crops are not brought in
                     Winter arrives. All units remain where they. 
                         Unsupported units will die, supported units in unconqured regions (unless a city) cost some factor more
-    * Campaigns cost money. They may make money, but they do always cost... and it should be expensive in some way.
+    * Campaigns cost money. They may make a profit, but they do always cost... and it should be expensive in some way.
 	* It is important to note the AI should be able to play between these moves (i.e., defend if obvious, attack if obvious, keep it simple)
-	* A player can choose to "wait" between campaigns so they can react to enemy events
+	* A player can choose to wait between campaigns so they can react to enemy events with their own campaign
 	* If they do, the wait costs a campaign. Emperors that have average or better strategy can wait once for free if they only have 1 campaign left.
         - The chance of an event after a wait is very low
+    * If an enemy attacks, the player will gain a free campaign if they choose.
+    	* This campaign will lack the single unit strategic move
+    	* A well-paid and equipped army will make this campaign cheap, almost free if short and sucessful
+    	* Often a better approach to to bide your time and attack during your campaign with better preperation
 Once all campaigns are done, maybe the enemy chooses now to attack
 If all campaigns are done, the player may choose to campaign an extra time at double the usual expense
     * And by "some expense" it should also reduce GDP as it represents a massive military spend
@@ -131,24 +100,26 @@ In a civil war:
 		* An emperor is chosen in the normal way with rivals OR the emperor is challenged
 		* Civil war is declared
 		* All the rivals fight
-		* Player must be the de jure emperor
+		* Player may choose which rival they are
 		* A non-stop campaign is held until there is a winner
 		* It is more likely that a Roman army will "turn" rather than be defeated heavily
 			- Thus, battles will likely have less casualties
 		* The player now continues as the winner - which may be someone different
         * If you know you will lose, then obviously you would not fight
             - Ideas to prevent meta-gaming and trying to lose?
+            - Player may choose which rival they wish to play
+            - In this case, they should have no say in who the rivals are
 
-Game is played as expected, except:
-	The goal is to:
-		A: Destroy all rivals
-		B: Go to Rome
-	For all participants:
-		You can only rarely recruit new army members (if you beat an opponent)
-		All Roman regions are friendly, including Rome
-		Moving to Rome gives a chance your rivals give up, especially if your army is much bigger
-			* By "give up" we likely mean "killed by the soldiers"
-		No challenger will want to not accept a fight, typically they all march to Rome ASAP
+	Game is played as expected, except:
+		The goal is to:
+			A: Destroy all rivals
+			B: Go to Rome
+		For all participants:
+			You can only rarely recruit new army members (if you beat an opponent)
+			All Roman regions act as friendly to all Roman units, including Rome
+			Moving to Rome gives a chance your rivals give up, especially if your army is much bigger
+				* By "give up" we really mean "killed by the soldiers"
+			No challenger will want to not accept a fight, typically they all march to Rome ASAP
 
 In the Empire:
 	On the first emperors turn, all cards removed and replaced with all good cards
@@ -439,3 +410,10 @@ Small scale:
 	This is simply moving troops to achieve objectives
 	There needs to be heuristics for every of combo of raid / sack / invade / destroy, but that's not too many
 	There needs to be a "meta-AI" for deciding when to change strategy
+
+Enemy AI for small scale:
+	* On attacking, choose the purpose of the invade.
+		1: Raid: Avoid combat and leave after stealing money
+		2: Destroy enemy forces: Find the enemy forces and engage them, destroy them, grab any loot and go home (more loot than 1)
+		3: Invade: Capture the region and the city (loot: not that much, you want to keep not destroy!)
+		4: Sack: Capture the region and the city, steal everything, burn it all, and go home (this will gain a lot more money than 2)

@@ -447,6 +447,7 @@ position = Vector2( 1926.88, 1667.66 )
 city_name = ""
 
 [node name="MapNode49" parent="Nodes" instance=ExtResource( 4 )]
+visible = false
 position = Vector2( 1818.4, 1521.34 )
 city_name = ""
 

@@ -42,6 +42,33 @@ class Road:
 			return true
 		return false
 
+	static func sort_by_start(a, b) -> bool:
+		if a.start_node < b.start_node:
+			return true
+		return false
+
+class RoadMove:
+	# class to retrieve and store the road images
+	var roads: Array = []
+	
+	func _init(current_roads: Array):
+		roads = []
+		current_roads.sort_custom(Road, 'sort_by_start')
+		var new_roads = {}
+		for i in current_roads:
+			if new_roads.has(i.start_node):
+				new_roads[i.start_node].append(i)
+			else:
+				new_roads[i.start_node] = [i]
+		# get the last value
+		var max_index = current_roads[-1].start_node
+		for i in range(max_index + 1):
+			if new_roads.has(i):
+				roads.append(new_roads[i])
+			else:
+				# no nodes from this node
+				roads.append([])
+
 # do the same for the nodes
 class RNode:
 	var city_name: String
