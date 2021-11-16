@@ -157,8 +157,8 @@ func get_road_textures() -> void:
 		# size can now be calculated
 		var area_size = area_max - area_min
 		# allow a border of 4 pixels all sides
-		area_size.x = ceil(area_size.x) + 16.0
-		area_size.y = ceil(area_size.y) + 16.0
+		area_size.x = ceil(area_size.x) + (cn.ROAD_IMAGE_BORDER.x * 2.0)
+		area_size.y = ceil(area_size.y) + (cn.ROAD_IMAGE_BORDER.y * 2.0)
 		# adjust viewport sizes
 		$ViewC.rect_size = area_size
 		$ViewC/Viewport.size = area_size
@@ -172,7 +172,7 @@ func get_road_textures() -> void:
 		var new_points = []
 		for i in rnode.points:
 			# offset so the image is not clipped at the border
-			var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + Vector2(8.0, 8.0)
+			var lp = Vector2(i[0] - area_min.x, i[1] - area_min.y) + cn.ROAD_IMAGE_BORDER
 			new_points.append(lp)
 				
 		# draw all the lines

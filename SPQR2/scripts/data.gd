@@ -291,7 +291,7 @@ func build_roads() -> void:
 		var rect = Rect2(0.0, 0.0, i.rimages[0].get_width(), i.rimages[0].get_height())
 		# which image to use?
 		var image_index = get_road_index_from_condition(i.condition)
-		road_image.blend_rect(i.rimages[image_index], rect, i.pos)
+		road_image.blend_rect(i.rimages[image_index], rect, i.pos + cn.ROAD_IMAGE_BORDER)
 	# the resultant needs to be an ImageTexture
 	road_texture = ImageTexture.new()
 	road_texture.create_from_image(road_image)
