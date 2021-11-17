@@ -289,10 +289,9 @@ func get_connected_road_images(node_id: int) -> Array:
 		if i.start_node != node_id:
 			folder_name = 'arrow_towards'
 		var rimage = load('res://gfx/roads/' + folder_name + '/road_' + str(i.id) + '.png')
-		print('res://gfx/roads/' + folder_name + '/road_' + str(i.id) + '.png')
 		var road_texture = ImageTexture.new()
 		road_texture.create_from_image(rimage.get_data())
-		all_data.append([road_texture, i.id])
+		all_data.append(cn.RoadMoveDisplay.new(road_texture, i.id, i.pos))
 	return all_data
 
 # code for handling money

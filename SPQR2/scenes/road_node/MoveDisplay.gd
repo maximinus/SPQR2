@@ -1,17 +1,17 @@
 extends Spatial
 
+const DISPLAY_HEIGHT = 0.01
+
 func _ready():
 	pass
 
-func setup(image_data: Array):
+func setup(image_data: Array, pos: Vector2):
 	# add each image as a new mesh with a single texture
-	# the array is of form [Image, id_of_destination_node]
+	# the array is an aray of cn.RoadMoveDisplay instances
 	for i in image_data:
-		var tex = i[0]
-		var destination = i[1]
 		# work out size after scaling
-		var mesh_size = Vector2(tex.get_width() / cn.MAP_TO_PIXEL_SCALE,
-								tex.get_height() / cn.MAP_TO_PIXEL_SCALE)
+		var mesh_size = Vector2(i.image.get_width() / cn.MAP_TO_PIXEL_SCALE,
+								i.image.get_height() / cn.MAP_TO_PIXEL_SCALE)
 		# create the new mesh
 		var quad: PlaneMesh = PlaneMesh.new()
 		quad.set_size(mesh_size)
@@ -20,9 +20,14 @@ func setup(image_data: Array):
 		# add texture, make see-through
 		var m_material = SpatialMaterial.new()
 		m_material.set_feature(SpatialMaterial.FEATURE_TRANSPARENT, true)
-		m_material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, tex)
+		m_material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, i.image)
 		mesh.set_material(m_material)
-		mesh.translation.y = 0.01
+		# position is in pixels, translate
+		var map_p = helpers.pixel_to_map(i.pos) - pos
+		# we also need to offset the image by half it's size, otherwise it is drawn centered
+		map_p += mesh_size / 2.0
+		mesh.translation.y = DISPLAY_HEIGHT
+		mesh.translation = Vector3(map_p.x, DISPLAY_HEIGHT, map_p.y)
 		$Moves.add_child(mesh)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

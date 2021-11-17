@@ -48,6 +48,6 @@ func hide_move_highlight() -> void:
 func show_moves():
 	# show the moves we can take
 	var new_scene = move_scene.instance()
-	new_scene.setup(road_data)
+	new_scene.setup(road_data, data.rnodes[id].position)
 	move_node = new_scene
 	add_child(new_scene)

@@ -10,6 +10,17 @@ const CELT_COLOR: Color = Color('246bce')
 
 const ROAD_IMAGE_BORDER: Vector2 = Vector2(12.0, 12.0)
 
+class RoadMoveDisplay:
+	# helper function to store details for displaying movements
+	var image: ImageTexture
+	var move_to: int
+	var pos: Vector2
+	
+	func _init(img, move, to):
+		image = img
+		move_to = move
+		pos = to
+
 enum RegionDisplay {
 	OWNERS,
 	MONEY,
