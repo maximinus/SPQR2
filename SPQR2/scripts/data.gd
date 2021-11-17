@@ -47,28 +47,6 @@ class Road:
 			return true
 		return false
 
-class RoadMove:
-	# class to retrieve and store the road images
-	var roads: Array = []
-	
-	func _init(current_roads: Array):
-		roads = []
-		current_roads.sort_custom(Road, 'sort_by_start')
-		var new_roads = {}
-		for i in current_roads:
-			if new_roads.has(i.start_node):
-				new_roads[i.start_node].append(i)
-			else:
-				new_roads[i.start_node] = [i]
-		# get the last value
-		var max_index = current_roads[-1].start_node
-		for i in range(max_index + 1):
-			if new_roads.has(i):
-				roads.append(new_roads[i])
-			else:
-				# no nodes from this node
-				roads.append([])
-
 # do the same for the nodes
 class RNode:
 	var city_name: String
@@ -291,10 +269,31 @@ func build_roads() -> void:
 		var rect = Rect2(0.0, 0.0, i.rimages[0].get_width(), i.rimages[0].get_height())
 		# which image to use?
 		var image_index = get_road_index_from_condition(i.condition)
-		road_image.blend_rect(i.rimages[image_index], rect, i.pos + cn.ROAD_IMAGE_BORDER)
+		road_image.blend_rect(i.rimages[image_index], rect, i.pos)
 	# the resultant needs to be an ImageTexture
 	road_texture = ImageTexture.new()
 	road_texture.create_from_image(road_image)
+
+func get_roads_starting_at(node_id: int) -> Array:
+	var connected_roads = []
+	for i in roads:
+		if i.start_node == node_id or i.end_node == node_id:
+			connected_roads.append(i)
+	return connected_roads
+
+func get_connected_road_images(node_id: int) -> Array:
+	var all_data = []
+	for i in get_roads_starting_at(node_id):
+		# it either starts or ends here
+		var folder_name = 'arrow_away'
+		if i.start_node != node_id:
+			folder_name = 'arrow_towards'
+		var rimage = load('res://gfx/roads/' + folder_name + '/road_' + str(i.id) + '.png')
+		print('res://gfx/roads/' + folder_name + '/road_' + str(i.id) + '.png')
+		var road_texture = ImageTexture.new()
+		road_texture.create_from_image(rimage.get_data())
+		all_data.append([road_texture, i.id])
+	return all_data
 
 # code for handling money
 func get_player_gold():

@@ -206,8 +206,8 @@ func get_road_textures() -> void:
 			# wait a frame for that to be done
 			yield(get_tree(), 'idle_frame')
 
-		# save the required json data - subtract 4 to allow for spacing
-		var loc = area_min - Vector2(4.0, 4.0)
+		# save the required json data - subtract offset to allow for spacing
+		var loc = area_min - cn.ROAD_IMAGE_BORDER
 		
 		# if this doesn't exist the data is faulty
 		var points_data = road_points[rnode.id]
