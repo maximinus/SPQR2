@@ -4,10 +4,10 @@ const NODE_RADIUS: float = 24.5
 const DATA_FILE = 'res://editor/output/game_data.json'
 
 const ARROW_ANGLE: float = 40.0
-const ARROW_LENGTH: float = 7.0
-const ARROW_WIDTH: float = 3.0
+const ARROW_LENGTH: float = 15.0
+const ARROW_WIDTH: float = 6.0
 const DOTTED_LENGTH: float = 6.0
-const ARROW_COLOR = Color(0.1, 0.1, 0.1, 1.0)
+const ARROW_COLOR = Color(1.0, 1.0, 1.0, 1.0)
 const BORDER_COLOR = Color(0.7, 0.6, 0.5, 1.0)
 const ROAD_COLOR = Color(0.8, 0.8, 0.8, 1.0)
 const NORMAL_ROAD = Color(0.7, 0.5, 0.3, 1.0)
@@ -182,9 +182,19 @@ func get_road_textures() -> void:
 						  [build_arrow_away(new_points), 'arrow_away'],
 						  [build_arrow_towards(new_points), 'arrow_towards']]
 		
-		for i in road_types:
+		for i in road_types: 
 			var all_lines = i[0]
 			var folder = i[1]
+		
+			# if folder does not exist, create it
+			var folder_path = 'res://editor/road_images/' + folder
+			var dir = Directory.new()
+			if not dir.dir_exists(folder_path):
+				# create it
+				var error = dir.make_dir(folder_path)
+				if error != OK:
+					helpers.log('Could not create directory ' + folder_path)
+					return
 		
 			for j in all_lines:
 				$ViewC/Viewport.add_child(j)
@@ -280,12 +290,14 @@ func build_arrow_away(all_points) -> Array:
 	line1.add_point(p1)
 	line1.add_point(new_pos1)
 	line1.antialiased = true
+	line1.width = ARROW_WIDTH
 	line1.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	line1.end_cap_mode = Line2D.LINE_CAP_ROUND
 	var line2 = Line2D.new()
 	line2.add_point(p1)
 	line2.add_point(new_pos2)
 	line2.antialiased = true
+	line2.width = ARROW_WIDTH
 	line2.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	line2.end_cap_mode = Line2D.LINE_CAP_ROUND
 	line1.default_color = ARROW_COLOR
@@ -297,6 +309,7 @@ func build_arrow_away(all_points) -> Array:
 	for i in all_points:
 		oline.add_point(i)
 	oline.antialiased = true
+	oline.width = ARROW_WIDTH
 	oline.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	oline.end_cap_mode = Line2D.LINE_CAP_ROUND
 	oline.default_color = ARROW_COLOR

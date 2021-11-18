@@ -11,15 +11,24 @@ Short Term:
 Editor Improvements:
 
 ✓ Make sure the correct roads are drawn
-* When a unit is clicked, all the possible move nodes are highlighted. Consists of:
+✓ When a unit is clicked, all the possible move nodes are highlighted. Consists of:
 ✓ Work out what nodes can be travelled to
 ✓ Highlight those modes in some way
-* Draw the moves
-* Update the editor to save road positions
-* Write code to handle the seperation of movement phases
-* I.e., implement "Select a unit" and "Select a move"
-* Work out which of the nodes is closest to the mouse
-* Render it as a road with an arrow
+✓ Draw the moves as arrows
+✓ Update the editor to save road positions
+* Make moves white, increase arrow length and slightly thinner
+* Highlight the nearest move possibilty (calculate against the POINTS, not the image)
+* Can be cancelled with ESC
+* Move current ESC screen to instead use 'M'
+* When route chose, units move
+* Add sounds, maybe smoke 3D effects (smoke on floor maybe?)
+* Add slight pause so move cannot accidentally be made straight after
+* Playtest and make it "pop" and work with no obvious issues
+* Fix bug where camera can see sky when at top of mapboard
+* Code cleanup:
+*	Decide how id should be handled. Consider adding more functions to data
+*	Document what knows about what, how ownership is decided etc
+* This completes part 1 of "Goals for v0.2"
 
 
 Couldn't really be solved (add to issues):
@@ -45,13 +54,14 @@ Best to implement the most common stuff first, as it's the most important.
 	2: Add an enemy unit
 		- you need: show possible danger on routes
 		- when moving against an enemy in the same region, it is clearly a battle you want
-		- when moving against an enemy in a enemy region, you get to choose what to do (raid, attack etc)
+		- when moving against an enemy in a enemy region, you get to choose what to do (avoid or attack etc)
 		- when enemies and Romans are in the same region, show a striped region with the map shader
 	3: Add battle screen and battle resolution.
 		- Add up the totals, add a random value - there's the winner
 		- Some other quesi-random elements for casualties
 		- Loser has to go somewhere
 		- Show the result as an event and animate any retreating moves
+	4: Save the game as simply as possible, and also add load
 
 Goals for v0.3
 --------------

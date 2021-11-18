@@ -8,7 +8,7 @@ const MAP_TO_PIXEL_SCALE: float = 240.0
 const ROME_DEFAULT_COLOR: Color = Color(0.91, 0.0664, 0.0664, 1.0)
 const CELT_COLOR: Color = Color('246bce')
 
-const ROAD_IMAGE_BORDER: Vector2 = Vector2(12.0, 12.0)
+const ROAD_IMAGE_BORDER: Vector2 = Vector2(16.0, 16.0)
 
 class RoadMoveDisplay:
 	# helper function to store details for displaying movements
