@@ -15,11 +15,13 @@ class RoadMoveDisplay:
 	var image: ImageTexture
 	var move_to: int
 	var pos: Vector2
+	var points: Array
 	
-	func _init(img, move, to):
+	func _init(img, move, to, pts):
 		image = img
 		move_to = move
 		pos = to
+		points = pts
 
 enum RegionDisplay {
 	OWNERS,

@@ -15,6 +15,8 @@ var road_images: Array = []
 var players: Array = []
 # this is the id of the unit with the scenario leader
 var leader_unit: int = -1
+# where the mouse is, updated every frame
+var current_mouse_coords: Vector2 = Vector2(0.0, 0.0)
 
 var road_texture: ImageTexture = null
 
@@ -154,6 +156,12 @@ func get_units(nodes: Array) -> Array:
 	helpers.log('Got %s units' % len(new_units))
 	return new_units
 
+func set_mouse_coords(coords: Vector2) -> void:
+	current_mouse_coords = coords
+
+func get_mouse_coords() -> Vector2:
+	return current_mouse_coords
+
 # =======================================================
 # all methods to get data follow here
 # This is essentially the API to the data stored above
@@ -291,7 +299,7 @@ func get_connected_road_images(node_id: int) -> Array:
 		var rimage = load('res://gfx/roads/' + folder_name + '/road_' + str(i.id) + '.png')
 		var road_texture = ImageTexture.new()
 		road_texture.create_from_image(rimage.get_data())
-		all_data.append(cn.RoadMoveDisplay.new(road_texture, i.id, i.pos))
+		all_data.append(cn.RoadMoveDisplay.new(road_texture, i.id, i.pos, i.points))
 	return all_data
 
 # code for handling money

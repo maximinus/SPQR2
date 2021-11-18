@@ -252,8 +252,11 @@ func get_mouse_map_coords(scaled: bool) -> Vector2:
 	var intersect = map_plane.intersects_ray(from, to)
 	# convert to pixel map coords if needed
 	if scaled == true:
-		return scale_plane_coords(intersect.x, intersect.z)
-	return Vector2(intersect.x, intersect.z)
+		var scaled_plane = scale_plane_coords(intersect.x, intersect.z)
+		data.set_mouse_coords(scaled_plane)
+		return scaled_plane
+	var map_coords =  Vector2(intersect.x, intersect.z)
+	return map_coords
 
 func calculate_intersections() -> void:
 	# calculate what the camera and mouse pointer are looking at
