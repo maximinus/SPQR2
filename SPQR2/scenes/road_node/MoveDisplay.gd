@@ -1,8 +1,11 @@
 extends Spatial
 
 const DISPLAY_HEIGHT = 0.01
+const MARGIN_INCREASE = 1.2
 
 var path_lookups: Array = []
+var bound_point: Vector2 = Vector2(0.0, 0.0)
+var bound_distance: float = 0.0
 
 func _ready():
 	pass
@@ -40,6 +43,29 @@ func setup(image_data: Array, pos: Vector2):
 		
 		path_lookups.append([vec_points, m_material])
 		$Moves.add_child(mesh)
+	# create an out-of-bounds circle
+	create_bounding_circle()
+
+func create_bounding_circle():
+	# get the middle point
+	var total: int = 0
+	var average: Vector2 = Vector2(0.0, 0.0)
+	for i in path_lookups:
+		for j in i[0]:
+			average += j
+			total += 1
+	average /= float(total)
+	# now calculate the furthest distance from that point
+	var furthest: float = 0.0
+	for i in path_lookups:
+		for j in i[0]:
+			var distance: float  = average.distance_to(j)
+			if distance > furthest:
+				furthest = distance
+	# we can treat the distance as the furthest away we need to be
+	# but we'll also increase the distance by some amount, i.e. a margin
+	bound_distance = furthest * MARGIN_INCREASE
+	bound_point = average
 
 func show_line_highlight(mat: SpatialMaterial):
 	mat.set_feature(SpatialMaterial.FEATURE_EMISSION, true)
@@ -52,6 +78,12 @@ func _process(delta):
 
 func check_closest_line():
 	var current_coords = data.get_mouse_coords()
+	# are we outside the bounding range?
+	if current_coords.distance_to(bound_point) > bound_distance:
+		for i in path_lookups:
+			hide_line_highlight(i[1])
+		# just clear all highlights
+		return
 	var closest: float = 10000.0
 	var path_chosen = null
 	for i in path_lookups:
