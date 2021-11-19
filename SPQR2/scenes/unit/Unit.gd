@@ -4,7 +4,7 @@ extends Spatial
 
 const MODEL_SCALE = Vector3(0.07, 0.07, 0.07)
 # world position change per second
-const UNIT_MOVE_SPEED = 0.3
+const UNIT_MOVE_SPEED = 0.4
 
 signal unit_clicked
 signal unit_unclicked
@@ -19,6 +19,7 @@ var highlight = false
 var unit_display: int = -1
 var road_data: Array = []
 var unit_data
+var moving: bool = false
 
 func _ready():
 	pass
@@ -37,6 +38,9 @@ func setup(display: int, unit) -> void:
 	add_child(model_instance)
 
 func unit_clicked():
+	# ignore clicks if animations are blocked
+	if data.animation_blocked == true:
+		return
 	if highlight == false:
 		highlight_on()
 		emit_signal('unit_clicked', self)
@@ -64,6 +68,7 @@ func start_move(road_id) -> void:
 	var road_data = data.roads[road_id]
 	var start_node = unit_data.location.id
 	var end_position: Vector2
+	# work out where to go, points and final node
 	if road_data.start_node != start_node:
 		# must be end 
 		if road_data.end_node != start_node:
@@ -72,9 +77,11 @@ func start_move(road_id) -> void:
 		path_points = road_data.points.duplicate()
 		path_points.invert()
 		end_position = data.rnodes[road_data.start_node].position
+		data.move_unit(unit_data.id, road_data.start_node)
 	else:
 		path_points = road_data.points
 		end_position = data.rnodes[road_data.end_node].position
+		data.move_unit(unit_data.id, road_data.end_node)
 	# now we have a list of points. Replace the starting point with our position
 	path_points[0] = Vector2(translation.x, translation.z)
 	# replace the end position with the position of the node we are going to
@@ -105,7 +112,17 @@ func start_move(road_id) -> void:
 	# now all the tracks have been added, set length of animation
 	anim.length = total_time
 	# finally, you can play the animation
+	data.animation_blocked = true
 	$MoveUnit.play('move')
+	$Marching.play()
+
+func _on_MoveUnit_animation_finished(anim_name):
+	# this can only ever be the move animation
+	data.animation_blocked = false
+	$Marching.stop()
+	$Stomping.play()
+	# update our position
+	road_data = data.get_road_arrows_from_node_id(unit_data.location.id)
 
 func play_click():
 	if $MouseClick.playing == true:

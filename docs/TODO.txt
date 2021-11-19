@@ -21,8 +21,9 @@ Editor Improvements:
 ✓ Move move selection to unit node
 ✓ Move current ESC screen to instead use 'M'
 ✓ Can be cancelled with ESC
-* Allow movement to be selected
-* When route chose, units move
+✓ Allow movement to be selected
+✓ When route chose, units move
+* Update data after move; stop selections during move
 * Add sounds, maybe smoke 3D effects (smoke on floor maybe?)
 * Add slight pause so move cannot accidentally be made straight after
 * Playtest and make it "pop" and work with no obvious issues

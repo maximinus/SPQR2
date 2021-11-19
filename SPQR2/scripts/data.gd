@@ -17,8 +17,10 @@ var players: Array = []
 var leader_unit: int = -1
 # where the mouse is, updated every frame
 var current_mouse_coords: Vector2 = Vector2(0.0, 0.0)
-
 var road_texture: ImageTexture = null
+# stop thinghs happening if something else is going on
+# for now, only set when a unit is move animated
+var animation_blocked: bool = false
 
 # define a light-weight road class
 class Road:
@@ -302,6 +304,9 @@ func get_road_arrows_from_node_id(node_id: int) -> Array:
 		road_texture.create_from_image(rimage.get_data())
 		all_data.append(cn.RoadMoveDisplay.new(road_texture, i.id, i.pos, i.points))
 	return all_data
+
+func move_unit(unit_id, location_id):
+	units[unit_id].location = rnodes[location_id]
 
 # code for handling money
 func get_player_gold():

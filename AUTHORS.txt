@@ -27,3 +27,5 @@ Graphics
 
 Sound
 	UI sounds from Kenny - https://www.kenney.nl/assets/ui-audio
+	Soldiers marching - https://freesound.org/people/stib/sounds/240732/
+	Footstomp - https://freesound.org/people/patchen/sounds/20185/
