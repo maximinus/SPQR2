@@ -39,7 +39,8 @@ var region_material: Material
 var dragging: bool
 var drag_offset: Vector2
 
-var unit_selected: bool = false
+# this should be the node that is selected, or null
+var unit_selected = null
 
 func _ready():
 	# ensure window size has a minimum
@@ -110,7 +111,12 @@ func _input(event) -> void:
 	if event.is_action_pressed("zoom_out"):
 		set_zoom_level(zoom_level + ZOOM_FACTOR)
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed == true:
+			# we could have check a unit, if the unit is accepting
+			if unit_selected != null:
+				if unit_selected.check_click() == true:
+					cancel_node_highlights()
+					unit_selected = null
 			check_region_click(null)
 
 func check_region_click(coords) -> void:
@@ -155,11 +161,11 @@ func add_units() -> void:
 		unit_instance.connect('unit_unclicked', self, 'unit_unclicked')
 		$Soldiers.add_child(unit_instance)
 
-func unit_clicked(unit_id):
-	if unit_selected == false:
+func unit_clicked(unit_node):
+	if unit_selected == null:
 		# get the current node
-		var location_node = data.units[unit_id].location.id
-		var region_ids = Array(data.get_unit_move_nodes(unit_id))
+		var location_node = unit_node.unit_data.location.id
+		var region_ids = Array(data.get_unit_move_nodes(unit_node.unit_data.id))
 		# the unit wil have updated itself already
 		for i in $Nodes.get_children():
 			# update these regions only, else clear
@@ -167,19 +173,25 @@ func unit_clicked(unit_id):
 				i.show_move_highlight()
 			else:
 				i.hide_move_highlight()
-		unit_selected = true
+		unit_selected = unit_node
 
 func unit_unclicked(unit_id):
-	for i in $Nodes.get_children():
-		i.hide_move_highlight()
-	unit_selected = false
+	if unit_selected != null:
+		for i in $Nodes.get_children():
+			i.hide_move_highlight()
+	unit_selected = null
 
 func cancel_unit_highlights() -> void:
-	if unit_selected == true:
+	if unit_selected != null:
 		for i in $Soldiers.get_children():
 			i.highlight_off()
 		for i in $Nodes.get_children():
 			i.hide_move_highlight()
+		unit_selected = null
+
+func cancel_node_highlights() -> void:
+	for i in $Nodes.get_children():
+		i.hide_move_highlight()
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing

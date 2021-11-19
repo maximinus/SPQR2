@@ -6,7 +6,7 @@ const MODEL_SCALE = Vector3(0.07, 0.07, 0.07)
 signal unit_clicked
 signal unit_unclicked
 
-var move_scene = preload('res://scenes/road_node/MoveDisplay.tscn')
+var move_scene = preload('res://scenes/move_display/MoveDisplay.tscn')
 var move_node = null
 
 # preload the models
@@ -36,10 +36,16 @@ func setup(display: int, unit) -> void:
 func unit_clicked():
 	if highlight == false:
 		highlight_on()
-		emit_signal('unit_clicked', unit_data.id)
+		emit_signal('unit_clicked', self)
 	else:
 		highlight_off()
-		emit_signal('unit_unclicked', unit_data.id)
+		emit_signal('unit_unclicked', self)
+
+func check_click() -> bool:
+	if move_node == null:
+		helpers.log('Error: Click check with no move node')
+		return false
+	return move_node.check_click()
 
 func play_click():
 	if $MouseClick.playing == true:
@@ -67,7 +73,13 @@ func show_moves():
 	var new_scene = move_scene.instance()
 	new_scene.setup(road_data, unit_data.location.position)
 	move_node = new_scene
+	move_node.connect('move_started', self, 'move_started')
 	add_child(new_scene)
+
+func move_started(node_id):
+	play_click()
+	hide_moves()
+	helpers.log('Move to: ' + str(node_id))
 
 func hide_moves():
 	if move_node == null:

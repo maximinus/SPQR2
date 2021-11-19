@@ -19,8 +19,8 @@ Editor Improvements:
 ✓ Make moves white, increase arrow length and slightly thinner
 ✓ Highlight the nearest move possibilty (calculate against the POINTS, not the image)
 ✓ Move move selection to unit node
-* Move current ESC screen to instead use 'M'
-* Can be cancelled with ESC
+✓ Move current ESC screen to instead use 'M'
+✓ Can be cancelled with ESC
 * Allow movement to be selected
 * When route chose, units move
 * Add sounds, maybe smoke 3D effects (smoke on floor maybe?)
