@@ -108,7 +108,6 @@ func check_closest_line() -> void:
 			hide_line_highlight(i[1])
 		last_chosen = null
 		return
-	print(len(path_lookups))
 	for i in path_lookups:
 		if i == result:
 			show_line_highlight(i[1])

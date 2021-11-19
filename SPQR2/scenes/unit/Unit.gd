@@ -4,7 +4,7 @@ extends Spatial
 
 const MODEL_SCALE = Vector3(0.07, 0.07, 0.07)
 # world position change per second
-const UNIT_MOVE_SPEED = 0.4
+const UNIT_MOVE_SPEED = 0.6
 
 signal unit_clicked
 signal unit_unclicked
@@ -93,9 +93,9 @@ func start_move(road_id) -> void:
 		var vector_convert: Vector2 = Vector2(path_points[i][0], path_points[i][1])
 		path_points[i] = helpers.pixel_to_map(vector_convert)
 		
-	# now we build up the animations
-	var anim = $MoveUnit.get_animation('move')
-	anim.clear()
+	# now we build up the animations. Remove the old one if it exists
+	$MoveUnit.remove_animation('move')
+	var anim = Animation.new()
 	var track_index = anim.add_track(Animation.TYPE_TRANSFORM)
 	var total_time: float = 0.0
 	anim.track_set_path(track_index, @'.:transform/translation')
@@ -112,6 +112,8 @@ func start_move(road_id) -> void:
 			Quat(0.0, 0.0, 0.0, 1.0), Vector3(1.0, 1.0, 1.0))
 	# now all the tracks have been added, set length of animation
 	anim.length = total_time
+	# add to animation player
+	$MoveUnit.add_animation('move', anim)
 	# finally, you can play the animation
 	data.animation_blocked = true
 	$MoveUnit.play('move')

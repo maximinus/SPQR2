@@ -307,7 +307,6 @@ func get_road_arrows_from_node_id(node_id: int) -> Array:
 
 func move_unit(unit_id, location_id):
 	units[unit_id].location = rnodes[location_id]
-	helpers.log('Moving to ' + str(location_id))
 
 # code for handling money
 func get_player_gold():
