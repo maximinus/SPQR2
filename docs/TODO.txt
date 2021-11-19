@@ -24,13 +24,12 @@ Editor Improvements:
 ✓ Allow movement to be selected
 ✓ When route chose, units move
 * Update data after move; stop selections during move
-* Add sounds, maybe smoke 3D effects (smoke on floor maybe?)
-* Add slight pause so move cannot accidentally be made straight after
+✓ Add sounds
 * Playtest and make it "pop" and work with no obvious issues
-* Fix bug where camera can see sky when at top of mapboard
-* Code cleanup:
-*	Decide how id should be handled. Consider adding more functions to data
-*	Document what knows about what, how ownership is decided etc
+✓ Fix bug where camera can see sky when at top of mapboard: Could not replicate
+✓ Code cleanup:
+✓	Decide how id should be handled. Consider adding more functions to data
+✓	Document what knows about what, how ownership is decided etc
 * This completes part 1 of "Goals for v0.2"
 
 

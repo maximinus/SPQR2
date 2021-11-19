@@ -79,9 +79,10 @@ func start_move(road_id) -> void:
 		end_position = data.rnodes[road_data.start_node].position
 		data.move_unit(unit_data.id, road_data.start_node)
 	else:
-		path_points = road_data.points
+		path_points = road_data.points.duplicate()
 		end_position = data.rnodes[road_data.end_node].position
 		data.move_unit(unit_data.id, road_data.end_node)
+		
 	# now we have a list of points. Replace the starting point with our position
 	path_points[0] = Vector2(translation.x, translation.z)
 	# replace the end position with the position of the node we are going to
@@ -118,11 +119,11 @@ func start_move(road_id) -> void:
 
 func _on_MoveUnit_animation_finished(anim_name):
 	# this can only ever be the move animation
-	data.animation_blocked = false
 	$Marching.stop()
 	$Stomping.play()
-	# update our position
+	# update the roads we can go to
 	road_data = data.get_road_arrows_from_node_id(unit_data.location.id)
+	data.animation_blocked = false
 
 func play_click():
 	if $MouseClick.playing == true:
