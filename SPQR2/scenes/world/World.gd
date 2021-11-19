@@ -79,6 +79,9 @@ func _process(delta):
 
 func check_ui_actions() -> void:
 	# check non-map ui actions
+	if Input.is_action_just_pressed('escape'):
+		# cancel any unit move highlights if we have them
+		cancel_unit_highlights()
 	if Input.is_action_just_pressed('menu'):
 		$CanvasLayer/PauseMenu.display()
 		get_tree().paused = true
@@ -170,6 +173,13 @@ func unit_unclicked(unit_id):
 	for i in $Nodes.get_children():
 		i.hide_move_highlight()
 	unit_selected = false
+
+func cancel_unit_highlights() -> void:
+	if unit_selected == true:
+		for i in $Soldiers.get_children():
+			i.highlight_off()
+		for i in $Nodes.get_children():
+			i.hide_move_highlight()
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing

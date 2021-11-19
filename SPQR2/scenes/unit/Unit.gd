@@ -34,27 +34,33 @@ func setup(display: int, unit) -> void:
 	add_child(model_instance)
 
 func unit_clicked():
+	if highlight == false:
+		highlight_on()
+		emit_signal('unit_clicked', unit_data.id)
+	else:
+		highlight_off()
+		emit_signal('unit_unclicked', unit_data.id)
+
+func play_click():
 	if $MouseClick.playing == true:
 		$MouseClick.stop()
 	$MouseClick.play()
-	if highlight == false:
-		highlight_on()
-	else:
-		highlight_off()
-	highlight = !highlight
-	
 
 func highlight_on() -> void:
-	$Circle.show()
-	$Highlight.play('HighlightRotate')
-	show_moves()
-	emit_signal('unit_clicked', unit_data.id)
+	if highlight == false:
+		play_click()
+		$Circle.show()
+		$Highlight.play('HighlightRotate')
+		show_moves()
+		highlight = true
 
 func highlight_off() -> void:
-	$Circle.hide()
-	$Highlight.stop()
-	hide_moves()
-	emit_signal('unit_unclicked', unit_data.id)
+	if highlight == true:
+		play_click()
+		$Circle.hide()
+		$Highlight.stop()
+		hide_moves()
+		highlight = false
 
 func show_moves():
 	# show the moves we can take
@@ -64,7 +70,10 @@ func show_moves():
 	add_child(new_scene)
 
 func hide_moves():
+	if move_node == null:
+		return
 	move_node.queue_free()
+	move_node = null
 
 func set_leader_status(status: bool):
 	if status == true:
