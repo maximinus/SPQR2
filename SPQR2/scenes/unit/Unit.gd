@@ -47,11 +47,13 @@ func unit_clicked():
 func highlight_on() -> void:
 	$Circle.show()
 	$Highlight.play('HighlightRotate')
+	show_moves()
 	emit_signal('unit_clicked', unit_data.id)
 
 func highlight_off() -> void:
 	$Circle.hide()
 	$Highlight.stop()
+	hide_moves()
 	emit_signal('unit_unclicked', unit_data.id)
 
 func show_moves():
@@ -62,7 +64,7 @@ func show_moves():
 	add_child(new_scene)
 
 func hide_moves():
-	pass
+	move_node.queue_free()
 
 func set_leader_status(status: bool):
 	if status == true:
