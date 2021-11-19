@@ -1,11 +1,13 @@
 extends Spatial
 
-const DISPLAY_HEIGHT = 0.01
-const MARGIN_INCREASE = 1.2
+const DISPLAY_HEIGHT: float = 0.01
+const MARGIN_INCREASE: float = 1.2
+const NODE_RADIUS: float = 20.0
 
 var path_lookups: Array = []
 var bound_point: Vector2 = Vector2(0.0, 0.0)
 var bound_distance: float = 0.0
+var node_position: Vector2
 var last_chosen = null
 
 func _ready():
@@ -14,6 +16,7 @@ func _ready():
 func setup(image_data: Array, pos: Vector2) -> void:
 	# add each image as a new mesh with a single texture
 	# the array is an aray of cn.RoadMoveDisplay instances
+	node_position = pos
 	for i in image_data:
 		# work out world size after scaling
 		var mesh_size = Vector2(i.image.get_width() / cn.MAP_TO_PIXEL_SCALE,
@@ -31,7 +34,7 @@ func setup(image_data: Array, pos: Vector2) -> void:
 		m_material.set_feature(SpatialMaterial.FEATURE_EMISSION, false)
 		mesh.set_material(m_material)
 		# position is in pixels, translate and offset with node position
-		var map_p = helpers.pixel_to_map(i.pos) - pos
+		var map_p = helpers.pixel_to_map(i.pos) - node_position
 		# we also need to offset the image by half it's size, otherwise it is drawn centered
 		map_p += mesh_size / 2.0
 		mesh.translation.y = DISPLAY_HEIGHT
@@ -90,6 +93,9 @@ func get_closest_line():
 	if current_coords.distance_to(bound_point) > bound_distance:
 		# just clear all highlights
 		return null
+	# are we inside the original node?
+	if current_coords.distance_to(helpers.map_to_pixel(node_position)) < NODE_RADIUS:
+		return null
 	var closest: float = 10000.0
 	var path_chosen = null
 	for i in path_lookups:
@@ -113,8 +119,14 @@ func check_closest_line() -> void:
 			show_line_highlight(i[1])
 		else:
 			hide_line_highlight(i[1])
-	if last_chosen != result and last_chosen != null:
+	# play the sound when we have a new selection
+	# which means null -> anything not null
+	# anything -> something different not null
+	if last_chosen == null and result != null:
 		play_rollover()
+	elif last_chosen != result and result != null:
+		play_rollover()
+
 	last_chosen = result
 
 func play_rollover() -> void:

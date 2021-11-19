@@ -4,7 +4,7 @@ extends Spatial
 
 const MODEL_SCALE = Vector3(0.07, 0.07, 0.07)
 # world position change per second
-const UNIT_MOVE_SPEED = 0.6
+const UNIT_MOVE_SPEED = 0.8
 
 signal unit_clicked
 signal unit_unclicked
@@ -95,14 +95,27 @@ func start_move(road_id) -> void:
 		
 	# now we build up the animations. Remove the old one if it exists
 	$MoveUnit.remove_animation('move')
+	$MoveUnit.remove_animation('rotate')
 	var anim = Animation.new()
 	var track_index = anim.add_track(Animation.TYPE_TRANSFORM)
-	var total_time: float = 0.0
 	anim.track_set_path(track_index, @'.:transform/translation')
+	var total_time: float = 0.0
+	# stay where we are vertically
 	var ypos = translation.y
 	# start where we are
 	anim.transform_track_insert_key(track_index, 0.0, translation,
 			Quat(0.0, 0.0, 0.0, 1.0), Vector3(1.0, 1.0, 1.0))
+			
+	# set up rotation
+	# Unit starts at angle_degres = 0, pointing towards you
+	# So we need first calculate the angle from where we are now, to where we will be
+	# This works for all nodes, except for the last we know the value will be 0 again
+	# The unit rotates on the y axis
+	# TODO: Why does this not work?
+	var rotate_index = anim.add_track(Animation.TYPE_VALUE)
+	anim.track_set_path(rotate_index, @'.:transform:rotation_degrees:y')
+	anim.track_insert_key(rotate_index, 0.0, rotation_degrees.y)
+			
 	for i in range(1, len(path_points)):
 		var start: Vector2 = path_points[i - 1]
 		var destination: Vector2 = path_points[i]
@@ -110,11 +123,20 @@ func start_move(road_id) -> void:
 		total_time += time
 		anim.transform_track_insert_key(track_index, total_time, Vector3(destination.x, ypos, destination.y),
 			Quat(0.0, 0.0, 0.0, 1.0), Vector3(1.0, 1.0, 1.0))
+			
+		# now calculate rotation
+		# the starting point is what we have now, the next we need calculate, unless this is the end
+		var rotate_end: float = 0.0
+		if i < len(path_points) - 1:
+			# calculate. We have the 2 positions, start and destination
+			rotate_end = rad2deg(start.angle_to_point(destination))
+		anim.track_insert_key(rotate_index, total_time, rotate_end)
+			
 	# now all the tracks have been added, set length of animation
 	anim.length = total_time
 	# add to animation player
 	$MoveUnit.add_animation('move', anim)
-	# finally, you can play the animation
+	# finally, you can play the animation and audio
 	data.animation_blocked = true
 	$MoveUnit.play('move')
 	$Marching.play()
