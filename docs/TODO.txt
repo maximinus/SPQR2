@@ -18,7 +18,7 @@ Editor Improvements:
 ✓ Update the editor to save road positions
 ✓ Make moves white, increase arrow length and slightly thinner
 ✓ Highlight the nearest move possibilty (calculate against the POINTS, not the image)
-* Move move selection to unit node
+✓ Move move selection to unit node
 * Move current ESC screen to instead use 'M'
 * Can be cancelled with ESC
 * Allow movement to be selected
