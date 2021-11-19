@@ -47,25 +47,24 @@ func setup(image_data: Array, pos: Vector2):
 	create_bounding_circle()
 
 func create_bounding_circle():
-	# get the middle point
+	# get the middle / average point
 	var total: int = 0
-	var average: Vector2 = Vector2(0.0, 0.0)
+	bound_point = Vector2(0.0, 0.0)
 	for i in path_lookups:
 		for j in i[0]:
-			average += j
+			bound_point += j
 			total += 1
-	average /= float(total)
+	bound_point /= float(total)
 	# now calculate the furthest distance from that point
 	var furthest: float = 0.0
 	for i in path_lookups:
 		for j in i[0]:
-			var distance: float  = average.distance_to(j)
+			var distance: float  = bound_point.distance_to(j)
 			if distance > furthest:
 				furthest = distance
-	# we can treat the distance as the furthest away we need to be
-	# but we'll also increase the distance by some amount, i.e. a margin
+	# we can treat the distance as the furthest away to ignore the mouse
+	# but we'll also increase the distance by a small margin
 	bound_distance = furthest * MARGIN_INCREASE
-	bound_point = average
 
 func show_line_highlight(mat: SpatialMaterial):
 	mat.set_feature(SpatialMaterial.FEATURE_EMISSION, true)

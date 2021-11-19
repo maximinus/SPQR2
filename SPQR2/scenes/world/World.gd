@@ -143,33 +143,33 @@ func add_nodes() -> void:
 func add_units() -> void:
 	for i in data.units:
 		var unit_instance = unit_scene.instance()
-		unit_instance.setup(data.get_unit_owner(i.id), i.id)
+		unit_instance.setup(data.get_unit_owner(i.id), i)
 		var unit_pos = i.get_map_position()
 		unit_instance.translation.x = unit_pos[0]
 		unit_instance.translation.z = unit_pos[1]
 		# add a manual callback
 		unit_instance.connect('unit_clicked', self, 'unit_clicked')
+		unit_instance.connect('unit_unclicked', self, 'unit_unclicked')
 		$Soldiers.add_child(unit_instance)
 
 func unit_clicked(unit_id):
 	if unit_selected == false:
 		# get the current node
-		var location_node = data.units[unit_id].node_id
+		var location_node = data.units[unit_id].location.id
 		var region_ids = Array(data.get_unit_move_nodes(unit_id))
+		# the unit wil have updated itself already
 		for i in $Nodes.get_children():
 			# update these regions only, else clear
-			if i.id == location_node:
-				i.show_moves()
-			elif region_ids.has(i.id):
+			if region_ids.has(i.id):
 				i.show_move_highlight()
 			else:
 				i.hide_move_highlight()
-		# we also need to activate the node the unit is on
 		unit_selected = true
-	else:
-		for i in $Nodes.get_children():
-			i.hide_move_highlight()
-		unit_selected = false
+
+func unit_unclicked(unit_id):
+	for i in $Nodes.get_children():
+		i.hide_move_highlight()
+	unit_selected = false
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing

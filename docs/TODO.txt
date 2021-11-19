@@ -16,10 +16,12 @@ Editor Improvements:
 ✓ Highlight those modes in some way
 ✓ Draw the moves as arrows
 ✓ Update the editor to save road positions
-* Make moves white, increase arrow length and slightly thinner
-* Highlight the nearest move possibilty (calculate against the POINTS, not the image)
-* Can be cancelled with ESC
+✓ Make moves white, increase arrow length and slightly thinner
+✓ Highlight the nearest move possibilty (calculate against the POINTS, not the image)
+* Move move selection to unit node
 * Move current ESC screen to instead use 'M'
+* Can be cancelled with ESC
+* Allow movement to be selected
 * When route chose, units move
 * Add sounds, maybe smoke 3D effects (smoke on floor maybe?)
 * Add slight pause so move cannot accidentally be made straight after
@@ -62,6 +64,7 @@ Best to implement the most common stuff first, as it's the most important.
 		- Loser has to go somewhere
 		- Show the result as an event and animate any retreating moves
 	4: Save the game as simply as possible, and also add load
+	5: Add 4 more regions
 
 Goals for v0.3
 --------------
@@ -72,6 +75,8 @@ Goals for v0.3
 2: Add basic AI to the enemy to decide to retreat, attack or what-not
 3: Enemies can move between your moves. Decide a mechanism
 4: Add heuristics to game AI. No need to code war aims, give the goal at the start
+5: Add >1 enemy
+6: Add 4 more regions
 
 Goals for 0.4
 -------------

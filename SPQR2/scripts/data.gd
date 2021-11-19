@@ -145,13 +145,14 @@ func get_node_data(data):
 	units = get_units(data['nodes'])
 	helpers.log('Game data loaded')
 
-func get_units(nodes: Array) -> Array:
+func get_units(unit_data: Array) -> Array:
+	# units are the last thing to get, so we have the nodes here
 	var new_units: Array = []
 	var unit_id = 0
-	for i in nodes:
+	for i in unit_data:
 		if i['unit'] >= 0:
 			var unit_owner = regions[int(i['region_id'])].owner_id
-			new_units.append(Unit.new(i, unit_owner, unit_id))
+			new_units.append(Unit.new(i, unit_owner, unit_id, rnodes[i['id']]))
 			unit_id += 1
 	helpers.log('Got %s units' % len(new_units))
 	return new_units
@@ -236,7 +237,7 @@ func get_unit_owner(unit_id: int) -> int:
 
 func get_unit_move_nodes(unit_id: int) -> PoolIntArray:
 	# get the node the unit is in
-	return graph.get_connected_nodes(units[unit_id].node_id)
+	return graph.get_connected_nodes(units[unit_id].location.id)
 
 func get_units_in_region(region_id: int) -> Array:
 	var in_region: Array = []
@@ -289,7 +290,7 @@ func get_roads_starting_at(node_id: int) -> Array:
 			connected_roads.append(i)
 	return connected_roads
 
-func get_connected_road_images(node_id: int) -> Array:
+func get_road_arrows_from_node_id(node_id: int) -> Array:
 	var all_data = []
 	for i in get_roads_starting_at(node_id):
 		# it either starts or ends here

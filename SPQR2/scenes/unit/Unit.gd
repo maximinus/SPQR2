@@ -1,27 +1,34 @@
 extends Spatial
 
+# Node to display a unit model on screen
+
 const MODEL_SCALE = Vector3(0.07, 0.07, 0.07)
 signal unit_clicked
+signal unit_unclicked
+
+var move_scene = preload('res://scenes/road_node/MoveDisplay.tscn')
+var move_node = null
 
 # preload the models
 var models = [preload('res://scenes/units/roman_spear.tscn'),
 			  preload('res://scenes/units/celtic_spearman.tscn')]
 var highlight = false
-var id: int = -1
-var owner_id: int = -1
+var unit_display: int = -1
+var road_data: Array = []
+var unit_data
 
 func _ready():
 	pass
 
-func setup(owner: int, unit_id: int) -> void:
-	owner_id = owner
-	id = unit_id
-	if owner < 0 or owner >= len(models):
+func setup(display: int, unit) -> void:
+	if display < 0 or display >= len(models):
 		helpers.log('Error: Owner id is out of range')
 		return
+	unit_display = display
+	unit_data = unit
+	road_data = data.get_road_arrows_from_node_id(unit_data.location.id)
 	$roman_spear.queue_free()
-	var model_instance = models[owner].instance()
-	# set scale on first child of node
+	var model_instance = models[display].instance()
 	model_instance.set_scale(MODEL_SCALE)
 	model_instance.connect('clicked', self, 'unit_clicked')
 	add_child(model_instance)
@@ -35,15 +42,27 @@ func unit_clicked():
 	else:
 		highlight_off()
 	highlight = !highlight
-	emit_signal('unit_clicked', id)
+	
 
 func highlight_on() -> void:
 	$Circle.show()
 	$Highlight.play('HighlightRotate')
+	emit_signal('unit_clicked', unit_data.id)
 
 func highlight_off() -> void:
 	$Circle.hide()
 	$Highlight.stop()
+	emit_signal('unit_unclicked', unit_data.id)
+
+func show_moves():
+	# show the moves we can take
+	var new_scene = move_scene.instance()
+	new_scene.setup(road_data, unit_data.location.position)
+	move_node = new_scene
+	add_child(new_scene)
+
+func hide_moves():
+	pass
 
 func set_leader_status(status: bool):
 	if status == true:
