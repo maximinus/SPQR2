@@ -1,7 +1,5 @@
 extends Spatial
 
-signal move_started
-
 const DISPLAY_HEIGHT = 0.01
 const MARGIN_INCREASE = 1.2
 
@@ -49,15 +47,13 @@ func setup(image_data: Array, pos: Vector2) -> void:
 	# create an out-of-bounds circle
 	create_bounding_circle()
 
-func check_click() -> bool:
+func check_click() -> int:
 	# return true if we moved
 	var path_clicked = get_closest_line()
 	if path_clicked == null:
 		# nothing to do
-		return false
-	# remove ourselves
-	emit_signal('move_started', path_clicked[2])
-	return true
+		return -1
+	return path_clicked[2]
 
 func create_bounding_circle() -> void:
 	# get the middle / average point

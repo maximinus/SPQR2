@@ -3,6 +3,9 @@ extends Spatial
 # Node to display a unit model on screen
 
 const MODEL_SCALE = Vector3(0.07, 0.07, 0.07)
+# world position change per second
+const UNIT_MOVE_SPEED = 0.3
+
 signal unit_clicked
 signal unit_unclicked
 
@@ -45,7 +48,64 @@ func check_click() -> bool:
 	if move_node == null:
 		helpers.log('Error: Click check with no move node')
 		return false
-	return move_node.check_click()
+	var road_id = move_node.check_click()
+	if road_id >= 0:
+		hide_moves()
+		highlight_off()
+		play_click()
+		start_move(road_id)
+		return true
+	return false
+
+func start_move(road_id) -> void:
+	# start the process of moving from one node to the next
+	# we need the paths of the roads. We have the TO, now get the FROM
+	var path_points: Array = []
+	var road_data = data.roads[road_id]
+	var start_node = unit_data.location.id
+	var end_position: Vector2
+	if road_data.start_node != start_node:
+		# must be end 
+		if road_data.end_node != start_node:
+			helpers.log('Error: Roads do not connect!')
+			return
+		path_points = road_data.points.duplicate()
+		path_points.invert()
+		end_position = data.rnodes[road_data.start_node].position
+	else:
+		path_points = road_data.points
+		end_position = data.rnodes[road_data.end_node].position
+	# now we have a list of points. Replace the starting point with our position
+	path_points[0] = Vector2(translation.x, translation.z)
+	# replace the end position with the position of the node we are going to
+	path_points[-1] = end_position
+	
+	# all points except the start and the end must be converted to map coords
+	for i in range(1, len(path_points) - 1):
+		var vector_convert: Vector2 = Vector2(path_points[i][0], path_points[i][1])
+		path_points[i] = helpers.pixel_to_map(vector_convert)
+		
+	# now we build up the animations
+	var anim = $MoveUnit.get_animation('move')
+	anim.clear()
+	var track_index = anim.add_track(Animation.TYPE_TRANSFORM)
+	var total_time: float = 0.0
+	anim.track_set_path(track_index, @'.:transform/translation')
+	var ypos = translation.y
+	# start where we are
+	anim.transform_track_insert_key(track_index, 0.0, translation,
+			Quat(0.0, 0.0, 0.0, 1.0), Vector3(1.0, 1.0, 1.0))
+	for i in range(1, len(path_points)):
+		var start: Vector2 = path_points[i - 1]
+		var destination: Vector2 = path_points[i]
+		var time = start.distance_to(destination) / UNIT_MOVE_SPEED
+		total_time += time
+		anim.transform_track_insert_key(track_index, total_time, Vector3(destination.x, ypos, destination.y),
+			Quat(0.0, 0.0, 0.0, 1.0), Vector3(1.0, 1.0, 1.0))
+	# now all the tracks have been added, set length of animation
+	anim.length = total_time
+	# finally, you can play the animation
+	$MoveUnit.play('move')
 
 func play_click():
 	if $MouseClick.playing == true:
@@ -68,26 +128,20 @@ func highlight_off() -> void:
 		hide_moves()
 		highlight = false
 
-func show_moves():
+func show_moves() -> void:
 	# show the moves we can take
 	var new_scene = move_scene.instance()
 	new_scene.setup(road_data, unit_data.location.position)
 	move_node = new_scene
-	move_node.connect('move_started', self, 'move_started')
 	add_child(new_scene)
 
-func move_started(node_id):
-	play_click()
-	hide_moves()
-	helpers.log('Move to: ' + str(node_id))
-
-func hide_moves():
+func hide_moves() -> void:
 	if move_node == null:
 		return
 	move_node.queue_free()
 	move_node = null
 
-func set_leader_status(status: bool):
+func set_leader_status(status: bool) -> void:
 	if status == true:
 		$eagle.show()
 	else:
