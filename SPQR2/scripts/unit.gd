@@ -26,3 +26,6 @@ func get_map_position() -> Vector2:
 
 func get_region_id() -> int:
 	return location.region_id
+
+func is_roman() -> bool:
+	return owner_id == 0

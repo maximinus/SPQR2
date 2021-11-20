@@ -13,14 +13,20 @@ const ROAD_IMAGE_BORDER: Vector2 = Vector2(16.0, 16.0)
 class RoadMoveDisplay:
 	# helper function to store details for displaying movements
 	var image: ImageTexture
+	var red_image: ImageTexture
 	var move_to: int
 	var pos: Vector2
 	var points: Array
 	
-	func _init(img, move, to, pts):
+	func _init(img, red_img, road, to, pts):
+		# arrow images
 		image = img
-		move_to = move
+		red_image = red_img
+		# road is the id of the ROAD
+		move_to = road
+		# the position of the image
 		pos = to
+		# the points of the line
 		points = pts
 
 enum RegionDisplay {

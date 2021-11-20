@@ -12,10 +12,10 @@ Editor Improvements:
 
 ✓ If the mouse is over the node with the moving unit, do not highlight a move arrow
 ✓ Above completes part 1 of "Goals for v0.2"
-* For 0.2:
-* Add enemy unit from editor
+✓ For 0.2:
+✓ Add enemy unit from editor
 ✓ Move arrow is red if enemy in node
-* If moving onto a node with an enemy, do not move for now
+✓ If moving onto a node with an enemy, do not move for now
 * If 2 differing units are in 1 region, show the region striped
 * Above completes part 2 of "Goals for v0.2"
 * If moving into a node with an enemy, show a battle screen

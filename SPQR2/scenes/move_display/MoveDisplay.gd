@@ -4,6 +4,9 @@ const DISPLAY_HEIGHT: float = 0.01
 const MARGIN_INCREASE: float = 1.2
 const NODE_RADIUS: float = 20.0
 
+const RED_ARROW = Color(1.0, 0.0, 0.0, 1.0)
+const WHITE_ARROW = Color(1.0, 1.0, 1.0, 1.0)
+
 var path_lookups: Array = []
 var bound_point: Vector2 = Vector2(0.0, 0.0)
 var bound_distance: float = 0.0
@@ -13,11 +16,17 @@ var last_chosen = null
 func _ready():
 	pass
 
-func setup(image_data: Array, pos: Vector2) -> void:
+func _process(_delta) -> void:
+	check_closest_line()
+
+func setup(image_data: Array, location) -> void:
 	# add each image as a new mesh with a single texture
 	# the array is an aray of cn.RoadMoveDisplay instances
-	node_position = pos
+	node_position = location.position
 	for i in image_data:
+		# get the actual node we want to move to
+		var node_to_move_to: int = data.roads[i.move_to].get_destination(location.id)
+		
 		# work out world size after scaling
 		var mesh_size = Vector2(i.image.get_width() / cn.MAP_TO_PIXEL_SCALE,
 								i.image.get_height() / cn.MAP_TO_PIXEL_SCALE)
@@ -29,8 +38,17 @@ func setup(image_data: Array, pos: Vector2) -> void:
 		# add texture, make see-through
 		var m_material = SpatialMaterial.new()
 		m_material.set_feature(SpatialMaterial.FEATURE_TRANSPARENT, true)
-		m_material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, i.image)
-		m_material.set_emission(Color(1.0, 1.0, 1.0, 1.0))
+		# does the node contain an enemy unit?
+		# i.move_to is the id of the road
+		# we also have the id of the current location  - location.id
+		if data.node_has_enemy_unit(data.roads[i.move_to].get_destination(location.id)):
+			m_material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, i.red_image)
+			m_material.set_emission(RED_ARROW)
+			# we can't move here yet
+			node_to_move_to = -1
+		else:
+			m_material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, i.image)
+			m_material.set_emission(WHITE_ARROW)
 		m_material.set_feature(SpatialMaterial.FEATURE_EMISSION, false)
 		mesh.set_material(m_material)
 		# position is in pixels, translate and offset with node position
@@ -44,19 +62,20 @@ func setup(image_data: Array, pos: Vector2) -> void:
 		var vec_points: Array = []
 		for j in i.points:
 			vec_points.append(Vector2(j[0], j[1]))
-		
-		path_lookups.append([vec_points, m_material, i.move_to])
+
+		path_lookups.append([vec_points, m_material, node_to_move_to, i.move_to])
 		$Moves.add_child(mesh)
 	# create an out-of-bounds circle
 	create_bounding_circle()
 
-func check_click() -> int:
-	# return true if we moved
+func check_click() -> Array:
+	# called when an unhandled click occurs on the map
+	# return the node to move to, if we clicked a line
 	var path_clicked = get_closest_line()
 	if path_clicked == null:
 		# nothing to do
-		return -1
-	return path_clicked[2]
+		return []
+	return [path_clicked[2], path_clicked[3]]
 
 func create_bounding_circle() -> void:
 	# get the middle / average point
@@ -83,9 +102,6 @@ func show_line_highlight(mat: SpatialMaterial) -> void:
 
 func hide_line_highlight(mat: SpatialMaterial) -> void:
 	mat.set_feature(SpatialMaterial.FEATURE_EMISSION, false)
-
-func _process(delta) -> void:
-	check_closest_line()
 
 func get_closest_line():
 	var current_coords = data.get_mouse_coords()

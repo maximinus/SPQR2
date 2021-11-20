@@ -37,15 +37,12 @@ func setup(display: int, unit) -> void:
 	model_instance.connect('clicked', self, 'unit_clicked')
 	add_child(model_instance)
 
-func unit_is_roman() -> bool:
-	return unit_display == 0
-
 func unit_clicked():
 	# ignore clicks if animations are blocked
 	if data.animation_blocked == true:
 		return
 	# ignore clicks if unit is not Roman
-	if unit_is_roman() == false:
+	if unit_data.is_roman() == false:
 		return
 	if highlight == false:
 		highlight_on()
@@ -58,20 +55,28 @@ func check_click() -> bool:
 	if move_node == null:
 		helpers.log('Error: Click check with no move node')
 		return false
-	var road_id = move_node.check_click()
-	if road_id >= 0:
+	var move_data = move_node.check_click()
+	if len(move_data) != 0:
+		# can we actually move there?
+		if move_data[0] < 0:
+			# no, blocked - deselect all for now
+			hide_moves()
+			highlight_off()
+			play_click()
+			return true
 		hide_moves()
 		highlight_off()
 		play_click()
-		start_move(road_id)
+		start_move(move_data)
 		return true
 	return false
 
-func start_move(road_id) -> void:
+func start_move(move_data: Array) -> void:
+	# move data is [node_id, road_id]
 	# start the process of moving from one node to the next
 	# we need the paths of the roads. We have the TO, now get the FROM
 	var path_points: Array = []
-	var road_data = data.roads[road_id]
+	var road_data = data.roads[move_data[1]]
 	var start_node = unit_data.location.id
 	var end_position: Vector2
 	# work out where to go, points and final node
@@ -83,11 +88,10 @@ func start_move(road_id) -> void:
 		path_points = road_data.points.duplicate()
 		path_points.invert()
 		end_position = data.rnodes[road_data.start_node].position
-		data.move_unit(unit_data.id, road_data.start_node)
 	else:
 		path_points = road_data.points.duplicate()
 		end_position = data.rnodes[road_data.end_node].position
-		data.move_unit(unit_data.id, road_data.end_node)
+	data.move_unit(unit_data.id, move_data[0])
 		
 	# now we have a list of points. Replace the starting point with our position
 	path_points[0] = Vector2(translation.x, translation.z)
@@ -149,7 +153,7 @@ func start_move(road_id) -> void:
 	$MoveUnit.play('move')
 	$Marching.play()
 
-func _on_MoveUnit_animation_finished(anim_name):
+func _on_MoveUnit_animation_finished(_anim_name):
 	# this can only ever be the move animation
 	$Marching.stop()
 	$Stomping.play()
@@ -181,7 +185,7 @@ func highlight_off() -> void:
 func show_moves() -> void:
 	# show the moves we can take
 	var new_scene = move_scene.instance()
-	new_scene.setup(road_data, unit_data.location.position)
+	new_scene.setup(road_data, unit_data.location)
 	move_node = new_scene
 	add_child(new_scene)
 

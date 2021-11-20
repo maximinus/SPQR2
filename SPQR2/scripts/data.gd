@@ -41,6 +41,13 @@ class Road:
 		condition = float(data['condition'])
 		rimages = []
 
+	func get_destination(node_id) -> int:
+		# we are at node_id. where does this road take us?
+		if start_node == node_id:
+			return end_node
+		# must be starting at the end, so the end is actually the start
+		return start_node
+
 	static func sort(a, b) -> bool:
 		if a.id < b.id:
 			return true
@@ -296,17 +303,30 @@ func get_road_arrows_from_node_id(node_id: int) -> Array:
 	var all_data = []
 	for i in get_roads_starting_at(node_id):
 		# it either starts or ends here
-		var folder_name = 'arrow_away'
+		var folder_name = '_away'
 		if i.start_node != node_id:
-			folder_name = 'arrow_towards'
-		var rimage = load('res://gfx/roads/' + folder_name + '/road_' + str(i.id) + '.png')
+			folder_name = '_towards'
+		var rimage = load('res://gfx/roads/arrow' + folder_name + '/road_' + str(i.id) + '.png')
 		var road_texture = ImageTexture.new()
 		road_texture.create_from_image(rimage.get_data())
-		all_data.append(cn.RoadMoveDisplay.new(road_texture, i.id, i.pos, i.points))
+		
+		var red_image = load('res://gfx/roads/red' + folder_name + '/road_' + str(i.id) + '.png')
+		var red_texture = ImageTexture.new()
+		red_texture.create_from_image(red_image.get_data())
+		
+		all_data.append(cn.RoadMoveDisplay.new(road_texture, red_texture, i.id, i.pos, i.points))
 	return all_data
 
 func move_unit(unit_id, location_id):
 	units[unit_id].location = rnodes[location_id]
+
+func node_has_enemy_unit(node_id: int) -> bool:
+	# check all units
+	for i in units:
+		if i.location.id == node_id:
+			if i.is_roman() == false:
+				return true
+	return false
 
 # code for handling money
 func get_player_gold():

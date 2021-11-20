@@ -164,7 +164,6 @@ func add_units() -> void:
 func unit_clicked(unit_node):
 	if unit_selected == null:
 		# get the current node
-		var location_node = unit_node.unit_data.location.id
 		var region_ids = Array(data.get_unit_move_nodes(unit_node.unit_data.id))
 		# the unit wil have updated itself already
 		for i in $Nodes.get_children():
