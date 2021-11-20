@@ -37,9 +37,15 @@ func setup(display: int, unit) -> void:
 	model_instance.connect('clicked', self, 'unit_clicked')
 	add_child(model_instance)
 
+func unit_is_roman() -> bool:
+	return unit_display == 0
+
 func unit_clicked():
 	# ignore clicks if animations are blocked
 	if data.animation_blocked == true:
+		return
+	# ignore clicks if unit is not Roman
+	if unit_is_roman() == false:
 		return
 	if highlight == false:
 		highlight_on()
