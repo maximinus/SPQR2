@@ -10,29 +10,19 @@ Short Term:
 
 Editor Improvements:
 
-✓ Make sure the correct roads are drawn
-✓ When a unit is clicked, all the possible move nodes are highlighted. Consists of:
-✓ Work out what nodes can be travelled to
-✓ Highlight those modes in some way
-✓ Draw the moves as arrows
-✓ Update the editor to save road positions
-✓ Make moves white, increase arrow length and slightly thinner
-✓ Highlight the nearest move possibilty (calculate against the POINTS, not the image)
-✓ Move move selection to unit node
-✓ Move current ESC screen to instead use 'M'
-✓ Can be cancelled with ESC
-✓ Allow movement to be selected
-✓ When route chose, units move
-✓ Update data after move; stop selections during move
-✓ Add sounds
-✓ Playtest and make it "pop" and work with no obvious issues
-✓ Fix bug where camera can see sky when at top of mapboard: Could not replicate
-✓ Code cleanup:
-✓	Decide how id should be handled. Consider adding more functions to data
-✓	Document what knows about what, how ownership is decided etc
 * Rotate unit during move
-* If the mouse is over the node with the moving unit, do not highlight a move arrow
-* This completes part 1 of "Goals for v0.2"
+✓ If the mouse is over the node with the moving unit, do not highlight a move arrow
+* Above completes part 1 of "Goals for v0.2"
+* For 0.2:
+* Document how to make regions, and make 1
+* Add enemy unit from editor
+* Move arrow is red if enemy in node
+* If moving onto a node with an enemy, do not move for now
+* If 2 differing units are in 1 region, show the region striped
+* Above completes part 2 of "Goals for v0.2"
+* If moving into a node with an enemy, show a battle screen
+* The battle screen must calculate results and show them
+* Animate moves after battle
 
 
 Couldn't really be solved (add to issues):
@@ -51,10 +41,10 @@ Goals for v0.2
 
 We now move to a making a game.
 Best to implement the most common stuff first, as it's the most important.
-	1: Clicking a unit allows you to move it. Any unit, any route. Just have one unit.
-		- Just let it float around the map and make it work well
-		- you need: Arrows, Sounds, Follow a Path, Select from shown paths, Move in world data
-		- Needs to "just work" in the best possible way.
+	1: ✓ Clicking a unit allows you to move it. Any unit, any route. Just have one unit.
+		- ✓ Just let it float around the map and make it work well
+		- ✓ you need: Arrows, Sounds, Follow a Path, Select from shown paths, Move in world data
+		- ✓ Needs to "just work" in the best possible way.
 	2: Add an enemy unit
 		- you need: show possible danger on routes
 		- when moving against an enemy in the same region, it is clearly a battle you want
@@ -78,14 +68,33 @@ Goals for v0.3
 3: Enemies can move between your moves. Decide a mechanism
 4: Add heuristics to game AI. No need to code war aims, give the goal at the start
 5: Add >1 enemy
-6: Add 4 more regions
+6: Add 16 more regions
+7: Solve the issue of multiple units in one node
 
 Goals for 0.4
 -------------
 
 Complete a years worth of campaigns, with possible multiple leaders.
 
+1: For the Republic, this means:
+2: Choose a general / senator
+3: Add them to a unit
+4: Add them to battle stats
+5: Add fatigue
+6: Complete a campaign
+7: If the leader dies, choose a new leader
+8: Calculate the costs and add a simple budget screen
+9: You now have Budget Screen -> Campaign
+10: Allow multiple campaigns
+11: Campaigns are "per senator" although they may be conducted by others
+
 0.5: Emperors
+-------------
+
+1: Actually add faces / choices
+2: Add the mechanic for buying the seat
+3: Add the first events for choosing your successor 
+
 0.6: Cards
 0.7: An economy
 0.8: Adding culture in some way - art, literature, religion, laws, music
