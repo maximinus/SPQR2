@@ -14,7 +14,7 @@ Editor Improvements:
 ✓ Above completes part 1 of "Goals for v0.2"
 * For 0.2:
 * Add enemy unit from editor
-* Move arrow is red if enemy in node
+✓ Move arrow is red if enemy in node
 * If moving onto a node with an enemy, do not move for now
 * If 2 differing units are in 1 region, show the region striped
 * Above completes part 2 of "Goals for v0.2"

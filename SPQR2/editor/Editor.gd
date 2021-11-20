@@ -1,6 +1,6 @@
 extends Node2D
 
-const EXPORT_ROADS = false
+const EXPORT_ROADS = true
 
 const NODE_RADIUS: float = 24.5
 const DATA_FILE = 'res://editor/output/game_data.json'
@@ -10,6 +10,7 @@ const ARROW_LENGTH: float = 15.0
 const ARROW_WIDTH: float = 6.0
 const DOTTED_LENGTH: float = 6.0
 const ARROW_COLOR = Color(1.0, 1.0, 1.0, 1.0)
+const RED_ARROW = Color(1.0, 0.4, 0.4, 1.0)
 const BORDER_COLOR = Color(0.7, 0.6, 0.5, 1.0)
 const ROAD_COLOR = Color(0.8, 0.8, 0.8, 1.0)
 const NORMAL_ROAD = Color(0.7, 0.5, 0.3, 1.0)
@@ -181,8 +182,10 @@ func get_road_textures() -> void:
 		var road_types = [[build_default_line(new_points), 'default'],
 						  [build_road_line(new_points), 'road'],
 						  [build_dotted_line(new_points), 'dotted'],
-						  [build_arrow_away(new_points), 'arrow_away'],
-						  [build_arrow_towards(new_points), 'arrow_towards']]
+						  [build_arrow_away(new_points, ARROW_COLOR), 'arrow_away'],
+						  [build_arrow_towards(new_points, ARROW_COLOR), 'arrow_towards'],
+						  [build_arrow_away(new_points, RED_ARROW), 'red_away'],
+						  [build_arrow_towards(new_points, RED_ARROW), 'red_towards']]
 		
 		for i in road_types: 
 			var all_lines = i[0]
@@ -274,7 +277,7 @@ func save_all_data() -> void:
 # ================================================
 # code to render lines
 # ================================================
-func build_arrow_away(all_points) -> Array:
+func build_arrow_away(all_points: Array, acol: Color) -> Array:
 	var new_lines: Array = []
 	# calculate final angle
 	var p2: Vector2 = all_points[-2]
@@ -303,8 +306,8 @@ func build_arrow_away(all_points) -> Array:
 	line2.width = ARROW_WIDTH
 	line2.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	line2.end_cap_mode = Line2D.LINE_CAP_ROUND
-	line1.default_color = ARROW_COLOR
-	line2.default_color = ARROW_COLOR
+	line1.default_color = acol
+	line2.default_color = acol
 	new_lines.append(line1)
 	new_lines.append(line2)
 	# and the original
@@ -315,15 +318,15 @@ func build_arrow_away(all_points) -> Array:
 	oline.width = ARROW_WIDTH
 	oline.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	oline.end_cap_mode = Line2D.LINE_CAP_ROUND
-	oline.default_color = ARROW_COLOR
+	oline.default_color = acol
 	new_lines.append(oline)
 	return new_lines
 
-func build_arrow_towards(all_points: Array) -> Array:
+func build_arrow_towards(all_points: Array, acol: Color) -> Array:
 	# reverse list and draw as arrow away
 	var inverse = all_points.duplicate()
 	inverse.invert()
-	return build_arrow_away(inverse)
+	return build_arrow_away(inverse, acol)
 
 func build_road_line(all_points: Array) -> Array:
 	# return all the lines we need to add
