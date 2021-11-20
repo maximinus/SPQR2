@@ -1,5 +1,7 @@
 extends Node2D
 
+const EXPORT_ROADS = false
+
 const NODE_RADIUS: float = 24.5
 const DATA_FILE = 'res://editor/output/game_data.json'
 
@@ -186,35 +188,36 @@ func get_road_textures() -> void:
 			var all_lines = i[0]
 			var folder = i[1]
 		
-			# if folder does not exist, create it
-			var folder_path = 'res://editor/road_images/' + folder
-			var dir = Directory.new()
-			if not dir.dir_exists(folder_path):
-				# create it
-				var error = dir.make_dir(folder_path)
-				if error != OK:
-					helpers.log('Could not create directory ' + folder_path)
-					return
+			if EXPORT_ROADS == true:
+				# if folder does not exist, create it
+				var folder_path = 'res://editor/road_images/' + folder
+				var dir = Directory.new()
+				if not dir.dir_exists(folder_path):
+					# create it
+					var error = dir.make_dir(folder_path)
+					if error != OK:
+						helpers.log('Could not create directory ' + folder_path)
+						return
 		
-			for j in all_lines:
-				$ViewC/Viewport.add_child(j)
+				for j in all_lines:
+					$ViewC/Viewport.add_child(j)
 
-			# wait 2 frames is the standard advice
-			yield(get_tree(), 'idle_frame')
-			yield(get_tree(), 'idle_frame')
-			var img = $ViewC/Viewport.get_texture().get_data()
-			# due to opengl, image is flipped on the y axis
-			img.flip_y()
-			# finally, save it
-			var filename = 'res://editor/road_images/' + folder + '/road_' + str(rnode.id) + '.png'
-			img.save_png(filename)
-			helpers.log('Saved ' + filename)
+				# wait 2 frames is the standard advice
+				yield(get_tree(), 'idle_frame')
+				yield(get_tree(), 'idle_frame')
+				var img = $ViewC/Viewport.get_texture().get_data()
+				# due to opengl, image is flipped on the y axis
+				img.flip_y()
+				# finally, save it
+				var filename = 'res://editor/road_images/' + folder + '/road_' + str(rnode.id) + '.png'
+				img.save_png(filename)
+				helpers.log('Saved ' + filename)
 			
-			# remove all children ready for next time
-			for j in $ViewC/Viewport.get_children():
-				j.queue_free()
-			# wait a frame for that to be done
-			yield(get_tree(), 'idle_frame')
+				# remove all children ready for next time
+				for j in $ViewC/Viewport.get_children():
+					j.queue_free()
+				# wait a frame for that to be done
+				yield(get_tree(), 'idle_frame')
 
 		# save the required json data - subtract offset to allow for spacing
 		var loc = area_min - cn.ROAD_IMAGE_BORDER

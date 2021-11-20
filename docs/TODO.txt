@@ -10,11 +10,9 @@ Short Term:
 
 Editor Improvements:
 
-* Rotate unit during move
 ✓ If the mouse is over the node with the moving unit, do not highlight a move arrow
-* Above completes part 1 of "Goals for v0.2"
+✓ Above completes part 1 of "Goals for v0.2"
 * For 0.2:
-* Document how to make regions, and make 1
 * Add enemy unit from editor
 * Move arrow is red if enemy in node
 * If moving onto a node with an enemy, do not move for now
@@ -23,6 +21,7 @@ Editor Improvements:
 * If moving into a node with an enemy, show a battle screen
 * The battle screen must calculate results and show them
 * Animate moves after battle
+* Document how to make regions, and make 1
 
 
 Couldn't really be solved (add to issues):
@@ -55,6 +54,7 @@ Best to implement the most common stuff first, as it's the most important.
 		- Some other quesi-random elements for casualties
 		- Loser has to go somewhere
 		- Show the result as an event and animate any retreating moves
+		- Rotate unit during move
 	4: Save the game as simply as possible, and also add load
 	5: Add 4 more regions
 

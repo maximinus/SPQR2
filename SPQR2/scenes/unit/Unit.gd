@@ -113,7 +113,7 @@ func start_move(road_id) -> void:
 	# The unit rotates on the y axis
 	# TODO: Why does this not work?
 	var rotate_index = anim.add_track(Animation.TYPE_VALUE)
-	anim.track_set_path(rotate_index, @'.:transform:rotation_degrees:y')
+	anim.track_set_path(rotate_index, @'.:rotation_degrees:y')
 	anim.track_insert_key(rotate_index, 0.0, rotation_degrees.y)
 			
 	for i in range(1, len(path_points)):
@@ -129,7 +129,9 @@ func start_move(road_id) -> void:
 		var rotate_end: float = 0.0
 		if i < len(path_points) - 1:
 			# calculate. We have the 2 positions, start and destination
-			rotate_end = rad2deg(start.angle_to_point(destination))
+			rotate_end = rad2deg(start.angle_to_point(destination)) + 180.0
+		# TODO: Fix the maths for this
+		rotate_end = 0.0
 		anim.track_insert_key(rotate_index, total_time, rotate_end)
 			
 	# now all the tracks have been added, set length of animation
