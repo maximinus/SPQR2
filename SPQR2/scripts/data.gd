@@ -207,15 +207,38 @@ func get_region_owners_texture() -> Image:
 	img.create_from_image(base_image)
 	return img
 
+func check_shared_regions() -> Dictionary:
+	# check all regions have only units of one color in them
+	# go through all units and put owner_id into a region buckets
+	var matches = {}
+	for i in data.units:
+		if matches.has(i.location.region_id):
+			if not matches[i.location.region_id].has(i.owner_id):
+				matches[i.location.region_id].append(i.owner_id)
+		else:
+			matches[i.location.region_id] = [i.owner_id]
+	# this has now produced a dictionary of all regions
+	var regions_with_different_units = []
+	for key in matches.keys():
+		# all values are unique, so just catch the ones with len > 1
+		if len(matches[key]) > 1:
+			# add [region, owner1, owner2]
+			var data = matches[key]
+			regions_with_different_units.append([key, data[0], data[1]])
+	return regions_with_different_units
+
 func get_unit_stats_texture() -> Image:
+	var shared_regions = check_shared_regions()
 	var base_image = Image.new()
-	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
+	base_image.create(2, len(regions), false, Image.FORMAT_RGB8)
 	base_image.lock()
 	var ypos: int = 0
 	for i in data.regions:
 		var c: float = (i.manpower * 10.0) / 256.0
 		var col: Color = Color(c, c / 1.5, c / 2.0)
 		base_image.set_pixel(0, ypos, col)
+		# this is the alternate color
+		base_image.set_pixel(1, ypos, col)
 		ypos += 1		
 	base_image.unlock()
 	var img = ImageTexture.new()

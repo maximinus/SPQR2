@@ -159,6 +159,7 @@ func add_units() -> void:
 		# add a manual callback
 		unit_instance.connect('unit_clicked', self, 'unit_clicked')
 		unit_instance.connect('unit_unclicked', self, 'unit_unclicked')
+		unit_instance.connect('check_shared_regions', self, 'update_region_shader')
 		$Soldiers.add_child(unit_instance)
 
 func unit_clicked(unit_node):
@@ -191,6 +192,9 @@ func cancel_unit_highlights() -> void:
 func cancel_node_highlights() -> void:
 	for i in $Nodes.get_children():
 		i.hide_move_highlight()
+
+func update_region_shader():
+	print('Update shader!')
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing

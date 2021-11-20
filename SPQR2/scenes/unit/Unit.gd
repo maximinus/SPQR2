@@ -8,6 +8,7 @@ const UNIT_MOVE_SPEED = 0.8
 
 signal unit_clicked
 signal unit_unclicked
+signal check_shared_regions
 
 var move_scene = preload('res://scenes/move_display/MoveDisplay.tscn')
 var move_node = null
@@ -160,6 +161,8 @@ func _on_MoveUnit_animation_finished(_anim_name):
 	# update the roads we can go to
 	road_data = data.get_road_arrows_from_node_id(unit_data.location.id)
 	data.animation_blocked = false
+	# now we need to check to see if the shader needs updating
+	emit_signal('check_shared_regions')
 
 func play_click():
 	if $MouseClick.playing == true:
