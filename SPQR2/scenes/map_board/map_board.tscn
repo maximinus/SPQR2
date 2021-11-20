@@ -61,8 +61,8 @@ void fragment() {
 		
 		// now we have to account for possible striped regions
 		// in this case we modulate between UV(x, 0.5) and UV(x, 1.5)
-		vec3 col1 = texture(map_owners, vec2(0.0, owner_ypos)).rgb;
-		vec3 col2 = texture(map_owners, vec2(1.9, owner_ypos)).rgb;
+		vec3 col1 = texture(map_owners, vec2(0.25, owner_ypos)).rgb;
+		vec3 col2 = texture(map_owners, vec2(0.75, owner_ypos)).rgb;
 		
 		//col1 = vec3(1.0, 1.0, 1.0);
 		//col2 = vec3(1.0, 1.0, 1.0);

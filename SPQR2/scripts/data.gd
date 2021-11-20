@@ -184,31 +184,22 @@ class RegionSorter:
 		return false
 
 func get_ascending_region_colors() -> Array:
-	# get an array of [region_id, owner_color]
+	# get an array of [region_id, owner_color1, owner_color2]
+	# owner_color_1 is always the lowest value of the 2 owners id
 	# sort by region id ascending and return
 	# get all regions and owners
+	var shared_regions = check_shared_regions()
 	var region_owners: Array = []
 	for i in regions:
-		region_owners.append([i.id, players[i.owner_id].base_color])
+		var base_color = players[i.owner_id].base_color
+		region_owners.append([i.id, base_color, base_color])
 	# now we have [[region, color], [region, color], sort by region
 	region_owners.sort_custom(RegionSorter, 'sort')
+	for i in shared_regions:
+		# this is [region_id, owner1, owner2]
+		print(i)
+		region_owners[i[0]] = [i[0], players[i[1]].base_color, players[i[2]].base_color]
 	return region_owners
-
-func get_region_owners_texture() -> Image:
-	var shared_regions = check_shared_regions()
-	var base_image = Image.new()
-	base_image.create(2, len(regions), false, Image.FORMAT_RGB8)
-	base_image.lock()
-	var ypos: int = 0
-	for i in get_ascending_region_colors():
-		base_image.set_pixel(0, ypos, i[1])
-		# this is the alternate color
-		base_image.set_pixel(1, ypos, i[1])
-		ypos += 1		
-	base_image.unlock()
-	var img = ImageTexture.new()
-	img.create_from_image(base_image)
-	return img
 
 func check_shared_regions() -> Dictionary:
 	# check all regions have only units of one color in them
@@ -227,8 +218,25 @@ func check_shared_regions() -> Dictionary:
 		if len(matches[key]) > 1:
 			# add [region, owner1, owner2]
 			var data = matches[key]
+			data.sort()
 			regions_with_different_units.append([key, data[0], data[1]])
 	return regions_with_different_units
+
+func get_region_owners_texture() -> Image:
+	var base_image = Image.new()
+	base_image.create(2, len(regions), false, Image.FORMAT_RGB8)
+	base_image.lock()
+	var ypos: int = 0
+	for i in get_ascending_region_colors():
+		# this cycles us through the following
+		base_image.set_pixel(0, ypos, i[1])
+		# this is the alternate color
+		base_image.set_pixel(1, ypos, i[2])
+		ypos += 1		
+	base_image.unlock()
+	var img = ImageTexture.new()
+	img.create_from_image(base_image)
+	return img
 
 func get_unit_stats_texture() -> Image:
 	var base_image = Image.new()

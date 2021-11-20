@@ -58,7 +58,7 @@ func _ready():
 	calculate_view_area()
 	calculate_intersections()
 	# do the initial setup, this should happen every change in the future
-	$map_board.set_region_owners(data.get_region_owners_texture())
+	update_region_shader()
 	# roads are done by this point, so set those up as well
 	$map_board.set_road_texture(data.road_texture)
 	# display correct money values
@@ -194,7 +194,7 @@ func cancel_node_highlights() -> void:
 		i.hide_move_highlight()
 
 func update_region_shader():
-	print('Update shader!')
+	$map_board.set_region_owners(data.get_region_owners_texture())
 
 func check_mouse_drag() -> bool:
 	# return false if the mouse is doing nothing
