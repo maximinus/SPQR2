@@ -195,12 +195,15 @@ func get_ascending_region_colors() -> Array:
 	return region_owners
 
 func get_region_owners_texture() -> Image:
+	var shared_regions = check_shared_regions()
 	var base_image = Image.new()
-	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
+	base_image.create(2, len(regions), false, Image.FORMAT_RGB8)
 	base_image.lock()
 	var ypos: int = 0
 	for i in get_ascending_region_colors():
 		base_image.set_pixel(0, ypos, i[1])
+		# this is the alternate color
+		base_image.set_pixel(1, ypos, i[1])
 		ypos += 1		
 	base_image.unlock()
 	var img = ImageTexture.new()
@@ -228,17 +231,14 @@ func check_shared_regions() -> Dictionary:
 	return regions_with_different_units
 
 func get_unit_stats_texture() -> Image:
-	var shared_regions = check_shared_regions()
 	var base_image = Image.new()
-	base_image.create(2, len(regions), false, Image.FORMAT_RGB8)
+	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
 	base_image.lock()
 	var ypos: int = 0
 	for i in data.regions:
 		var c: float = (i.manpower * 10.0) / 256.0
 		var col: Color = Color(c, c / 1.5, c / 2.0)
 		base_image.set_pixel(0, ypos, col)
-		# this is the alternate color
-		base_image.set_pixel(1, ypos, col)
 		ypos += 1		
 	base_image.unlock()
 	var img = ImageTexture.new()
