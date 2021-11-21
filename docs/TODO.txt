@@ -10,18 +10,25 @@ Short Term:
 
 Editor Improvements:
 
-✓ If the mouse is over the node with the moving unit, do not highlight a move arrow
-✓ Above completes part 1 of "Goals for v0.2"
-✓ For 0.2:
-✓ Add enemy unit from editor
-✓ Move arrow is red if enemy in node
+
 ✓ If moving onto a node with an enemy, do not move for now
-* If 2 differing units are in 1 region, show the region striped
-* Above completes part 2 of "Goals for v0.2"
-* If moving into a node with an enemy, show a battle screen
-* The battle screen must calculate results and show them
-* Animate moves after battle
-* Document how to make regions, and make 1
+✓ If 2 differing units are in 1 region, show the region striped
+✓ Above completes part 2 of "Goals for v0.2"
+* Make units better in the editor. Add stats for number, type, morale of units
+* Break units away from regions in the json file the game imports
+* When a unit is clicked, show the unit stats in the properties dialg
+* Try to show more text and less numbers
+* Show simple power on unit model somehow (bars that move around based on camera angle?)
+* On move, attacking unit moves right up to enemy unit but does not move into node
+* Battle screen is shown with resolution
+* When screen is clicked away, enemy unit dies or moves or stays there
+* Then the attacking unit moves straight into the node or retreats to previous node
+* When a city is attacked, a siege scene is shown
+* A siege can take time, so a unit can be in a state of either SEIGING or SEIGED
+* Breaking this takes a battle (SEIGED), or either a battle or a move away (SEIGING)
+* When either of these units are clicked, the seige screen appears
+* Ownership of region is based off of region + units, not just units
+* Document how to make regions, and make 4
 
 
 Couldn't really be solved (add to issues):
@@ -41,14 +48,14 @@ Goals for v0.2
 We now move to a making a game.
 Best to implement the most common stuff first, as it's the most important.
 	1: ✓ Clicking a unit allows you to move it. Any unit, any route. Just have one unit.
-		- ✓ Just let it float around the map and make it work well
-		- ✓ you need: Arrows, Sounds, Follow a Path, Select from shown paths, Move in world data
-		- ✓ Needs to "just work" in the best possible way.
+		✓ Just let it float around the map and make it work well
+		✓ you need: Arrows, Sounds, Follow a Path, Select from shown paths, Move in world data
+		✓ Needs to "just work" in the best possible way.
 	2: Add an enemy unit
-		- you need: show possible danger on routes
-		- when moving against an enemy in the same region, it is clearly a battle you want
-		- when moving against an enemy in a enemy region, you get to choose what to do (avoid or attack etc)
-		- when enemies and Romans are in the same region, show a striped region with the map shader
+		✓ you need: show possible danger on routes
+		✓ when moving against an enemy in the same region, it is clearly a battle you want
+		✓ when moving against an enemy in a enemy region, you get to choose what to do (avoid or attack etc)
+		✓ when enemies and Romans are in the same region, show a striped region with the map shader
 	3: Add battle screen and battle resolution.
 		- Add up the totals, add a random value - there's the winner
 		- Some other quesi-random elements for casualties
@@ -62,14 +69,17 @@ Goals for v0.3
 --------------
 
 1: Add turn based mechanics: after a move, either wait or must move a currently unmoved unit
+	- I.e., implement more than 1 Roman unit
 	- All moves occur in order but "technically" at the same time
-	- So all units CAN move at the same time - the "wait" button means "I have finished moving everything"
+	- So all units CAN move at the same time - the "Next Turn" button means "I have finished moving everything"
+	- "Next Turn" means resetting the units "moved" flag so the unit can move again
 2: Add basic AI to the enemy to decide to retreat, attack or what-not
 3: Enemies can move between your moves. Decide a mechanism
 4: Add heuristics to game AI. No need to code war aims, give the goal at the start
 5: Add >1 enemy
 6: Add 16 more regions
 7: Solve the issue of multiple units in one node
+8: Add Naval movement and ports
 
 Goals for 0.4
 -------------

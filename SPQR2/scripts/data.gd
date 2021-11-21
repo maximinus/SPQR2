@@ -197,7 +197,6 @@ func get_ascending_region_colors() -> Array:
 	region_owners.sort_custom(RegionSorter, 'sort')
 	for i in shared_regions:
 		# this is [region_id, owner1, owner2]
-		print(i)
 		region_owners[i[0]] = [i[0], players[i[1]].base_color, players[i[2]].base_color]
 	return region_owners
 
