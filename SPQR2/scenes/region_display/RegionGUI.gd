@@ -32,6 +32,6 @@ func update_army_list(region_id: int) -> void:
 			# strip last 3 values and add k
 			strength = strength.substr(0, len(strength) - 3) + 'k'
 			rows[i].get_node('Ar/StrengthLbl').text = strength
-			rows[i].get_node('Ar/MoraleLbl').text = '1'
-			rows[i].get_node('Ar/EquipmentLbl').text = '1'
-			rows[i].get_node('Ar/TrainingLbl').text = '1'
+			rows[i].get_node('Ar/MoraleLbl').text = str(all_units[i].morale)
+			rows[i].get_node('Ar/EquipmentLbl').text = str(all_units[i].equipment)
+			rows[i].get_node('Ar/TrainingLbl').text = str(all_units[i].training)
