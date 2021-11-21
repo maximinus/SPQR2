@@ -7,8 +7,12 @@ export(int) var culture = 0
 export(int) var wealth = 0
 export(int) var manpower = 0
 export(int) var romanisation = 0
+# unit details
 export(String, 'None', 'Roman', 'Celt') var unit_type setget set_unit_type
-export(int) var unit_strength
+export(int) var unit_strength = 0
+export(int, 9) var morale = 0
+export(int, 9) var training = 0
+export(int, 9) var equipment = 0
 
 var id:int = 0
 var fully_loaded = false
@@ -55,7 +59,10 @@ func get_data():
 		'manpower': manpower,
 		'romanisation': romanisation,
 		'unit': id_owner,
-		'unit_strength': unit_strength
+		'unit_strength': unit_strength,
+		'unit_morale': morale,
+		'unit_equipment': equipment,
+		'unit_training': training
 	}
 
 func get_unit_data():

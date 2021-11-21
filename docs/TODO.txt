@@ -15,10 +15,8 @@ Editor Improvements:
 ✓ If 2 differing units are in 1 region, show the region striped
 ✓ Above completes part 2 of "Goals for v0.2"
 * Make units better in the editor. Add stats for number, type, morale of units
-* Break units away from regions in the json file the game imports
 * When a unit is clicked, show the unit stats in the properties dialg
 * Try to show more text and less numbers
-* Show simple power on unit model somehow (bars that move around based on camera angle?)
 * On move, attacking unit moves right up to enemy unit but does not move into node
 * Battle screen is shown with resolution
 * When screen is clicked away, enemy unit dies or moves or stays there

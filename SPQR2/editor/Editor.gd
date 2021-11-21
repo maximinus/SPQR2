@@ -1,6 +1,6 @@
 extends Node2D
 
-const EXPORT_ROADS = true
+const EXPORT_ROADS = false
 
 const NODE_RADIUS: float = 24.5
 const DATA_FILE = 'res://editor/output/game_data.json'

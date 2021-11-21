@@ -509,6 +509,9 @@ position = Vector2( 1532.31, 1418.76 )
 city_name = ""
 unit_type = "Roman"
 unit_strength = 12000
+morale = 8
+training = 8
+equipment = 7
 
 [node name="MapNode20" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1707.44, 1319.22 )
@@ -523,6 +526,9 @@ position = Vector2( 1315.83, 1429.45 )
 city_name = ""
 unit_type = "Celt"
 unit_strength = 5000
+morale = 5
+training = 6
+equipment = 3
 
 [node name="MapNode12" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1180.41, 1498.05 )

@@ -13,10 +13,12 @@ var owner_id: int
 func _init(data: Dictionary, c_owner, new_id, location_node):
 	# the unit should KNOW it's node, not just have the id
 	id = new_id
+	# strength is number of troops
+	# morale, equipment and training all vary from 0 to 9
 	strength = data['unit_strength']
-	morale = 10
-	equipment = 10
-	training = 10
+	morale = data['unit_morale']
+	equipment = data['unit_equipment']
+	training = data['unit_training']
 	location = location_node
 	owner_id = c_owner
 
