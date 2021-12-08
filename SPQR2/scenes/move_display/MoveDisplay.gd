@@ -26,6 +26,7 @@ func setup(image_data: Array, location) -> void:
 	for i in image_data:
 		# get the actual node we want to move to
 		var node_to_move_to: int = data.roads[i.move_to].get_destination(location.id)
+		var is_battle = false
 		
 		# work out world size after scaling
 		var mesh_size = Vector2(i.image.get_width() / cn.MAP_TO_PIXEL_SCALE,
@@ -44,8 +45,7 @@ func setup(image_data: Array, location) -> void:
 		if data.node_has_enemy_unit(data.roads[i.move_to].get_destination(location.id)):
 			m_material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, i.red_image)
 			m_material.set_emission(RED_ARROW)
-			# we can't move here yet
-			node_to_move_to = -1
+			is_battle = true
 		else:
 			m_material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, i.image)
 			m_material.set_emission(WHITE_ARROW)
@@ -63,7 +63,7 @@ func setup(image_data: Array, location) -> void:
 		for j in i.points:
 			vec_points.append(Vector2(j[0], j[1]))
 
-		path_lookups.append([vec_points, m_material, node_to_move_to, i.move_to])
+		path_lookups.append([vec_points, m_material, node_to_move_to, i.move_to, is_battle])
 		$Moves.add_child(mesh)
 	# create an out-of-bounds circle
 	create_bounding_circle()
@@ -75,7 +75,7 @@ func check_click() -> Array:
 	if path_clicked == null:
 		# nothing to do
 		return []
-	return [path_clicked[2], path_clicked[3]]
+	return [path_clicked[2], path_clicked[3], path_clicked[4]]
 
 func create_bounding_circle() -> void:
 	# get the middle / average point

@@ -68,11 +68,41 @@ func check_click() -> bool:
 		hide_moves()
 		highlight_off()
 		play_click()
-		start_move(move_data)
+		# is it a battle?
+		if move_data[2] == true:
+			print('Starting battle move')
+			start_move(move_data, true)
+		else:
+			start_move(move_data, false)
 		return true
 	return false
 
-func start_move(move_data: Array) -> void:
+func adjust_points_for_battle_move(path_points: Array, end_position: Vector2) -> Array:
+	# now we have all the points, we will adjust. Go through backwards until
+	# we find a point NOT inside the destination unit radius
+	# loop over points backwards
+	var new_line_points: Array = []
+	for i in range(len(path_points) - 2, 1, -1):
+		# is this point inside the radius?
+		var distance_to_node = path_points[i].distance_to(end_position)
+		if path_points[i].distance_to(end_position) <= cn.UNIT_RADIUS_MAP_COORDS:
+			# yes, continue on to the next one
+			continue
+		# we have found the first place that is outside the radius
+		# we need to construct a line from this point to where we want to stop
+		# i.e., given a line from this point to end_position
+		var partial_distance: float = (distance_to_node - cn.UNIT_RADIUS_MAP_COORDS) / distance_to_node
+		var move_delta: Vector2 = (end_position - path_points[i]) * partial_distance
+	
+		# these are the points we require, so now construct the fill array of points
+		for j in range(len(path_points) - 1):
+			new_line_points.append(path_points[j])
+		new_line_points.append(path_points[i] + move_delta)
+		break
+	print(new_line_points)
+	return new_line_points
+
+func start_move(move_data: Array, is_battle: bool) -> void:
 	# move data is [node_id, road_id]
 	# start the process of moving from one node to the next
 	# we need the paths of the roads. We have the TO, now get the FROM
@@ -92,7 +122,10 @@ func start_move(move_data: Array) -> void:
 	else:
 		path_points = road_data.points.duplicate()
 		end_position = data.rnodes[road_data.end_node].position
-	data.move_unit(unit_data.id, move_data[0])
+		
+	if is_battle == false:
+		# move the unit to the node internally
+		data.move_unit(unit_data.id, move_data[0])
 		
 	# now we have a list of points. Replace the starting point with our position
 	path_points[0] = Vector2(translation.x, translation.z)
@@ -103,6 +136,9 @@ func start_move(move_data: Array) -> void:
 	for i in range(1, len(path_points) - 1):
 		var vector_convert: Vector2 = Vector2(path_points[i][0], path_points[i][1])
 		path_points[i] = helpers.pixel_to_map(vector_convert)
+		
+	if is_battle == true:
+		path_points = adjust_points_for_battle_move(path_points, end_position)
 		
 	# now we build up the animations. Remove the old one if it exists
 	$MoveUnit.remove_animation('move')
