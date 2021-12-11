@@ -38,6 +38,7 @@ enemy="*res://scripts/enemy.gd"
 unit="*res://scripts/unit.gd"
 graph="*res://scripts/graph.gd"
 data="*res://scripts/data.gd"
+config="*res://scripts/config.gd"
 
 [display]
 

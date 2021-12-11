@@ -12,6 +12,13 @@ const CELT_COLOR: Color = Color('246bce')
 
 const ROAD_IMAGE_BORDER: Vector2 = Vector2(16.0, 16.0)
 
+# sounds
+const AUDIO_MIN_VOLUME = 0.0
+const AUDIO_MAX_VOLUME = 100.0
+
+# paths
+const CONFIG_FILE = 'user://spqr.cfg'
+
 class RoadMoveDisplay:
 	# helper function to store details for displaying movements
 	var image: ImageTexture
