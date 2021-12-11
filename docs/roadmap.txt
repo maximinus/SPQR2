@@ -417,3 +417,8 @@ Enemy AI for small scale:
 		2: Destroy enemy forces: Find the enemy forces and engage them, destroy them, grab any loot and go home (more loot than 1)
 		3: Invade: Capture the region and the city (loot: not that much, you want to keep not destroy!)
 		4: Sack: Capture the region and the city, steal everything, burn it all, and go home (this will gain a lot more money than 2)
+
+
+Combat Screen Ideas
+===================
+

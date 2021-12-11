@@ -24,8 +24,12 @@ Graphics
 	Sousse mosaic © Ad Meskens / Wikimedia Commons
 	Leaders eagle by Phillip Handy
 	Editor army sprites taken from Freeciv, GPL 2.0, https://github.com/freeciv/freeciv
+	Dustismo Font is Copyright (C) 2002 Dustin Norlander Homepage: http://www.cheapskatefonts.com, GPL 2.0
 
 Sound
 	UI sounds from Kenny - https://www.kenney.nl/assets/ui-audio
 	Soldiers marching - https://freesound.org/people/stib/sounds/240732/
 	Footstomp - https://freesound.org/people/patchen/sounds/20185/
+
+Music
+	Main game: Brandon Morris, CC0 - https://opengameart.org/content/town-in-ruins-loop
