@@ -67,6 +67,7 @@ margin_left = 224.0
 margin_right = 730.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
+value = 76.0
 
 [node name="Music" type="HBoxContainer" parent="Tex/Mrg/VBoxContainer"]
 margin_top = 136.0
@@ -105,6 +106,7 @@ margin_left = 224.0
 margin_right = 730.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
+value = 50.0
 
 [node name="Label" type="Label" parent="Tex/Mrg/VBoxContainer"]
 margin_top = 272.0
