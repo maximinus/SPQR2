@@ -13,11 +13,19 @@ const CELT_COLOR: Color = Color('246bce')
 const ROAD_IMAGE_BORDER: Vector2 = Vector2(16.0, 16.0)
 
 # sounds
-const AUDIO_MIN_VOLUME = 0.0
-const AUDIO_MAX_VOLUME = 100.0
+const AUDIO_MIN_VOLUME: float = -60.0
+const AUDIO_MAX_VOLUME: float = 0.0
+const SFX_BUS_NAME: String = 'SFX'
+const MUSIC_BUS_NAME: String = 'Music'
 
 # paths
-const CONFIG_FILE = 'user://spqr.cfg'
+const CONFIG_FILE: String = 'user://spqr.cfg'
+
+# defaults from config file
+const MUSIC_VOLUME_DEFAULT: float = -2.0
+const SFX_VOLUME_DEFAULT: float = 0.0
+const MUSIC_PLAYING_DEFAULT: bool = true
+
 
 class RoadMoveDisplay:
 	# helper function to store details for displaying movements

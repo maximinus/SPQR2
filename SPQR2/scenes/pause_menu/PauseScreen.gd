@@ -10,5 +10,40 @@ extends CenterContainer
 # sound changes as selection made, by changing the volume of the bus
 # show and hide come with fast fade in / out, also animates up / down very slightly
 
+var player: AudioStreamPlayer
+var music_position: float
+
 func _ready():
-	pass
+	music_position = 0.0
+
+func show_pause(new_player: AudioStreamPlayer):
+	# passed in is the current music player
+	player = new_player
+
+func _on_CheckBox_toggled(button_pressed):
+	config.music_on = button_pressed
+	if button_pressed == true:
+		start_music()
+	else:
+		stop_music()
+
+func _on_MusicSlider_value_changed(value):
+	helpers.set_sfx_volume(convert_to_db(value))
+
+func _on_SfxSlider_value_changed(value):
+	helpers.set_music_volume(convert_to_db(value))
+
+func convert_to_db(value: float) -> float:
+	value = -60.0 + value
+	return clamp(value, cn.AUDIO_MIN_VOLUME, cn.AUDIO_MAX_VOLUME)
+
+func stop_music():
+	if player.playing == false:
+		return
+	music_position = player.get_playback_position()
+	player.stop()
+
+func start_music():
+	if player.playing == true:
+		return
+	player.play(music_position)

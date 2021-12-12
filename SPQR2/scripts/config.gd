@@ -10,31 +10,32 @@ var sfx_volume: float
 var music_on: bool
 
 
-func set_default_config():
-	music_volume = 100.0
-	sfx_volume = 100.0
-	music_on = true
+func set_default_config() -> void:
+	music_volume = cn.MUSIC_VOLUME_DEFAULT
+	sfx_volume = cn.SFX_VOLUME_DEFAULT
+	music_on = cn.MUSIC_PLAYING_DEFAULT
 
-func load_config_file():
+func load_config_file() -> void:
 	set_default_config()
 	var config = ConfigFile.new()
 	var err = config.load(cn.CONFIG_FILE)
-	# File loaded?
 	if err != OK:
 		helpers.log('Warn: Could not load config file')
 		return
-	if not config.has_section_key(AUDIO_SECTION_NAME):
-		return
 	# load what we can
-	music_volume = config.get_value(AUDIO_SECTION_NAME, MUSIC_VOL_NAME)
-	sfx_volume = config.get_value(AUDIO_SECTION_NAME, SFX_VOL_NAME)
-	music_on = config.get_value(AUDIO_SECTION_NAME, MUSIC_ON_NAME)
+	music_volume = config.get_value(AUDIO_SECTION_NAME, MUSIC_VOL_NAME, cn.MUSIC_VOLUME_DEFAULT)
+	sfx_volume = config.get_value(AUDIO_SECTION_NAME, SFX_VOL_NAME, cn.SFX_VOLUME_DEFAULT)
+	music_on = config.get_value(AUDIO_SECTION_NAME, MUSIC_ON_NAME, cn.MUSIC_PLAYING_DEFAULT)
+	helpers.log('Config file loaded')
 
-func save_config_file(config_data):
-	# Create new ConfigFile object.
+func save_config_file(config_data) -> void:
+	# Only do this at the end of the game
 	var config = ConfigFile.new()
-	config.set_value(AUDIO_SECTION_NAME, MUSIC_VOL_NAME, config_data.music_volume)
-	config.set_value(AUDIO_SECTION_NAME, SFX_VOL_NAME, config_data.sfx_volume)
-	config.set_value(AUDIO_SECTION_NAME, MUSIC_ON_NAME, config_data.music_on)
+	# values may have been modified, so clamp them
+	var m_vol = clamp(music_volume, cn.AUDIO_MIN_VOLUME, cn.AUDIO_MAX_VOLUME)
+	var s_vol = clamp(sfx_volume, cn.AUDIO_MIN_VOLUME, cn.AUDIO_MAX_VOLUME)
+	config.set_value(AUDIO_SECTION_NAME, MUSIC_VOL_NAME, music_volume)
+	config.set_value(AUDIO_SECTION_NAME, SFX_VOL_NAME, sfx_volume)
+	config.set_value(AUDIO_SECTION_NAME, MUSIC_ON_NAME, music_on)
 	# overwrites if already exists
 	config.save(cn.CONFIG_FILE)

@@ -113,6 +113,8 @@ class MapRegion:
 
 # this is main() function: it should be called when the game scene starts
 func load_all_data() -> bool:
+	# config will always get something
+	config.load_config_file()
 	# return false if there was an issue
 	var game_data = get_json_data(GAME_DATA)
 	if game_data == null:

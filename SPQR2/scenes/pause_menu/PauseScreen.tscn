@@ -62,12 +62,13 @@ rect_min_size = Vector2( 220, 0 )
 custom_colors/font_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
 text = "Music Volume"
 
-[node name="HSlider" type="HSlider" parent="Tex/Mrg/VBoxContainer/MusicVolume"]
+[node name="MusicSlider" type="HSlider" parent="Tex/Mrg/VBoxContainer/MusicVolume"]
 margin_left = 224.0
 margin_right = 730.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
-value = 76.0
+max_value = 60.0
+value = 30.0
 
 [node name="Music" type="HBoxContainer" parent="Tex/Mrg/VBoxContainer"]
 margin_top = 136.0
@@ -101,12 +102,13 @@ rect_min_size = Vector2( 220, 0 )
 custom_colors/font_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
 text = "Effects Volume"
 
-[node name="HSlider" type="HSlider" parent="Tex/Mrg/VBoxContainer/SfxVolume"]
+[node name="SfxSlider" type="HSlider" parent="Tex/Mrg/VBoxContainer/SfxVolume"]
 margin_left = 224.0
 margin_right = 730.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
-value = 50.0
+max_value = 60.0
+value = 30.0
 
 [node name="Label" type="Label" parent="Tex/Mrg/VBoxContainer"]
 margin_top = 272.0
@@ -126,3 +128,7 @@ margin_right = 730.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 142, 50 )
 text = "OK"
+
+[connection signal="value_changed" from="Tex/Mrg/VBoxContainer/MusicVolume/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="toggled" from="Tex/Mrg/VBoxContainer/Music/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="value_changed" from="Tex/Mrg/VBoxContainer/SfxVolume/SfxSlider" to="." method="_on_SfxSlider_value_changed"]

@@ -39,3 +39,14 @@ func map_to_pixel(pos: Vector2) -> Vector2:
 	# divide the pixel size by those values. Multiply by the offset map co-ords
 	return Vector2(round((pos.x + 12.5) * (cn.MAP_PIXEL_SIZE.x / 25.0)),
 				   round((pos.y + 8.34) * (cn.MAP_PIXEL_SIZE.y / 16.68)))
+
+# code to handle audio
+func set_music_volume(new_volume: float):
+	new_volume = clamp(new_volume, cn.AUDIO_MIN_VOLUME, cn.AUDIO_MAX_VOLUME)
+	var bus: int = AudioServer.get_bus_index(cn.MUSIC_BUS_NAME)
+	AudioServer.set_bus_volume_db(bus, new_volume)
+
+func set_sfx_volume(new_volume: float):
+	new_volume = clamp(new_volume, cn.AUDIO_MIN_VOLUME, cn.AUDIO_MAX_VOLUME)
+	var bus: int = AudioServer.get_bus_index(cn.SFX_BUS_NAME)
+	AudioServer.set_bus_volume_db(bus, new_volume)
