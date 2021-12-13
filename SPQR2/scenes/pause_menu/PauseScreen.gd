@@ -39,10 +39,7 @@ func _on_SfxSlider_value_changed(value):
 
 func convert_to_db(value: float) -> float:
 	# we have a value 0 - 100, convert 0 -> 1
-	value /= 100.0
-	value = linear2db(value)
-	print(value)
-	return clamp(value, cn.AUDIO_MIN_VOLUME, cn.AUDIO_MAX_VOLUME)
+	return linear2db(value / 100.0)
 
 func stop_music():
 	if player.playing == false:

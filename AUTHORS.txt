@@ -30,6 +30,7 @@ Sound
 	UI sounds from Kenny - https://www.kenney.nl/assets/ui-audio
 	Soldiers marching - https://freesound.org/people/stib/sounds/240732/
 	Footstomp - https://freesound.org/people/patchen/sounds/20185/
+	Birdsong loop by koertes - https://opengameart.org/content/birdsong-background-loop
 
 Music
 	Main game: Brandon Morris, CC0 - https://opengameart.org/content/town-in-ruins-loop

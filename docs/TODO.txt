@@ -20,28 +20,25 @@ Editor Improvements:
 UI & Issues Special
 -------------------
 
-* Make a game theme
-	* Get sizes + fonts
-	* Make a button, slider and checkbox
-	* Add volume / sfx on menu screen
-	* Add what you have to a theme
+✓ Make a game theme
+	✓ Get sizes + fonts
+	✓ Make a button, slider and checkbox
+	✓ Add volume / sfx on menu screen
+	✓ Add what you have to a theme
+	  Finish SFX with scrape sfx
+	  Add clicks
 
-	"""
-	Set the anchors on the root container node, and don't touch the anchor/margins of its children. Use the size flags and rect min size to get them where you want them to be. If you want to add space around your controls add a margin container but don't change the "margins" property, instead go to custom constants and set the margins there. If the margin container is in another container, the "margins" will be set by the root container, but the "custom constant margins" will stay. Sometimes after making a change you'll have to resize the root container or reset its anchors so that it updates properly.
-
-	It's a bit confusing when you start off, I know, I felt that frustration, but it's actually pretty easy once you get past the quirks.
-	"""
-
+* Rebuild events using the theme
 * Rebuild the region / unit using the theme
 * Add troop types to units, and "things" to nodes (port, factory, etc)
 	* Primarily to busy up the interface for now
 	* All nodes will need a name now
 * Rebuild the mini-map using the theme
-* Rebuild events using the theme
-* Rebuild menu screen using the theme
+✓ Rebuild menu screen using the theme
 * Test unhighlighting the mouse, and click highlights region
-* Add background music of some sort - clicks on and off from menu screen
-* Add music / sfx volume slider on pause
+✓ Add a config file to store status
+✓ Add background music of some sort - clicks on and off from menu screen
+✓ Add music / sfx volume slider on pause
 * For the current code dilemma, institute a new rule:
 	* A class may READ anything from an owned object, but they must WRITE via the API
 	* So a unit has a location, it may use that to read from. But it cannot:
