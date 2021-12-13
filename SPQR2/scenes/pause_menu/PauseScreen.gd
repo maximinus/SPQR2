@@ -15,6 +15,7 @@ var music_position: float
 
 func _ready():
 	music_position = 0.0
+	show_pause($TestMusic)
 
 func show_pause(new_player: AudioStreamPlayer):
 	# passed in is the current music player
@@ -28,13 +29,19 @@ func _on_CheckBox_toggled(button_pressed):
 		stop_music()
 
 func _on_MusicSlider_value_changed(value):
-	helpers.set_sfx_volume(convert_to_db(value))
-
-func _on_SfxSlider_value_changed(value):
 	helpers.set_music_volume(convert_to_db(value))
 
+func _on_Button_pressed():
+	get_tree().quit()
+
+func _on_SfxSlider_value_changed(value):
+	helpers.set_sfx_volume(convert_to_db(value))
+
 func convert_to_db(value: float) -> float:
-	value = -60.0 + value
+	# we have a value 0 - 100, convert 0 -> 1
+	value /= 100.0
+	value = linear2db(value)
+	print(value)
 	return clamp(value, cn.AUDIO_MIN_VOLUME, cn.AUDIO_MAX_VOLUME)
 
 func stop_music():
@@ -42,8 +49,11 @@ func stop_music():
 		return
 	music_position = player.get_playback_position()
 	player.stop()
+	# disable the slider
+	$Tex/Mrg/VBox/MusicVolume/MusicSlider.editable = false
 
 func start_music():
 	if player.playing == true:
 		return
 	player.play(music_position)
+	$Tex/Mrg/VBox/MusicVolume/MusicSlider.editable = true
