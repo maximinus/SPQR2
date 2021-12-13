@@ -10,35 +10,16 @@ Short Term:
 
 Editor Improvements:
 
-
-✓ If moving onto a node with an enemy, do not move for now
-✓ If 2 differing units are in 1 region, show the region striped
-✓ Above completes part 2 of "Goals for v0.2"
-✓ Make units better in the editor. Add stats for number, type, morale of units
-✓ When a unit is clicked, show the unit stats in the properties dialog
-
-UI & Issues Special
--------------------
-
-✓ Make a game theme
-	✓ Get sizes + fonts
-	✓ Make a button, slider and checkbox
-	✓ Add volume / sfx on menu screen
-	✓ Add what you have to a theme
-	  Finish SFX with scrape sfx
-	  Add clicks
-
+* Add background music to world and put new pause menu in world
+* Test config file works
 * Rebuild events using the theme
 * Rebuild the region / unit using the theme
 * Add troop types to units, and "things" to nodes (port, factory, etc)
 	* Primarily to busy up the interface for now
 	* All nodes will need a name now
 * Rebuild the mini-map using the theme
-✓ Rebuild menu screen using the theme
 * Test unhighlighting the mouse, and click highlights region
-✓ Add a config file to store status
-✓ Add background music of some sort - clicks on and off from menu screen
-✓ Add music / sfx volume slider on pause
+* Test changing the FOV of the camera
 * For the current code dilemma, institute a new rule:
 	* A class may READ anything from an owned object, but they must WRITE via the API
 	* So a unit has a location, it may use that to read from. But it cannot:
@@ -95,6 +76,7 @@ Best to implement the most common stuff first, as it's the most important.
 Goals for v0.3
 --------------
 
+0: Nodes can have >1 unit
 1: Add turn based mechanics: after a move, either wait or must move a currently unmoved unit
 	- I.e., implement more than 1 Roman unit
 	- All moves occur in order but "technically" at the same time

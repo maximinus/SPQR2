@@ -24,6 +24,9 @@ func show_pause(new_player: AudioStreamPlayer):
 	player = new_player
 
 func _on_CheckBox_toggled(button_pressed):
+	if $Click.playing == true:
+		$Click.stop()
+	$Click.play()
 	config.music_on = button_pressed
 	if button_pressed == true:
 		start_music()
@@ -34,7 +37,9 @@ func _on_MusicSlider_value_changed(value):
 	helpers.set_music_volume(convert_to_db(value))
 
 func _on_Button_pressed():
-	get_tree().quit()
+	if $Click.playing == true:
+		$Click.stop()
+	$Click.play()
 
 func _on_SfxSlider_value_changed(value):
 	helpers.set_sfx_volume(convert_to_db(value))
@@ -45,6 +50,11 @@ func _on_SfxSlider_mouse_entered():
 func _on_SfxSlider_mouse_exited():
 	sfx_position = $TestSfx.get_playback_position()
 	$TestSfx.stop()
+
+func _on_Button_mouse_entered():
+	if $Rollover.playing == true:
+		$Rollover.stop()
+	$Rollover.play()
 
 func convert_to_db(value: float) -> float:
 	# we have a value 0 - 100, convert 0 -> 1
