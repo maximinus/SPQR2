@@ -136,9 +136,12 @@ bus = "Music"
 
 [node name="TestSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = 6.0
 bus = "SFX"
 
 [connection signal="value_changed" from="Tex/Mrg/VBox/MusicVolume/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
 [connection signal="toggled" from="Tex/Mrg/VBox/Music/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="mouse_entered" from="Tex/Mrg/VBox/SfxVolume/SfxSlider" to="." method="_on_SfxSlider_mouse_entered"]
+[connection signal="mouse_exited" from="Tex/Mrg/VBox/SfxVolume/SfxSlider" to="." method="_on_SfxSlider_mouse_exited"]
 [connection signal="value_changed" from="Tex/Mrg/VBox/SfxVolume/SfxSlider" to="." method="_on_SfxSlider_value_changed"]
 [connection signal="pressed" from="Tex/Mrg/VBox/Buttons/Button" to="." method="_on_Button_pressed"]

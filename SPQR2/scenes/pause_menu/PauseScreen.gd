@@ -12,9 +12,11 @@ extends CenterContainer
 
 var player: AudioStreamPlayer
 var music_position: float
+var sfx_position: float
 
 func _ready():
 	music_position = 0.0
+	sfx_position = 0.0
 	show_pause($TestMusic)
 
 func show_pause(new_player: AudioStreamPlayer):
@@ -36,6 +38,13 @@ func _on_Button_pressed():
 
 func _on_SfxSlider_value_changed(value):
 	helpers.set_sfx_volume(convert_to_db(value))
+
+func _on_SfxSlider_mouse_entered():
+		$TestSfx.play(sfx_position)
+
+func _on_SfxSlider_mouse_exited():
+	sfx_position = $TestSfx.get_playback_position()
+	$TestSfx.stop()
 
 func convert_to_db(value: float) -> float:
 	# we have a value 0 - 100, convert 0 -> 1
