@@ -17,10 +17,10 @@ var sfx_position: float
 func _ready():
 	music_position = 0.0
 	sfx_position = 0.0
-	show_pause($TestMusic)
 
-func show_pause(new_player: AudioStreamPlayer):
+func display(new_player: AudioStreamPlayer):
 	# passed in is the current music player
+	show()
 	player = new_player
 
 func _on_CheckBox_toggled(button_pressed):
@@ -40,6 +40,8 @@ func _on_Button_pressed():
 	if $Click.playing == true:
 		$Click.stop()
 	$Click.play()
+	$TestSfx.stop()
+	hide()
 
 func _on_SfxSlider_value_changed(value):
 	helpers.set_sfx_volume(convert_to_db(value))

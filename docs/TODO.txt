@@ -12,14 +12,19 @@ Editor Improvements:
 
 * Add background music to world and put new pause menu in world
 * Test config file works
-* Rebuild events using the theme
-* Rebuild the region / unit using the theme
 * Add troop types to units, and "things" to nodes (port, factory, etc)
-	* Primarily to busy up the interface for now
+	* Primarily to busy up the interface
 	* All nodes will need a name now
+
+* Rebuild the sidebar using the theme
+	* Nasty but required: clicks on sidebar require zooming to location
+	* Sidebar can be clicked off with a key, until next click
+* Rebuild events using the theme
+	* Should be pretty easy by now
 * Rebuild the mini-map using the theme
+	* Width must now match sidebar width
 * Test unhighlighting the mouse, and click highlights region
-* Test changing the FOV of the camera
+✓ Test changing the FOV of the camera
 * For the current code dilemma, institute a new rule:
 	* A class may READ anything from an owned object, but they must WRITE via the API
 	* So a unit has a location, it may use that to read from. But it cannot:
@@ -29,7 +34,7 @@ Editor Improvements:
 
 * On move, attacking unit moves right up to enemy unit but does not move into node
 * Battle screen is shown with resolution
-* When screen is clicked away, enemy unit dies or moves or stays there
+* When screen is finished and closed, enemy unit dies or moves or stays there
 * Then the attacking unit moves straight into the node or retreats to previous node
 * When a city is attacked, a siege scene is shown
 * A siege can take time, so a unit can be in a state of either SEIGING or SEIGED
@@ -76,19 +81,19 @@ Best to implement the most common stuff first, as it's the most important.
 Goals for v0.3
 --------------
 
-0: Nodes can have >1 unit
 1: Add turn based mechanics: after a move, either wait or must move a currently unmoved unit
 	- I.e., implement more than 1 Roman unit
-	- All moves occur in order but "technically" at the same time
-	- So all units CAN move at the same time - the "Next Turn" button means "I have finished moving everything"
-	- "Next Turn" means resetting the units "moved" flag so the unit can move again
+	- All moves occur in order but each unit can only move once per turn
+	- Which simply means "Next Turn" sets the units "can_move" flag to True
 2: Add basic AI to the enemy to decide to retreat, attack or what-not
 3: Enemies can move between your moves. Decide a mechanism
 4: Add heuristics to game AI. No need to code war aims, give the goal at the start
 5: Add >1 enemy
-6: Add 16 more regions
-7: Solve the issue of multiple units in one node
+6: Add 4 more regions
+7: Nodes can have >1 unit
+	- Do first
 8: Add Naval movement and ports
+	- Wowser, a big one
 
 Goals for 0.4
 -------------
@@ -96,16 +101,17 @@ Goals for 0.4
 Complete a years worth of campaigns, with possible multiple leaders.
 
 1: For the Republic, this means:
-2: Choose a general / senator
+2: Choose a general / senator per campaign
 3: Add them to a unit
 4: Add them to battle stats
 5: Add fatigue
 6: Complete a campaign
 7: If the leader dies, choose a new leader
 8: Calculate the costs and add a simple budget screen
-9: You now have Budget Screen -> Campaign
-10: Allow multiple campaigns
-11: Campaigns are "per senator" although they may be conducted by others
+9: You now have Budget Screen -> Campaign -> Results Budget Screen
+10: Allow multiple campaigns (essentially, add a "next campaign" button)
+11: Campaigns under the Emperor are either under that emperor or the emperors choice
+	* This choice is not as perfect as it sounds
 
 0.5: Emperors
 -------------

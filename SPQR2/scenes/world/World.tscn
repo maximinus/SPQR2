@@ -4,8 +4,8 @@
 [ext_resource path="res://scenes/world/World.gd" type="Script" id=2]
 [ext_resource path="res://scenes/map_overlay/Overlay.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/events/Event.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/pause_menu/PauseMenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://gfx/ui_elements/region_sidebar/test_bar.png" type="Texture" id=6]
+[ext_resource path="res://scenes/pause_menu/PauseScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sfx/music/map_music.ogg" type="AudioStream" id=6]
 
 [node name="World" type="Spatial"]
 script = ExtResource( 2 )
@@ -42,27 +42,12 @@ shadow_contact = 0.3
 [node name="Event" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource( 5 )]
 visible = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TestSideBar" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
-margin_left = 1085.0
-margin_right = 1400.0
-margin_bottom = 800.0
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
 
 [connection signal="change_view" from="CanvasLayer/Overlay" to="." method="_on_Overlay_change_view"]
 [connection signal="mini_map" from="CanvasLayer/Overlay" to="." method="_on_Overlay_mini_map"]
