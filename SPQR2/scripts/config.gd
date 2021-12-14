@@ -17,7 +17,7 @@ func set_default_config() -> void:
 
 func load_config_file() -> void:
 	set_default_config()
-	var config = ConfigFile.new()
+	var config = ConfigFile.new()	
 	var err = config.load(cn.CONFIG_FILE)
 	if err != OK:
 		helpers.log('Warn: Could not load config file')
@@ -27,6 +27,11 @@ func load_config_file() -> void:
 	sfx_volume = config.get_value(AUDIO_SECTION_NAME, SFX_VOL_NAME, cn.SFX_VOLUME_DEFAULT)
 	music_on = config.get_value(AUDIO_SECTION_NAME, MUSIC_ON_NAME, cn.MUSIC_PLAYING_DEFAULT)
 	helpers.log('Config file loaded')
+
+func apply_options() -> void:
+	# apply the options that we can
+	helpers.set_music_volume(music_volume)
+	helpers.set_sfx_volume(sfx_volume)
 
 func save_config_file() -> void:
 	# Only do this at the end of the game

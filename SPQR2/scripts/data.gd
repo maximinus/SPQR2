@@ -115,6 +115,7 @@ class MapRegion:
 func load_all_data() -> bool:
 	# config will always get something
 	config.load_config_file()
+	config.apply_options()
 	# return false if there was an issue
 	var game_data = get_json_data(GAME_DATA)
 	if game_data == null:
@@ -126,7 +127,7 @@ func load_all_data() -> bool:
 	graph.setup()
 	return true
 
-func end_game():
+func cleanup():
 	# called to quit the game. Performs required cleanup
 	config.save_config_file()
 

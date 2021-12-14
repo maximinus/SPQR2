@@ -20,6 +20,10 @@ func _ready():
 
 func display(new_player: AudioStreamPlayer):
 	# passed in is the current music player
+	# set data from config
+	$Tex/Mrg/VBox/MusicVolume/MusicSlider.value = db2linear(config.music_volume) * 100.0
+	$Tex/Mrg/VBox/SfxVolume/SfxSlider.value = db2linear(config.sfx_volume) * 100.0
+	$Tex/Mrg/VBox/Music/CheckBox.pressed = config.music_on
 	show()
 	player = new_player
 
@@ -34,7 +38,9 @@ func _on_CheckBox_toggled(button_pressed):
 		stop_music()
 
 func _on_MusicSlider_value_changed(value):
-	helpers.set_music_volume(convert_to_db(value))
+	var volume = convert_to_db(value)
+	config.music_volume = volume
+	helpers.set_music_volume(volume)
 
 func _on_Button_pressed():
 	if $Click.playing == true:
@@ -45,7 +51,9 @@ func _on_Button_pressed():
 	get_tree().paused = false
 
 func _on_SfxSlider_value_changed(value):
-	helpers.set_sfx_volume(convert_to_db(value))
+	var volume = convert_to_db(value)
+	config.sfx_volume = volume
+	helpers.set_sfx_volume(volume)
 
 func _on_SfxSlider_mouse_entered():
 		$TestSfx.play(sfx_position)

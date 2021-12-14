@@ -138,9 +138,11 @@ bus = "SFX"
 
 [node name="Rollover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+bus = "SFX"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [connection signal="value_changed" from="Tex/Mrg/VBox/MusicVolume/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
 [connection signal="toggled" from="Tex/Mrg/VBox/Music/CheckBox" to="." method="_on_CheckBox_toggled"]

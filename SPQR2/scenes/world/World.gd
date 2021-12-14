@@ -47,6 +47,9 @@ func _ready():
 	OS.min_window_size = WINDOW_MIN_SIZE
 	# setup all data
 	data.load_all_data()
+	# start music if needed
+	if config.music_on == true:
+		$Music.play()
 	# load the region texture
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
 	region_map = image.get_data()
@@ -77,6 +80,13 @@ func _process(delta):
 	# move the map
 	if check_mouse_drag() == false:
 		check_cursor_keys(delta)
+
+func _notification(event):
+	# handle closing window
+	if event == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		print('quitting')
+		data.cleanup()
+		get_tree().quit()
 
 func check_ui_actions() -> void:
 	# check non-map ui actions
