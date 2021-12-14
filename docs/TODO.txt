@@ -10,7 +10,7 @@ Short Term:
 
 Editor Improvements:
 
-* Add background music to world and put new pause menu in world
+✓ Add background music to world and put new pause menu in world
 * Test config file works
 * Add troop types to units, and "things" to nodes (port, factory, etc)
 	* Primarily to busy up the interface

@@ -42,6 +42,7 @@ func _on_Button_pressed():
 	$Click.play()
 	$TestSfx.stop()
 	hide()
+	get_tree().paused = false
 
 func _on_SfxSlider_value_changed(value):
 	helpers.set_sfx_volume(convert_to_db(value))

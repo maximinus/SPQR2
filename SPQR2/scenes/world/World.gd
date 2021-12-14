@@ -85,7 +85,7 @@ func check_ui_actions() -> void:
 		cancel_unit_highlights()
 	if Input.is_action_just_pressed('menu'):
 		$CanvasLayer/PauseScreen.display($Music)
-		#get_tree().paused = true
+		get_tree().paused = true
 	if Input.is_action_just_pressed('test_event'):
 		helpers.log('Testing events')
 		$CanvasLayer/Event.ask('Congress wishes to end conflict with Eygpt',

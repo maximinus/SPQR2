@@ -46,8 +46,10 @@ visible = false
 visible = false
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 6 )
 autoplay = true
+bus = "Music"
 
 [connection signal="change_view" from="CanvasLayer/Overlay" to="." method="_on_Overlay_change_view"]
 [connection signal="mini_map" from="CanvasLayer/Overlay" to="." method="_on_Overlay_mini_map"]

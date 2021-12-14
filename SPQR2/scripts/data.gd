@@ -126,6 +126,10 @@ func load_all_data() -> bool:
 	graph.setup()
 	return true
 
+func end_game():
+	# called to quit the game. Performs required cleanup
+	config.save_config_file()
+
 func get_json_data(filepath):
 	# load a json file, check for errors and then return the data
 	# read the data and convert - return null if failed
