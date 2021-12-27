@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://gfx/fonts/nimbus_roman_title.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gfx/ui_elements/right_sidebar/header_image.png" type="Texture" id=2]
+
+[node name="SidebarTitle" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1092.0
+margin_bottom = -735.0
+rect_min_size = Vector2( 308, 65 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 97.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 308, 65 )
+size_flags_horizontal = 3
+custom_constants/margin_right = 55
+custom_constants/margin_top = 22
+custom_constants/margin_left = 55
+custom_constants/margin_bottom = 14
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer"]
+margin_left = 55.0
+margin_top = 23.0
+margin_right = 253.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Britannia"
+valign = 1

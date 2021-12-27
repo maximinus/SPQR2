@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://gfx/fonts/nimbus_roman.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gfx/ui_elements/right_sidebar/build_icons/wine.png" type="Texture" id=2]
+[ext_resource path="res://gfx/ui_elements/right_sidebar/build_icons/fish.png" type="Texture" id=3]
+[ext_resource path="res://gfx/ui_elements/right_sidebar/color_ramps/header.png" type="Texture" id=4]
+
+[node name="NodeHeader" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1144.0
+margin_bottom = -770.0
+rect_min_size = Vector2( 256, 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 256.0
+margin_bottom = 30.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mrg" type="MarginContainer" parent="."]
+margin_right = 256.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 3
+custom_constants/margin_left = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="Mrg"]
+margin_left = 3.0
+margin_right = 253.0
+margin_bottom = 30.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mrg" type="MarginContainer" parent="Mrg/HBox"]
+margin_right = 69.0
+margin_bottom = 30.0
+custom_constants/margin_top = 6
+
+[node name="Title" type="Label" parent="Mrg/HBox/Mrg"]
+margin_top = 6.0
+margin_right = 69.0
+margin_bottom = 30.0
+size_flags_vertical = 5
+custom_colors/font_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Minervae"
+valign = 1
+
+[node name="Icons" type="HBoxContainer" parent="Mrg/HBox"]
+margin_left = 69.0
+margin_right = 250.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_constants/separation = 2
+alignment = 2
+
+[node name="Icon1" type="TextureRect" parent="Mrg/HBox/Icons"]
+margin_left = 135.0
+margin_right = 157.0
+margin_bottom = 30.0
+texture = ExtResource( 2 )
+stretch_mode = 4
+
+[node name="Icon2" type="TextureRect" parent="Mrg/HBox/Icons"]
+margin_left = 159.0
+margin_right = 181.0
+margin_bottom = 30.0
+texture = ExtResource( 3 )
+stretch_mode = 4

@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/right_sidebar/helpers/NodeSingleDetail.gd" type="Script" id=1]
+[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/population.png" type="Texture" id=2]
+[ext_resource path="res://gfx/fonts/nimbus_sans.tres" type="DynamicFont" id=3]
+
+[node name="NodeSingleDetail" type="HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 50, 24 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mrg1" type="MarginContainer" parent="."]
+margin_right = 23.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 0
+custom_constants/margin_left = 2
+
+[node name="Icon" type="TextureRect" parent="Mrg1"]
+margin_left = 2.0
+margin_right = 23.0
+margin_bottom = 24.0
+texture = ExtResource( 2 )
+stretch_mode = 4
+
+[node name="Mrg2" type="MarginContainer" parent="."]
+margin_left = 27.0
+margin_right = 50.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 0
+
+[node name="Label" type="Label" parent="Mrg2"]
+margin_top = 6.0
+margin_right = 21.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "4.2"
+align = 1
+valign = 1

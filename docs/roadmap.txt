@@ -4,7 +4,8 @@ SPQR II
 This is essentially the "how the game plays" document
 
 
-Overal idea:
+Overall idea:
+-------------
 
 Player controls Rome
 Game is turn-based
@@ -38,9 +39,11 @@ For each turn, any consul, emperor or general can conduct a certain (low) number
 A campaign is conducted this way:
 	* A friendly region is chosen, and the leader moved there
 	* First, you may Support:
-		- The leader may choose to move ONE unit from ONE region from anywhere on the board to their region
+		- The leader may choose to move ANY or ALL units from ONE or TWO NODES from anywhere on the board to their region
 	* Then you may Prepare:
-        - **A loop starts from here**
+    
+	** START LOOP! **
+
 		- The leader can move, by one node, all the units in this region and all controlled adjacent ones
 		- The leader must always be with a unit - the player can choose which one
 	
@@ -58,28 +61,31 @@ A campaign is conducted this way:
         * No enemy units remain and any city is captured
 	* We repeat from "The consul can move"
 
-	* The decision to end the loop is made by the player
-	* Any further play needed after this will be performed by the AI, with a different simple AI for Rome (which will play badly)
+	** END LOOP! **
 
-    ** END LOOP! **
+	* The decision to end the loop is made by the player
+	* Any further play needed after this will be performed by the AI, with a similar AI for Rome.
+		- Careful running of the empire can improve this AI's performance - a major boost for a hard game
 
 	* A certain amount of "fatigue" builds up every cycle, and units start to lose effeciency fairly quickly (on both sides)
 		* The loop "The consul can move" might be thought of a campaign year passing. Depends on how many times that happens
         * Possible: Autumn arrives. Continuing will cost in GDP as crops are not brought in
-                    Winter arrives. All units remain where they. 
+                    Winter arrives. All units remain where they are. 
                         Unsupported units will die, supported units in unconqured regions (unless a city) cost some factor more
-    * Campaigns cost money. They may make a profit, but they do always cost... and it should be expensive in some way.
+    * Campaigns cost money. They may make a profit, but they do always cost... and it should be expensive.
 	* It is important to note the AI should be able to play between these moves (i.e., defend if obvious, attack if obvious, keep it simple)
 	* A player can choose to wait between campaigns so they can react to enemy events with their own campaign
 	* If they do, the wait costs a campaign. Emperors that have average or better strategy can wait once for free if they only have 1 campaign left.
-        - The chance of an event after a wait is very low
+        - The chance of an attack from enemy players after a wait is lower than normal.
     * If an enemy attacks, the player will gain a free campaign if they choose.
     	* This campaign will lack the single unit strategic move
     	* A well-paid and equipped army will make this campaign cheap, almost free if short and sucessful
+    	* The flipside is that a badly prepared army might just collapse, with the emperor as well
     	* Often a better approach to to bide your time and attack during your campaign with better preperation
 Once all campaigns are done, maybe the enemy chooses now to attack
-If all campaigns are done, the player may choose to campaign an extra time at double the usual expense
+If all campaigns are done, the player may choose to campaign an extra time at double or so the usual expense
     * And by "some expense" it should also reduce GDP as it represents a massive military spend
+    * The spend is factored into the cost of the next emperor, i.e. the budget on the start of the turn will show the expense of the campaign
     * Essentially, it's free at the point of access, but possibly very damaging long term
 Now cultural and city growth is done (TODO)
     - Need to express the cultural growth, not just as a number
@@ -89,24 +95,26 @@ Now cultural and city growth is done (TODO)
         - Idea #3: (lots of assets): The images shown on the UI upgrade themselves
             - not the buttons, the event images, the pause screen image, that sort of thing
         - Idea #4: (really hard): Writers / Artists are shown doing jobs on the map
+        - Idea #5: (needs assets): Add things to map, factories, ports etc...
 
 
 At some point the "Empire" card is played, to remove the Republic
-This always give a civil war
+This always gives a civil war
 In a civil war:
 	You must beat the other rival(s)
 	Unlimited campaigns but success begats success and you should steamroll (or lose fast)
 	A civil war can happen at any time in the turn, but is most common at the start. The turn sequence should go:
 		* An emperor is chosen in the normal way with rivals OR the emperor is challenged
 		* Civil war is declared
-		* All the rivals fight
-		* Player may choose which rival they are
+		* All the rivals fight against each other
+		* Player may choose which of the rivals they are
 		* A non-stop campaign is held until there is a winner
 		* It is more likely that a Roman army will "turn" rather than be defeated heavily
 			- Thus, battles will likely have less casualties
 		* The player now continues as the winner - which may be someone different
         * If you know you will lose, then obviously you would not fight
             - Ideas to prevent meta-gaming and trying to lose?
+            	Winning adds to your score
             - Player may choose which rival they wish to play
             - In this case, they should have no say in who the rivals are
 
@@ -129,25 +137,39 @@ In the Empire:
 	Forming new cities in new regions becomes harder
 
 
+Scoring
+-------
+
+We need a score
+Then we can also show "score over time" and "significant eras"
+It also adds free tension to some decisions
+We then can also add trophies
+Score points:
+	Survival
+	Population
+	Military victories
+	Culture
+	Romanisation
+	Winning civil wars
+	Playing hard cards
+	Playing era cards early
+	Limiting saves
+	Adding deliberate bad luck via extra unlucky cards
+	Starting with a lost Punic War
+
+
 Changing Emperors
 -----------------
 
 At the end of a turn, you may choose the next emperor / senators.
 3 - 4 candidates are given (4 - 5 if senators, or split empire)
-They are chosen from these people:
-	A family member (if good % chance is met)
-		You may have an event to choose this person, or choose no family member
-	Random others
-It should be possible (but rare - 1/2 time per playthrough) to keep the current Emperor (but not senators)
+These people are randomly generated, although some will be marked as family members
+Each candidate has a rough % chance that they will have no contender
+It should be possible (but rare - 1 or 2 times per playthrough) to keep the current Emperor (but not senators)
 	In this case, there is no choice and the next turn continues
 Likewise, it is possible (maybe quite common) to choose an heir
-	- To the player, this will be a random character in the main
-		* This character already gets a vote from "family connections" so they are in the running by default
-	- So the reasons to choose this random character:
-		* Lower donative
-		* Less chance of immediate civil war
-	- And against:
-		* Other candidates likely better
+	- This just means selecting a family member, although there may be events in the turn before
+
 Each candidate has a set of traits, varying from terrible to fantastic, some neutral.
 Those traits will affect outcomes like:
 	- Battles
@@ -155,19 +177,11 @@ Those traits will affect outcomes like:
 	- Money
 	- Romanisation
 	- Maybe adds some random events
-The outcome is not always what the player wants. They have a vote (maybe ++). The other votes are based on traits:
-	+ for popular / loved
-	- for unloved / hated
-	+ for ambitious
-	+ for family connections
-	- for peaceful
-	+ for bribes
-As can be seen, a popular, ambitious family member who bribes is a likely winner
 
 The only real extra gameplay mechanic is the bribes.
-	Low level bribes result in the loss of money when they become leaders.
-	With Emperors, slowly the donative to the troops will become larger and larger.
-	If a candidate is winning with their donative, you may choose to pay more for your candidate
+	Candidates may come with donatives.
+	You can increase the % chance of success by giving a bigger donative.
+	The more this is done, the more the donative must be
 		- To the player this should be a question: is it worth it to do this?
 			* So the money involved has to gamed in some way to be like 20% of spending next turn
 		- A key method of crippling Rome is to leave it cashless as a succession
@@ -176,6 +190,17 @@ In general, the player should usually be able to choose what they want
 	- The flipside is that they often only have a set of bad choices.
 		- A key method of crippling Rome is to only have terrible choices
 	- Key point is to have agency. Choosing the best of the worst is more fun, and sometimes a diamond can come along.
+	- Agency is super-important. Just getting a 25% chance of choosing someone all the time is boring.
+	- Thus the take-away is you should be able to certainly choose between 2-3 bad ones
+	- You may select someone good, but they would have a low chance and possibly start a civil war
+	- This doesn't mean all choices are objectivily bad, but it should be more common than you think
+	- Being "good" in the players mind does NOT mean they will win any civil war though
+	- So therefore the best we can do as a game is give 2/3 bad ones and 1 low chance good one, or similar
+	- As long as we can diffrentiate the bad ones enough so they can be bad in one area but good in another
+	- Then you can choose your poison, as it were - 
+	- And you can really enjoy the actual good ones, of which there are few
+	- A leader should give you some problem, but also some good thing
+	- It's how you use this that makes the game
 
 If an emperor is selected who is truly awful (as decided by a set of metrics):
 	- The game immediatly switches to a campaign
@@ -267,27 +292,79 @@ Enemies
 			* Change could be card based
 
 
-Regions
--------
+Nodes
+-----
 
-Each region has:
-	A major city
+Nodes are where units can move to.
+
+Something with a number must be:
+	Able to be changed by the player
+	Not excessive in the extreme values
+	Represents something tangable
+
+Each node has:
+	A name
 	A culture stat (gives culture)
 	A money stat (gives money)
 	A manpower stat
-	A "loyalty to the emperor" stat (?)
-	An indicator of basic terrain type
+	Christian (hidden at start)
+	Some resource properties:
+		Gold / Silver / Iron / Wine / Cloth / Pottery / Fish / Grain
+	Some cultural properties:
+		Maths / Engineering / Writing / History / Music
+	Some buildings:
+		Temple / Mine / Port / Aquaduct / Colosseum
+	We allow a maximum of 4/5 per node (based on how many we can display)
+	A lot of nodes will start with zero properties
+		TODO: How to set properties
+	A romanisation stat
+		aka, "how much do we like Rome"
+	
+Regions are the totals of these, plus:
+	A name
+	A measure of the amount of arable land * quality
+	An indicator of basic climate and terrain
+	Some of the bonuses might be a bit hidden in the totals
 
 
 Troops
 ------
 
-	Troops have an attack and defence
+	Troops have:
+		attack
+		defence
+		morale
+		quality
+		number
 	Fights are determined by:
 		* Ratio of troops
 		* Attack vs defence rating
 		* Generals ratings
 		* Luck
+
+
+Units Per Node Breakdown
+------------------------
+
+Let us look at what we want:
+	* A unit should be able to retreat to a node with a unit
+	* Should be possible to attack with >1 unit in some way
+	* The number and quality of troops must be visualised on the map
+	* A unit should be able to move "through" a friendly unit
+	* Must be easy to select and handle this
+
+Ways to make this easy:
+	Units are always shown as one model on the map
+	This way all the current movement code works exactly as expected
+	"One model" could be a model with 3 troops though
+	Players can click the models (or the sidebar) to deselect troops
+	There is a natural limit to the number of units per node (maybe 3?)
+		- If a unit has to retreat to a node with 3 units, a random unit must move away first
+		- This might have a chain reaction, but shouldn't be common
+		- You cannot move into a node with 3 units
+		- You can merge units on the sidebar
+	After any battle, one of the sides must retreat somewhere
+
 
 Cards:
 ------
@@ -329,8 +406,9 @@ Cards:
 		 	* OR: Takes up 2 cards
 		 	* OR: Gets rid of bad cards when played
 		 	* OR: Comes with random positive card
+		 	* OR: The earlier you play the card, the higher your score
 
-		* Thats about 90 "natural" cards per game, they should and will be important
+		* That's about 90 "natural" cards per game, they should and will be important
 
 	After playing, another is picked up
 	Card effects can change gameplay, eg:
@@ -344,7 +422,9 @@ Cards:
 		* Card: Either event may happen:
 			* Tacitus writes a famous history of Rome
 			* You have +1 campaigns
-		* When played, raises an event
+		* Cards can fire events at some point, but are always played either at the start or end of the turn
+			- For example, card "Choose your successor this turn":
+			- Played at some point but only affects the "choose successor" round at the end of the turn.
 
 
 Events:
@@ -376,6 +456,7 @@ Roads need a purpose. Ideas:
 	* Roads add to the general score
 	* They are expensive, best added by general romanization (but perhaps by then the effects are weakened?)
 	* Most regions should have roads by 200, and the more far flung by 300 AD
+
 
 
 What do Boats do?
@@ -417,6 +498,39 @@ Enemy AI for small scale:
 		2: Destroy enemy forces: Find the enemy forces and engage them, destroy them, grab any loot and go home (more loot than 1)
 		3: Invade: Capture the region and the city (loot: not that much, you want to keep not destroy!)
 		4: Sack: Capture the region and the city, steal everything, burn it all, and go home (this will gain a lot more money than 2)
+
+
+
+How can we do an economy?
+-------------------------
+
+The simple truth is, we probably can't. But we can fake one.
+An economy exists in game to enrich the players experience.
+Therefore they should have a great deal of influence on it.
+Ancient Rome ran on precious metals, a finite resource, so we need to "model" that.
+Rome also used to debase coin regularly, this could be a choice of the player.
+There were taxes raised, the money seems mainly spent on the army.
+
+From a game perspective, we need:
+	There is an integer value of the Empire's gold and silver assets.
+	This is set at the start of the turn, after the emperor is chosen (i.e., the second thing to happen)
+		- A screen showing the current finances of the empire
+		- Same screen shows possible expenditure with some choices
+			- Choices could be: Build a wall / Increase army size / Upgrade units / Improve roads
+		- Once choices are made, money is spent and the player is left the rest of the money to spend in the turn
+			- Possible spends are campaigns, events, sackings (lose money), ransom
+	Money can almost always be borrowed. Any debts will carry over to the next emperor. Refusal of large debts is unwise.
+	If it cannot be borrowed, it can be squeezed out of rich families. This is quicker way to meet an assasin.
+	Ultimatly you can steal it from temples. At this point everybody hates you. Unless they are Christian.
+
+What choices does the player have:
+	1: What do I spend it on?
+		- Higher spending on productive things is much better
+		- Military spending has zero productivity
+	2: How much do I spend?
+		- Keeping gold in the economy is very important, and keeping a big reserve is generally a bad thing
+		- You can always borrow, then the next emperor can borrow, and so on
+	3: Player may buy an improvement in a node. Very expensive though, and nodes are limited to what they have.
 
 
 Combat Screen Ideas

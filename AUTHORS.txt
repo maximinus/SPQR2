@@ -25,6 +25,7 @@ Graphics
 	Leaders eagle by Phillip Handy
 	Editor army sprites taken from Freeciv, GPL 2.0, https://github.com/freeciv/freeciv
 	Dustismo Font is Copyright (C) 2002 Dustin Norlander Homepage: http://www.cheapskatefonts.com, GPL 2.0
+	Ivy leaves decoration, FreeSVG: https://freesvg.org/1538965019, no artist attribution
 
 Sound
 	UI sounds from Kenny - https://www.kenney.nl/assets/ui-audio

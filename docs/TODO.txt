@@ -11,14 +11,50 @@ Short Term:
 Editor Improvements:
 
 ✓ Add background music to world and put new pause menu in world
-* Test config file works
+✓ Test config file works
 * Add troop types to units, and "things" to nodes (port, factory, etc)
 	* Primarily to busy up the interface
 	* All nodes will need a name now
 
 * Rebuild the sidebar using the theme
 	* Nasty but required: clicks on sidebar require zooming to location
-	* Sidebar can be clicked off with a key, until next click
+	* Base requirements:
+		* When a region is clicked, it's stats are displayed
+			* Stats are: arable lane, climate, terrain
+			* Sum of totals below
+		* The stats show the region stats
+		* And the individual nodes show their properties
+			Max 4 nodes / region
+			1 node has 3 lines:
+				Name / Properties
+				Stats for that region - Happiness, Money, Population, Romanisation, Christian (maybe hidden at start)
+				Display of units
+			1 line is 26 pixels tall
+
+			Icons required:
+				Happiness / ✓ Money (income this turn) / ✓ Population (size) / ✓ Romanisation / ✓ Christian
+				✓ Gold / ✓ Silver / ✓ Iron / ✓ Wine / Cloth / ✓ Pottery / ✓ Fish / ✓ Grain
+				Maths / ✓ Engineering / ✓ Writing / ✓ History / ✓ Music
+				✓ Temple / ✓ Port / ✓ Aquaduct / ✓ Colosseum
+
+			Clicked node has double line display for units
+			If we want a seperate "node display" dialog, we need extra data (maybe graphs over time):
+				So leave this for now
+		* Troops are shown, however:
+			If a node is clicked, details of those units are shown, and details of the units in the node
+			The other regions show a limited detail of their units
+			If only the region is clicked, minimum details of the units are shown
+			When displayed, a mouseover a node will highlight the region display
+			When the mouse is not over any node, the highlights will be removed
+			A click on a node will update and highlight display and node
+			A click on a region will update and highlight nothing
+			A click on the region in the region display will act as a click on the node itself
+				It will also centre the map on the node
+				A click on a unit with minimum details will act as a node click and select all units that can be selected
+				The maximal unit display allows clicking on one unit. A click selects it, and this is individial for all units
+			Tooltips on all icons
+
+
 * Rebuild events using the theme
 	* Should be pretty easy by now
 * Rebuild the mini-map using the theme
@@ -32,7 +68,7 @@ Editor Improvements:
 		* Change the location value itself
 		* All write functions have easy to understand names, i.e. move_unit_to_region(unit_id, region_id)
 
-* On move, attacking unit moves right up to enemy unit but does not move into node
+✓ On move, attacking unit moves right up to enemy unit but does not move into node
 * Battle screen is shown with resolution
 * When screen is finished and closed, enemy unit dies or moves or stays there
 * Then the attacking unit moves straight into the node or retreats to previous node
@@ -90,9 +126,7 @@ Goals for v0.3
 4: Add heuristics to game AI. No need to code war aims, give the goal at the start
 5: Add >1 enemy
 6: Add 4 more regions
-7: Nodes can have >1 unit
-	- Do first
-8: Add Naval movement and ports
+7: Add Naval movement and ports
 	- Wowser, a big one
 
 Goals for 0.4

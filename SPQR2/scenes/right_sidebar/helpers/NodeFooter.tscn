@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/right_sidebar/helpers/UnitDetails.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/right_sidebar/helpers/NodeDetails.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gfx/ui_elements/right_sidebar/color_ramps/footer.png" type="Texture" id=3]
+
+[node name="NodeFooter" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1144.0
+margin_bottom = -752.0
+rect_min_size = Vector2( 256, 48 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NodeDetails" parent="VBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 256.0
+margin_bottom = 24.0
+
+[node name="UnitDetails" parent="VBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 24.0
+margin_right = 256.0
+margin_bottom = 48.0
+total_units = 3
