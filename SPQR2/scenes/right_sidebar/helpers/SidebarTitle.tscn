@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://gfx/fonts/nimbus_roman_title.tres" type="DynamicFont" id=1]
 [ext_resource path="res://gfx/ui_elements/right_sidebar/header_image.png" type="Texture" id=2]
 [ext_resource path="res://gfx/ui_elements/right_sidebar/title_overlay.png" type="Texture" id=3]
+[ext_resource path="res://scenes/right_sidebar/helpers/SidebarTitle.gd" type="Script" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -25,6 +26,7 @@ anchor_bottom = 1.0
 margin_right = -1092.0
 margin_bottom = -735.0
 rect_min_size = Vector2( 308, 65 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

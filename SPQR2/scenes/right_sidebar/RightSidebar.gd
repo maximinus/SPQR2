@@ -4,3 +4,6 @@ extends Control
 
 func _ready():
 	pass # Replace with function body.
+
+func updateSidebar(region: data.NewMapRegion) -> void:
+	pass

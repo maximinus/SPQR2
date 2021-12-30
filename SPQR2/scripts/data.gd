@@ -366,14 +366,15 @@ func get_road_arrows_from_node_id(node_id: int) -> Array:
 		if i.start_node != node_id:
 			folder_name = '_towards'
 		var rimage = load('res://gfx/roads/arrow' + folder_name + '/road_' + str(i.id) + '.png')
-		var road_texture = ImageTexture.new()
-		road_texture.create_from_image(rimage.get_data())
+		# prevent name clashing - don't call road_texture
+		var r_tex = ImageTexture.new()
+		r_tex.create_from_image(rimage.get_data())
 		
 		var red_image = load('res://gfx/roads/red' + folder_name + '/road_' + str(i.id) + '.png')
 		var red_texture = ImageTexture.new()
 		red_texture.create_from_image(red_image.get_data())
 		
-		all_data.append(cn.RoadMoveDisplay.new(road_texture, red_texture, i.id, i.pos, i.points))
+		all_data.append(cn.RoadMoveDisplay.new(r_tex, red_texture, i.id, i.pos, i.points))
 	return all_data
 
 func move_unit(unit_id, location_id):

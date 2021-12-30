@@ -1,7 +1,6 @@
-tool
 extends MarginContainer
 
-export(int, 5) var total_units setget set_total_units
+var total_units: int
 
 func _ready():
 	pass
