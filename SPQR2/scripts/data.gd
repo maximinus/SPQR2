@@ -111,6 +111,28 @@ class MapRegion:
 			return true
 		return false
 
+class NewMapRegion:
+	# use this as a test for the new data for now
+	var id: int
+	var owner_id: int
+	var region_name: String
+	var climate: int
+	var terrain: int
+	var crops: int
+
+	func _init(data: Dictionary):
+		id = data['id']
+		owner_id = data['owner_id']
+		region_name = data['name']
+		climate = data['climate']
+		terrain = data['terrain']
+		crops = data['crops']
+	
+	static func sort(a, b) -> bool:
+		if a.id < b.id:
+			return true
+		return false	
+	
 # this is main() function: it should be called when the game scene starts
 func load_all_data() -> bool:
 	# config will always get something

@@ -51,3 +51,25 @@ enum RegionDisplay {
 	MONEY,
 	ARMY
 }
+
+enum TerrainTypes {
+	MOUNTAIN = 0,
+	HILLS = 1,
+	PLAIN = 2,
+	DESERT = 3,
+	FOREST = 5
+}
+
+enum CropGrowth {
+	EXCELLENT = 0,
+	GOOD = 1,
+	BAD = 2,
+	TERRIBLE = 3
+}
+
+enum ClimateTypes {
+	MARITIME = 0,
+	MEDITERRANEAN = 1,
+	DESERT = 2,
+	HUMID = 3
+}

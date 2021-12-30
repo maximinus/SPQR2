@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://gfx/fonts/nimbus_roman_title.tres" type="DynamicFont" id=1]
 [ext_resource path="res://gfx/ui_elements/right_sidebar/header_image.png" type="Texture" id=2]
+[ext_resource path="res://gfx/ui_elements/right_sidebar/title_overlay.png" type="Texture" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	COLOR = vec4(color.r, color.g, color.b, tex.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.933333, 0.0666667, 0.0666667, 1 )
 
 [node name="SidebarTitle" type="Control"]
 anchor_right = 1.0
@@ -17,10 +33,34 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+margin_right = 308.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 308, 65 )
+custom_constants/margin_right = 46
+custom_constants/margin_top = 11
+custom_constants/margin_left = 46
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorOverlay" type="TextureRect" parent="MarginContainer2"]
+material = SubResource( 2 )
+margin_left = 46.0
+margin_top = 11.0
+margin_right = 262.0
+margin_bottom = 55.0
+texture = ExtResource( 3 )
+stretch_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 97.0
-margin_bottom = 27.0
+margin_right = 308.0
+margin_bottom = 65.0
 rect_min_size = Vector2( 308, 65 )
 size_flags_horizontal = 3
 custom_constants/margin_right = 55

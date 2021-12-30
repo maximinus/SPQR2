@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/right_sidebar/helpers/NodeDisplay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gfx/ui_elements/right_sidebar/base_image.png" type="Texture" id=2]
 [ext_resource path="res://scenes/right_sidebar/helpers/SidebarTitle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/right_sidebar/helpers/RegionDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/right_sidebar/RightSidebar.gd" type="Script" id=5]
 
 [node name="RightSidebar" type="Control"]
 anchor_right = 1.0
@@ -10,6 +12,7 @@ anchor_bottom = 1.0
 margin_right = -1092.0
 margin_bottom = -263.0
 rect_min_size = Vector2( 308, 533 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -32,10 +35,17 @@ anchor_bottom = 0.0
 margin_right = 308.0
 margin_bottom = 65.0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="RegionDisplay" parent="VBoxContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_top = 69.0
 margin_right = 308.0
-margin_bottom = 381.0
+margin_bottom = 147.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 151.0
+margin_right = 308.0
+margin_bottom = 463.0
 rect_min_size = Vector2( 308, 312 )
 custom_constants/margin_top = 0
 custom_constants/margin_left = 23
