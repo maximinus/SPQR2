@@ -13,22 +13,27 @@ v0.2: In Progress
 	✓ Just let it float around the map and make it work well
 	✓ you need: Arrows, Sounds, Follow a Path, Select from shown paths, Move in world data
 	✓ Needs to "just work" in the best possible way.
+
 2: Add an enemy unit
 	✓ you need: show possible danger on routes
 	✓ when moving against an enemy in the same region, it is clearly a battle you want
 	✓ when moving against an enemy in a enemy region, you get to choose what to do (avoid or attack etc)
 	✓ when enemies and Romans are in the same region, show a striped region with the map shader
+
 3: Improve game UI
 	Standardise control look and feel
 	Overhaul all GUI windows
 	✓ Improve the look and feel
+
 4: Add battle screen and battle resolution.
 	Add up the totals, add a random value - there's the winner
 	Some other quesi-random elements for casualties
 	Loser has to go somewhere
 	Show the result as an event and animate any retreating moves
 	Rotate unit during move animation
+
 5: Save the game as simply as possible, and also add load
+
 6: Add 4 more regions
 
 
