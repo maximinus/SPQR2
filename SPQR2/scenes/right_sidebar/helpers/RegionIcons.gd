@@ -6,22 +6,22 @@ const ICON_SIZE = 36
 const TOOLTIP_OFFSET = Vector2(0.0, 40.0)
 
 var tooltip = null
-var crops: int = 0
-var climate: int = 0
-var terrain: int = 0
+var crops: int = 3
+var climate: int = 3
+var terrain: int = 3
 
 var messages = {'crops':['This region has high production and produces an excess of food.',
 						 'Region produces surplus food.',
 						 "This region just about produces enough for it's population.",
 						 'This region has poor food production. It cannot keep a large population.'],
 				'climate':['The climate in this region is generally cool and wet, with cold winters.',
-						   'This regions climate is warm and sunny, with cool winters.',
-						   'This region is very hot, in both winter and summer.',
-						   'The climate here consists of hot summers and cold winters.'],
-				'terrain':['This region is very mountainous and hilly.',
+						   'This regions climate is warm with cooler winters. It can be wet in summer.',
+						   'This region is very hot, both in winter and summer.',
+						   'The climate here is quite extreme, with hot summers and very cold winters.'],
+				'terrain':['This region is very mountainous and hilly, and hard to traverse.',
 						   'This region is very hilly, with many valleys',
 						   'The terrain in this region is generally very flat.',
-						   'This region mainly consists of very dry, hot desert.',
+						   'This region mainly consists of hot, dry desert.',
 						   'This region is mainly forests and woods']}
 
 func _ready():
