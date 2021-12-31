@@ -3,7 +3,7 @@ extends Control
 var min_size_x: int = 42
 
 func _ready():
-	pass
+	set_as_toplevel(true)
 
 func setup(tex: AtlasTexture, title: String, message: String):
 	$Panel/Mrg/VBox/HBox/Icon.texture = tex
@@ -19,3 +19,14 @@ func _on_Message_resized():
 	# change size and height of atlas texture
 	$Background.rect_size.y = new_size
 	$Background.texture.region.end.y = new_size
+
+func fade_in():
+	show()
+	$Anim.play('FadeIn')
+
+func fade_out():
+	$Anim.play('FadeOut')
+
+func _on_Anim_animation_finished(anim_name):
+	if anim_name == 'FadeOut':
+		queue_free()

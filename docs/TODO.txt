@@ -18,49 +18,31 @@ Editor Improvements:
 
 * Rebuild the sidebar using the theme
 	* Nasty but required: clicks on sidebar require zooming to location
-	* Base requirements:
-		* When a region is clicked, it's stats are displayed
-			* Stats are: arable land, climate, terrain
-				* Shown: % over / under icon, 1 of 4 icons, 1 of 5 icons
-					- Climate: ✓ Maritime				- Rainy cloud with parital sun
-							   ✓ Mediterranian		- Cloud with partial sun
-							   ✓ Desert				- Sun
-							   ✓ Humid Contintental	- Half sun, half snowy cloud
-					- ✓ Mountains, ✓ Hilly / Rough, ✓ Plain / Smooth, ✓ Desert, ✓ Forest
-					- ✓ 1 Icon for arable land, maybe a field or crops
-			* Sum of totals below
-		✓ And the individual nodes show their properties
-			✓ Max 4 nodes / region
-			✓ 1 node has 3 lines:
-				✓ Name / Properties
-				✓ Stats for that region - Happiness, Money, Population, Romanisation, Christian (maybe hidden at start)
-				✓ Display of units
-			✓ 1 line is 26 pixels tall
+	* When a region is clicked, it's stats are displayed
+	* Icons required:
+		✓ Happiness / ✓ Money (income this turn) / ✓ Population (size) / ✓ Romanisation / ✓ Christian
+		Gold / Silver / Iron / Wine / Cloth / ✓ Pottery / ✓ Fish / Grain
+		Maths / Engineering / Writing / History / Music / Temple / Port / Aquaduct / Colosseum
+			- Add a little star to show quality of (just like Stardew Valley)
+			- Can we add a differing Roman thing?
+		
 
-			✓ Icons required:
-				✓ Happiness / ✓ Money (income this turn) / ✓ Population (size) / ✓ Romanisation / ✓ Christian
-				Gold / Silver / Iron / Wine / Cloth / ✓ Pottery / ✓ Fish / Grain
-				Maths / Engineering / Writing / History / Music
-					- Add a little star to show quality of (just like Stardew Valley)
-					- Can we add a differing Roman thing?
-				Temple / Port / Aquaduct / Colosseum
-
-			? Clicked node has double line display for units
-			If we want a seperate "node display" dialog, we need extra data (maybe graphs over time):
-				So leave this for now
-		* Troops are shown, however:
-			If a node is clicked, details of those units are shown, and details of the units in the node
-			The other regions show a limited detail of their units
-			If only the region is clicked, minimum details of the units are shown
-			When displayed, a mouseover a node will highlight the region display
-			When the mouse is not over any node, the highlights will be removed
-			A click on a node will update and highlight display and node
-			A click on a region will update and highlight nothing
-			A click on the node in the region display will act as a click on the node itself AND
-				Centre the map on the node
-			A click on a unit with minimum details on display will act as a node click and select all units that can be selected
-			The maximal unit display allows clicking on one unit. A click selects it, and this is individual for all units
-			Tooltips on all icons
+	? Clicked node has double line display for units
+		If we want a seperate "node display" dialog, we need extra data (maybe graphs over time):
+		So leave this for now
+	* Troops are shown, however:
+		If a node is clicked, details of those units are shown, and details of the units in the node
+		The other regions show a limited detail of their units
+		If only the region is clicked, minimum details of the units are shown
+		When displayed, a mouseover a node will highlight the region display
+		When the mouse is not over any node, the highlights will be removed
+		A click on a node will update and highlight display and node
+		A click on a region will update and highlight nothing
+		A click on the node in the region display will act as a click on the node itself AND
+			Centre the map on the node
+		A click on a unit with minimum details on display will act as a node click and select all units that can be selected
+		The maximal unit display allows clicking on one unit. A click selects it, and this is individual for all units
+		Tooltips on all icons
 
 
 * Rebuild the mini-map using the theme

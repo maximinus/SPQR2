@@ -3,7 +3,7 @@ extends Control
 var tooltip_resource = preload('res://scenes/right_sidebar/tooltips/RegionIconTooltip.tscn')
 
 const ICON_SIZE = 36
-const TOOLTIP_OFFSET = Vector2(36.0, 40.0)
+const TOOLTIP_OFFSET = Vector2(0.0, 40.0)
 
 var tooltip = null
 var crops: int = 0
@@ -46,16 +46,13 @@ func show_tooltip(pos, tex, title, message):
 	tooltip.rect_position = pos + TOOLTIP_OFFSET
 	# populate the data
 	add_child(tooltip)
-	# show it
-	tooltip.show()
+	tooltip.fade_in()
 
 func hide_tooltip():
 	if tooltip == null:
 		return
 	# hide the tooltip
-	tooltip.hide()
-	# destroy it
-	tooltip.queue_free()
+	tooltip.fade_out()
 	tooltip = null
 
 func _on_Crops_mouse_entered():
@@ -63,25 +60,25 @@ func _on_Crops_mouse_entered():
 	var tex = $Icons/HBox2/Crops.texture
 	var title = 'Food Production'
 	var message = messages['crops'][crops]
-	show_tooltip($Icons/HBox2/Crops.rect_position, tex, title, message)
+	show_tooltip($Icons/HBox2/Crops.rect_global_position, tex, title, message)
 
 func _on_Crops_mouse_exited():
 	hide_tooltip()
 
 func _on_Climate_mouse_entered():
 	var tex = $Icons/HBox2/Climate.texture
-	var title = 'Region Climate'
+	var title = 'Regional Climate'
 	var message = messages['climate'][climate]
-	show_tooltip($Icons/HBox2/Climate.rect_position, tex, title, message)
+	show_tooltip($Icons/HBox2/Climate.rect_global_position, tex, title, message)
 
 func _on_Climate_mouse_exited():
 	hide_tooltip()
 
 func _on_Terrain_mouse_entered():
 	var tex = $Icons/HBox2/Terrain.texture
-	var title = 'Region Terrain'
+	var title = 'Regional Topography'
 	var message = messages['terrain'][terrain]
-	show_tooltip($Icons/HBox2/Terrain.rect_position, tex, title, message)
+	show_tooltip($Icons/HBox2/Terrain.rect_global_position, tex, title, message)
 
 func _on_Terrain_mouse_exited():
 	hide_tooltip()
