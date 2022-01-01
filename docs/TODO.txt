@@ -12,37 +12,32 @@ Editor Improvements:
 
 ✓ Add background music to world and put new pause menu in world
 ✓ Test config file works
-* Add troop types to units, and "things" to nodes (port, factory, etc)
-	* Primarily to busy up the interface
-	* All nodes will need a name now
 
-* Rebuild the sidebar using the theme
-	* Nasty but required: clicks on sidebar require zooming to location
-	* When a region is clicked, it's stats are displayed
-	* Icons required:
-		✓ Happiness / ✓ Money (income this turn) / ✓ Population (size) / ✓ Romanisation / ✓ Christian
-		Gold / Silver / Iron / Wine / Cloth / ✓ Pottery / ✓ Fish / Grain
-		Maths / Engineering / Writing / History / Music / Temple / Port / Aquaduct / Colosseum
-			- Add a little star to show quality of (just like Stardew Valley)
-			- Can we add a differing Roman thing?
-		
-
-	? Clicked node has double line display for units
-		If we want a seperate "node display" dialog, we need extra data (maybe graphs over time):
-		So leave this for now
-	* Troops are shown, however:
-		If a node is clicked, details of those units are shown, and details of the units in the node
-		The other regions show a limited detail of their units
-		If only the region is clicked, minimum details of the units are shown
-		When displayed, a mouseover a node will highlight the region display
-		When the mouse is not over any node, the highlights will be removed
-		A click on a node will update and highlight display and node
-		A click on a region will update and highlight nothing
-		A click on the node in the region display will act as a click on the node itself AND
-			Centre the map on the node
-		A click on a unit with minimum details on display will act as a node click and select all units that can be selected
-		The maximal unit display allows clicking on one unit. A click selects it, and this is individual for all units
-		Tooltips on all icons
+* Right sidebar finishing:
+	* Add all tooltips
+	* Add to game, ignoring current callback for now
+	* Account for screen area view size when displaying
+	* Import the texts you need in a nicer way
+	* Mock a new region object and pass it in
+	* Add all needed region data to the editor
+	* Make the new game file with all data
+	* Fix any errors in the game itself
+	* Render all the required icons
+	* Add a quality star
+	* Add "click on region" - > highlights until next click
+	* Add click highlight details:
+	* Troops are shown, the rules are:
+		* If a node is clicked, details of those units are shown, and minimal details of the other units in the region
+		* If only the region is clicked, minimum details of all the node units are shown
+		* When displayed, a mouseover a node will highlight the region display
+		* When the mouse is not over any node, the highlights will be removed
+		* A click on a node will update and highlight display and node (it will also update the region highlight if on a new region)
+		* A click on a region already highlighted will update and highlight nothing
+		* A click on the node in the region display will act as a click on the node
+		* A double-click will centre the map on the node
+		* A click on a unit with minimum details on display will act as a node click and select all units that can be selected
+		* The maximal unit display allows clicking on one unit. A click selects it, and this is individual for all units
+		* Tooltips on all icons
 
 
 * Rebuild the mini-map using the theme
@@ -50,10 +45,7 @@ Editor Improvements:
 * Rebuild events using the theme
 	* Should be pretty easy by now
 * Make the overlay screen better organised and understand the layout better
-* Ensure game works at lowest resolution popular screen
-	- Look into resize at lower resolutions
-* Test unhighlighting the mouse, and click highlights region
-✓ Test changing the FOV of the camera
+* Ensure game works at lowest resolution popular screen (make this the default screen size)
 * For the current code dilemma, institute a new rule:
 	* A class may READ anything from an owned object, but they must WRITE via the API
 	* So a unit has a location, it may use that to read from. But it cannot:
@@ -65,10 +57,6 @@ Editor Improvements:
 * Battle screen is shown with resolution
 * When screen is finished and closed, enemy unit dies or moves or stays there
 * Then the attacking unit moves straight into the node or retreats to previous node
-* When a city is attacked, a siege scene is shown
-* A siege can take time, so a unit can be in a state of either SEIGING or SEIGED
-* Breaking this takes a battle (SEIGED), or either a battle or a move away (SEIGING)
-* When either of these units are clicked, the seige screen appears
 * Ownership of region is based off of region + units, not just units
 * Document how to make regions, and make 4
 
@@ -106,6 +94,7 @@ Best to implement the most common stuff first, as it's the most important.
 		- Rotate unit during move
 	4: Save the game as simply as possible, and also add load
 	5: Add 4 more regions
+	6: Oh shit: 4 units per node need to be animated and handled
 
 Goals for v0.3
 --------------

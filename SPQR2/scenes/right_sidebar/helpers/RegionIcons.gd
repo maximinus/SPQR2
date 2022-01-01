@@ -13,7 +13,7 @@ var terrain: int = 3
 var messages = {'crops':['This region has high production and produces an excess of food.',
 						 'Region produces surplus food.',
 						 "This region just about produces enough for it's population.",
-						 'This region has poor food production. It cannot keep a large population.'],
+						 'This region has poor food production. It cannot feed a large population.'],
 				'climate':['The climate in this region is generally cool and wet, with cold winters.',
 						   'This regions climate is warm with cooler winters. It can be wet in summer.',
 						   'This region is very hot, both in winter and summer.',
