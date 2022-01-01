@@ -67,10 +67,9 @@ tracks/0/keys = {
 
 [node name="RegionNodeSpecificTooltip" type="Control"]
 modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -1160.0
-margin_bottom = -765.0
+margin_right = 240.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 240, 35 )
 size_flags_vertical = 3
 script = ExtResource( 4 )
 __meta__ = {
@@ -79,9 +78,8 @@ __meta__ = {
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color( 0.34902, 0.243137, 0.243137, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = 5.0
+margin_right = 240.0
+margin_bottom = 35.0
 size_flags_vertical = 3
 texture = SubResource( 2 )
 __meta__ = {
@@ -89,8 +87,8 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
-margin_right = 240.0
-margin_bottom = 35.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 1 )
@@ -116,6 +114,7 @@ margin_right = 232.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 16
 
 [node name="Label" type="Label" parent="Panel/Mrg/VBox"]
 margin_right = 224.0
@@ -131,3 +130,4 @@ anims/FadeOut = SubResource( 4 )
 anims/RESET = SubResource( 5 )
 
 [connection signal="resized" from="Panel/Mrg/VBox" to="." method="_on_VBox_resized"]
+[connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]

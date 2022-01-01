@@ -3,7 +3,7 @@ extends Control
 var tooltip_resource = preload('res://scenes/right_sidebar/tooltips/RegionNodeSpecificTooltip.tscn')
 var tooltip = null
 
-const TOOLTIP_OFFSET = Vector2(0.0, 40.0)
+const TOOLTIP_OFFSET = Vector2(0.0, 32.0)
 
 var icon_messages = ["This region is known for it's excellent wine production.",
 					 'Fishing is very productive in this region.']
