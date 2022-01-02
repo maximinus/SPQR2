@@ -1,6 +1,6 @@
 extends Control
 
-const TOOLTIP_OFFSET: Vector2 = Vector2(8.0, 30.0)
+const TOOLTIP_OFFSET: Vector2 = Vector2(4.0, 26.0)
 
 var tooltip_resource = preload('res://scenes/right_sidebar/tooltips/NodeUnitsTooltip.tscn')
 var tooltip = null
@@ -27,7 +27,7 @@ func _on_UnitDetails_mouse_entered():
 	tooltip.hide()
 	tooltip.setup()
 	# place it
-	tooltip.rect_position = rect_position + TOOLTIP_OFFSET
+	tooltip.rect_position = rect_global_position + TOOLTIP_OFFSET
 	# populate the data
 	add_child(tooltip)
 	tooltip.fade_in()

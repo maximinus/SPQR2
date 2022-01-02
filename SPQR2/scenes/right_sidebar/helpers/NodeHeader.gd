@@ -26,7 +26,8 @@ func _on_NodeHeader_mouse_entered():
 	var title_string = $Mrg/HBox/Mrg/Title.text + ' Details'
 	tooltip.setup(title_string, get_icon_details())
 	# place it
-	tooltip.rect_position = rect_position + TOOLTIP_OFFSET
+	tooltip.rect_position = rect_global_position + TOOLTIP_OFFSET
+	#rect_position + TOOLTIP_OFFSET
 	# populate the data
 	add_child(tooltip)
 	tooltip.fade_in()

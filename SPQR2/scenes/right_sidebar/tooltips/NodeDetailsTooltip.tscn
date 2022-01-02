@@ -76,8 +76,8 @@ self_modulate = Color( 0.382812, 0.273651, 0.273651, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1170.0
-margin_bottom = -638.0
-rect_min_size = Vector2( 230, 162 )
+margin_bottom = -602.0
+rect_min_size = Vector2( 230, 198 )
 mouse_filter = 2
 size_flags_vertical = 3
 script = ExtResource( 9 )
@@ -89,14 +89,16 @@ __meta__ = {
 modulate = Color( 0.34902, 0.243137, 0.243137, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 36.0
 size_flags_vertical = 3
 texture = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 36.0
+size_flags_vertical = 3
 custom_styles/panel = SubResource( 1 )
 
 [node name="Mrg" type="MarginContainer" parent="Panel"]
@@ -113,7 +115,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Mrg"]
+[node name="VBox" type="VBoxContainer" parent="Panel/Mrg"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 214.0
@@ -121,17 +123,17 @@ margin_bottom = 182.0
 size_flags_horizontal = 3
 custom_constants/separation = 12
 
-[node name="Population" type="HBoxContainer" parent="Panel/Mrg/VBoxContainer"]
+[node name="Population" type="HBoxContainer" parent="Panel/Mrg/VBox"]
 margin_right = 206.0
 margin_bottom = 18.0
 custom_constants/separation = 12
 
-[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBoxContainer/Population"]
+[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBox/Population"]
 margin_right = 18.0
 margin_bottom = 18.0
 texture = ExtResource( 8 )
 
-[node name="PopText" type="Label" parent="Panel/Mrg/VBoxContainer/Population"]
+[node name="PopText" type="Label" parent="Panel/Mrg/VBox/Population"]
 margin_left = 30.0
 margin_right = 206.0
 margin_bottom = 18.0
@@ -142,18 +144,18 @@ custom_fonts/font = ExtResource( 3 )
 text = "This is a test"
 autowrap = true
 
-[node name="Roman" type="HBoxContainer" parent="Panel/Mrg/VBoxContainer"]
+[node name="Roman" type="HBoxContainer" parent="Panel/Mrg/VBox"]
 margin_top = 30.0
 margin_right = 206.0
 margin_bottom = 84.0
 custom_constants/separation = 12
 
-[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBoxContainer/Roman"]
+[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBox/Roman"]
 margin_right = 18.0
 margin_bottom = 54.0
 texture = ExtResource( 6 )
 
-[node name="RomanText" type="Label" parent="Panel/Mrg/VBoxContainer/Roman"]
+[node name="RomanText" type="Label" parent="Panel/Mrg/VBox/Roman"]
 margin_left = 30.0
 margin_right = 206.0
 margin_bottom = 54.0
@@ -164,18 +166,18 @@ custom_fonts/font = ExtResource( 3 )
 text = "This is a test sdfugij sdfgiu sdfgio sdfgio sdfgu sdoif u sdfoi gsdoif g"
 autowrap = true
 
-[node name="Wealth" type="HBoxContainer" parent="Panel/Mrg/VBoxContainer"]
+[node name="Wealth" type="HBoxContainer" parent="Panel/Mrg/VBox"]
 margin_top = 96.0
 margin_right = 206.0
 margin_bottom = 114.0
 custom_constants/separation = 12
 
-[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBoxContainer/Wealth"]
+[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBox/Wealth"]
 margin_right = 18.0
 margin_bottom = 18.0
 texture = ExtResource( 5 )
 
-[node name="WealthText" type="Label" parent="Panel/Mrg/VBoxContainer/Wealth"]
+[node name="WealthText" type="Label" parent="Panel/Mrg/VBox/Wealth"]
 margin_left = 30.0
 margin_right = 206.0
 margin_bottom = 18.0
@@ -186,18 +188,18 @@ custom_fonts/font = ExtResource( 3 )
 text = "This is a test"
 autowrap = true
 
-[node name="Happiness" type="HBoxContainer" parent="Panel/Mrg/VBoxContainer"]
+[node name="Happiness" type="HBoxContainer" parent="Panel/Mrg/VBox"]
 margin_top = 126.0
 margin_right = 206.0
 margin_bottom = 144.0
 custom_constants/separation = 12
 
-[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBoxContainer/Happiness"]
+[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBox/Happiness"]
 margin_right = 18.0
 margin_bottom = 18.0
 texture = ExtResource( 4 )
 
-[node name="HappyText" type="Label" parent="Panel/Mrg/VBoxContainer/Happiness"]
+[node name="HappyText" type="Label" parent="Panel/Mrg/VBox/Happiness"]
 margin_left = 30.0
 margin_right = 206.0
 margin_bottom = 18.0
@@ -208,18 +210,18 @@ custom_fonts/font = ExtResource( 3 )
 text = "This is a test"
 autowrap = true
 
-[node name="Christian" type="HBoxContainer" parent="Panel/Mrg/VBoxContainer"]
+[node name="Christian" type="HBoxContainer" parent="Panel/Mrg/VBox"]
 margin_top = 156.0
 margin_right = 206.0
 margin_bottom = 174.0
 custom_constants/separation = 12
 
-[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBoxContainer/Christian"]
+[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBox/Christian"]
 margin_right = 18.0
 margin_bottom = 18.0
 texture = ExtResource( 7 )
 
-[node name="ChristianText" type="Label" parent="Panel/Mrg/VBoxContainer/Christian"]
+[node name="ChristianText" type="Label" parent="Panel/Mrg/VBox/Christian"]
 margin_left = 30.0
 margin_right = 206.0
 margin_bottom = 18.0

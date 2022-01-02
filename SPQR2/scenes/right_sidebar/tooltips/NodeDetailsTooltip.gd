@@ -18,7 +18,7 @@ func _on_Anim_animation_finished(anim_name) -> void:
 		queue_free()
 
 func _on_NodeDetailsTooltip_resized() -> void:
-	var new_size = rect_size.y + 36.0
+	var new_size = $Panel/Mrg/VBox.rect_size.y + 24.0
 	$Panel.rect_size.x = 230.0
 	$Panel.rect_size.y = new_size
 	# change size and height of atlas texture
