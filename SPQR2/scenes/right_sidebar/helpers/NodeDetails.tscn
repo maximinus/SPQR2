@@ -21,9 +21,8 @@ __meta__ = {
 }
 
 [node name="Mrg" type="MarginContainer" parent="."]
-margin_left = 3.0
-margin_right = 259.0
-margin_bottom = 24.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 256, 24 )
 mouse_filter = 2
 custom_constants/margin_right = 3

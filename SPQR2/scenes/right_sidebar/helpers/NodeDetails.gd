@@ -9,7 +9,7 @@ var tooltip = null
 func _ready():
 	tooltip = null
 
-func _on_NodeDetails_mouse_entered():
+func _on_NodeDetails_mouse_entered() -> void:
 	if tooltip != null:
 		tooltip.hide()
 		tooltip.queue_free()
@@ -22,7 +22,7 @@ func _on_NodeDetails_mouse_entered():
 	add_child(tooltip)
 	tooltip.fade_in()
 
-func _on_NodeDetails_mouse_exited():
+func _on_NodeDetails_mouse_exited() -> void:
 	if tooltip == null:
 		return
 	# hide the tooltip
