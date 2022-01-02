@@ -15,8 +15,15 @@ Editor Improvements:
 
 * Right sidebar finishing:
 	* Add all tooltips
+		* Region Icons
+		* Region Totals
+		* Node header / icons
+		* Node info
+		* Node attributes
+		* Node units
+	* Add 'extra bar for units'
 	* Add to game, ignoring current callback for now
-	* Account for screen area view size when displaying
+	* Account for screen area view size when displaying tooltips
 	* Import the texts you need in a nicer way
 	* Mock a new region object and pass it in
 	* Add all needed region data to the editor

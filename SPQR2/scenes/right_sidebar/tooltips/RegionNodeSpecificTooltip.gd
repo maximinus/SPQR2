@@ -28,7 +28,6 @@ func _on_Anim_animation_finished(anim_name):
 
 func _on_VBox_resized():
 	var new_size = $Panel/Mrg/VBox.rect_size.y + VERTICAL_SIZE_EMPTY
-	print('New size:' + str(new_size))
 	rect_size.y = new_size
 	# change size and height of atlas texture
 	$Background.rect_size.y = new_size
