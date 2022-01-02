@@ -133,8 +133,10 @@ class NewMapRegion:
 			return true
 		return false	
 	
-# this is main() function: it should be called when the game scene starts
+# this is main() function: it should be called when the game starts
 func load_all_data() -> bool:
+	# set correct translation
+	TranslationServer.set_locale('en')
 	# config will always get something
 	config.load_config_file()
 	config.apply_options()
