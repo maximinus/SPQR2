@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/right_sidebar/helpers/NodeSingleDetail.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gfx/ui_elements/right_sidebar/icons/population.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://gfx/ui_elements/right_sidebar/icons/money.png" type="Texture" id=4]
 [ext_resource path="res://gfx/ui_elements/right_sidebar/icons/roman.png" type="Texture" id=5]
 [ext_resource path="res://gfx/ui_elements/right_sidebar/icons/christian.png" type="Texture" id=6]
+[ext_resource path="res://scenes/right_sidebar/helpers/NodeDetails.gd" type="Script" id=7]
 
 [node name="NodeDetails" type="MarginContainer"]
 anchor_right = 1.0
@@ -15,6 +16,7 @@ margin_bottom = -776.0
 rect_min_size = Vector2( 256, 24 )
 custom_constants/margin_right = 3
 custom_constants/margin_left = 3
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -52,3 +54,6 @@ margin_left = 200.0
 margin_right = 250.0
 icon_texture = ExtResource( 6 )
 icon_text = "0"
+
+[connection signal="mouse_entered" from="." to="." method="_on_NodeDetails_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_NodeDetails_mouse_exited"]
