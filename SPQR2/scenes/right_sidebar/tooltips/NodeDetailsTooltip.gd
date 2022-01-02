@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	pass
+	set_as_toplevel(true)
 
 func setup() -> void:
 	pass

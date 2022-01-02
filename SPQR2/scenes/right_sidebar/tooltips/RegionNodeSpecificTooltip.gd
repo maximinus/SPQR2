@@ -5,7 +5,7 @@ const VERTICAL_SIZE_EMPTY: int = 35
 var info_scene = preload('res://scenes/right_sidebar/tooltips/NodeIconInfo.tscn')
 
 func _ready():
-	pass
+	set_as_toplevel(true)
 
 func setup(title: String, icon_list: Array) -> void:
 	$Panel/Mrg/VBox/Label.text = title
