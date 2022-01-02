@@ -8,48 +8,60 @@
 [ext_resource path="res://gfx/ui_elements/right_sidebar/icons/christian.png" type="Texture" id=6]
 [ext_resource path="res://scenes/right_sidebar/helpers/NodeDetails.gd" type="Script" id=7]
 
-[node name="NodeDetails" type="MarginContainer"]
+[node name="NodeDetails" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1144.0
 margin_bottom = -776.0
 rect_min_size = Vector2( 256, 24 )
-custom_constants/margin_right = 3
-custom_constants/margin_left = 3
+size_flags_vertical = 3
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBox" type="HBoxContainer" parent="."]
+[node name="Mrg" type="MarginContainer" parent="."]
+margin_left = 3.0
+margin_right = 259.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 256, 24 )
+mouse_filter = 2
+custom_constants/margin_right = 3
+custom_constants/margin_left = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="Mrg"]
 margin_left = 3.0
 margin_right = 253.0
 margin_bottom = 24.0
+mouse_filter = 2
 custom_constants/separation = 0
 
-[node name="Population" parent="HBox" instance=ExtResource( 1 )]
+[node name="Population" parent="Mrg/HBox" instance=ExtResource( 1 )]
 icon_texture = ExtResource( 2 )
 icon_text = "4.2"
 
-[node name="Roman" parent="HBox" instance=ExtResource( 1 )]
+[node name="Roman" parent="Mrg/HBox" instance=ExtResource( 1 )]
 margin_left = 50.0
 margin_right = 100.0
 icon_texture = ExtResource( 5 )
 icon_text = "B4"
 
-[node name="Money" parent="HBox" instance=ExtResource( 1 )]
+[node name="Money" parent="Mrg/HBox" instance=ExtResource( 1 )]
 margin_left = 100.0
 margin_right = 150.0
 icon_texture = ExtResource( 4 )
 icon_text = "2k"
 
-[node name="Happy" parent="HBox" instance=ExtResource( 1 )]
+[node name="Happy" parent="Mrg/HBox" instance=ExtResource( 1 )]
 margin_left = 150.0
 margin_right = 200.0
 icon_texture = ExtResource( 3 )
 icon_text = "B"
 
-[node name="Christian" parent="HBox" instance=ExtResource( 1 )]
+[node name="Christian" parent="Mrg/HBox" instance=ExtResource( 1 )]
 margin_left = 200.0
 margin_right = 250.0
 icon_texture = ExtResource( 6 )
