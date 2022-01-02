@@ -1,5 +1,6 @@
 extends MarginContainer
 
+var tooltip_resource = preload('res://scenes/right_sidebar/tooltips/NodeUnitsTooltip.tscn')
 var total_units: int
 
 func _ready():
@@ -14,3 +15,9 @@ func set_total_units(new_total: int) -> void:
 		else:
 			i.hide()
 		index += 1
+
+func _on_UnitDetails_mouse_entered():
+	pass
+
+func _on_UnitDetails_mouse_exited():
+	pass

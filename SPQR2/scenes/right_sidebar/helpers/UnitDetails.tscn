@@ -21,6 +21,7 @@ __meta__ = {
 margin_left = 3.0
 margin_right = 253.0
 margin_bottom = 24.0
+mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="Unit1" parent="HBox" instance=ExtResource( 2 )]
@@ -50,3 +51,6 @@ margin_left = 200.0
 margin_right = 250.0
 icon_texture = ExtResource( 1 )
 icon_text = "2.9"
+
+[connection signal="mouse_entered" from="." to="." method="_on_UnitDetails_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_UnitDetails_mouse_exited"]
