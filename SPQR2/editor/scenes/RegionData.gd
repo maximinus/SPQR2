@@ -2,6 +2,9 @@ tool
 extends HBoxContainer
 
 export(String) var region_name setget set_name
+export(String, 'Mountain', 'Hills', 'Plain', 'Desert', 'Forest') var terrain
+export(String, 'Maritime', 'Mediterranean', 'Desert', 'Humid') var climate
+export(int, 0, 10) var crops
 export(String, 'Roman', 'Celt') var owned_by setget set_region_owner
 var current_color: Color = cn.ROME_DEFAULT_COLOR
 var needs_update = false

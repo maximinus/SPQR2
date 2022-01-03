@@ -34,6 +34,8 @@ Starting in 200 BC, you have 2 consuls and a small number of regions.
 All regions have:
 	Nodes a unit or city can be placed on
 	Paths between the nodes and nodes in other regions
+	Each node may hold up to 4 units
+	A node may be a city
 
 For each turn, any consul, emperor or general can conduct a certain (low) number of campaigns
 A campaign is conducted this way:
@@ -59,7 +61,7 @@ A campaign is conducted this way:
 		* Units push into the node and cause the enemy units to move
 		* No enemy units remain but the city is not taken
         * No enemy units remain and any city is captured
-	* We repeat from "The consul can move"
+	* We repeat from "The leader can move"
 
 	** END LOOP! **
 
@@ -127,7 +129,7 @@ In a civil war:
 			All Roman regions act as friendly to all Roman units, including Rome
 			Moving to Rome gives a chance your rivals give up, especially if your army is much bigger
 				* By "give up" we really mean "killed by the soldiers"
-			No challenger will want to not accept a fight, typically they all march to Rome ASAP
+			No challenger will refuse a fight, typically they all march to Rome ASAP
 
 In the Empire:
 	On the first emperors turn, all cards removed and replaced with all good cards
@@ -150,12 +152,13 @@ Score points:
 	Military victories
 	Culture
 	Romanisation
-	Winning civil wars
+	Winning civil wars (? Surely "not having civil wars" scores higher?)
 	Playing hard cards
 	Playing era cards early
-	Limiting saves
+	Limiting saves (including perma-death)
 	Adding deliberate bad luck via extra unlucky cards
 	Starting with a lost Punic War
+	Years of peace / monetary gain / no campaigns
 
 
 Changing Emperors
@@ -164,7 +167,7 @@ Changing Emperors
 At the end of a turn, you may choose the next emperor / senators.
 3 - 4 candidates are given (4 - 5 if senators, or split empire)
 These people are randomly generated, although some will be marked as family members
-Each candidate has a rough % chance that they will have no contender
+Each candidate has a rough % chance that they will have no contender (Each?)
 It should be possible (but rare - 1 or 2 times per playthrough) to keep the current Emperor (but not senators)
 	In this case, there is no choice and the next turn continues
 Likewise, it is possible (maybe quite common) to choose an heir
@@ -200,6 +203,7 @@ In general, the player should usually be able to choose what they want
 	- Then you can choose your poison, as it were - 
 	- And you can really enjoy the actual good ones, of which there are few
 	- A leader should give you some problem, but also some good thing
+		(One mans good thing is another poison...)
 	- It's how you use this that makes the game
 
 If an emperor is selected who is truly awful (as decided by a set of metrics):
@@ -211,7 +215,7 @@ If an emperor is selected who is truly awful (as decided by a set of metrics):
 	- The emperor can never campaign before enemies
 		- Another key method of crippling Rome is starting every turn with a civil war
 
-If an emperor is truly truly awful:
+If an emperor is truly truly awful (but rarer than you'd like):
 	- They are murdered by the people of Rome on turn start
 	- You may choose the next emperor from some given candidates; they will be good
 	- 90% of the donative will be returned
@@ -241,7 +245,7 @@ Generals
 Generals are characters who can campaign
 They can be employed by emperors or the senate
 Generals are dangerous, and may start civil wars or dictatorships
-They add campaigns and are generally better than random emperors
+They may add campaigns and are generally better than random emperors
 
 
 Hiding Information
@@ -264,8 +268,6 @@ These are:
 				* It means less tax revenue overall
 				* Less romanisation
 				* The first Christian emperor has more money (raids temples) and has an army with high morale
-		Roman Gods		- Starts at some value and can fluctuate (especially if you add a new region)
-			- Whats the point of this stat?
 These stats effect your score at the end, so they are important.
 To get the best scores should be hard, so no shame should be attached to low scores in one area.
 
@@ -275,6 +277,7 @@ Enemies
 	Enemy AI must have characteristics
 		* I.e., barbarians act different in some way to Persians
 			- maybe as simple as one raids, one invades
+		* Might be cool to have defeats "revenged", i.e. recapture a legions colors
 	They must move their units, build things, expand and decline like the player
 		- Kept pretty simple, and mainly driven by progress
 	Their leaders are like the player in the way they attack
@@ -286,6 +289,7 @@ Enemies
 		* Neutral AI will largly avoid attacking
 		* Friendly AI (rare) is controlled by the player
 		* They will generally ask for a truce if needed rather than risk destruction
+		* The goal of the AI is never to "conquer Rome" it is generally to expand
 	The troops:
 		There should NOT be a kind of scissors, paper rock here, we do not want strategy everywhere
 		As history progresses, horse mounted troops improve - by 400 AD they are essential
@@ -297,10 +301,27 @@ Nodes
 
 Nodes are where units can move to.
 
-Something with a number must be:
-	Able to be changed by the player
+Something with a value:
+	Prefer to be influenced by the player
 	Not excessive in the extreme values
-	Represents something tangable
+	Represents something tangible
+
+How do we change the stats below then? Do we need to?
+What is the point of the region / node properties?
+	Climate, crops and terrain effect food production
+		- Can't change
+	Money shows tax revenue (you can change tax rates)
+		- Can change, but only by propertion
+	Culture adds to the chance of random events
+		- No real control
+	Resources add to the economy simulation. They also add flavour.
+		- No control (?)
+	Cultural properties are cultural rewards.
+		- No real control
+	Buildings add specific details (port / mine) or just add flavour (collosseum)
+		- Some control
+	Romanisation + Happiness dictate how the population will react
+		- Meta-control, have peace and food and we are good.
 
 Each node has:
 	A name
@@ -322,9 +343,7 @@ Each node has:
 	
 Regions are the totals of these, plus:
 	A name
-	A measure of the amount of arable land * quality
-	An indicator of basic climate and terrain
-	Some of the bonuses might be a bit hidden in the totals
+	An indicator of climate, terrain and crop quality
 
 
 Troops
@@ -334,7 +353,7 @@ Troops
 		attack
 		defence
 		morale
-		quality
+		quality (internal, expressed in attack and defence)
 		number
 	Fights are determined by:
 		* Ratio of troops
@@ -390,7 +409,7 @@ Cards:
 		 		- Hit hard and don't go home
 		 	400 AD: Rise of the Huns
 		 		- Hit hard and destroy everybodies homes
-		 	500 AD: ???
+		 	500 AD: Seperation of the Churches of the East and West
 		 - There needs to be some meta as to why a player would play these last 5
 		 - So imagine it arrives in your hand. Only one, you'd never play it
 		 	* So let's add a meta. The more you have of these cards, the more tension in the Empire
@@ -472,7 +491,7 @@ AI Hueristics
 -------------
 
 AI has rewards:
-	Money
+	Money FLOW, not always money OWNED
 	Regions owned
 	Population
 	Cities
@@ -519,9 +538,9 @@ From a game perspective, we need:
 			- Choices could be: Build a wall / Increase army size / Upgrade units / Improve roads
 		- Once choices are made, money is spent and the player is left the rest of the money to spend in the turn
 			- Possible spends are campaigns, events, sackings (lose money), ransom
-	Money can almost always be borrowed. Any debts will carry over to the next emperor. Refusal of large debts is unwise.
-	If it cannot be borrowed, it can be squeezed out of rich families. This is quicker way to meet an assasin.
-	Ultimatly you can steal it from temples. At this point everybody hates you. Unless they are Christian.
+	Money can almost always be borrowed. Any debts will carry over to the next emperor. Refusal to repay such debts is unwise.
+	If it cannot be borrowed, it can be squeezed out of rich families. This is quicker way to meet an assasin than above.
+	Ultimatly you can steal it from temples or churches. At this point everybody hates you. Unless they are Christian and you steal from temples.
 
 What choices does the player have:
 	1: What do I spend it on?

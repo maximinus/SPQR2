@@ -6,6 +6,7 @@ Programming
 
 Graphics
 	Chris Handy if uncredited
+	Main font: Nimbus Roman from Google fonts
 	Roman Font: uncredited from https://www.dafont.com/day-roman.font
 	Table texture: ambientCG.com, licensed under CC0 1.0 Universal.
 	Font for year display in lower left: Roman - Steve Deffeyes (https://www.1001freefonts.com/roman.font)
@@ -18,6 +19,8 @@ Graphics
 		training by Chintuza from the Noun Project
 		Fist by Becris from the Noun Project
 		Learning by jai from the Noun Project
+		Some icons made by Smashicons (https://www.flaticon.com/authors/smashicons
+		Some icons made by www.freepik.com (https://www.flaticon.com/)
 	SPQR text on pause screen: Ssolbergj - Own work, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=2992630
 	Circle unit highlight: Background vector created by kbibibi - https://www.freepik.com/vectors/background
 	Yellow paper on events dialog by studiopratisaad0 from Pixabay

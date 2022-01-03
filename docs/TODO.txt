@@ -20,31 +20,16 @@ Editor Improvements:
 		✓ Node header / icons
 		✓ Node attributes
 		✓ Node units
-	* Add 'extra bar for units'
+	* Code a function on the sidebar to receive data and draw it
+	* Mock a new region object and pass it in
+	* Render the data
+	* Render all the required icons (the region properties, keep simple for now)
 	* Add to game, ignoring current callback for now
 	* Account for screen area view size when displaying tooltips
-	* Import the texts you need in a nicer way
-	* Mock a new region object and pass it in
+	✓ Import the texts you need in a nicer way
 	* Add all needed region data to the editor
 	* Make the new game file with all data
 	* Fix any errors in the game itself
-	* Render all the required icons
-	* Add a quality star
-	* Add "click on region" - > highlights until next click
-	* Add click highlight details:
-	* Troops are shown, the rules are:
-		* If a node is clicked, details of those units are shown, and minimal details of the other units in the region
-		* If only the region is clicked, minimum details of all the node units are shown
-		* When displayed, a mouseover a node will highlight the region display
-		* When the mouse is not over any node, the highlights will be removed
-		* A click on a node will update and highlight display and node (it will also update the region highlight if on a new region)
-		* A click on a region already highlighted will update and highlight nothing
-		* A click on the node in the region display will act as a click on the node
-		* A double-click will centre the map on the node
-		* A click on a unit with minimum details on display will act as a node click and select all units that can be selected
-		* The maximal unit display allows clicking on one unit. A click selects it, and this is individual for all units
-		* Tooltips on all icons
-
 
 * Rebuild the mini-map using the theme
 	* Width must now match sidebar width
@@ -52,6 +37,28 @@ Editor Improvements:
 	* Should be pretty easy by now
 * Make the overlay screen better organised and understand the layout better
 * Ensure game works at lowest resolution popular screen (make this the default screen size)
+
+* BUG: Road end points are always to the left of the node, almost right at the edge.
+	   Thus, either the node or the road is not placed correctly
+	   Road move arrows seem displaced as well
+* Add 1, 2, 3 & 4 units per node on the unit scene (no need to change moves)
+* Add 'extra bar for units' on right sidebar
+* Add a quality star to region properties
+* Add "click on region" -> highlights until next click
+* Add click highlight details:
+* Troops are shown, the rules are:
+	* If a node is clicked, details of those units are shown, and minimal details of the other units in the region
+	* If only the region is clicked, minimum details of all the node units are shown
+	* When displayed, a mouseover a node will highlight the region display
+	* When the mouse is not over any node, the highlights will be removed
+	* A click on a node will update and highlight display and node (it will also update the region highlight if on a new region)
+	* A click on a region already highlighted will change nothing
+	* A click on the node in the region display will act as a click on the node
+	* A double-click will centre the map on the node
+	* A click on a unit with minimum details on display will act as a node click and select all units that can be selected
+	* The maximal unit display allows selecting / deselecting on individual units.
+	✓ Tooltips on all icons (no tooltip on expanded unit info)
+
 * For the current code dilemma, institute a new rule:
 	* A class may READ anything from an owned object, but they must WRITE via the API
 	* So a unit has a location, it may use that to read from. But it cannot:
@@ -99,6 +106,8 @@ Best to implement the most common stuff first, as it's the most important.
 		- Show the result as an event and animate any retreating moves
 		- Rotate unit during move
 	4: Save the game as simply as possible, and also add load
+		- Autosave per turn
+		- Map snapshot of some kind would be great!
 	5: Add 4 more regions
 	6: Oh shit: 4 units per node need to be animated and handled
 
@@ -116,6 +125,8 @@ Goals for v0.3
 6: Add 4 more regions
 7: Add Naval movement and ports
 	- Wowser, a big one
+8: Make the battle screen interesting
+	- Another big one!
 
 Goals for 0.4
 -------------
@@ -130,19 +141,29 @@ Complete a years worth of campaigns, with possible multiple leaders.
 6: Complete a campaign
 7: If the leader dies, choose a new leader
 8: Calculate the costs and add a simple budget screen
-9: You now have Budget Screen -> Campaign -> Results Budget Screen
+9: You now have Budget Screen -> Campaign -> Results
 10: Allow multiple campaigns (essentially, add a "next campaign" button)
 11: Campaigns under the Emperor are either under that emperor or the emperors choice
 	* This choice is not as perfect as it sounds
 
-0.5: Emperors
+
+0.5: Cards
+----------
+
+Add cards at start of turn
+Should be designed well, clear imagery and rules
+Should be zoomable (if only for animation)
+Utilise 3D and decent lighting
+Avoid numbers in their usage
+	(No "+2 to attack", merely "Units have increased vigour")
+
+0.6: Emperors
 -------------
 
 1: Actually add faces / choices
 2: Add the mechanic for buying the seat
 3: Add the first events for choosing your successor 
 
-0.6: Cards
 0.7: An economy
 0.8: Adding culture in some way - art, literature, religion, laws, music
 0.9: Front end, saving, loading, high scores, scenarios, credits, events
