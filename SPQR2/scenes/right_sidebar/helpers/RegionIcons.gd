@@ -27,10 +27,11 @@ var messages = {'crops':[tr('CROPS_EXCELLENT'),
 func _ready():
 	tooltip = null
 	
-func setIcons(cr: int, c: int, t: int) -> void:
-	$Icons/HBox2/Crops.texture.region.x = cr * ICON_SIZE
-	$Icons/HBox2/Climate.texture.region.x = c * ICON_SIZE
-	$Icons/HBox2/Terrain.texture.region.x = t * ICON_SIZE
+func set_icons(cr: int, c: int, t: int) -> void:
+	print(cr, c, t)
+	$Icons/HBox2/Crops.texture.region.position.x = cr * ICON_SIZE
+	$Icons/HBox2/Climate.texture.region.position.x = c * ICON_SIZE
+	$Icons/HBox2/Terrain.texture.region.position.x = t * ICON_SIZE
 	crops = cr
 	climate = c
 	terrain = t

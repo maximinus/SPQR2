@@ -57,7 +57,7 @@ enum TerrainTypes {
 	HILLS = 1,
 	PLAIN = 2,
 	DESERT = 3,
-	FOREST = 5
+	FOREST = 4
 }
 
 enum CropGrowth {

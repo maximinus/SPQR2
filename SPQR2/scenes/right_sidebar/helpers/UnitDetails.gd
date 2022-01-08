@@ -9,10 +9,31 @@ var total_units: int
 func _ready():
 	tooltip = null
 
+func set_data(node_data):
+	set_total_units(len(node_data.units))
+	var update_nodes = [$MarginContainer/HBox/Unit1,
+						$MarginContainer/HBox/Unit2,
+						$MarginContainer/HBox/Unit3,
+						$MarginContainer/HBox/Unit4]
+	for i in range(len(node_data.units)):
+		
+		print(node_data.units[0])
+		
+		var total = node_data.units[0].foot + node_data.units[0].mounted
+		total = total / 1000.0
+		var fraction = int((total - floor(total)) * 10)
+		var units = int(floor(total))
+		var str_value = ''
+		if fraction == 0:
+			str_value = str(units)
+		else:
+			str_value = str(units) + '.' + str(fraction)
+		update_nodes[i].set_icon_text(str_value)
+
 func set_total_units(new_total: int) -> void:
 	total_units = new_total
 	var index: int = 0
-	for i in $HBox.get_children():
+	for i in $MarginContainer/HBox.get_children():
 		if index < total_units:
 			i.show()
 		else:

@@ -4,6 +4,8 @@ var tooltip_resource = preload('res://scenes/right_sidebar/tooltips/RegionNodeSp
 var tooltip = null
 
 const TOOLTIP_OFFSET = Vector2(0.0, 32.0)
+const ICON_SIZE: int = 22
+const MAX_ICONS = 4
 
 var icon_messages = ["This region is known for it's excellent wine production.",
 					 'Fishing is very productive in this region.']
@@ -17,7 +19,23 @@ func get_icon_details() -> Array:
 	new_array.append([$Mrg/HBox/Icons/Icon2.texture, icon_messages[1]])
 	return new_array
 
-func _on_NodeHeader_mouse_entered():
+func set_name(new_name) -> void:
+	$Mrg/HBox/Mrg/Title.text = new_name
+
+func set_icons(all_icons) -> void:
+	var icons = [$Mrg/HBox/Icons/Icon4, $Mrg/HBox/Icons/Icon3,
+				 $Mrg/HBox/Icons/Icon2, $Mrg/HBox/Icons/Icon1]
+	for i in icons:
+		i.hide()
+	var index = 0
+	for i in all_icons:
+		icons[index].texture.region.position.x = i * ICON_SIZE
+		index += 1
+		if index > 3:
+			helpers.log('* Error: Exceeded max icons for region display')
+			return
+
+func _on_NodeHeader_mouse_entered() -> void:
 	if tooltip != null:
 		tooltip.hide()
 		tooltip.queue_free()
@@ -32,7 +50,7 @@ func _on_NodeHeader_mouse_entered():
 	add_child(tooltip)
 	tooltip.fade_in()
 
-func _on_NodeHeader_mouse_exited():
+func _on_NodeHeader_mouse_exited() -> void:
 	if tooltip == null:
 		return
 	# hide the tooltip

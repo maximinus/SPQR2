@@ -119,19 +119,51 @@ class NewMapRegion:
 	var climate: int
 	var terrain: int
 	var crops: int
+	var nodes: Array
 
 	func _init(data: Dictionary):
-		id = data['id']
-		owner_id = data['owner_id']
 		region_name = data['name']
 		climate = data['climate']
 		terrain = data['terrain']
 		crops = data['crops']
+		nodes = []
 	
 	static func sort(a, b) -> bool:
 		if a.id < b.id:
 			return true
 		return false	
+
+class NewNode:
+	var id: int
+	# rendered as millions, stored as 10,000's
+	var name: String
+	var population: int
+	var romanisation: int
+	var wealth: int
+	var happiness: int
+	var christianty: int
+	var units: Array
+	
+	func _init(data: Dictionary):
+		name = data['name']
+		population = data['population']
+		romanisation = data['romanisation']
+		wealth = data['wealth']
+		happiness = data['happiness']
+		christianty = data['christianity']
+		units = []
+
+class NewUnit:
+	var foot: int
+	var mounted: int
+	var quality: int
+	var morale: int
+
+	func _init(data: Dictionary):
+		foot = data['foot']
+		mounted = data['mounted']
+		quality = data['quality']
+		morale = data['morale']
 	
 # this is main() function: it should be called when the game starts
 func load_all_data() -> bool:

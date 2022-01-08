@@ -9,6 +9,13 @@ var tooltip = null
 func _ready():
 	tooltip = null
 
+func set_data(node_data) -> void:
+	$Mrg/HBox/Population.set_icon_text(str(node_data.population))
+	$Mrg/HBox/Roman.set_icon_text(str(node_data.romanisation))
+	$Mrg/HBox/Money.set_icon_text(str(node_data.wealth))
+	$Mrg/HBox/Happy.set_icon_text(str(node_data.happiness))
+	$Mrg/HBox/Christian.set_icon_text(str(node_data.christianty))
+
 func _on_NodeDetails_mouse_entered() -> void:
 	if tooltip != null:
 		tooltip.hide()

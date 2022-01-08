@@ -3,8 +3,7 @@ extends Control
 func _ready():
 	pass
 
-func _on_NodeHeader_mouse_entered():
-	pass
-
-func _on_NodeHeader_mouse_exited():
-	pass
+func set_node_data(node_data):
+	# this is a data.NewNode
+	$VBoxContainer/NodeHeader.set_name(node_data.name)
+	$VBoxContainer/NodeFooter.set_data(node_data)
