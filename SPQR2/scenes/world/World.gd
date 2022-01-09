@@ -50,6 +50,7 @@ func _ready():
 	# start music if needed
 	if config.music_on == true:
 		$Music.play()
+	$CanvasLayer/PauseScreen.player = $Music
 	# load the region texture
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
 	region_map = image.get_data()
