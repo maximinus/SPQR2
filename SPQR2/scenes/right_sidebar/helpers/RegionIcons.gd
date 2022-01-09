@@ -28,7 +28,6 @@ func _ready():
 	tooltip = null
 	
 func set_icons(cr: int, c: int, t: int) -> void:
-	print(cr, c, t)
 	$Icons/HBox2/Crops.texture.region.position.x = cr * ICON_SIZE
 	$Icons/HBox2/Climate.texture.region.position.x = c * ICON_SIZE
 	$Icons/HBox2/Terrain.texture.region.position.x = t * ICON_SIZE

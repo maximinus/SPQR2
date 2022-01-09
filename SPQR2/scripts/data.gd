@@ -143,6 +143,7 @@ class NewNode:
 	var happiness: int
 	var christianty: int
 	var units: Array
+	var icons: Array
 	
 	func _init(data: Dictionary):
 		name = data['name']
@@ -151,6 +152,7 @@ class NewNode:
 		wealth = data['wealth']
 		happiness = data['happiness']
 		christianty = data['christianity']
+		icons = data['icons']
 		units = []
 
 class NewUnit:

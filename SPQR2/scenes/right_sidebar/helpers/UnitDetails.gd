@@ -16,9 +16,6 @@ func set_data(node_data):
 						$MarginContainer/HBox/Unit3,
 						$MarginContainer/HBox/Unit4]
 	for i in range(len(node_data.units)):
-		
-		print(node_data.units[0])
-		
 		var total = node_data.units[0].foot + node_data.units[0].mounted
 		total = total / 1000.0
 		var fraction = int((total - floor(total)) * 10)

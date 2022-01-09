@@ -7,6 +7,7 @@ const TOOLTIP_OFFSET = Vector2(0.0, 32.0)
 const ICON_SIZE: int = 22
 const MAX_ICONS = 4
 
+var current_icons: Array = []
 var icon_messages = ["This region is known for it's excellent wine production.",
 					 'Fishing is very productive in this region.']
 
@@ -19,8 +20,9 @@ func get_icon_details() -> Array:
 	new_array.append([$Mrg/HBox/Icons/Icon2.texture, icon_messages[1]])
 	return new_array
 
-func set_name(new_name) -> void:
-	$Mrg/HBox/Mrg/Title.text = new_name
+func set_data(node_data) -> void:
+	$Mrg/HBox/Mrg/Title.text = node_data.name
+	set_icons(node_data.icons)
 
 func set_icons(all_icons) -> void:
 	var icons = [$Mrg/HBox/Icons/Icon4, $Mrg/HBox/Icons/Icon3,
@@ -30,6 +32,7 @@ func set_icons(all_icons) -> void:
 	var index = 0
 	for i in all_icons:
 		icons[index].texture.region.position.x = i * ICON_SIZE
+		icons[index].show()
 		index += 1
 		if index > 3:
 			helpers.log('* Error: Exceeded max icons for region display')
@@ -45,7 +48,6 @@ func _on_NodeHeader_mouse_entered() -> void:
 	tooltip.setup(title_string, get_icon_details())
 	# place it
 	tooltip.rect_position = rect_global_position + TOOLTIP_OFFSET
-	#rect_position + TOOLTIP_OFFSET
 	# populate the data
 	add_child(tooltip)
 	tooltip.fade_in()

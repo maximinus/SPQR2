@@ -8,28 +8,10 @@ This is essentially the "how I will program the game" document
 Short Term:
 -----------
 
-Editor Improvements:
-
-✓ Add background music to world and put new pause menu in world
-✓ Test config file works
-
 * Right sidebar finishing:
-	* Add all tooltips
-		✓ Region Icons
-		* Region Totals
-		✓ Node header / icons
-		✓ Node attributes
-		✓ Node units
-	✓ Code a function on the sidebar to receive data and draw it
-	✓ Mock a new region object and pass it in
-	✓ Render the data
-	* Render all the required icons (the region properties, keep simple for now)
-			✓ Gold / ✓ Silver / ✓ Iron / ✓ Wine / ✓ Cloth / Pottery / ✓ Fish / ✓ Grain
-			✓ Maths / ✓ Engineering / ✓ Writing / ✓ History / ✓ Music
-			✓ Temple / ✓ Port / ✓ Aquaduct / ✓ Colosseum
-	* Add to game, ignoring current callback for now
+	* Region Totals
+	✓ Add to game, ignoring current callback for now
 	* Account for screen area view size when displaying tooltips
-	✓ Import the texts you need in a nicer way
 	* Add all needed region data to the editor
 	* Make the new game file with all data
 	* Fix any errors in the game itself

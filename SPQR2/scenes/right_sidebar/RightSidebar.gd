@@ -17,10 +17,14 @@ func get_units(total):
 	return funits
 
 func get_nodes():
-	var nodes = [{'name': 'Londinium', 'population':5, 'romanisation':7, 'wealth':5, 'happiness':7, 'christianity':0},
-				 {'name': 'Minerva', 'population':5, 'romanisation':7, 'wealth':5, 'happiness':7, 'christianity':0},
-				 {'name': 'Glevum', 'population':5, 'romanisation':7, 'wealth':5, 'happiness':7, 'christianity':0},
-				 {'name': 'York', 'population':5, 'romanisation':7, 'wealth':5, 'happiness':7, 'christianity':0}]
+	var nodes = [{'name': 'Londinium', 'population':6, 'romanisation':8, 'wealth':6, 'happiness':7, 
+				  'christianity':0, 'icons': [cn.NodeIcons.PORT, cn.NodeIcons.TEMPLE]},
+				 {'name': 'Minerva', 'population':5, 'romanisation':8, 'wealth':4, 'happiness':8,
+				  'christianity':0, 'icons': [cn.NodeIcons.WRITING]},
+				 {'name': 'Glevum', 'population':5, 'romanisation':6, 'wealth':3, 'happiness':6,
+				  'christianity':0, 'icons': [cn.NodeIcons.ENGINEERING]},
+				 {'name': 'York', 'population':7, 'romanisation':4, 'wealth':2, 'happiness':7,
+				  'christianity':0,  'icons': [cn.NodeIcons.IRON, cn.NodeIcons.HISTORY]}]
 	var fnodes = []	
 	for i in nodes:
 		var new_node = data.NewNode.new(i)
@@ -39,6 +43,9 @@ func get_data() -> data.NewMapRegion:
 	for i in get_nodes():
 		region.nodes.append(i)
 	return region
+
+func update_info(region_info) -> void:
+	pass
 
 func updateSidebar(region: data.NewMapRegion) -> void:
 	$VBoxContainer/SidebarTitle.set_title(region.region_name)

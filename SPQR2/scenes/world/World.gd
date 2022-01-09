@@ -84,7 +84,7 @@ func _process(delta):
 func _notification(event):
 	# handle closing window
 	if event == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		print('quitting')
+		helpers.log('Quitting game - window closed')
 		data.cleanup()
 		get_tree().quit()
 
