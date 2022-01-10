@@ -42,8 +42,9 @@ func show_tooltip(pos, tex, title, message):
 	tooltip = tooltip_resource.instance()
 	tooltip.hide()
 	tooltip.setup(tex, title, message)
-	# place it
-	tooltip.rect_position = pos + TOOLTIP_OFFSET
+	# before we place it, account for window offsets
+	var start_pos = pos + TOOLTIP_OFFSET
+	tooltip.rect_position = helpers.get_tooltip_position(start_pos, tooltip.rect_size)
 	# populate the data
 	add_child(tooltip)
 	tooltip.fade_in()

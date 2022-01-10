@@ -45,6 +45,7 @@ func get_data() -> data.NewMapRegion:
 	return region
 
 func update_info(region_info) -> void:
+	# TODO: handle this callback
 	pass
 
 func updateSidebar(region: data.NewMapRegion) -> void:

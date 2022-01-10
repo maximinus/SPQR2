@@ -9,9 +9,9 @@ Short Term:
 -----------
 
 * Right sidebar finishing:
-	* Region Totals
+	✓ Region Totals
 	✓ Add to game, ignoring current callback for now
-	* Account for screen area view size when displaying tooltips
+	✓ Account for screen area view size when displaying tooltips
 	* Add all needed region data to the editor
 	* Make the new game file with all data
 	* Fix any errors in the game itself

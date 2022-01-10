@@ -40,6 +40,16 @@ func map_to_pixel(pos: Vector2) -> Vector2:
 	return Vector2(round((pos.x + 12.5) * (cn.MAP_PIXEL_SIZE.x / 25.0)),
 				   round((pos.y + 8.34) * (cn.MAP_PIXEL_SIZE.y / 16.68)))
 
+func get_tooltip_position(pos: Vector2, size: Vector2) -> Vector2:
+	# given the position and size of a tooltip, make sure it is on screen
+	# the pos co-ord is guarenteed to be on screen
+	var window_size = OS.get_window_size()
+	if pos.x + size.x > window_size.x:
+		pos.x -= (pos.x + size.x) - window_size.x
+	if pos.y + size.y > window_size.y:
+		pos.y -= (pos.y + size.y) - window_size.y
+	return pos
+
 # code to handle audio
 func set_music_volume(new_volume: float):
 	new_volume = clamp(new_volume, cn.AUDIO_MIN_VOLUME, cn.AUDIO_MAX_VOLUME)
