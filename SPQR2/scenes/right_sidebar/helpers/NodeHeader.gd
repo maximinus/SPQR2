@@ -16,8 +16,11 @@ func _ready():
 
 func get_icon_details() -> Array:
 	var new_array: Array = []
-	new_array.append([$Mrg/HBox/Icons/Icon1.texture, icon_messages[0]])
-	new_array.append([$Mrg/HBox/Icons/Icon2.texture, icon_messages[1]])
+	# the array holds the offset of the texture and the highlight text
+	for i in $Mrg/HBox/Icons.get_children():
+		if i.visible:
+			var offset = i.texture.region.position.x
+			new_array.append([offset, cn.NodeIconText[offset / ICON_SIZE]])
 	return new_array
 
 func set_data(node_data) -> void:
@@ -45,6 +48,7 @@ func _on_NodeHeader_mouse_entered() -> void:
 	tooltip = tooltip_resource.instance()
 	tooltip.hide()
 	var title_string = $Mrg/HBox/Mrg/Title.text + ' Details'
+	print('IN')
 	tooltip.setup(title_string, get_icon_details())
 	# place it
 	tooltip.rect_position = rect_global_position + TOOLTIP_OFFSET
@@ -53,6 +57,7 @@ func _on_NodeHeader_mouse_entered() -> void:
 	tooltip.fade_in()
 
 func _on_NodeHeader_mouse_exited() -> void:
+	print('OUT')
 	if tooltip == null:
 		return
 	# hide the tooltip

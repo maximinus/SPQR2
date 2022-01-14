@@ -9,7 +9,7 @@ func _ready():
 
 func setup(title: String, icon_list: Array) -> void:
 	$Panel/Mrg/VBox/Label.text = title
-	# we are expecting an array of [texture, string]
+	# icon list is offset value for atlas texture and the text to go with it
 	for data in icon_list:
 		var new_info_bar = info_scene.instance()
 		new_info_bar.setup(data[0], data[1])
