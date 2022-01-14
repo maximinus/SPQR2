@@ -90,13 +90,14 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Mrg" type="MarginContainer" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 8
@@ -111,12 +112,17 @@ __meta__ = {
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 232.0
-margin_bottom = 32.0
+margin_bottom = 35.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 16
+custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="Panel/Mrg/VBox"]
+[node name="MrgLbl" type="MarginContainer" parent="Panel/Mrg/VBox"]
+margin_right = 224.0
+margin_bottom = 27.0
+custom_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="Panel/Mrg/VBox/MrgLbl"]
 margin_right = 224.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
