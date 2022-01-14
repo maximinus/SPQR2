@@ -3,8 +3,12 @@ extends Control
 func _ready():
 	set_as_toplevel(true)
 
-func setup() -> void:
-	pass
+func setup(node_data) -> void:
+	$Panel/Mrg/VBox/Population/PopText.text = str(node_data.population)
+	$Panel/Mrg/VBox/Roman/RomanText.text = str(node_data.romanisation)
+	$Panel/Mrg/VBox/Wealth/WealthText.text = str(node_data.wealth)
+	$Panel/Mrg/VBox/Happiness/HappyText.text = str(node_data.happiness)
+	$Panel/Mrg/VBox/Christian/ChristianText.text = str(node_data.christianty)
 
 func fade_in() -> void:
 	show()

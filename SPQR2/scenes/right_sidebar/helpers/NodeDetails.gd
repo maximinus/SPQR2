@@ -5,11 +5,13 @@ const TOOLTIP_OFFSET: Vector2 = Vector2(4.0, 26.0)
 
 var tooltip_resource = preload('res://scenes/right_sidebar/tooltips/NodeDetailsTooltip.tscn')
 var tooltip = null
+var node_data = null
 
 func _ready():
 	tooltip = null
 
-func set_data(node_data) -> void:
+func set_data(node_info) -> void:
+	node_data = node_info
 	$Mrg/HBox/Population.set_icon_text(str(node_data.population))
 	$Mrg/HBox/Roman.set_icon_text(str(node_data.romanisation))
 	$Mrg/HBox/Money.set_icon_text(str(node_data.wealth))
@@ -22,7 +24,7 @@ func _on_NodeDetails_mouse_entered() -> void:
 		tooltip.queue_free()
 	tooltip = tooltip_resource.instance()
 	tooltip.hide()
-	tooltip.setup()
+	tooltip.setup(node_data)
 	# place it
 	tooltip.rect_position = rect_global_position + TOOLTIP_OFFSET
 	# populate the data
