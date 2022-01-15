@@ -500,3 +500,13 @@ func get_node_christian_text(christian) -> String:
 	if christian > 3:
 		return cn.NodeChristianText[4]
 	return cn.NodeChristianText[5]
+
+func get_troop_numbers(value: int) -> String:
+	# we have a number less than 99999, reduce the range
+	value = value / 1000.0
+	# For all values 10 -> 99, reduce to int and return the string
+	if value >= 10.0:
+		return str(int(value)) + 'k'
+	var int_part = int(floor(value))
+	var decimal_part = int(floor((value - float(int_part)) * 10))
+	return '%s.%sk' % [int_part, decimal_part]
