@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resources/EditorUnitResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+exists = false
+foot = 0
+mounted = 0
+quality = 0
+morale = 0

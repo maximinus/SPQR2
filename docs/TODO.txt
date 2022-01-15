@@ -8,19 +8,20 @@ This is essentially the "how I will program the game" document
 Short Term:
 -----------
 
-* Right sidebar finishing:
-* Finish all pop-ups:
-	* Node Header Icons
-	* Node details
-	* Node soldiers
-	* Fetch all text from translations
-	* Handle all code for all text purposes
-	* Add all needed region data to the editor
-	* Make the new game file with all data
-	* Fix any errors in the game itself
+✓ Right sidebar finishing:
+✓ Finish all pop-ups:
+	✓ Node Header Icons
+	✓ Node details
+	✓ Node soldiers
+	✓ Fetch all text from translations
+	✓ Handle all code for all text purposes
+
+* Add all needed region data to the editor
+* Make the new game file with all data
+* Fix any errors in the game itself
 
 * Rebuild the mini-map using the theme
-	* Width must now match sidebar width
+	✓ Width must now match sidebar width
 * Rebuild events using the theme
 	* Should be pretty easy by now
 * Ensure game works at lowest resolution popular screen (make this the default screen size)
