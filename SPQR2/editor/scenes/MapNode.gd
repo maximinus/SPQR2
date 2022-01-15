@@ -39,7 +39,8 @@ func _ready() -> void:
 		Unit1.setup_local_to_scene(true)
 
 func set_city_state(city: bool) -> void:
-	if city == true:
+	has_city = city
+	if has_city == true:
 		$Nodeimage.hide()
 		$CityImage.show()
 	else:
