@@ -43,6 +43,8 @@ func set_total_units(new_total: int) -> void:
 		index += 1
 
 func _on_UnitDetails_mouse_entered():
+	if show_tooltip == false:
+		return
 	if tooltip != null:
 		tooltip.hide()
 		tooltip.queue_free()
