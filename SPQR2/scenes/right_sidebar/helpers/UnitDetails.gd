@@ -6,13 +6,16 @@ var tooltip_resource = preload('res://scenes/right_sidebar/tooltips/NodeUnitsToo
 var tooltip = null
 var total_units: int
 var show_tooltip: bool
+var unit_data: Array
 
 func _ready():
 	tooltip = null
 	# we don't show the tooltip if there are no units
 	show_tooltip = true
+	unit_data = []
 
 func set_data(node_data):
+	unit_data = node_data.units
 	set_total_units(len(node_data.units))
 	var update_nodes = [$MarginContainer/HBox/Unit1,
 						$MarginContainer/HBox/Unit2,
@@ -50,7 +53,7 @@ func _on_UnitDetails_mouse_entered():
 		tooltip.queue_free()
 	tooltip = tooltip_resource.instance()
 	tooltip.hide()
-	tooltip.setup()
+	tooltip.setup(unit_data)
 	# place it
 	tooltip.rect_position = rect_global_position + TOOLTIP_OFFSET
 	# populate the data
