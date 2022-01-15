@@ -5,9 +5,12 @@ const TOOLTIP_OFFSET: Vector2 = Vector2(4.0, 26.0)
 var tooltip_resource = preload('res://scenes/right_sidebar/tooltips/NodeUnitsTooltip.tscn')
 var tooltip = null
 var total_units: int
+var show_tooltip: bool
 
 func _ready():
 	tooltip = null
+	# we don't show the tooltip if there are no units
+	show_tooltip = true
 
 func set_data(node_data):
 	set_total_units(len(node_data.units))
@@ -28,6 +31,8 @@ func set_data(node_data):
 		update_nodes[i].set_icon_text(str_value)
 
 func set_total_units(new_total: int) -> void:
+	if new_total == 0:
+		show_tooltip = false
 	total_units = new_total
 	var index: int = 0
 	for i in $MarginContainer/HBox.get_children():

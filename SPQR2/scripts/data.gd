@@ -430,3 +430,73 @@ func get_player_gold():
 
 func get_player_silver():
 	return players[0].silver
+
+# functions to return the text for the differing node values
+func get_node_population_text(population: float) -> String:
+	if population <= 0.1:
+		return cn.NodePopulationText[5]
+	if population <= 0.4:
+		return cn.NodePopulationText[4]
+	if population <= 1.0:
+		return cn.NodePopulationText[3]
+	if population <= 2.0:
+		return cn.NodePopulationText[2]
+	if population <= 3.0:
+		return cn.NodePopulationText[1]
+	return cn.NodePopulationText[0]
+
+func get_node_romanisation_text(romanisation) -> String:
+	# value is 0 through 9
+	if romanisation > 8:
+		return cn.NodeRomanisationText[0]
+	if romanisation > 6:
+		return cn.NodeRomanisationText[1]
+	if romanisation > 4:
+		return cn.NodeRomanisationText[2]
+	if romanisation > 2:
+		return cn.NodeRomanisationText[3]
+	if romanisation > 0:
+		return cn.NodeRomanisationText[4]
+	return cn.NodeRomanisationText[5]
+
+func get_node_wealth_text(wealth) -> String:
+	# value is from 0 through 9, as above
+	if wealth > 8:
+		return cn.NodeWealthText[0]
+	if wealth > 6:
+		return cn.NodeWealthText[1]
+	if wealth > 4:
+		return cn.NodeWealthText[2]
+	if wealth > 2:
+		return cn.NodeWealthText[3]
+	if wealth > 0:
+		return cn.NodeWealthText[4]
+	return cn.NodeWealthText[5]
+
+func get_node_happiness(happiness) -> String:
+	# 0 through 9, as expected
+	if happiness > 8:
+		return cn.NodeHappyText[0]
+	if happiness > 6:
+		return cn.NodeHappyText[1]
+	if happiness > 4:
+		return cn.NodeHappyText[2]
+	if happiness > 2:
+		return cn.NodeHappyText[3]
+	return cn.NodeHappyText[4]
+
+func get_node_christian_text(christian) -> String:
+	# almost the same as above
+	if christian == 0:
+		return cn.NodeChristianText[6]
+	if christian > 8:
+		return cn.NodeChristianText[0]
+	if christian > 7:
+		return cn.NodeChristianText[1]
+	if christian > 6:
+		return cn.NodeChristianText[2]
+	if christian > 5:
+		return cn.NodeChristianText[3]
+	if christian > 3:
+		return cn.NodeChristianText[4]
+	return cn.NodeChristianText[5]

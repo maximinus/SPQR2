@@ -33,7 +33,7 @@
 "NODE_POP_AVERAGE","There is nothing remarkable about number of people."
 "NODE_POP_LOW","This area is quiet and villages are hard to find."
 "NODE_POP_VERY_LOW","Almost nobody lives here."
-"NODE_POP_VERY_NONE","This place is devoid of people."
+"NODE_POP_NONE","This place is devoid of people."
 "NODE_ROMANISATION_VERY_HIGH","All people here are Roman citizens of good moral standing."
 "NODE_ROMANISATION_HIGH","The population here are very strongly Roman."
 "NODE_ROMANISATION_AVERAGE","The people here respect and obey Roman commands."

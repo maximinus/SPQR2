@@ -4,11 +4,11 @@ func _ready():
 	set_as_toplevel(true)
 
 func setup(node_data) -> void:
-	$Panel/Mrg/VBox/Population/PopText.text = str(node_data.population)
-	$Panel/Mrg/VBox/Roman/RomanText.text = str(node_data.romanisation)
-	$Panel/Mrg/VBox/Wealth/WealthText.text = str(node_data.wealth)
-	$Panel/Mrg/VBox/Happiness/HappyText.text = str(node_data.happiness)
-	$Panel/Mrg/VBox/Christian/ChristianText.text = str(node_data.christianty)
+	$Panel/Mrg/VBox/Population/PopText.text = data.get_node_population_text(node_data.population)
+	$Panel/Mrg/VBox/Roman/RomanText.text = data.get_node_romanisation_text(node_data.romanisation)
+	$Panel/Mrg/VBox/Wealth/WealthText.text = data.get_node_wealth_text(node_data.wealth)
+	$Panel/Mrg/VBox/Happiness/HappyText.text = data.get_node_happiness(node_data.happiness)
+	$Panel/Mrg/VBox/Christian/ChristianText.text = data.get_node_christian_text(node_data.christianty)
 
 func fade_in() -> void:
 	show()

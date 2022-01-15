@@ -9,9 +9,12 @@ Short Term:
 -----------
 
 * Right sidebar finishing:
-	✓ Region Totals
-	✓ Add to game, ignoring current callback for now
-	✓ Account for screen area view size when displaying tooltips
+* Finish all pop-ups:
+	* Node Header Icons
+	* Node details
+	* Node soldiers
+	* Fetch all text from translations
+	* Handle all code for all text purposes
 	* Add all needed region data to the editor
 	* Make the new game file with all data
 	* Fix any errors in the game itself
@@ -20,7 +23,6 @@ Short Term:
 	* Width must now match sidebar width
 * Rebuild events using the theme
 	* Should be pretty easy by now
-* Make the overlay screen better organised and understand the layout better
 * Ensure game works at lowest resolution popular screen (make this the default screen size)
 
 * BUG: Road end points are always to the left of the node, almost right at the edge.
@@ -44,12 +46,6 @@ Short Term:
 	* The maximal unit display allows selecting / deselecting on individual units.
 	✓ Tooltips on all icons (no tooltip on expanded unit info)
 
-* For the current code dilemma, institute a new rule:
-	* A class may READ anything from an owned object, but they must WRITE via the API
-	* So a unit has a location, it may use that to read from. But it cannot:
-		* Set a value in the location
-		* Change the location value itself
-		* All write functions have easy to understand names, i.e. move_unit_to_region(unit_id, region_id)
 
 ✓ On move, attacking unit moves right up to enemy unit but does not move into node
 * Battle screen is shown with resolution
