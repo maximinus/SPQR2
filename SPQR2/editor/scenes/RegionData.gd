@@ -9,6 +9,10 @@ export(String, 'Roman', 'Celt') var owned_by setget set_region_owner
 var current_color: Color = cn.ROME_DEFAULT_COLOR
 var needs_update = false
 
+	# these have to match the offsets of the atlastextures
+const TERRAIN_STRINGS = ['Mountain', 'Hills', 'Plain', 'Desert', 'Forest']
+const CLIMATE_STRINGS = ['Maritime', 'Mediterranean', 'Desert', 'Humid']
+
 func _ready():
 	pass
 
@@ -31,3 +35,17 @@ func get_owner_id() -> int:
 	if owned_by == 'Roman':
 		return 0
 	return 1
+
+func get_terrain_int() -> int:
+	var index = 0
+	for i in TERRAIN_STRINGS:
+		if terrain == i:
+			return index
+	return 0
+
+func get_climate_int():
+	var index = 0
+	for i in CLIMATE_STRINGS:
+		if climate == i:
+			return index
+	return 0

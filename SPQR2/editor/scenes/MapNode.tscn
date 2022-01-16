@@ -1,14 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://editor/scenes/MapNode.gd" type="Script" id=1]
 [ext_resource path="res://gfx/editor/unit_icon.png" type="Texture" id=2]
 [ext_resource path="res://gfx/editor/city_icon.png" type="Texture" id=3]
 [ext_resource path="res://editor/unit_images/enemy.png" type="Texture" id=4]
 [ext_resource path="res://editor/unit_images/roman.png" type="Texture" id=5]
+[ext_resource path="res://resources/EditorUnitResource.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 6 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
 
 [node name="MapNode" type="Node2D"]
 script = ExtResource( 1 )
 unit_type = "None"
+Unit1 = SubResource( 1 )
 
 [node name="CityImage" type="Sprite" parent="."]
 visible = false

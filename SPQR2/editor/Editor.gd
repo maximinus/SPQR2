@@ -26,6 +26,7 @@ var road_points: Array = []
 var road_data: Array = []
 var region_data: Array = []
 var all_nodes: Array = []
+var all_units: Array = []
 
 func _ready():
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
@@ -40,6 +41,7 @@ func _process(_delta):
 		fix_node_ids()
 		# get the nodes
 		all_nodes = get_nodes()
+		all_units = get_units()
 		# make sure roads start and end at node junctions
 		update_road_coords()
 		# get all the road points
@@ -77,9 +79,12 @@ func get_region_color(pos: Vector2):
 func get_all_regions():
 	for i in $RegionMap/Regions.get_children():
 		var region_id = get_region_index(i.rect_position)
-		region_data.append({'id':region_id,
-							'name':i.region_name,
-							'owner_id':i.get_owner_id()})
+		region_data.append({'id': region_id,
+							'name': i.region_name,
+							'owner_id': i.get_owner_id(),
+							'terrain': i.get_terrain_int(),
+							'climate': i.get_climate_int(),
+							'crops': i.crops})
 
 func get_region_index(pos: Vector2) -> int:
 	var rcol = get_region_color(pos)
@@ -134,6 +139,16 @@ func get_nodes() -> Array:
 		node_data['id'] = i.id
 		locations.append(node_data)
 	return locations
+
+func get_units() -> Array:
+	var new_units = []
+	for i in $Nodes.get_children():
+		var data = i.get_unit_data()
+		if data != null:
+			# we need to the node id
+			data['node_id'] = i.id
+			new_units.append(data)
+	return new_units
 
 func get_all_roads() -> Array:
 	var roads = []
@@ -269,6 +284,7 @@ func save_all_data() -> void:
 	var all_data = {'nodes': all_nodes,
 					'roads': road_data,
 					'regions': region_data,
+					'units': all_units,
 					'players': get_player_data(),
 					'game': get_game_data()}
 	save_data(all_data)

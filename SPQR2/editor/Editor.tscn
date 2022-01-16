@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=216 format=2]
 
 [ext_resource path="res://gfx/editor/editor_map.png" type="Texture" id=1]
 [ext_resource path="res://editor/Editor.gd" type="Script" id=2]
@@ -38,7 +38,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="Image" id=61]
+[sub_resource type="Image" id=214]
 data = {
 "data": PoolByteArray( 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 232, 16, 16, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206 ),
 "format": "RGB8",
@@ -47,8 +47,8 @@ data = {
 "width": 1
 }
 
-[sub_resource type="ImageTexture" id=10]
-image = SubResource( 61 )
+[sub_resource type="ImageTexture" id=213]
+image = SubResource( 214 )
 size = Vector2( 1, 14 )
 
 [sub_resource type="ShaderMaterial" id=4]
@@ -56,7 +56,7 @@ shader = SubResource( 1 )
 shader_param/total_regions = 14.0
 shader_param/map_image = ExtResource( 3 )
 shader_param/region_image = ExtResource( 7 )
-shader_param/region_cols = SubResource( 10 )
+shader_param/region_cols = SubResource( 213 )
 shader_param/map_borders = ExtResource( 10 )
 
 [sub_resource type="Resource" id=11]
@@ -73,7 +73,42 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=63]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=64]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=12]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=65]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=66]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=67]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -87,7 +122,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=68]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=69]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=70]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=14]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=71]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=72]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=73]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -101,7 +178,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=74]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=75]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=76]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=16]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=77]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=78]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=79]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -115,7 +234,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=80]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=81]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=82]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=18]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=83]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=84]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=85]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -129,7 +290,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=86]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=87]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=88]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=20]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=89]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=90]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=91]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -143,7 +346,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=92]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=93]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=94]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=22]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=95]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=96]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=97]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -157,7 +402,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=98]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=99]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=100]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=24]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=101]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=102]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=103]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -171,7 +458,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=104]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=105]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=106]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=26]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=107]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=108]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=109]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -185,7 +514,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=110]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=111]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=112]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=28]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=113]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=114]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=115]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -199,7 +570,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=116]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=117]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=118]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=30]
+script = ExtResource( 11 )
+foot = 5000
+mounted = 2000
+quality = 7
+morale = 7
+
+[sub_resource type="Resource" id=119]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=120]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=121]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -213,6 +626,27 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=122]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=123]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=124]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=32]
 script = ExtResource( 11 )
 foot = 0
@@ -220,7 +654,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=125]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=126]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=127]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=33]
+script = ExtResource( 11 )
+foot = 2500
+mounted = 1000
+quality = 3
+morale = 8
+
+[sub_resource type="Resource" id=128]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=129]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=130]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -234,7 +710,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=131]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=132]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=133]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=35]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=134]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=135]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=136]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -248,7 +766,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=137]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=138]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=139]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=37]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=140]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=141]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=142]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -262,7 +822,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=143]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=144]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=145]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=39]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=146]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=147]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=148]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -276,7 +878,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=149]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=150]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=151]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=41]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=152]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=153]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=154]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -290,7 +934,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=155]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=156]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=157]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=43]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=158]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=159]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=160]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -304,7 +990,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=161]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=162]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=163]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=45]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=164]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=165]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=166]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -318,7 +1046,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=167]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=168]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=169]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=47]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=170]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=171]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=172]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -332,7 +1102,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=173]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=174]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=175]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=49]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=176]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=177]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=178]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -346,7 +1158,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=179]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=180]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=181]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=51]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=182]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=183]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=184]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -360,7 +1214,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=185]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=186]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=187]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=53]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=188]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=189]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=190]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -374,7 +1270,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=191]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=192]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=193]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=55]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=194]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=195]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=196]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -388,7 +1326,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=197]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=198]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=199]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=57]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=200]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=201]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=202]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -402,6 +1382,27 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=203]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=204]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=205]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=59]
 script = ExtResource( 11 )
 foot = 0
@@ -409,7 +1410,49 @@ mounted = 0
 quality = 0
 morale = 0
 
+[sub_resource type="Resource" id=206]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=207]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=208]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
 [sub_resource type="Resource" id=60]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=209]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=210]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=211]
 script = ExtResource( 11 )
 foot = 0
 mounted = 0
@@ -438,6 +1481,8 @@ margin_top = 1617.27
 margin_right = 1904.55
 margin_bottom = 1649.27
 region_name = "Latium"
+terrain = "Plain"
+climate = "Mediterranean"
 owned_by = "Roman"
 
 [node name="RegionData7" parent="RegionMap/Regions" instance=ExtResource( 5 )]
@@ -487,6 +1532,7 @@ margin_right = 1354.42
 margin_bottom = 1471.55
 rect_pivot_offset = Vector2( 60.5443, 16 )
 region_name = "Narbonensis"
+climate = "Mediterranean"
 owned_by = "Celt"
 
 [node name="RegionData6" parent="RegionMap/Regions" instance=ExtResource( 5 )]
@@ -787,6 +1833,8 @@ romanisation = 9
 happiness = 7
 Unit1 = SubResource( 11 )
 Unit2 = SubResource( 8 )
+Unit3 = SubResource( 63 )
+Unit4 = SubResource( 64 )
 
 [node name="MapNode3" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2076.88, 1872.66 )
@@ -796,69 +1844,108 @@ wealth = 7
 romanisation = 8
 happiness = 7
 Unit1 = SubResource( 12 )
+Unit2 = SubResource( 65 )
+Unit3 = SubResource( 66 )
+Unit4 = SubResource( 67 )
 
 [node name="MapNode31" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2336.45, 1610.97 )
 city_name = "Onchesmus"
 Unit1 = SubResource( 13 )
+Unit2 = SubResource( 68 )
+Unit3 = SubResource( 69 )
+Unit4 = SubResource( 70 )
 
 [node name="MapNode32" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2427.56, 1724.34 )
 city_name = "Stobi"
 Unit1 = SubResource( 14 )
+Unit2 = SubResource( 71 )
+Unit3 = SubResource( 72 )
+Unit4 = SubResource( 73 )
 
 [node name="MapNode36" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2387.3, 1850.41 )
 city_name = "Nicopolis"
 Unit1 = SubResource( 15 )
+Unit2 = SubResource( 74 )
+Unit3 = SubResource( 75 )
+Unit4 = SubResource( 76 )
 
 [node name="MapNode37" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2452.99, 1927.75 )
 city_name = "Epirus"
 Unit1 = SubResource( 16 )
+Unit2 = SubResource( 77 )
+Unit3 = SubResource( 78 )
+Unit4 = SubResource( 79 )
 
 [node name="MapNode40" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2522.91, 1935.17 )
 city_name = "Thebea"
 Unit1 = SubResource( 17 )
+Unit2 = SubResource( 80 )
+Unit3 = SubResource( 81 )
+Unit4 = SubResource( 82 )
 
 [node name="MapNode44" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2584.36, 1964.83 )
 city_name = "Athens"
 population = 3
 Unit1 = SubResource( 18 )
+Unit2 = SubResource( 83 )
+Unit3 = SubResource( 84 )
+Unit4 = SubResource( 85 )
 
 [node name="MapNode41" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2503.84, 2051.71 )
 city_name = "Sparta"
 Unit1 = SubResource( 19 )
+Unit2 = SubResource( 86 )
+Unit3 = SubResource( 87 )
+Unit4 = SubResource( 88 )
 
 [node name="MapNode33" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2493.25, 1614.15 )
 city_name = "Pella"
 Unit1 = SubResource( 20 )
+Unit2 = SubResource( 89 )
+Unit3 = SubResource( 90 )
+Unit4 = SubResource( 91 )
 
 [node name="MapNode34" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2708.32, 1659.71 )
 city_name = "Philippi"
 Unit1 = SubResource( 21 )
+Unit2 = SubResource( 92 )
+Unit3 = SubResource( 93 )
+Unit4 = SubResource( 94 )
 
 [node name="MapNode43" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2578.01, 1719.04 )
 city_name = "Thessalonica"
 Unit1 = SubResource( 22 )
+Unit2 = SubResource( 95 )
+Unit3 = SubResource( 96 )
+Unit4 = SubResource( 97 )
 
 [node name="MapNode42" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2508.08, 1743.41 )
 city_name = "Pyuna"
 population = 3
 Unit1 = SubResource( 23 )
+Unit2 = SubResource( 98 )
+Unit3 = SubResource( 99 )
+Unit4 = SubResource( 100 )
 
 [node name="MapNode30" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2319.06, 1778.48 )
 city_name = "Corcyra"
 population = 3
 Unit1 = SubResource( 24 )
+Unit2 = SubResource( 101 )
+Unit3 = SubResource( 102 )
+Unit4 = SubResource( 103 )
 
 [node name="MapNode4" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1926.88, 1667.66 )
@@ -868,12 +1955,18 @@ wealth = 8
 romanisation = 8
 happiness = 7
 Unit1 = SubResource( 25 )
+Unit2 = SubResource( 104 )
+Unit3 = SubResource( 105 )
+Unit4 = SubResource( 106 )
 
 [node name="MapNode49" parent="Nodes" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 1818.4, 1521.34 )
 city_name = ""
 Unit1 = SubResource( 26 )
+Unit2 = SubResource( 107 )
+Unit3 = SubResource( 108 )
+Unit4 = SubResource( 109 )
 
 [node name="MapNode7" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1737.38, 1599.07 )
@@ -884,6 +1977,9 @@ wealth = 9
 romanisation = 9
 happiness = 8
 Unit1 = SubResource( 27 )
+Unit2 = SubResource( 110 )
+Unit3 = SubResource( 111 )
+Unit4 = SubResource( 112 )
 
 [node name="MapNode19" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1564.35, 1859.58 )
@@ -893,6 +1989,9 @@ wealth = 5
 romanisation = 8
 happiness = 6
 Unit1 = SubResource( 28 )
+Unit2 = SubResource( 113 )
+Unit3 = SubResource( 114 )
+Unit4 = SubResource( 115 )
 
 [node name="MapNode8" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1757.17, 1383.4 )
@@ -902,6 +2001,9 @@ wealth = 7
 romanisation = 8
 happiness = 5
 Unit1 = SubResource( 29 )
+Unit2 = SubResource( 116 )
+Unit3 = SubResource( 117 )
+Unit4 = SubResource( 118 )
 
 [node name="MapNode9" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1532.31, 1418.76 )
@@ -912,6 +2014,9 @@ romanisation = 7
 happiness = 6
 unit_type = "Roman"
 Unit1 = SubResource( 30 )
+Unit2 = SubResource( 119 )
+Unit3 = SubResource( 120 )
+Unit4 = SubResource( 121 )
 
 [node name="MapNode20" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1707.44, 1319.22 )
@@ -921,6 +2026,9 @@ wealth = 4
 romanisation = 7
 happiness = 5
 Unit1 = SubResource( 31 )
+Unit2 = SubResource( 122 )
+Unit3 = SubResource( 123 )
+Unit4 = SubResource( 124 )
 
 [node name="MapNode21" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1833.44, 1271.98 )
@@ -930,37 +2038,58 @@ wealth = 3
 romanisation = 6
 happiness = 8
 Unit1 = SubResource( 32 )
+Unit2 = SubResource( 125 )
+Unit3 = SubResource( 126 )
+Unit4 = SubResource( 127 )
 
 [node name="MapNode11" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1315.83, 1429.45 )
 city_name = ""
 unit_type = "Celt"
 Unit1 = SubResource( 33 )
+Unit2 = SubResource( 128 )
+Unit3 = SubResource( 129 )
+Unit4 = SubResource( 130 )
 
 [node name="MapNode12" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1180.41, 1498.05 )
 city_name = "Narbo"
 Unit1 = SubResource( 34 )
+Unit2 = SubResource( 131 )
+Unit3 = SubResource( 132 )
+Unit4 = SubResource( 133 )
 
 [node name="MapNode15" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 991.635, 1494.27 )
 city_name = "Tolosa"
 Unit1 = SubResource( 35 )
+Unit2 = SubResource( 134 )
+Unit3 = SubResource( 135 )
+Unit4 = SubResource( 136 )
 
 [node name="MapNode16" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1002.96, 1416.88 )
 city_name = "Divona"
 Unit1 = SubResource( 36 )
+Unit2 = SubResource( 137 )
+Unit3 = SubResource( 138 )
+Unit4 = SubResource( 139 )
 
 [node name="MapNode18" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 853.829, 1405.55 )
 city_name = "Burdigala"
 Unit1 = SubResource( 37 )
+Unit2 = SubResource( 140 )
+Unit3 = SubResource( 141 )
+Unit4 = SubResource( 142 )
 
 [node name="MapNode17" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 834.007, 1508.43 )
 city_name = "Elusa"
 Unit1 = SubResource( 38 )
+Unit2 = SubResource( 143 )
+Unit3 = SubResource( 144 )
+Unit4 = SubResource( 145 )
 
 [node name="MapNode13" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 913.14, 1706.52 )
@@ -970,6 +2099,9 @@ wealth = 3
 romanisation = 3
 happiness = 5
 Unit1 = SubResource( 39 )
+Unit2 = SubResource( 146 )
+Unit3 = SubResource( 147 )
+Unit4 = SubResource( 148 )
 
 [node name="MapNode14" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 999.557, 1696.72 )
@@ -979,12 +2111,18 @@ wealth = 4
 romanisation = 5
 happiness = 5
 Unit1 = SubResource( 40 )
+Unit2 = SubResource( 149 )
+Unit3 = SubResource( 150 )
+Unit4 = SubResource( 151 )
 
 [node name="MapNode10" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1359.48, 1522.1 )
 city_name = "Massilia"
 population = 3
 Unit1 = SubResource( 41 )
+Unit2 = SubResource( 152 )
+Unit3 = SubResource( 153 )
+Unit4 = SubResource( 154 )
 
 [node name="MapNode5" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1574.88, 1764.66 )
@@ -994,6 +2132,9 @@ wealth = 2
 romanisation = 8
 happiness = 6
 Unit1 = SubResource( 42 )
+Unit2 = SubResource( 155 )
+Unit3 = SubResource( 156 )
+Unit4 = SubResource( 157 )
 
 [node name="MapNode6" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1562.88, 1627.66 )
@@ -1003,6 +2144,9 @@ wealth = 2
 romanisation = 7
 happiness = 5
 Unit1 = SubResource( 43 )
+Unit2 = SubResource( 158 )
+Unit3 = SubResource( 159 )
+Unit4 = SubResource( 160 )
 
 [node name="MapNode2" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1863.88, 2002.66 )
@@ -1012,6 +2156,9 @@ wealth = 8
 romanisation = 6
 happiness = 7
 Unit1 = SubResource( 44 )
+Unit2 = SubResource( 161 )
+Unit3 = SubResource( 162 )
+Unit4 = SubResource( 163 )
 
 [node name="MapNode45" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1610.2, 2076.74 )
@@ -1021,6 +2168,9 @@ wealth = 5
 romanisation = 3
 happiness = 3
 Unit1 = SubResource( 45 )
+Unit2 = SubResource( 164 )
+Unit3 = SubResource( 165 )
+Unit4 = SubResource( 166 )
 
 [node name="MapNode22" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1665.43, 2216.25 )
@@ -1030,6 +2180,9 @@ wealth = 3
 romanisation = 4
 happiness = 3
 Unit1 = SubResource( 46 )
+Unit2 = SubResource( 167 )
+Unit3 = SubResource( 168 )
+Unit4 = SubResource( 169 )
 
 [node name="MapNode50" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1631.41, 2149.47 )
@@ -1039,16 +2192,25 @@ wealth = 3
 romanisation = 2
 happiness = 3
 Unit1 = SubResource( 47 )
+Unit2 = SubResource( 170 )
+Unit3 = SubResource( 171 )
+Unit4 = SubResource( 172 )
 
 [node name="MapNode23" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1399.7, 2224.66 )
 city_name = "Thevesta"
 Unit1 = SubResource( 48 )
+Unit2 = SubResource( 173 )
+Unit3 = SubResource( 174 )
+Unit4 = SubResource( 175 )
 
 [node name="MapNode51" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1395.92, 2089.85 )
 city_name = "Hippo Regius"
 Unit1 = SubResource( 49 )
+Unit2 = SubResource( 176 )
+Unit3 = SubResource( 177 )
+Unit4 = SubResource( 178 )
 
 [node name="MapNode53" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1522.87, 2084.18 )
@@ -1058,59 +2220,92 @@ wealth = 4
 romanisation = 4
 happiness = 2
 Unit1 = SubResource( 50 )
+Unit2 = SubResource( 179 )
+Unit3 = SubResource( 180 )
+Unit4 = SubResource( 181 )
 
 [node name="MapNode24" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1181.07, 2126.27 )
 city_name = "Cirta"
 Unit1 = SubResource( 51 )
+Unit2 = SubResource( 182 )
+Unit3 = SubResource( 183 )
+Unit4 = SubResource( 184 )
 
 [node name="MapNode46" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1243.93, 2100.46 )
 city_name = "Icosium"
 population = 3
 Unit1 = SubResource( 52 )
+Unit2 = SubResource( 185 )
+Unit3 = SubResource( 186 )
+Unit4 = SubResource( 187 )
 
 [node name="MapNode25" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1676.36, 2387.79 )
 city_name = "Tacape"
 Unit1 = SubResource( 53 )
+Unit2 = SubResource( 188 )
+Unit3 = SubResource( 189 )
+Unit4 = SubResource( 190 )
 
 [node name="MapNode52" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1802.08, 2425.95 )
 city_name = "Sabrata"
 Unit1 = SubResource( 54 )
+Unit2 = SubResource( 191 )
+Unit3 = SubResource( 192 )
+Unit4 = SubResource( 193 )
 
 [node name="MapNode26" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1980.76, 2475.24 )
 city_name = "Leptis-Magna"
 Unit1 = SubResource( 55 )
+Unit2 = SubResource( 194 )
+Unit3 = SubResource( 195 )
+Unit4 = SubResource( 196 )
 
 [node name="MapNode47" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1899.95, 2429.22 )
 city_name = "Oea"
 population = 3
 Unit1 = SubResource( 56 )
+Unit2 = SubResource( 197 )
+Unit3 = SubResource( 198 )
+Unit4 = SubResource( 199 )
 
 [node name="MapNode27" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2163.24, 2566.9 )
 city_name = "Syrtis"
 Unit1 = SubResource( 57 )
+Unit2 = SubResource( 200 )
+Unit3 = SubResource( 201 )
+Unit4 = SubResource( 202 )
 
 [node name="MapNode28" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2400.37, 2430.68 )
 city_name = "Berenice"
 Unit1 = SubResource( 58 )
+Unit2 = SubResource( 203 )
+Unit3 = SubResource( 204 )
+Unit4 = SubResource( 205 )
 
 [node name="MapNode29" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2518.1, 2442.45 )
 city_name = "Paliurus"
 Unit1 = SubResource( 59 )
+Unit2 = SubResource( 206 )
+Unit3 = SubResource( 207 )
+Unit4 = SubResource( 208 )
 
 [node name="MapNode48" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2479.93, 2414.39 )
 city_name = "Cyrene"
 population = 3
 Unit1 = SubResource( 60 )
+Unit2 = SubResource( 209 )
+Unit3 = SubResource( 210 )
+Unit4 = SubResource( 211 )
 
 [node name="ViewC" type="ViewportContainer" parent="."]
 margin_right = 200.0

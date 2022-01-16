@@ -29,14 +29,14 @@ func _ready() -> void:
 		Unit1 = SPQR_EditorUnit.new().duplicate(false)
 		Unit1.setup_local_to_scene(true)
 	if not Unit2:
-		Unit1 = SPQR_EditorUnit.new().duplicate(false)
-		Unit1.setup_local_to_scene(true)
+		Unit2 = SPQR_EditorUnit.new().duplicate(false)
+		#Unit2.setup_local_to_scene(true)
 	if not Unit3:
-		Unit1 = SPQR_EditorUnit.new().duplicate(false)
-		Unit1.setup_local_to_scene(true)
+		Unit3 = SPQR_EditorUnit.new().duplicate(false)
+		#Unit3.setup_local_to_scene(true)
 	if not Unit4:
-		Unit1 = SPQR_EditorUnit.new().duplicate(false)
-		Unit1.setup_local_to_scene(true)
+		Unit4 = SPQR_EditorUnit.new().duplicate(false)
+		#Unit4.setup_local_to_scene(true)
 
 func set_city_state(city: bool) -> void:
 	has_city = city
@@ -62,28 +62,45 @@ func set_unit_type(new_unit: String) -> void:
 		$RomanImage.hide()
 		$EnemyImage.show()
 
-func get_data():
-	var id_owner = -1
-	if unit_type == 'Roman':
-		id_owner = 0
-	elif unit_type == 'Celt':
-		id_owner = 1
+func get_data() -> Dictionary:
 	return {
 		'city_name': city_name,
+		'has_city': has_city,
 		'population': population,
 		'romanisation': romanisation,
 		'wealth': wealth,
 		'happiness': happiness,
 		'christianity': christian,
-		'unit': id_owner
-		# TODO: Unit strength stripped, and no units.
-		# Maybe on a different pass?
 	}
 
 func get_unit_data():
+	var id_owner = -1
+	if unit_type == 'Roman':
+		id_owner = 0
+	elif unit_type == 'Celt':
+		id_owner = 1
 	var roman = true if unit_type == 'Roman' else false
-	if unit_type == 'None':
-		return {'strength':0, 'Roman':roman}
+	# check all units
+	var units = []
+	for i in [Unit1, Unit2, Unit3, Unit4]:
+		var unit_data = get_single_unit(i)
+		if unit_data != null:
+			units.append(unit_data)
+	if len(units) == 0:
+		return null
+	return {'units':units, 'owner':id_owner}
+
+func get_single_unit(unit):
+	if not unit:
+		# no resource
+		return null
+	if unit.foot + unit.mounted <= 0:
+		# can't have a unit without troops!
+		return null
+	return {'foot': unit.foot,
+			'mounted': unit.mounted,
+			'quality': unit.quality,
+			'morale': unit.morale}
 
 func has_unit() -> bool:
 	if unit_type == 'None':
