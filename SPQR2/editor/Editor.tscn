@@ -38,7 +38,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="Image" id=5]
+[sub_resource type="Image" id=61]
 data = {
 "data": PoolByteArray( 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 232, 16, 16, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206, 232, 16, 16, 36, 107, 206, 36, 107, 206, 36, 107, 206, 36, 107, 206 ),
 "format": "RGB8",
@@ -47,8 +47,8 @@ data = {
 "width": 1
 }
 
-[sub_resource type="ImageTexture" id=6]
-image = SubResource( 5 )
+[sub_resource type="ImageTexture" id=10]
+image = SubResource( 61 )
 size = Vector2( 1, 14 )
 
 [sub_resource type="ShaderMaterial" id=4]
@@ -56,12 +56,11 @@ shader = SubResource( 1 )
 shader_param/total_regions = 14.0
 shader_param/map_image = ExtResource( 3 )
 shader_param/region_image = ExtResource( 7 )
-shader_param/region_cols = SubResource( 6 )
+shader_param/region_cols = SubResource( 10 )
 shader_param/map_borders = ExtResource( 10 )
 
-[sub_resource type="Resource" id=7]
+[sub_resource type="Resource" id=11]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -69,31 +68,6 @@ morale = 0
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 11 )
-exists = false
-foot = 0
-mounted = 0
-quality = 0
-morale = 0
-
-[sub_resource type="Resource" id=9]
-script = ExtResource( 11 )
-exists = false
-foot = 0
-mounted = 0
-quality = 0
-morale = 0
-
-[sub_resource type="Resource" id=10]
-script = ExtResource( 11 )
-exists = false
-foot = 0
-mounted = 0
-quality = 0
-morale = 0
-
-[sub_resource type="Resource" id=11]
-script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -101,7 +75,6 @@ morale = 0
 
 [sub_resource type="Resource" id=12]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -109,7 +82,6 @@ morale = 0
 
 [sub_resource type="Resource" id=13]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -117,7 +89,6 @@ morale = 0
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -125,7 +96,6 @@ morale = 0
 
 [sub_resource type="Resource" id=15]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -133,7 +103,6 @@ morale = 0
 
 [sub_resource type="Resource" id=16]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -141,7 +110,6 @@ morale = 0
 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -149,7 +117,6 @@ morale = 0
 
 [sub_resource type="Resource" id=18]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -157,7 +124,6 @@ morale = 0
 
 [sub_resource type="Resource" id=19]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -165,7 +131,6 @@ morale = 0
 
 [sub_resource type="Resource" id=20]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -173,7 +138,6 @@ morale = 0
 
 [sub_resource type="Resource" id=21]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -181,7 +145,6 @@ morale = 0
 
 [sub_resource type="Resource" id=22]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -189,7 +152,6 @@ morale = 0
 
 [sub_resource type="Resource" id=23]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -197,7 +159,6 @@ morale = 0
 
 [sub_resource type="Resource" id=24]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -205,7 +166,6 @@ morale = 0
 
 [sub_resource type="Resource" id=25]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -213,7 +173,6 @@ morale = 0
 
 [sub_resource type="Resource" id=26]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -221,7 +180,6 @@ morale = 0
 
 [sub_resource type="Resource" id=27]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -229,7 +187,6 @@ morale = 0
 
 [sub_resource type="Resource" id=28]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -237,7 +194,6 @@ morale = 0
 
 [sub_resource type="Resource" id=29]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -245,7 +201,6 @@ morale = 0
 
 [sub_resource type="Resource" id=30]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -253,7 +208,6 @@ morale = 0
 
 [sub_resource type="Resource" id=31]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -261,7 +215,6 @@ morale = 0
 
 [sub_resource type="Resource" id=32]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -269,7 +222,6 @@ morale = 0
 
 [sub_resource type="Resource" id=33]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -277,7 +229,6 @@ morale = 0
 
 [sub_resource type="Resource" id=34]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -285,7 +236,6 @@ morale = 0
 
 [sub_resource type="Resource" id=35]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -293,7 +243,6 @@ morale = 0
 
 [sub_resource type="Resource" id=36]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -301,7 +250,6 @@ morale = 0
 
 [sub_resource type="Resource" id=37]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -309,7 +257,6 @@ morale = 0
 
 [sub_resource type="Resource" id=38]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -317,7 +264,6 @@ morale = 0
 
 [sub_resource type="Resource" id=39]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -325,7 +271,6 @@ morale = 0
 
 [sub_resource type="Resource" id=40]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -333,7 +278,6 @@ morale = 0
 
 [sub_resource type="Resource" id=41]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -341,7 +285,6 @@ morale = 0
 
 [sub_resource type="Resource" id=42]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -349,7 +292,6 @@ morale = 0
 
 [sub_resource type="Resource" id=43]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -357,7 +299,6 @@ morale = 0
 
 [sub_resource type="Resource" id=44]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -365,7 +306,6 @@ morale = 0
 
 [sub_resource type="Resource" id=45]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -373,7 +313,6 @@ morale = 0
 
 [sub_resource type="Resource" id=46]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -381,7 +320,6 @@ morale = 0
 
 [sub_resource type="Resource" id=47]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -389,7 +327,6 @@ morale = 0
 
 [sub_resource type="Resource" id=48]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -397,7 +334,6 @@ morale = 0
 
 [sub_resource type="Resource" id=49]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -405,7 +341,6 @@ morale = 0
 
 [sub_resource type="Resource" id=50]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -413,7 +348,6 @@ morale = 0
 
 [sub_resource type="Resource" id=51]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -421,7 +355,6 @@ morale = 0
 
 [sub_resource type="Resource" id=52]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -429,7 +362,6 @@ morale = 0
 
 [sub_resource type="Resource" id=53]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -437,7 +369,6 @@ morale = 0
 
 [sub_resource type="Resource" id=54]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -445,7 +376,6 @@ morale = 0
 
 [sub_resource type="Resource" id=55]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -453,7 +383,6 @@ morale = 0
 
 [sub_resource type="Resource" id=56]
 script = ExtResource( 11 )
-exists = false
 foot = 0
 mounted = 0
 quality = 0
@@ -461,7 +390,27 @@ morale = 0
 
 [sub_resource type="Resource" id=57]
 script = ExtResource( 11 )
-exists = false
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=58]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=59]
+script = ExtResource( 11 )
+foot = 0
+mounted = 0
+quality = 0
+morale = 0
+
+[sub_resource type="Resource" id=60]
+script = ExtResource( 11 )
 foot = 0
 mounted = 0
 quality = 0
@@ -832,257 +781,336 @@ default_color = Color( 0.4, 0.2, 0, 1 )
 [node name="MapNode" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1959.88, 2021.66 )
 city_name = "Syracuse"
-population = 3
-Unit1 = SubResource( 7 )
+population = 600
+wealth = 9
+romanisation = 9
+happiness = 7
+Unit1 = SubResource( 11 )
 Unit2 = SubResource( 8 )
 
 [node name="MapNode3" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2076.88, 1872.66 )
-city_name = ""
-Unit1 = SubResource( 9 )
+city_name = "Consentia"
+population = 450
+wealth = 7
+romanisation = 8
+happiness = 7
+Unit1 = SubResource( 12 )
 
 [node name="MapNode31" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2336.45, 1610.97 )
-city_name = ""
-Unit1 = SubResource( 10 )
+city_name = "Onchesmus"
+Unit1 = SubResource( 13 )
 
 [node name="MapNode32" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2427.56, 1724.34 )
-city_name = ""
-Unit1 = SubResource( 11 )
+city_name = "Stobi"
+Unit1 = SubResource( 14 )
 
 [node name="MapNode36" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2387.3, 1850.41 )
-city_name = ""
-Unit1 = SubResource( 12 )
+city_name = "Nicopolis"
+Unit1 = SubResource( 15 )
 
 [node name="MapNode37" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2452.99, 1927.75 )
-city_name = ""
-Unit1 = SubResource( 13 )
+city_name = "Epirus"
+Unit1 = SubResource( 16 )
 
 [node name="MapNode40" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2522.91, 1935.17 )
-city_name = ""
-Unit1 = SubResource( 14 )
+city_name = "Thebea"
+Unit1 = SubResource( 17 )
 
 [node name="MapNode44" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2584.36, 1964.83 )
 city_name = "Athens"
 population = 3
-Unit1 = SubResource( 15 )
+Unit1 = SubResource( 18 )
 
 [node name="MapNode41" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2503.84, 2051.71 )
-city_name = ""
-Unit1 = SubResource( 16 )
+city_name = "Sparta"
+Unit1 = SubResource( 19 )
 
 [node name="MapNode33" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2493.25, 1614.15 )
-city_name = ""
-Unit1 = SubResource( 17 )
+city_name = "Pella"
+Unit1 = SubResource( 20 )
 
 [node name="MapNode34" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2708.32, 1659.71 )
-city_name = ""
-Unit1 = SubResource( 18 )
+city_name = "Philippi"
+Unit1 = SubResource( 21 )
 
 [node name="MapNode43" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2578.01, 1719.04 )
-city_name = ""
-Unit1 = SubResource( 19 )
+city_name = "Thessalonica"
+Unit1 = SubResource( 22 )
 
 [node name="MapNode42" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2508.08, 1743.41 )
-city_name = "Pella"
+city_name = "Pyuna"
 population = 3
-Unit1 = SubResource( 20 )
+Unit1 = SubResource( 23 )
 
 [node name="MapNode30" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2319.06, 1778.48 )
-city_name = "Onchesmus"
+city_name = "Corcyra"
 population = 3
-Unit1 = SubResource( 21 )
+Unit1 = SubResource( 24 )
 
 [node name="MapNode4" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1926.88, 1667.66 )
 city_name = ""
-Unit1 = SubResource( 22 )
+population = 800
+wealth = 8
+romanisation = 8
+happiness = 7
+Unit1 = SubResource( 25 )
 
 [node name="MapNode49" parent="Nodes" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 1818.4, 1521.34 )
 city_name = ""
-Unit1 = SubResource( 23 )
+Unit1 = SubResource( 26 )
 
 [node name="MapNode7" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1737.38, 1599.07 )
 city_name = "Rome"
-population = 3
-Unit1 = SubResource( 24 )
+population = 1200
+has_city = true
+wealth = 9
+romanisation = 9
+happiness = 8
+Unit1 = SubResource( 27 )
 
 [node name="MapNode19" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1564.35, 1859.58 )
 city_name = "Caralis"
-population = 3
-Unit1 = SubResource( 25 )
+population = 300
+wealth = 5
+romanisation = 8
+happiness = 6
+Unit1 = SubResource( 28 )
 
 [node name="MapNode8" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1757.17, 1383.4 )
 city_name = "Ravenna"
-population = 3
-Unit1 = SubResource( 26 )
+population = 300
+wealth = 7
+romanisation = 8
+happiness = 5
+Unit1 = SubResource( 29 )
 
 [node name="MapNode9" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1532.31, 1418.76 )
-city_name = ""
+city_name = "Genua"
+population = 400
+wealth = 7
+romanisation = 7
+happiness = 6
 unit_type = "Roman"
-Unit1 = SubResource( 27 )
+Unit1 = SubResource( 30 )
 
 [node name="MapNode20" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1707.44, 1319.22 )
-city_name = ""
-Unit1 = SubResource( 28 )
+city_name = "Verona"
+population = 250
+wealth = 4
+romanisation = 7
+happiness = 5
+Unit1 = SubResource( 31 )
 
 [node name="MapNode21" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1833.44, 1271.98 )
-city_name = ""
-Unit1 = SubResource( 29 )
+city_name = "Aquileia"
+population = 200
+wealth = 3
+romanisation = 6
+happiness = 8
+Unit1 = SubResource( 32 )
 
 [node name="MapNode11" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1315.83, 1429.45 )
 city_name = ""
 unit_type = "Celt"
-Unit1 = SubResource( 30 )
+Unit1 = SubResource( 33 )
 
 [node name="MapNode12" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1180.41, 1498.05 )
-city_name = ""
-Unit1 = SubResource( 31 )
+city_name = "Narbo"
+Unit1 = SubResource( 34 )
 
 [node name="MapNode15" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 991.635, 1494.27 )
-city_name = ""
-Unit1 = SubResource( 32 )
+city_name = "Tolosa"
+Unit1 = SubResource( 35 )
 
 [node name="MapNode16" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1002.96, 1416.88 )
-city_name = ""
-Unit1 = SubResource( 33 )
+city_name = "Divona"
+Unit1 = SubResource( 36 )
 
 [node name="MapNode18" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 853.829, 1405.55 )
 city_name = "Burdigala"
-population = 3
-Unit1 = SubResource( 34 )
+Unit1 = SubResource( 37 )
 
 [node name="MapNode17" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 834.007, 1508.43 )
-city_name = ""
-Unit1 = SubResource( 35 )
+city_name = "Elusa"
+Unit1 = SubResource( 38 )
 
 [node name="MapNode13" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 913.14, 1706.52 )
-city_name = ""
-Unit1 = SubResource( 36 )
+city_name = "Merda"
+population = 300
+wealth = 3
+romanisation = 3
+happiness = 5
+Unit1 = SubResource( 39 )
 
 [node name="MapNode14" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 999.557, 1696.72 )
 city_name = "Tarraco"
-population = 3
-Unit1 = SubResource( 37 )
+population = 200
+wealth = 4
+romanisation = 5
+happiness = 5
+Unit1 = SubResource( 40 )
 
 [node name="MapNode10" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1359.48, 1522.1 )
 city_name = "Massilia"
 population = 3
-Unit1 = SubResource( 38 )
+Unit1 = SubResource( 41 )
 
 [node name="MapNode5" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1574.88, 1764.66 )
-city_name = ""
-Unit1 = SubResource( 39 )
+city_name = "Olbia"
+population = 100
+wealth = 2
+romanisation = 8
+happiness = 6
+Unit1 = SubResource( 42 )
 
 [node name="MapNode6" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1562.88, 1627.66 )
-city_name = ""
-Unit1 = SubResource( 40 )
+city_name = "Aleria"
+population = 50
+wealth = 2
+romanisation = 7
+happiness = 5
+Unit1 = SubResource( 43 )
 
 [node name="MapNode2" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1863.88, 2002.66 )
-Unit1 = SubResource( 41 )
+city_name = "Panormus"
+population = 350
+wealth = 8
+romanisation = 6
+happiness = 7
+Unit1 = SubResource( 44 )
 
 [node name="MapNode45" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1610.2, 2076.74 )
 city_name = "Carthage"
-population = 3
-Unit1 = SubResource( 42 )
+population = 500
+wealth = 5
+romanisation = 3
+happiness = 3
+Unit1 = SubResource( 45 )
 
 [node name="MapNode22" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1665.43, 2216.25 )
-Unit1 = SubResource( 43 )
+city_name = "Thapaus"
+population = 270
+wealth = 3
+romanisation = 4
+happiness = 3
+Unit1 = SubResource( 46 )
 
 [node name="MapNode50" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1631.41, 2149.47 )
-Unit1 = SubResource( 44 )
+city_name = "Neapolis"
+population = 450
+wealth = 3
+romanisation = 2
+happiness = 3
+Unit1 = SubResource( 47 )
 
 [node name="MapNode23" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1399.7, 2224.66 )
-Unit1 = SubResource( 45 )
+city_name = "Thevesta"
+Unit1 = SubResource( 48 )
 
 [node name="MapNode51" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1395.92, 2089.85 )
-Unit1 = SubResource( 46 )
+city_name = "Hippo Regius"
+Unit1 = SubResource( 49 )
 
 [node name="MapNode53" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1522.87, 2084.18 )
-Unit1 = SubResource( 47 )
+city_name = "Utica"
+population = 200
+wealth = 4
+romanisation = 4
+happiness = 2
+Unit1 = SubResource( 50 )
 
 [node name="MapNode24" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1181.07, 2126.27 )
-Unit1 = SubResource( 48 )
+city_name = "Cirta"
+Unit1 = SubResource( 51 )
 
 [node name="MapNode46" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1243.93, 2100.46 )
 city_name = "Icosium"
 population = 3
-Unit1 = SubResource( 49 )
+Unit1 = SubResource( 52 )
 
 [node name="MapNode25" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1676.36, 2387.79 )
-Unit1 = SubResource( 50 )
+city_name = "Tacape"
+Unit1 = SubResource( 53 )
 
 [node name="MapNode52" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1802.08, 2425.95 )
-Unit1 = SubResource( 51 )
+city_name = "Sabrata"
+Unit1 = SubResource( 54 )
 
 [node name="MapNode26" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1980.76, 2475.24 )
-Unit1 = SubResource( 52 )
+city_name = "Leptis-Magna"
+Unit1 = SubResource( 55 )
 
 [node name="MapNode47" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 1899.95, 2429.22 )
 city_name = "Oea"
 population = 3
-Unit1 = SubResource( 53 )
+Unit1 = SubResource( 56 )
 
 [node name="MapNode27" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2163.24, 2566.9 )
-Unit1 = SubResource( 54 )
+city_name = "Syrtis"
+Unit1 = SubResource( 57 )
 
 [node name="MapNode28" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2400.37, 2430.68 )
-Unit1 = SubResource( 55 )
+city_name = "Berenice"
+Unit1 = SubResource( 58 )
 
 [node name="MapNode29" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2518.1, 2442.45 )
-Unit1 = SubResource( 56 )
+city_name = "Paliurus"
+Unit1 = SubResource( 59 )
 
 [node name="MapNode48" parent="Nodes" instance=ExtResource( 4 )]
 position = Vector2( 2479.93, 2414.39 )
 city_name = "Cyrene"
 population = 3
-Unit1 = SubResource( 57 )
+Unit1 = SubResource( 60 )
 
 [node name="ViewC" type="ViewportContainer" parent="."]
 margin_right = 200.0

@@ -2,7 +2,6 @@ extends Resource
 
 class_name SPQR_EditorUnit
 
-export(bool) var exists
 export(int) var foot
 export(int) var mounted
 export(int) var quality

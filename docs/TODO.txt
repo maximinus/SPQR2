@@ -16,23 +16,23 @@ Short Term:
 	✓ Fetch all text from translations
 	✓ Handle all code for all text purposes
 
-* Add all needed region data to the editor
+✓ Add all needed region data to the editor
 * Make the new game file with all data
 * Fix any errors in the game itself
+
+* Add "click on region" -> highlights until next click
 
 * Rebuild the mini-map using the theme
 	✓ Width must now match sidebar width
 * Rebuild events using the theme
 	* Should be pretty easy by now
-* Ensure game works at lowest resolution popular screen (make this the default screen size)
+* Ensure game works at lowest resolution popular screen (just make this the default screen size)
 
 * BUG: Road end points are always to the left of the node, almost right at the edge.
 	   Thus, either the node or the road is not placed correctly
 	   Road move arrows seem displaced as well
 * Add 1, 2, 3 & 4 units per node on the unit scene (no need to change moves)
 * Add 'extra bar for units' on right sidebar
-* Add a quality star to region properties
-* Add "click on region" -> highlights until next click
 * Add click highlight details:
 * Troops are shown, the rules are:
 	* If a node is clicked, details of those units are shown, and minimal details of the other units in the region
