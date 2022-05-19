@@ -225,7 +225,7 @@ func check_mouse_drag() -> bool:
 			# yes, move by delta of mouse move
 			# false means to return by x/z, not by map pixels
 			var current_move = get_mouse_map_coords(false)
-			var drag_move = (drag_offset - current_move) / PAN_SCALING			
+			var drag_move = (drag_offset - current_move) / PAN_SCALING
 			camera.translation = check_panning_limits(Vector3(drag_move.x, 0.0, drag_move.y))
 			return true
 		else:
@@ -267,7 +267,7 @@ func set_zoom_level(value) -> void:
 		$Camera, 'translation', $Camera.translation, final_move,
 		ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_OUT)
 	zoom_tween.start()
-	
+
 func scale_plane_coords(x, y) -> Vector2:
 	# given plane coords, return pixel coords
 	# plane of (-12.5, -8.34) is (0,0) in pixels
@@ -299,7 +299,7 @@ func calculate_intersections() -> void:
 	map_intersect = get_mouse_map_coords(true)
 	# do the camera aim manually
 	var zpos = camera.translation.y * tan(deg2rad(90.0 + camera.rotation_degrees.x))
-	# camera zpos is high when camera is looking at bottom, so offset is taken away (offset is _+ve)	
+	# camera zpos is high when camera is looking at bottom, so offset is taken away (offset is _+ve)
 	camera_intersect = scale_plane_coords(camera.translation.x, camera.translation.z - zpos)
 
 func check_panning_limits(move: Vector3) -> Vector3:
@@ -349,7 +349,7 @@ func _on_Overlay_mini_map(pos) -> void:
 	var new_pos = check_panning_limits(Vector3(pos.x, 0.0, pos.y))
 	# no need to tween, but if a camera tween exists, stop it
 	camera_tween.stop_all()
-	camera.translation = new_pos	
+	camera.translation = new_pos
 	# finally, we need update the pin position (since panning limits may have restricted it)
 	calculate_intersections()
 	update_minimap_pin()
@@ -372,5 +372,5 @@ func _on_Overlay_change_view(index) -> void:
 
 func _on_Event_answer_given(answer: int):
 	# we raised an event, now we have the answer
-	# since the screen was frozen, nothing else happened	
+	# since the screen was frozen, nothing else happened
 	helpers.log('Got answer to an event: ' + str(answer))

@@ -17,9 +17,8 @@ Short Term:
 	✓ Handle all code for all text purposes
 
 ✓ Add all needed region data to the editor
-* Make the new game file with all data
-* Fix any errors in the game itself
-
+✓ Make the new game file with all data
+* Fix any errors loading the new data
 * Add "click on region" -> highlights until next click
 
 * Rebuild the mini-map using the theme
@@ -36,10 +35,12 @@ Short Term:
 * Add click highlight details:
 * Troops are shown, the rules are:
 	* If a node is clicked, details of those units are shown, and minimal details of the other units in the region
+		* By default, all units are selected
+		* Updates and highlights display and node (it will also update the region highlight if on a new region)
 	* If only the region is clicked, minimum details of all the node units are shown
+		* This deselects all units
 	* When displayed, a mouseover a node will highlight the region display
 	* When the mouse is not over any node, the highlights will be removed
-	* A click on a node will update and highlight display and node (it will also update the region highlight if on a new region)
 	* A click on a region already highlighted will change nothing
 	* A click on the node in the region display will act as a click on the node
 	* A double-click will centre the map on the node
@@ -65,6 +66,7 @@ Couldn't really be solved (add to issues):
 * Fix massive screen-tearing when window re-sized
 	No obvious solution. Also no major reports. Not sure what to do for this.
 	The obvious solutions (vsync, frame buffering) did nothing.
+	Maybe not a big problem (who resizes that often?) but looks unprofessional
 
 
 Goals for v0.2

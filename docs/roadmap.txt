@@ -125,11 +125,12 @@ In a civil war:
 			A: Destroy all rivals
 			B: Go to Rome
 		For all participants:
-			You can only rarely recruit new army members (if you beat an opponent)
+			You can possibly recruit new army members (if you beat an opponent)
 			All Roman regions act as friendly to all Roman units, including Rome
 			Moving to Rome gives a chance your rivals give up, especially if your army is much bigger
 				* By "give up" we really mean "killed by the soldiers"
-			No challenger will refuse a fight, typically they all march to Rome ASAP
+				* Also moving to Rome means a chance neutral Roman Legions will support you
+			A challenger will rarely refuse a fight, typically they all march to Rome ASAP
 
 In the Empire:
 	On the first emperors turn, all cards removed and replaced with all good cards
@@ -182,6 +183,9 @@ Those traits will affect outcomes like:
 	- Maybe adds some random events
 
 The only real extra gameplay mechanic is the bribes.
+
+	**MUCH DISUSSION FOLLOWS**
+
 	Candidates may come with donatives.
 	You can increase the % chance of success by giving a bigger donative.
 	The more this is done, the more the donative must be
@@ -195,6 +199,13 @@ In general, the player should usually be able to choose what they want
 	- Key point is to have agency. Choosing the best of the worst is more fun, and sometimes a diamond can come along.
 	- Agency is super-important. Just getting a 25% chance of choosing someone all the time is boring.
 	- Thus the take-away is you should be able to certainly choose between 2-3 bad ones
+		* Don't be blind, the skill should have almost no link to donative required
+		* Which means the donative must be able to be upped to get a good candidate
+		* So you can choose anybody, but they come with consequences
+			* The afore-mentioned donative
+			* Loss of regions
+			* Some law / effect added
+			* The first is a slider, the others selected from a menu
 	- You may select someone good, but they would have a low chance and possibly start a civil war
 	- This doesn't mean all choices are objectivily bad, but it should be more common than you think
 	- Being "good" in the players mind does NOT mean they will win any civil war though
@@ -228,6 +239,7 @@ When the empire splits to East / West (card based):
 			* I.e. if you have 3 votes (cards or skill) they cannot be split
 			* To further detail, you can vote for ONE person only
 			* You get an extra vote in the side you are Emperor of
+			* AMEND: From discussion above, you can choose one side for sure and influence (i.e. gamble based on % chance) another
 		- This means one choice will be essentially random
 		- Civil wars will be contained in their own areas (east or west)
 
