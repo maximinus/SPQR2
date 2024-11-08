@@ -315,6 +315,7 @@ Nodes are where units can move to.
 
 Something with a value:
 	Prefer to be influenced by the player
+		* Influenced, but the base flavour should make a node different
 	Not excessive in the extreme values
 	Represents something tangible
 
@@ -322,8 +323,9 @@ How do we change the stats below then? Do we need to?
 What is the point of the region / node properties?
 	Climate, crops and terrain effect food production
 		- Can't change
+		* Don't have war. Have nice roads. Turn down the tyranny.
 	Money shows tax revenue (you can change tax rates)
-		- Can change, but only by propertion
+		- Can change, but only by propertion (?)
 	Culture adds to the chance of random events
 		- No real control
 	Resources add to the economy simulation. They also add flavour.
