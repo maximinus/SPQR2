@@ -286,7 +286,7 @@ func check_shared_regions() -> Array:
 	return regions_with_different_units
 
 func get_region_owners_texture() -> ImageTexture:
-	var base_image = Image.create(2, len(regions), false, Image.FORMAT_RGB8)
+	var base_image = Image.create(2, len(regions), false, Image.FORMAT_RGBA8)
 	var ypos: int = 0
 	for i in get_ascending_region_colors():
 		# this cycles us through the following
@@ -294,8 +294,7 @@ func get_region_owners_texture() -> ImageTexture:
 		# this is the alternate color
 		base_image.set_pixel(1, ypos, i[2])
 		ypos += 1
-	var img = ImageTexture.new()
-	img.create_from_image(base_image)
+	var img = ImageTexture.create_from_image(base_image)
 	return img
 
 func get_unit_stats_texture() -> Image:
@@ -365,16 +364,16 @@ func get_road_index_from_condition(condition: float) -> int:
 	return 0
 
 func build_roads() -> void:
-	var road_image = Image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
+	var road_image = Image.create_empty(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
+	road_image.fill(Color(0.0, 0.0, 1.0, 0.0))
 	# now blit all the roads
 	for i in roads:
 		var rect = Rect2(0.0, 0.0, i.rimages[0].get_width(), i.rimages[0].get_height())
 		# which image to use?
 		var image_index = get_road_index_from_condition(i.condition)
 		road_image.blend_rect(i.rimages[image_index], rect, i.pos)
-	# the resultant needs to be an ImageTexture
-	road_texture = ImageTexture.new()
-	road_texture.create_from_image(road_image)
+	# the result need to be an ImageTexture
+	road_texture = ImageTexture.create_from_image(road_image)
 
 func get_roads_starting_at(node_id: int) -> Array:
 	var connected_roads = []
@@ -494,7 +493,7 @@ func get_node_christian_text(christian) -> String:
 
 func get_troop_numbers(value: int) -> String:
 	# we have a number less than 99999, reduce the range
-	value = int(value / 1000)
+	value = int(value / 1000.0)
 	# For all values 10 -> 99, reduce to int and return the string
 	if value >= 10.0:
 		return str(int(value)) + 'k'

@@ -79,5 +79,6 @@ void fragment() {
 		}
 	}
 	ALBEDO = mix(final_color, roads_px.rgb, roads_px.a);
+	//ALBEDO = mix(final_color, roads_px.rgb, 0.5);
 	ROUGHNESS = texture(rough_map, UV).r / roughness_scale;
 }
