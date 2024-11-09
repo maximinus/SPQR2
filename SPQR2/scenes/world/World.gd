@@ -53,7 +53,7 @@ func _ready():
 		$Music.play()
 	$CanvasLayer/PauseScreen.player = $Music
 	# load the region texture
-	region_map = Image.load_from_file('res://gfx/map/map_regions_uncompressed.png')
+	region_map = load('res://gfx/map/map_regions_uncompressed.png').get_image()
 	helpers.log('Loaded region map data')
 	dragging = false
 	add_nodes()
@@ -167,7 +167,7 @@ func add_units() -> void:
 		unit_instance.position.x = unit_pos[0]
 		unit_instance.position.z = unit_pos[1]
 		# add a manual callback
-		unit_instance.connect('unit_clicked', Callable(self, 'unit_clicked'))
+		unit_instance.connect('unit_left_clicked', Callable(self, 'unit_clicked'))
 		unit_instance.connect('unit_unclicked', Callable(self, 'unit_unclicked'))
 		unit_instance.connect('check_shared_regions', Callable(self, 'update_region_shader'))
 		$Soldiers.add_child(unit_instance)
@@ -185,7 +185,7 @@ func unit_clicked(unit_node):
 				i.hide_move_highlight()
 		unit_selected = unit_node
 
-func unit_unclicked(unit_id):
+func unit_unclicked(_unit_id):
 	if unit_selected != null:
 		for i in $Nodes.get_children():
 			i.hide_move_highlight()

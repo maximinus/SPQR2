@@ -47,10 +47,10 @@ func unit_clicked():
 		return
 	if highlight == false:
 		highlight_on()
-		emit_signal('unit_clicked', self)
+		unit_left_clicked.emit(self)
 	else:
 		highlight_off()
-		emit_signal('unit_unclicked', self)
+		unit_unclicked.emit(self)
 
 func check_click() -> bool:
 	if move_node == null:
@@ -107,21 +107,21 @@ func start_move(move_data: Array, is_battle: bool) -> void:
 	# start the process of moving from one node to the next
 	# we need the paths of the roads. We have the TO, now get the FROM
 	var path_points: Array = []
-	var road_data = data.roads[move_data[1]]
+	var move_road_data = data.roads[move_data[1]]
 	var start_node = unit_data.location.id
 	var end_position: Vector2
 	# work out where to go, points and final node
-	if road_data.start_node != start_node:
+	if move_road_data.start_node != start_node:
 		# must be end 
-		if road_data.end_node != start_node:
+		if move_road_data.end_node != start_node:
 			helpers.log('Error: Roads do not connect!')
 			return
-		path_points = road_data.points.duplicate()
+		path_points = move_road_data.points.duplicate()
 		path_points.reverse()
-		end_position = data.rnodes[road_data.start_node].position
+		end_position = data.rnodes[move_road_data.start_node].position
 	else:
-		path_points = road_data.points.duplicate()
-		end_position = data.rnodes[road_data.end_node].position
+		path_points = move_road_data.points.duplicate()
+		end_position = data.rnodes[move_road_data.end_node].position
 		
 	if is_battle == false:
 		# move the unit to the node internally
@@ -198,7 +198,7 @@ func _on_MoveUnit_animation_finished(_anim_name):
 	road_data = data.get_road_arrows_from_node_id(unit_data.location.id)
 	data.animation_blocked = false
 	# now we need to check to see if the shader needs updating
-	emit_signal('check_shared_regions')
+	check_shared_regions.emit()
 
 func play_click():
 	if $MouseClick.playing == true:

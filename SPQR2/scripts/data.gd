@@ -213,8 +213,8 @@ func get_node_data(data):
 		regions.append(MapRegion.new(i))
 	regions.sort_custom(Callable(MapRegion, 'sort'))
 	for i in data['players']:
-		players.append(EnemyAI.new(i))
-	players.sort_custom(Callable(EnemyAI, 'sort'))
+		players.append(enemy.EnemyAI.new(i))
+	players.sort_custom(Callable(enemy.EnemyAI, 'sort'))
 	units = get_units(data['nodes'])
 	helpers.log('Game data loaded')
 
@@ -225,7 +225,7 @@ func get_units(unit_data: Array) -> Array:
 	for i in unit_data:
 		if i['unit'] >= 0:
 			var unit_owner = regions[int(i['region_id'])].owner_id
-			new_units.append(Unit.new(i, unit_owner, unit_id, rnodes[i['id']]))
+			new_units.append(unit.Unit.new(i, unit_owner, unit_id, rnodes[i['id']]))
 			unit_id += 1
 	helpers.log('Got %s units' % len(new_units))
 	return new_units
@@ -305,11 +305,10 @@ func get_unit_stats_texture() -> Image:
 		var col: Color = Color(c, c / 1.5, c / 2.0)
 		base_image.set_pixel(0, ypos, col)
 		ypos += 1
-	var img = ImageTexture.new()
-	img.create_from_image(base_image)
+	var img = ImageTexture.create_from_image(base_image)
 	return img
 
-func get_money_stats_texture() -> Image:
+func get_money_stats_texture() -> ImageTexture:
 	var base_image = Image.create(1, len(regions), false, Image.FORMAT_RGB8)
 	var ypos: int = 0
 	for i in data.regions:
@@ -317,9 +316,7 @@ func get_money_stats_texture() -> Image:
 		var col: Color = Color(c / 2.0, c / 2.0, c)
 		base_image.set_pixel(0, ypos, col)
 		ypos += 1
-	var img = ImageTexture.new()
-	img.create_from_image(base_image)
-	return img
+	return ImageTexture.create_from_image(base_image)
 
 func get_unit_owner(unit_id: int) -> int:
 	# get the owner id or -1
@@ -351,7 +348,8 @@ func load_road_images() -> void:
 	var count = 0
 	for i in roads:
 		for j in folder_names:
-			var limage = load('res://gfx/roads/' + j + '/road_' + str(i.id) + '.png')
+			var filename = 'res://gfx/roads/%s/road_%s.png' % [j, str(i.id)]
+			var limage = load(filename).get_image()
 			i.rimages.append(limage)
 			count += 1
 	helpers.log('Loaded ' + str(count) + ' road images')
@@ -364,8 +362,8 @@ func get_road_index_from_condition(condition: float) -> int:
 	return 0
 
 func build_roads() -> void:
-	var road_image = Image.create_empty(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
-	road_image.fill(Color(0.0, 0.0, 1.0, 0.0))
+	var road_image = Image.create_empty(int(cn.MAP_PIXEL_SIZE.x), int(cn.MAP_PIXEL_SIZE.y), false, Image.FORMAT_RGBA8)
+	road_image.fill(Color(0.0, 0.0, 0.0, 0.0))
 	# now blit all the roads
 	for i in roads:
 		var rect = Rect2(0.0, 0.0, i.rimages[0].get_width(), i.rimages[0].get_height())
@@ -389,15 +387,14 @@ func get_road_arrows_from_node_id(node_id: int) -> Array:
 		var folder_name = '_away'
 		if i.start_node != node_id:
 			folder_name = '_towards'
-		
-		
+
 		var filename = 'res://gfx/roads/arrow%s/road_%s.png' % [folder_name, str(i.id)]
-		var rimage = Image.load_from_file(filename)
+		var rimage = load(filename).get_image()
 		# prevent name clashing - don't call road_texture
 		var r_tex = ImageTexture.create_from_image(rimage)
 		
 		filename = 'res://gfx/roads/red%s/road_%s.png' % [folder_name, str(i.id)]
-		var red_image = Image.load_from_file(filename)
+		var red_image = load(filename).get_image()
 		var red_texture = ImageTexture.create_from_image(red_image)
 		
 		all_data.append(cn.RoadMoveDisplay.new(r_tex, red_texture, i.id, i.pos, i.points))

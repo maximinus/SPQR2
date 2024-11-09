@@ -34,7 +34,7 @@ func ask(question: String, answers: Array) -> void:
 	show()
 
 func hide_dialog(answer: int) -> void:
-	emit_signal('answer_given', answer)
+	answer_given.emit(answer)
 	hide()
 
 func a1_click() -> void:

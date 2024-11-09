@@ -7,7 +7,7 @@ func _ready():
 
 func _on_Area_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
 	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		emit_signal('clicked')
+		clicked.emit()
 
 func set_figure_scale(new_scale):
 	%celtic_spearman2.scale = new_scale

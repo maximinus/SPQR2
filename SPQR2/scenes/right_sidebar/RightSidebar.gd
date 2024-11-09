@@ -44,7 +44,7 @@ func get_data() -> data.NewMapRegion:
 		region.nodes.append(i)
 	return region
 
-func update_info(region_info) -> void:
+func update_info(_region_info) -> void:
 	# TODO: handle this callback
 	pass
 
