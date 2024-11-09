@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw10m0omdjcx8"]
+[gd_scene load_steps=12 format=3 uid="uid://dw10m0omdjcx8"]
 
 [ext_resource type="PackedScene" uid="uid://cjdns8vacefl8" path="res://gfx/map/map_board.glb" id="1"]
 [ext_resource type="PackedScene" uid="uid://h4tbsm06hwdx" path="res://gfx/map_table/table.glb" id="2"]
 [ext_resource type="Script" path="res://scenes/map_board/map_board.gd" id="3"]
+[ext_resource type="Shader" path="res://scenes/map_board/map_board.gdshader" id="3_b5uhy"]
+[ext_resource type="Texture2D" uid="uid://cbb48w67ij0k1" path="res://gfx/map/roughness.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://b8jkkxeuvxmkm" path="res://gfx/map/map_final.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cqwq3usv8f6rx" path="res://gfx/map/map_regions.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cdb7paxhs2bk6" path="res://gfx/map/map_borders.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://ctphy0qm2woi" path="res://gfx/map/map_owners_polyfill.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://by6nvfr6k5vrc" path="res://gfx/map/empty_roads.png" id="9"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6f7r"]
+render_priority = 0
+shader = ExtResource("3_b5uhy")
+shader_parameter/roughness_scale = 1.2
+shader_parameter/region_color = null
+shader_parameter/mouse_pos = null
+shader_parameter/brightness = 0.07
+shader_parameter/total_regions = 14.0
+shader_parameter/image_map = ExtResource("5")
+shader_parameter/rough_map = ExtResource("4")
+shader_parameter/region_map = ExtResource("6")
+shader_parameter/border_map = ExtResource("7")
+shader_parameter/road_map = ExtResource("9")
+shader_parameter/map_owners = ExtResource("8")
 
 [node name="map_board" instance=ExtResource("1")]
 script = ExtResource("3")
@@ -10,5 +32,6 @@ script = ExtResource("3")
 [node name="GameBoard" parent="." index="0"]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+surface_material_override/1 = SubResource("ShaderMaterial_v6f7r")
 
 [node name="table" parent="." index="1" instance=ExtResource("2")]

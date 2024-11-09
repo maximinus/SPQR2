@@ -11,7 +11,7 @@ func _ready():
 
 func setup(units) -> void:
 	for i in units:
-		var row_instance = row_resource.instance()
+		var row_instance = row_resource.instantiate()
 		row_instance.setup(i)
 		$Panel/MarginContainer/VBox.add_child(row_instance)
 		resize_container(len(units))
