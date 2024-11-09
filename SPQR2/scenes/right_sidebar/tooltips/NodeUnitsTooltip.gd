@@ -7,7 +7,7 @@ const TOOLTIP_MINIMUM_SIZE = 37
 var row_resource = preload('res://scenes/right_sidebar/helpers/NodeUnitRow.tscn')
 
 func _ready():
-	set_as_toplevel(true)
+	set_as_top_level(true)
 
 func setup(units) -> void:
 	for i in units:
@@ -30,5 +30,5 @@ func _on_Anim_animation_finished(anim_name) -> void:
 func resize_container(total_units):
 	var ysize = TOOLTIP_MINIMUM_SIZE + LOWER_BORDER
 	ysize += UNIT_ROW_SIZE * total_units
-	rect_size.y = ysize
+	size.y = ysize
 	$Background.texture.region.end.y = ysize

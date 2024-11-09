@@ -51,11 +51,11 @@ func _on_UnitDetails_mouse_entered():
 	if tooltip != null:
 		tooltip.hide()
 		tooltip.queue_free()
-	tooltip = tooltip_resource.instance()
+	tooltip = tooltip_resource.instantiate()
 	tooltip.hide()
 	tooltip.setup(unit_data)
 	# place it
-	tooltip.rect_position = rect_global_position + TOOLTIP_OFFSET
+	tooltip.position = global_position + TOOLTIP_OFFSET
 	# populate the data
 	add_child(tooltip)
 	tooltip.fade_in()

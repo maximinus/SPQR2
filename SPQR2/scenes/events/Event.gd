@@ -25,10 +25,10 @@ func ask(question: String, answers: Array) -> void:
 	clear_answers()
 	var click_index = 1
 	for i in answers:
-		var new_answer = answer_scene.instance()
+		var new_answer = answer_scene.instantiate()
 		new_answer.text = i
 		# add callback
-		new_answer.connect('pressed', self, CLICK_CALLBACKS[click_index])
+		new_answer.connect('pressed', Callable(self, CLICK_CALLBACKS[click_index]))
 		click_index += 1
 		$Center/Bck/Mrg/Inner/Answers.add_child(new_answer)
 	show()

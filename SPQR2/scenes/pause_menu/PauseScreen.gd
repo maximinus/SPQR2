@@ -21,9 +21,9 @@ func _ready():
 func display(new_player: AudioStreamPlayer):
 	# passed in is the current music player
 	# set data from config
-	$Tex/Mrg/VBox/MusicVolume/MusicSlider.value = db2linear(config.music_volume) * 100.0
-	$Tex/Mrg/VBox/SfxVolume/SfxSlider.value = db2linear(config.sfx_volume) * 100.0
-	$Tex/Mrg/VBox/Music/CheckBox.pressed = config.music_on
+	$Tex/Mrg/VBox/MusicVolume/MusicSlider.value = db_to_linear(config.music_volume) * 100.0
+	$Tex/Mrg/VBox/SfxVolume/SfxSlider.value = db_to_linear(config.sfx_volume) * 100.0
+	$Tex/Mrg/VBox/Music/CheckBox.button_pressed = config.music_on
 	show()
 	player = new_player
 
@@ -69,7 +69,7 @@ func _on_Button_mouse_entered():
 
 func convert_to_db(value: float) -> float:
 	# we have a value 0 - 100, convert 0 -> 1
-	return linear2db(value / 100.0)
+	return linear_to_db(value / 100.0)
 
 func stop_music():
 	if player.playing == false:

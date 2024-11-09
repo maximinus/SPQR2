@@ -75,21 +75,21 @@ enum ClimateTypes {
 }
 
 enum NodeIcons {
-	FISH = 0
-	WINE = 1
-	COLOSSEUM = 2
-	AQUEDUCT = 3
-	PORT = 4
-	HISTORY = 5
-	MUSIC = 6
-	ENGINEERING = 7
-	TEMPLE = 8
-	MATHS = 9
-	WRITING = 10
-	GRAIN = 11
-	CLOTH = 12
-	GOLD = 13
-	SILVER = 14
+	FISH = 0,
+	WINE = 1,
+	COLOSSEUM = 2,
+	AQUEDUCT = 3,
+	PORT = 4,
+	HISTORY = 5,
+	MUSIC = 6,
+	ENGINEERING = 7,
+	TEMPLE = 8,
+	MATHS = 9,
+	WRITING = 10,
+	GRAIN = 11,
+	CLOTH = 12,
+	GOLD = 13,
+	SILVER = 14,
 	IRON = 15
 }
 

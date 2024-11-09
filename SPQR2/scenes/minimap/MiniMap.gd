@@ -15,32 +15,32 @@ func set_map_cursor(pos: Vector2) -> void:
 	var delta = MAP_SIZE * pos
 	# TODO: Why do we need the extra offset? Should only be a pixel off
 	# Maybe need to account for the border
-	$VBox/Map/Pin.rect_position = delta - Vector2(3.0, 3.0)
+	$VBox/Map/Pin.position = delta - Vector2(3.0, 3.0)
 
 func _on_MapButton_pressed() -> void:
-	$VBox/HBox/MapButton.pressed = true
-	$VBox/HBox/ArmyButton.pressed = false
-	$VBox/HBox/CoinButton.pressed = false#
+	$VBox/HBox/MapButton.button_pressed = true
+	$VBox/HBox/ArmyButton.button_pressed = false
+	$VBox/HBox/CoinButton.button_pressed = false#
 	play_mouse_click()
 	emit_signal('view_clicked', cn.RegionDisplay.OWNERS)
 
 func _on_ArmyButton_pressed() -> void:
-	$VBox/HBox/MapButton.pressed = false
-	$VBox/HBox/ArmyButton.pressed = true
-	$VBox/HBox/CoinButton.pressed = false
+	$VBox/HBox/MapButton.button_pressed = false
+	$VBox/HBox/ArmyButton.button_pressed = true
+	$VBox/HBox/CoinButton.button_pressed = false
 	play_mouse_click()
 	emit_signal('view_clicked', cn.RegionDisplay.ARMY)
 
 func _on_CoinButton_pressed() -> void:
-	$VBox/HBox/MapButton.pressed = false
-	$VBox/HBox/ArmyButton.pressed = false
-	$VBox/HBox/CoinButton.pressed = true
+	$VBox/HBox/MapButton.button_pressed = false
+	$VBox/HBox/ArmyButton.button_pressed = false
+	$VBox/HBox/CoinButton.button_pressed = true
 	play_mouse_click()
 	emit_signal('view_clicked', cn.RegionDisplay.MONEY)
 
 func _on_Map_gui_input(event) -> void:
 	# left mouse click?
-	if event.is_pressed() and event.button_index == BUTTON_LEFT:
+	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		# reduce to UV co-ords and signal
 		var pos = event.position / MAP_SIZE
 		play_mouse_click()

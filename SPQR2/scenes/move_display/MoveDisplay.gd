@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 const DISPLAY_HEIGHT: float = 0.01
 const MARGIN_INCREASE: float = 1.2
@@ -34,29 +34,29 @@ func setup(image_data: Array, location) -> void:
 		# create the new mesh
 		var quad: PlaneMesh = PlaneMesh.new()
 		quad.set_size(mesh_size)
-		var mesh: CSGMesh = CSGMesh.new()
+		var mesh: CSGMesh3D = CSGMesh3D.new()
 		mesh.set_mesh(quad)
 		# add texture, make see-through
-		var m_material = SpatialMaterial.new()
-		m_material.set_feature(SpatialMaterial.FEATURE_TRANSPARENT, true)
+		var m_material = StandardMaterial3D.new()
+		m_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 		# does the node contain an enemy unit?
 		# i.move_to is the id of the road
 		# we also have the id of the current location  - location.id
 		if data.node_has_enemy_unit(data.roads[i.move_to].get_destination(location.id)):
-			m_material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, i.red_image)
+			m_material.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, i.red_image)
 			m_material.set_emission(RED_ARROW)
 			is_battle = true
 		else:
-			m_material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, i.image)
+			m_material.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, i.image)
 			m_material.set_emission(WHITE_ARROW)
-		m_material.set_feature(SpatialMaterial.FEATURE_EMISSION, false)
+		m_material.set_feature(StandardMaterial3D.FEATURE_EMISSION, false)
 		mesh.set_material(m_material)
 		# position is in pixels, translate and offset with node position
 		var map_p = helpers.pixel_to_map(i.pos) - node_position
 		# we also need to offset the image by half it's size, otherwise it is drawn centered
 		map_p += mesh_size / 2.0
-		mesh.translation.y = DISPLAY_HEIGHT
-		mesh.translation = Vector3(map_p.x, DISPLAY_HEIGHT, map_p.y)
+		mesh.position.y = DISPLAY_HEIGHT
+		mesh.position = Vector3(map_p.x, DISPLAY_HEIGHT, map_p.y)
 		
 		# convert the points to a Vector2 array
 		var vec_points: Array = []
@@ -97,11 +97,11 @@ func create_bounding_circle() -> void:
 	# but we'll also increase the distance by a small margin
 	bound_distance = furthest * MARGIN_INCREASE
 
-func show_line_highlight(mat: SpatialMaterial) -> void:
-	mat.set_feature(SpatialMaterial.FEATURE_EMISSION, true)
+func show_line_highlight(mat: StandardMaterial3D) -> void:
+	mat.set_feature(StandardMaterial3D.FEATURE_EMISSION, true)
 
-func hide_line_highlight(mat: SpatialMaterial) -> void:
-	mat.set_feature(SpatialMaterial.FEATURE_EMISSION, false)
+func hide_line_highlight(mat: StandardMaterial3D) -> void:
+	mat.set_feature(StandardMaterial3D.FEATURE_EMISSION, false)
 
 func get_closest_line():
 	var current_coords = data.get_mouse_coords()

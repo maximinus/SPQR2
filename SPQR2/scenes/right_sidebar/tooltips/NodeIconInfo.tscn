@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://gfx/ui_elements/right_sidebar/node_icons_atlas.png" type="Texture" id=1]
-[ext_resource path="res://gfx/fonts/nimbus_roman_small.tres" type="DynamicFont" id=2]
+[ext_resource path="res://gfx/ui_elements/right_sidebar/node_icons_atlas.png" type="Texture2D" id=1]
+[ext_resource path="res://gfx/fonts/nimbus_roman_small.tres" type="FontFile" id=2]
 [ext_resource path="res://scenes/right_sidebar/tooltips/NodeIconInfo.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -10,9 +10,9 @@ atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 22, 22 )
 
 [node name="NodeIconInfo" type="VBoxContainer"]
-margin_right = 224.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 224, 22 )
+offset_right = 224.0
+offset_bottom = 22.0
+custom_minimum_size = Vector2( 224, 22 )
 size_flags_horizontal = 3
 script = ExtResource( 3 )
 __meta__ = {
@@ -20,30 +20,30 @@ __meta__ = {
 }
 
 [node name="Mrg" type="MarginContainer" parent="."]
-margin_right = 224.0
-margin_bottom = 34.0
+offset_right = 224.0
+offset_bottom = 34.0
 size_flags_vertical = 3
-custom_constants/margin_bottom = 12
+theme_override_constants/margin_bottom = 12
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBox" type="HBoxContainer" parent="Mrg"]
-margin_right = 224.0
-margin_bottom = 22.0
+offset_right = 224.0
+offset_bottom = 22.0
 
 [node name="Icon" type="TextureRect" parent="Mrg/HBox"]
-margin_right = 22.0
-margin_bottom = 22.0
+offset_right = 22.0
+offset_bottom = 22.0
 texture = SubResource( 1 )
 
 [node name="Label" type="Label" parent="Mrg/HBox"]
-margin_left = 26.0
-margin_right = 224.0
-margin_bottom = 22.0
+offset_left = 26.0
+offset_right = 224.0
+offset_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_colors/font_color = Color( 0.705882, 0.705882, 0.705882, 1 )
-custom_fonts/font = ExtResource( 2 )
+theme_override_colors/font_color = Color( 0.705882, 0.705882, 0.705882, 1 )
+theme_override_fonts/font = ExtResource( 2 )
 text = "Hello world"
 autowrap = true

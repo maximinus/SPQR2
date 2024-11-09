@@ -1,5 +1,5 @@
-extends Sprite
-tool
+@tool
+extends Sprite2D
 
 class EditorUnit:
 	var foot: float
@@ -7,10 +7,10 @@ class EditorUnit:
 	var quality: int
 	var morale: int
 
-export(String) var node_name
-export(String) var population
+@export var node_name: String
+@export var population: String
 
-export var things: Array
+@export var things: Array
 
 func _ready():
 	pass

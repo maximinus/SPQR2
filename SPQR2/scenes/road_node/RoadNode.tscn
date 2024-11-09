@@ -3,7 +3,7 @@
 [ext_resource path="res://gfx/cities/city.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/road_node/RoadNode.gd" type="Script" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_transparent = true
 albedo_color = Color( 0.862745, 0.862745, 0.941176, 0.313726 )
 roughness = 0.5
@@ -17,7 +17,7 @@ height = 0.005
 radial_segments = 24
 rings = 1
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="StandardMaterial3D" id=3]
 albedo_color = Color( 0.819608, 0.443137, 0.164706, 1 )
 roughness = 0.2
 emission_enabled = true
@@ -26,18 +26,18 @@ emission_energy = 0.5
 emission_operator = 0
 emission_on_uv2 = false
 
-[node name="RoadNode" type="Spatial"]
+[node name="RoadNode" type="Node3D"]
 script = ExtResource( 2 )
 
 [node name="city" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.003, 0 )
+transform = Transform3D( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.003, 0 )
 
-[node name="counter" type="CSGMesh" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003, 0 )
+[node name="counter" type="CSGMesh3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003, 0 )
 mesh = SubResource( 2 )
 
-[node name="move" type="CSGCylinder" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.008, 0 )
+[node name="move" type="CSGCylinder3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.008, 0 )
 visible = false
 radius = 0.07
 height = 0.002

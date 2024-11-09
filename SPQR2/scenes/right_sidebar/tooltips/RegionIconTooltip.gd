@@ -3,7 +3,7 @@ extends Control
 var min_size_x: int = 42
 
 func _ready():
-	set_as_toplevel(true)
+	set_as_top_level(true)
 
 func setup(tex: AtlasTexture, title: String, message: String):
 	$Panel/Mrg/VBox/HBox/Icon.texture = tex
@@ -13,11 +13,11 @@ func setup(tex: AtlasTexture, title: String, message: String):
 	$Panel/Mrg/VBox/HBox/Message.visible = true
 
 func _on_Message_resized():
-	var new_size = $Panel/Mrg/VBox/HBox/Message.rect_size.y + min_size_x
-	rect_size.y = new_size
-	$Panel.rect_size.y = new_size
+	var new_size = $Panel/Mrg/VBox/HBox/Message.size.y + min_size_x
+	size.y = new_size
+	$Panel.size.y = new_size
 	# change size and height of atlas texture
-	$Background.rect_size.y = new_size
+	$Background.size.y = new_size
 	$Background.texture.region.end.y = new_size
 
 func fade_in():

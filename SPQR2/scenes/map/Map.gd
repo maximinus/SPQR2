@@ -24,7 +24,7 @@ func _ready():
 	# load the region texture
 	var image = load('res://gfx/map/map_regions.png')
 	region_map = image.get_data()
-	region_map.lock()
+	false # region_map.lock() # TODOConverter3To4, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	helpers.log('Loaded region map')
 	dragging = false
 	region_material = $Map.get_material()
@@ -90,7 +90,7 @@ func getCurrentRegion():
 	# get the colour under this pixel from the region
 	var color = region_map.get_pixel(mouse_pos.x, mouse_pos.y)
 	# use this to update the shader
-	region_material.set_shader_param('region_color', color);
+	region_material.set_shader_parameter('region_color', color);
 
 func checkMapMoves(delta) -> void:
 	if checkMouseDrag() == false:
@@ -110,7 +110,9 @@ func _on_Area2D_input_event(_viewport, event, _shape_idx):
 		var color = region_map.get_pixel(mouse_pos.x, mouse_pos.y)
 		var g = int(color.g * 256.0)
 		var b = int(color.b * 256.0)
-		var clicked_region = MapRegion.getMatch(g, b)
+		# TODO: Fix this
+		#var clicked_region = MapRegion.getMatch(g, b)
+		var clicked_region = null
 		if clicked_region == null:
 			# no match, no region
 			return
@@ -122,10 +124,10 @@ func _input(event):
 		return
 	if not event.is_pressed():
 		return
-	if event.button_index == BUTTON_WHEEL_UP:
+	if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 		if zoom_goal > zoom_min:
 			zoom_goal = max(zoom_goal - zoom_speed, zoom_min)
-	if event.button_index == BUTTON_WHEEL_DOWN:
+	if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 		if zoom_goal < zoom_max:
 			zoom_goal = min(zoom_goal + zoom_speed, zoom_max)
 	print(zoom_goal)

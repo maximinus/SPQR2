@@ -1,16 +1,16 @@
-extends Sprite
+extends Sprite2D
 
-export(String) var region_name  = 'None'
-export(String) var city_name = 'None'
-export(int) var population = 0
-export(int) var culture = 0
-export(int) var wealth = 0
-export(int) var manpower = 0
-export(int) var loyalty = 0
-export(int) var rural_pop = 0
+@export var region_name: String  = 'None'
+@export var city_name: String = 'None'
+@export var population: int = 0
+@export var culture: int = 0
+@export var wealth: int = 0
+@export var manpower: int = 0
+@export var loyalty: int = 0
+@export var rural_pop: int = 0
 # ID taken from the region it is in
 # but we still need a "node" id
-export(int) var id = 0
+@export var id: int = 0
 
 func _ready():
 	pass

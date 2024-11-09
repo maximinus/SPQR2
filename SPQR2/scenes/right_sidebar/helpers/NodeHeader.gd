@@ -45,12 +45,12 @@ func _on_NodeHeader_mouse_entered() -> void:
 	if tooltip != null:
 		tooltip.hide()
 		tooltip.queue_free()
-	tooltip = tooltip_resource.instance()
+	tooltip = tooltip_resource.instantiate()
 	tooltip.hide()
 	var title_string = $Mrg/HBox/Mrg/Title.text + ' Details'
 	tooltip.setup(title_string, get_icon_details())
 	# place it
-	tooltip.rect_position = rect_global_position + TOOLTIP_OFFSET
+	tooltip.position = global_position + TOOLTIP_OFFSET
 	# populate the data
 	add_child(tooltip)
 	tooltip.fade_in()

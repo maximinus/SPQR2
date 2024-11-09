@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://editor/scenes/MapNode.gd" type="Script" id=1]
-[ext_resource path="res://gfx/editor/unit_icon.png" type="Texture" id=2]
-[ext_resource path="res://gfx/editor/city_icon.png" type="Texture" id=3]
-[ext_resource path="res://editor/unit_images/enemy.png" type="Texture" id=4]
-[ext_resource path="res://editor/unit_images/roman.png" type="Texture" id=5]
+[ext_resource path="res://gfx/editor/unit_icon.png" type="Texture2D" id=2]
+[ext_resource path="res://gfx/editor/city_icon.png" type="Texture2D" id=3]
+[ext_resource path="res://editor/unit_images/enemy.png" type="Texture2D" id=4]
+[ext_resource path="res://editor/unit_images/roman.png" type="Texture2D" id=5]
 [ext_resource path="res://resources/EditorUnitResource.gd" type="Script" id=6]
 
 [sub_resource type="Resource" id=1]
@@ -19,19 +19,19 @@ script = ExtResource( 1 )
 unit_type = "None"
 Unit1 = SubResource( 1 )
 
-[node name="CityImage" type="Sprite" parent="."]
+[node name="CityImage" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource( 3 )
 
-[node name="Nodeimage" type="Sprite" parent="."]
+[node name="Nodeimage" type="Sprite2D" parent="."]
 texture = ExtResource( 2 )
 
-[node name="RomanImage" type="Sprite" parent="."]
+[node name="RomanImage" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
 
-[node name="EnemyImage" type="Sprite" parent="."]
+[node name="EnemyImage" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )

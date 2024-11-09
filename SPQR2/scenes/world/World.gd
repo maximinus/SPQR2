@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 const SCROLL_SPEED = 0.6
 
@@ -15,9 +15,9 @@ const PAN_SCALING = 10.0
 const MOUSE_ZOOM_SCALING = 500.0
 const WINDOW_MIN_SIZE = Vector2(800, 600)
 
-onready var zoom_tween: Tween = $Tweens/ZoomTween
-onready var camera_tween: Tween = $Tweens/CameraTween
-onready var camera = $Camera
+var zoom_tween
+var camera_tween
+@onready var camera = $Camera3D
 
 # size of area can view on different zooms
 # vec3 as x, y_top, y_bottom
@@ -44,7 +44,8 @@ var unit_selected = null
 
 func _ready():
 	# ensure window size has a minimum
-	OS.min_window_size = WINDOW_MIN_SIZE
+	get_window().min_size = WINDOW_MIN_SIZE
+	camera_tween = null
 	# setup all data
 	data.load_all_data()
 	# start music if needed
@@ -52,9 +53,7 @@ func _ready():
 		$Music.play()
 	$CanvasLayer/PauseScreen.player = $Music
 	# load the region texture
-	var image = load('res://gfx/map/map_regions_uncompressed.png')
-	region_map = image.get_data()
-	region_map.lock()
+	region_map = Image.load_from_file('res://gfx/map/map_regions_uncompressed.png')
 	helpers.log('Loaded region map data')
 	dragging = false
 	add_nodes()
@@ -84,7 +83,7 @@ func _process(delta):
 
 func _notification(event):
 	# handle closing window
-	if event == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+	if event == NOTIFICATION_WM_CLOSE_REQUEST:
 		helpers.log('Quitting game - window closed')
 		data.cleanup()
 		get_tree().quit()
@@ -122,7 +121,7 @@ func _input(event) -> void:
 	if event.is_action_pressed("zoom_out"):
 		set_zoom_level(zoom_level + ZOOM_FACTOR)
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed == true:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.button_pressed == true:
 			# we could have check a unit, if the unit is accepting
 			if unit_selected != null:
 				if unit_selected.check_click() == true:
@@ -153,24 +152,24 @@ func check_region_click(coords) -> void:
 
 func add_nodes() -> void:
 	for i in data.rnodes:
-		var new_node = node_scene.instance()
+		var new_node = node_scene.instantiate()
 		new_node.setup(i)
 		var pos = Vector3(i.position.x, 0.0, i.position.y)
-		new_node.translation = pos
+		new_node.position = pos
 		new_node.rotation_degrees.y = i.angle
 		$Nodes.add_child(new_node)
 
 func add_units() -> void:
 	for i in data.units:
-		var unit_instance = unit_scene.instance()
+		var unit_instance = unit_scene.instantiate()
 		unit_instance.setup(data.get_unit_owner(i.id), i)
 		var unit_pos = i.get_map_position()
-		unit_instance.translation.x = unit_pos[0]
-		unit_instance.translation.z = unit_pos[1]
+		unit_instance.position.x = unit_pos[0]
+		unit_instance.position.z = unit_pos[1]
 		# add a manual callback
-		unit_instance.connect('unit_clicked', self, 'unit_clicked')
-		unit_instance.connect('unit_unclicked', self, 'unit_unclicked')
-		unit_instance.connect('check_shared_regions', self, 'update_region_shader')
+		unit_instance.connect('unit_clicked', Callable(self, 'unit_clicked'))
+		unit_instance.connect('unit_unclicked', Callable(self, 'unit_unclicked'))
+		unit_instance.connect('check_shared_regions', Callable(self, 'update_region_shader'))
 		$Soldiers.add_child(unit_instance)
 
 func unit_clicked(unit_node):
@@ -226,7 +225,7 @@ func check_mouse_drag() -> bool:
 			# false means to return by x/z, not by map pixels
 			var current_move = get_mouse_map_coords(false)
 			var drag_move = (drag_offset - current_move) / PAN_SCALING
-			camera.translation = check_panning_limits(Vector3(drag_move.x, 0.0, drag_move.y))
+			camera.position = check_panning_limits(Vector3(drag_move.x, 0.0, drag_move.y))
 			return true
 		else:
 			dragging = false
@@ -251,10 +250,9 @@ func set_zoom_level(value) -> void:
 	var final_angle = -55.0 - angle_delta
 	# update what we can see
 	calculate_view_area()
-	camera_tween.interpolate_property(
-		$Camera, 'rotation_degrees:x', $Camera.rotation_degrees.x,
-		final_angle, ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_OUT)
-	camera_tween.start()
+	camera_tween = create_tween()
+	camera_tween.tween_property($Camera3D, 'rotation_degrees:x',
+		final_angle, ZOOM_DURATION).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	# if we zoom and are off-centre with the mouse, we must also move that way
 	# cuurently we have the details per pixel, so apply scaling
 	var delta = (map_intersect - camera_intersect) / MOUSE_ZOOM_SCALING
@@ -263,10 +261,9 @@ func set_zoom_level(value) -> void:
 	# add the zoom
 	final_move.y = zoom_level
 	# tween the camera to final_move
-	zoom_tween.interpolate_property(
-		$Camera, 'translation', $Camera.translation, final_move,
-		ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_OUT)
-	zoom_tween.start()
+	zoom_tween = create_tween()
+	zoom_tween.tween_property($Camera3D, 'position', final_move, 
+		ZOOM_DURATION).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 func scale_plane_coords(x, y) -> Vector2:
 	# given plane coords, return pixel coords
@@ -298,15 +295,15 @@ func calculate_intersections() -> void:
 	# calculate what the camera and mouse pointer are looking at
 	map_intersect = get_mouse_map_coords(true)
 	# do the camera aim manually
-	var zpos = camera.translation.y * tan(deg2rad(90.0 + camera.rotation_degrees.x))
+	var zpos = camera.position.y * tan(deg_to_rad(90.0 + camera.rotation_degrees.x))
 	# camera zpos is high when camera is looking at bottom, so offset is taken away (offset is _+ve)
-	camera_intersect = scale_plane_coords(camera.translation.x, camera.translation.z - zpos)
+	camera_intersect = scale_plane_coords(camera.position.x, camera.position.z - zpos)
 
 func check_panning_limits(move: Vector3) -> Vector3:
 	# restrict the given move to the view area
 	# return the final camera position
 	# only need to look at x and z
-	move += camera.translation
+	move += camera.position
 	# limit from -view_area to +view_area
 	move.x = min(max(move.x, -view_area.x), view_area.x)
 	move.z = min(max(move.z, view_area.z), view_area.y)
@@ -325,11 +322,11 @@ func check_cursor_keys(delta) -> void:
 	if Input.is_action_pressed('down'):
 		move.z += scaling
 	if move != Vector3(0.0, 0.0, 0.0):
-		camera.translation = check_panning_limits(move)
+		camera.position = check_panning_limits(move)
 
 func calculate_view_area() -> void:
 	# calculate the area which can be viewed, based on the current zoom
-	var zoom = camera.translation.y
+	var zoom = camera.position.y
 	# at zoom_min we should have VIEW_AREA_ZOOM_MIN
 	# at zoom_max we should have VIEW_AREA_ZOOM_MAX
 	var diff = (VIEW_AREA_ZOOM_MAX - VIEW_AREA_ZOOM_MIN) / (MAX_ZOOM - 1)
@@ -348,8 +345,10 @@ func _on_Overlay_mini_map(pos) -> void:
 	pos -= camera_pos
 	var new_pos = check_panning_limits(Vector3(pos.x, 0.0, pos.y))
 	# no need to tween, but if a camera tween exists, stop it
-	camera_tween.stop_all()
-	camera.translation = new_pos
+	if camera_tween != null:
+		camera_tween.kill()
+		camera_tween = null
+	camera.position = new_pos
 	# finally, we need update the pin position (since panning limits may have restricted it)
 	calculate_intersections()
 	update_minimap_pin()

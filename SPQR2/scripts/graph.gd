@@ -5,11 +5,11 @@ extends Node
 
 const DEFAULT_WEIGHT = 1.0
 
-var astar_data: AStar
+var astar_data: AStar3D
 
 func setup():
 	# run this at game startup from data module, after data has been setup
-	astar_data = AStar.new()
+	astar_data = AStar3D.new()
 	for i in data.rnodes:
 		var pos = Vector3(i.position.x, 0.0, i.position.y)
 		astar_data.add_point(i.id, pos, DEFAULT_WEIGHT)
@@ -18,6 +18,6 @@ func setup():
 	for i in data.roads:
 		astar_data.connect_points(i.start_node, i.end_node)
 
-func get_connected_nodes(node_id: int) -> PoolIntArray:
+func get_connected_nodes(node_id: int) -> PackedInt64Array:
 	# return a list of all nodes that are connected to this node
 	return astar_data.get_point_connections(node_id)

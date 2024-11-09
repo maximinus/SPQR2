@@ -29,7 +29,7 @@ func get_nodes():
 	for i in nodes:
 		var new_node = data.NewNode.new(i)
 		# now add some units 1 - 4
-		var total = int(rand_range(0.51, 4.0))
+		var total = int(randf_range(0.51, 4.0))
 		new_node.units = get_units(total)
 		fnodes.append(new_node)
 	return fnodes

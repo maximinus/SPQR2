@@ -1,21 +1,21 @@
-tool
+@tool
 extends Node2D
 
-export(String) var city_name = 'None'
-export(int) var population = 0
-export(bool) var has_city setget set_city_state
-export(int) var wealth = 0
-export(int) var romanisation = 0
-export(int) var happiness = 0
-export(int) var christian = 0
+@export var city_name: String = 'None'
+@export var population: int = 0
+@export var has_city: bool: set = set_city_state
+@export var wealth: int = 0
+@export var romanisation: int = 0
+@export var happiness: int = 0
+@export var christian: int = 0
 # unit details
-export(String, 'None', 'Roman', 'Celt') var unit_type setget set_unit_type
+@export var unit_type : set = set_unit_type
 
 # and the units
-export(Resource) var Unit1
-export(Resource) var Unit2
-export(Resource) var Unit3
-export(Resource) var Unit4
+@export var Unit1: Resource
+@export var Unit2: Resource
+@export var Unit3: Resource
+@export var Unit4: Resource
 
 var id:int = 0
 var fully_loaded = false

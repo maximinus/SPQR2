@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://gfx/fonts/regular_roman.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gfx/fonts/regular_roman.tres" type="FontFile" id=1]
 [ext_resource path="res://scenes/events/EventButton.gd" type="Script" id=2]
 [ext_resource path="res://sfx/ui/button_rollover.wav" type="AudioStream" id=3]
 [ext_resource path="res://sfx/ui/button_click.wav" type="AudioStream" id=4]
@@ -26,14 +26,14 @@ border_width_bottom = 1
 border_color = Color( 0.627451, 0.415686, 0.270588, 1 )
 
 [node name="EventButton" type="Button"]
-margin_right = 550.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 550, 0 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+offset_right = 550.0
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 550, 0 )
+theme_override_styles/hover = SubResource( 1 )
+theme_override_styles/normal = SubResource( 2 )
+theme_override_fonts/font = ExtResource( 1 )
+theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+theme_override_colors/font_hover_color = Color( 0, 0, 0, 1 )
 text = "ERROR"
 clip_text = true
 align = 0

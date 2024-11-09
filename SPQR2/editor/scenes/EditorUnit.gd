@@ -1,12 +1,12 @@
-tool
-extends Sprite
+@tool
+extends Sprite2D
 
-export(String) var city_name = 'None'
-export(int) var population = 0 setget set_population
-export(int) var culture = 0
-export(int) var wealth = 0
-export(int) var manpower = 0
-export(int) var romanisation = 0
+@export var city_name: String = 'None'
+@export var population: int = 0: set = set_population
+@export var culture: int = 0
+@export var wealth: int = 0
+@export var manpower: int = 0
+@export var romanisation: int = 0
 
 var id:int = 0
 

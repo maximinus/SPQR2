@@ -43,7 +43,7 @@ func map_to_pixel(pos: Vector2) -> Vector2:
 func get_tooltip_position(pos: Vector2, size: Vector2) -> Vector2:
 	# given the position and size of a tooltip, make sure it is on screen
 	# the pos co-ord is guarenteed to be on screen
-	var window_size = OS.get_window_size()
+	var window_size = get_window().get_size()
 	if pos.x + size.x > window_size.x:
 		pos.x -= (pos.x + size.x) - window_size.x
 	if pos.y + size.y > window_size.y:

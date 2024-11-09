@@ -3,9 +3,9 @@
 [ext_resource path="res://gfx/map_table/table.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/map_board/map_board.tscn" type="PackedScene" id=2]
 
-[node name="GameMap" type="Spatial"]
+[node name="GameMap" type="Node3D"]
 
 [node name="table" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00739859, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00739859, 0 )
 
 [node name="map_board" parent="." instance=ExtResource( 2 )]

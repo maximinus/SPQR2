@@ -1,13 +1,13 @@
-tool
+@tool
 extends HBoxContainer
 
-export(Texture) var icon_texture setget set_icon_texture
-export(String) var icon_text setget set_icon_text
+@export var icon_texture: Texture2D: set = set_icon_texture
+@export var icon_text: String: set = set_icon_text
 
 func _ready():
 	pass
 
-func set_icon_texture(new_texture: Texture) -> void:
+func set_icon_texture(new_texture: Texture2D) -> void:
 	$Mrg1/Icon.texture = new_texture
 	icon_texture = new_texture
 

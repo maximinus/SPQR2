@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 var started: bool = false
 
@@ -9,14 +9,14 @@ func _process(_delta):
 	if started == false:
 		start_animation()
 	started = true
-	print($CSGMesh.rotation_degrees.y)
+	print($CSGMesh3D.rotation_degrees.y)
 
 func start_animation() -> void:
 	# now we build up the animations. Remove the old one if it exists
-	$MoveUnit.remove_animation('move')
+	$MoveUnit.remove_animation_library('move')
 	var anim = Animation.new()
 	var index = anim.add_track(Animation.TYPE_VALUE)
-	anim.track_set_path(index, @'CSGMesh:rotation_degrees:y')
+	anim.track_set_path(index, @'CSGMesh3D:rotation_degrees:y')
 	anim.track_insert_key(index, 0.0, rotation_degrees.y)
 
 	var rotate_end = 60.0

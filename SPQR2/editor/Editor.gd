@@ -16,9 +16,9 @@ const ROAD_COLOR = Color(0.8, 0.8, 0.8, 1.0)
 const NORMAL_ROAD = Color(0.7, 0.5, 0.3, 1.0)
 
 # Some met-information
-export(int) var year
-export(int) var gold
-export(int) var silver
+@export var year: int
+@export var gold: int
+@export var silver: int
 
 var region_map: Image
 var complete = false
@@ -31,7 +31,7 @@ var all_units: Array = []
 func _ready():
 	var image = load('res://gfx/map/map_regions_uncompressed.png')
 	region_map = image.get_data()
-	region_map.lock()
+	false # region_map.lock() # TODOConverter3To4, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 
 func _process(_delta):
 	# all data has been loaded by now
@@ -78,7 +78,7 @@ func get_region_color(pos: Vector2):
 
 func get_all_regions():
 	for i in $RegionMap/Regions.get_children():
-		var region_id = get_region_index(i.rect_position)
+		var region_id = get_region_index(i.position)
 		region_data.append({'id': region_id,
 							'name': i.region_name,
 							'owner_id': i.get_owner_id(),
@@ -178,8 +178,8 @@ func get_road_textures() -> void:
 		area_size.x = ceil(area_size.x) + (cn.ROAD_IMAGE_BORDER.x * 2.0)
 		area_size.y = ceil(area_size.y) + (cn.ROAD_IMAGE_BORDER.y * 2.0)
 		# adjust viewport sizes
-		$ViewC.rect_size = area_size
-		$ViewC/Viewport.size = area_size
+		$ViewC.size = area_size
+		$ViewC/SubViewport.size = area_size
 		# create a new line 2D using the points - area_min so we are at the origin
 		
 		# now we need to create the lines so we can add to the viewport
@@ -209,7 +209,7 @@ func get_road_textures() -> void:
 			if EXPORT_ROADS == true:
 				# if folder does not exist, create it
 				var folder_path = 'res://editor/road_images/' + folder
-				var dir = Directory.new()
+				var dir = DirAccess.new()
 				if not dir.dir_exists(folder_path):
 					# create it
 					var error = dir.make_dir(folder_path)
@@ -218,12 +218,12 @@ func get_road_textures() -> void:
 						return
 		
 				for j in all_lines:
-					$ViewC/Viewport.add_child(j)
+					$ViewC/SubViewport.add_child(j)
 
 				# wait 2 frames is the standard advice
-				yield(get_tree(), 'idle_frame')
-				yield(get_tree(), 'idle_frame')
-				var img = $ViewC/Viewport.get_texture().get_data()
+				await get_tree().idle_frame
+				await get_tree().idle_frame
+				var img = $ViewC/SubViewport.get_texture().get_data()
 				# due to opengl, image is flipped on the y axis
 				img.flip_y()
 				# finally, save it
@@ -232,10 +232,10 @@ func get_road_textures() -> void:
 				helpers.log('Saved ' + filename)
 			
 				# remove all children ready for next time
-				for j in $ViewC/Viewport.get_children():
+				for j in $ViewC/SubViewport.get_children():
 					j.queue_free()
 				# wait a frame for that to be done
-				yield(get_tree(), 'idle_frame')
+				await get_tree().idle_frame
 
 		# save the required json data - subtract offset to allow for spacing
 		var loc = area_min - cn.ROAD_IMAGE_BORDER
@@ -274,7 +274,7 @@ func get_game_data():
 func save_data(data) -> void:
 	var file = File.new()
 	file.open(DATA_FILE, File.WRITE)
-	var json_data = JSON.print(data, '  ', false)
+	var json_data = JSON.stringify(data, '  ', false)
 	file.store_string(json_data)
 	file.close()
 	helpers.log('Saved roads, nodes and regions to ' + DATA_FILE)
@@ -298,15 +298,15 @@ func build_arrow_away(all_points: Array, acol: Color) -> Array:
 	# calculate final angle
 	var p2: Vector2 = all_points[-2]
 	var p1: Vector2 = all_points[-1]
-	var last_angle: float = rad2deg((p2 - p1).angle())
+	var last_angle: float = rad_to_deg((p2 - p1).angle())
 	# make the 2 new angles
 	var angle1: float = last_angle - ARROW_ANGLE
 	var angle2: float = last_angle + ARROW_ANGLE
 	# we need to move from this point to a new point on the same angle
-	var new_pos1: Vector2 = Vector2(ARROW_LENGTH * cos(deg2rad(angle1)),
-									ARROW_LENGTH * sin(deg2rad(angle1))) + p1
-	var new_pos2: Vector2 = Vector2(ARROW_LENGTH * cos(deg2rad(angle2)),
-									ARROW_LENGTH * sin(deg2rad(angle2))) + p1
+	var new_pos1: Vector2 = Vector2(ARROW_LENGTH * cos(deg_to_rad(angle1)),
+									ARROW_LENGTH * sin(deg_to_rad(angle1))) + p1
+	var new_pos2: Vector2 = Vector2(ARROW_LENGTH * cos(deg_to_rad(angle2)),
+									ARROW_LENGTH * sin(deg_to_rad(angle2))) + p1
 	# create the 2 new lines
 	var line1 = Line2D.new()
 	line1.add_point(p1)

@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 # Node to display a unit model on screen
 
@@ -6,7 +6,7 @@ const MODEL_SCALE = Vector3(0.07, 0.07, 0.07)
 # world position change per second
 const UNIT_MOVE_SPEED = 0.8
 
-signal unit_clicked
+signal unit_left_clicked
 signal unit_unclicked
 signal check_shared_regions
 
@@ -33,9 +33,9 @@ func setup(display: int, unit) -> void:
 	unit_data = unit
 	road_data = data.get_road_arrows_from_node_id(unit_data.location.id)
 	$roman_spear.queue_free()
-	var model_instance = models[display].instance()
-	model_instance.set_scale(MODEL_SCALE)
-	model_instance.connect('clicked', self, 'unit_clicked')
+	var model_instance = models[display].instantiate()
+	model_instance.set_figure_scale(MODEL_SCALE)
+	model_instance.connect('clicked', Callable(self, 'unit_clicked'))
 	add_child(model_instance)
 
 func unit_clicked():
@@ -117,7 +117,7 @@ func start_move(move_data: Array, is_battle: bool) -> void:
 			helpers.log('Error: Roads do not connect!')
 			return
 		path_points = road_data.points.duplicate()
-		path_points.invert()
+		path_points.reverse()
 		end_position = data.rnodes[road_data.start_node].position
 	else:
 		path_points = road_data.points.duplicate()
@@ -128,7 +128,7 @@ func start_move(move_data: Array, is_battle: bool) -> void:
 		data.move_unit(unit_data.id, move_data[0])
 		
 	# now we have a list of points. Replace the starting point with our position
-	path_points[0] = Vector2(translation.x, translation.z)
+	path_points[0] = Vector2(position.x, position.z)
 	# replace the end position with the position of the node we are going to
 	path_points[-1] = end_position
 	
@@ -141,17 +141,17 @@ func start_move(move_data: Array, is_battle: bool) -> void:
 		path_points = adjust_points_for_battle_move(path_points, end_position)
 		
 	# now we build up the animations. Remove the old one if it exists
-	$MoveUnit.remove_animation('move')
-	$MoveUnit.remove_animation('rotate')
+	$MoveUnit.remove_animation_library('move')
+	$MoveUnit.remove_animation_library('rotate')
 	var anim = Animation.new()
-	var track_index = anim.add_track(Animation.TYPE_TRANSFORM)
-	anim.track_set_path(track_index, @'.:transform/translation')
+	var track_index = anim.add_track(Animation.TYPE_POSITION_3D)
+	anim.track_set_path(track_index, '.:transform/position')
 	var total_time: float = 0.0
 	# stay where we are vertically
-	var ypos = translation.y
+	var ypos = position.y
 	# start where we are
-	anim.transform_track_insert_key(track_index, 0.0, translation,
-			Quat(0.0, 0.0, 0.0, 1.0), Vector3(1.0, 1.0, 1.0))
+	anim.transform_track_insert_key(track_index, 0.0, position,
+			Quaternion(0.0, 0.0, 0.0, 1.0), Vector3(1.0, 1.0, 1.0))
 			
 	# set up rotation
 	# Unit starts at angle_degres = 0, pointing towards you
@@ -160,7 +160,7 @@ func start_move(move_data: Array, is_battle: bool) -> void:
 	# The unit rotates on the y axis
 	# TODO: Why does this not work?
 	var rotate_index = anim.add_track(Animation.TYPE_VALUE)
-	anim.track_set_path(rotate_index, @'.:rotation_degrees:y')
+	anim.track_set_path(rotate_index, '.:rotation_degrees:y')
 	anim.track_insert_key(rotate_index, 0.0, rotation_degrees.y)
 			
 	for i in range(1, len(path_points)):
@@ -169,14 +169,14 @@ func start_move(move_data: Array, is_battle: bool) -> void:
 		var time = start.distance_to(destination) / UNIT_MOVE_SPEED
 		total_time += time
 		anim.transform_track_insert_key(track_index, total_time, Vector3(destination.x, ypos, destination.y),
-			Quat(0.0, 0.0, 0.0, 1.0), Vector3(1.0, 1.0, 1.0))
+			Quaternion(0.0, 0.0, 0.0, 1.0), Vector3(1.0, 1.0, 1.0))
 			
 		# now calculate rotation
 		# the starting point is what we have now, the next we need calculate, unless this is the end
 		var rotate_end: float = 0.0
 		if i < len(path_points) - 1:
 			# calculate. We have the 2 positions, start and destination
-			rotate_end = rad2deg(start.angle_to_point(destination)) + 180.0
+			rotate_end = rad_to_deg(start.angle_to_point(destination)) + 180.0
 		# TODO: Fix the maths for this
 		rotate_end = 0.0
 		anim.track_insert_key(rotate_index, total_time, rotate_end)
@@ -223,7 +223,7 @@ func highlight_off() -> void:
 
 func show_moves() -> void:
 	# show the moves we can take
-	var new_scene = move_scene.instance()
+	var new_scene = move_scene.instantiate()
 	new_scene.setup(road_data, unit_data.location)
 	move_node = new_scene
 	add_child(new_scene)

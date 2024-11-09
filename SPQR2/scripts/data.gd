@@ -18,7 +18,7 @@ var leader_unit: int = -1
 # where the mouse is, updated every frame
 var current_mouse_coords: Vector2 = Vector2(0.0, 0.0)
 var road_texture: ImageTexture = null
-# stop thinghs happening if something else is going on
+# stop things happening if something else is going on
 # for now, only set when a unit is move animated
 var animation_blocked: bool = false
 
@@ -135,8 +135,8 @@ class NewMapRegion:
 
 class NewNode:
 	var id: int
-	# rendered as millions, stored as 10,000's
 	var name: String
+	# 1 population = 10,000 people
 	var population: int
 	var romanisation: int
 	var wealth: int
@@ -192,30 +192,29 @@ func cleanup():
 func get_json_data(filepath):
 	# load a json file, check for errors and then return the data
 	# read the data and convert - return null if failed
-	var file: File = File.new()
-	if file.open(filepath, file.READ) != OK:
-		helpers.log('Could not read ' + filepath)
+	var json_as_text = FileAccess.get_file_as_string(filepath)
+	if json_as_text.is_empty():
+		helpers.log('Could not read %s' % filepath)
 		return null
-	var text: String = file.get_as_text()
-	file.close()
-	var result: JSONParseResult = JSON.parse(text)
-	if result.error == OK:
-		return result.result
-	return null
+	var json_as_dict = JSON.parse_string(json_as_text)
+	if json_as_dict == null:
+		helpers.log('Malformed JSON in %s' % filepath)
+		return null
+	return json_as_dict
 
 func get_node_data(data):
 	for i in data['nodes']:
 		rnodes.append(RNode.new(i))
-	rnodes.sort_custom(RNode, 'sort')
+	rnodes.sort_custom(Callable(RNode, 'sort'))
 	for i in data['roads']:
 		roads.append(Road.new(i))
-	roads.sort_custom(Road, 'sort')
+	roads.sort_custom(Callable(Road, 'sort'))
 	for i in data['regions']:
 		regions.append(MapRegion.new(i))
-	regions.sort_custom(MapRegion, 'sort')
+	regions.sort_custom(Callable(MapRegion, 'sort'))
 	for i in data['players']:
 		players.append(EnemyAI.new(i))
-	players.sort_custom(EnemyAI, 'sort')
+	players.sort_custom(Callable(EnemyAI, 'sort'))
 	units = get_units(data['nodes'])
 	helpers.log('Game data loaded')
 
@@ -259,13 +258,13 @@ func get_ascending_region_colors() -> Array:
 		var base_color = players[i.owner_id].base_color
 		region_owners.append([i.id, base_color, base_color])
 	# now we have [[region, color], [region, color], sort by region
-	region_owners.sort_custom(RegionSorter, 'sort')
+	region_owners.sort_custom(Callable(RegionSorter, 'sort'))
 	for i in shared_regions:
 		# this is [region_id, owner1, owner2]
 		region_owners[i[0]] = [i[0], players[i[1]].base_color, players[i[2]].base_color]
 	return region_owners
 
-func check_shared_regions() -> Dictionary:
+func check_shared_regions() -> Array:
 	# check all regions have only units of one color in them
 	# go through all units and put owner_id into a region buckets
 	var matches = {}
@@ -286,48 +285,39 @@ func check_shared_regions() -> Dictionary:
 			regions_with_different_units.append([key, data[0], data[1]])
 	return regions_with_different_units
 
-func get_region_owners_texture() -> Image:
-	var base_image = Image.new()
-	base_image.create(2, len(regions), false, Image.FORMAT_RGB8)
-	base_image.lock()
+func get_region_owners_texture() -> ImageTexture:
+	var base_image = Image.create(2, len(regions), false, Image.FORMAT_RGB8)
 	var ypos: int = 0
 	for i in get_ascending_region_colors():
 		# this cycles us through the following
 		base_image.set_pixel(0, ypos, i[1])
 		# this is the alternate color
 		base_image.set_pixel(1, ypos, i[2])
-		ypos += 1		
-	base_image.unlock()
+		ypos += 1
 	var img = ImageTexture.new()
 	img.create_from_image(base_image)
 	return img
 
 func get_unit_stats_texture() -> Image:
-	var base_image = Image.new()
-	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
-	base_image.lock()
+	var base_image = Image.create(1, len(regions), false, Image.FORMAT_RGB8)
 	var ypos: int = 0
 	for i in data.regions:
 		var c: float = (i.manpower * 10.0) / 256.0
 		var col: Color = Color(c, c / 1.5, c / 2.0)
 		base_image.set_pixel(0, ypos, col)
-		ypos += 1		
-	base_image.unlock()
+		ypos += 1
 	var img = ImageTexture.new()
 	img.create_from_image(base_image)
 	return img
 
 func get_money_stats_texture() -> Image:
-	var base_image = Image.new()
-	base_image.create(1, len(regions), false, Image.FORMAT_RGB8)
-	base_image.lock()
+	var base_image = Image.create(1, len(regions), false, Image.FORMAT_RGB8)
 	var ypos: int = 0
 	for i in data.regions:
 		var c: float = (i.money * 14.0) / 256.0
 		var col: Color = Color(c / 2.0, c / 2.0, c)
 		base_image.set_pixel(0, ypos, col)
-		ypos += 1		
-	base_image.unlock()
+		ypos += 1
 	var img = ImageTexture.new()
 	img.create_from_image(base_image)
 	return img
@@ -339,7 +329,7 @@ func get_unit_owner(unit_id: int) -> int:
 		return -1
 	return units[unit_id].owner_id
 
-func get_unit_move_nodes(unit_id: int) -> PoolIntArray:
+func get_unit_move_nodes(unit_id: int) -> PackedInt64Array:
 	# get the node the unit is in
 	return graph.get_connected_nodes(units[unit_id].location.id)
 
@@ -363,7 +353,7 @@ func load_road_images() -> void:
 	for i in roads:
 		for j in folder_names:
 			var limage = load('res://gfx/roads/' + j + '/road_' + str(i.id) + '.png')
-			i.rimages.append(limage.get_data())
+			i.rimages.append(limage)
 			count += 1
 	helpers.log('Loaded ' + str(count) + ' road images')
 
@@ -375,8 +365,7 @@ func get_road_index_from_condition(condition: float) -> int:
 	return 0
 
 func build_roads() -> void:
-	var road_image = Image.new()
-	road_image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
+	var road_image = Image.create(cn.MAP_PIXEL_SIZE.x, cn.MAP_PIXEL_SIZE.y, false, Image.FORMAT_RGBA8)
 	# now blit all the roads
 	for i in roads:
 		var rect = Rect2(0.0, 0.0, i.rimages[0].get_width(), i.rimages[0].get_height())
@@ -401,14 +390,16 @@ func get_road_arrows_from_node_id(node_id: int) -> Array:
 		var folder_name = '_away'
 		if i.start_node != node_id:
 			folder_name = '_towards'
-		var rimage = load('res://gfx/roads/arrow' + folder_name + '/road_' + str(i.id) + '.png')
-		# prevent name clashing - don't call road_texture
-		var r_tex = ImageTexture.new()
-		r_tex.create_from_image(rimage.get_data())
 		
-		var red_image = load('res://gfx/roads/red' + folder_name + '/road_' + str(i.id) + '.png')
-		var red_texture = ImageTexture.new()
-		red_texture.create_from_image(red_image.get_data())
+		
+		var filename = 'res://gfx/roads/arrow%s/road_%s.png' % [folder_name, str(i.id)]
+		var rimage = Image.load_from_file(filename)
+		# prevent name clashing - don't call road_texture
+		var r_tex = ImageTexture.create_from_image(rimage)
+		
+		filename = 'res://gfx/roads/red%s/road_%s.png' % [folder_name, str(i.id)]
+		var red_image = Image.load_from_file(filename)
+		var red_texture = ImageTexture.create_from_image(red_image)
 		
 		all_data.append(cn.RoadMoveDisplay.new(r_tex, red_texture, i.id, i.pos, i.points))
 	return all_data
@@ -503,7 +494,7 @@ func get_node_christian_text(christian) -> String:
 
 func get_troop_numbers(value: int) -> String:
 	# we have a number less than 99999, reduce the range
-	value = value / 1000.0
+	value = int(value / 1000)
 	# For all values 10 -> 99, reduce to int and return the string
 	if value >= 10.0:
 		return str(int(value)) + 'k'
