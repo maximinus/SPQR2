@@ -38,15 +38,16 @@ func _on_CoinButton_pressed() -> void:
 	play_mouse_click()
 	view_clicked.emit(cn.RegionDisplay.MONEY)
 
-func _on_Map_gui_input(event) -> void:
-	# left mouse click?
-	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		# reduce to UV co-ords and signal
-		var pos = event.position / MAP_SIZE
-		play_mouse_click()
-		map_clicked.emit(pos)
-
 func play_mouse_click():
 	if %MouseClick.playing == true:
 		%MouseClick.stop()
 	%MouseClick.play()
+
+func _on_map_gui_input(event: InputEvent) -> void:
+	# left mouse click?
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			play_mouse_click()
+			# reduce to UV co-ords and signal
+			var pos = event.position / MAP_SIZE
+			map_clicked.emit(pos)

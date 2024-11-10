@@ -1,4 +1,4 @@
-extends Control
+extends MarginContainer
 
 func _ready():
 	pass
@@ -12,5 +12,5 @@ func get_number_string(value: int):
 	return '%s,%s' % [str(thousands), str(units)]
 
 func set_gold_silver(gold: int, silver: int):
-	$Mrg/VBox/Money/GAmount.text = get_number_string(gold)
-	$Mrg/VBox/Money/SAmount.text = get_number_string(silver)
+	%GAmount.text = get_number_string(gold)
+	%SAmount.text = get_number_string(silver)

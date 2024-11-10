@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://46epfgeg5731" path="res://sfx/ui/button_click.wav" id="10"]
 
 [node name="MiniMap" type="VBoxContainer"]
+texture_filter = 1
 offset_right = 180.0
 offset_bottom = 160.0
 theme_override_constants/separation = 0
@@ -62,3 +63,5 @@ expand_mode = 1
 [node name="MouseClick" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("10")
+
+[connection signal="gui_input" from="Map" to="." method="_on_map_gui_input"]

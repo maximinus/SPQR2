@@ -1,17 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://gfx/ui_elements/tooltips/background.png" type="Texture2D" id=1]
-[ext_resource path="res://gfx/fonts/nimbus_roman_small.tres" type="FontFile" id=2]
-[ext_resource path="res://gfx/ui_elements/tooltips/large_nine_patch.png" type="Texture2D" id=3]
-[ext_resource path="res://gfx/fonts/nimbus_roman.tres" type="FontFile" id=5]
-[ext_resource path="res://scenes/right_sidebar/tooltips/RegionIconTooltip.gd" type="Script" id=6]
+[ext_resource type="Texture2D" uid="uid://veiixlaqhlqc" path="res://gfx/ui_elements/tooltips/large_nine_patch.png" id="1"]
+[ext_resource type="FontFile" path="res://gfx/fonts/nimbus_roman.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://bhovxajjaw243" path="res://gfx/ui_elements/tooltips/background.png" id="3"]
+[ext_resource type="Script" path="res://scenes/region_display/tooltips/RegionNodeSpecificTooltip.gd" id="4"]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 260, 80 )
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 240, 35 )
 
-[sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 3 )
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 200, 200 )
 offset_left = 4.0
 offset_right = 4.0
@@ -66,37 +65,32 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="RegionIconTooltip" type="Control"]
+[node name="RegionNodeSpecificTooltip" type="Control"]
 modulate = Color( 1, 1, 1, 0 )
-offset_right = 260.0
-offset_bottom = 80.0
-size_flags_horizontal = 3
+offset_right = 240.0
+offset_bottom = 35.0
+custom_minimum_size = Vector2( 240, 35 )
 size_flags_vertical = 3
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color( 0.34902, 0.243137, 0.243137, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1140.0
-offset_bottom = -720.0
-size_flags_horizontal = 3
+offset_right = 240.0
+offset_bottom = 35.0
 size_flags_vertical = 3
-texture = SubResource( 1 )
-stretch_mode = 3
+texture = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Panel" type="Panel" parent="."]
-offset_right = 260.0
-offset_bottom = 80.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource( 2 )
+theme_override_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -117,46 +111,29 @@ __meta__ = {
 [node name="VBox" type="VBoxContainer" parent="Panel/Mrg"]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 252.0
-offset_bottom = 72.0
+offset_right = 232.0
+offset_bottom = 35.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 7
+theme_override_constants/separation = 0
 
-[node name="Title" type="Label" parent="Panel/Mrg/VBox"]
-offset_right = 244.0
+[node name="MrgLbl" type="MarginContainer" parent="Panel/Mrg/VBox"]
+offset_right = 224.0
+offset_bottom = 27.0
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="Panel/Mrg/VBox/MrgLbl"]
+offset_right = 224.0
 offset_bottom = 19.0
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 5 )
-text = "Good food production"
-
-[node name="HBox" type="HBoxContainer" parent="Panel/Mrg/VBox"]
-offset_top = 26.0
-offset_right = 244.0
-offset_bottom = 64.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 8
-
-[node name="Icon" type="TextureRect" parent="Panel/Mrg/VBox/HBox"]
-offset_bottom = 38.0
-stretch_mode = 3
-
-[node name="Message" type="Label" parent="Panel/Mrg/VBox/HBox"]
-offset_left = 8.0
-offset_right = 244.0
-offset_bottom = 38.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_color = Color( 0.705882, 0.705882, 0.705882, 1 )
+size_flags_vertical = 5
 theme_override_fonts/font = ExtResource( 2 )
-text = "This region produces a surplus of food."
-autowrap = true
+text = "EMPTY"
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/FadeIn = SubResource( 3 )
 anims/FadeOut = SubResource( 4 )
 anims/RESET = SubResource( 5 )
 
-[connection signal="resized" from="Panel/Mrg/VBox/HBox/Message" to="." method="_on_Message_resized"]
+[connection signal="resized" from="Panel/Mrg/VBox" to="." method="_on_VBox_resized"]
 [connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://bvmrtf8mcdur8"]
 
 [ext_resource type="Texture2D" uid="uid://yvrndqb06tbp" path="res://gfx/ui_elements/right_sidebar/base_image.png" id="1_1ac4r"]
-[ext_resource type="PackedScene" uid="uid://djnrbtaeq1iid" path="res://scenes/right_sidebar/helpers/SidebarTitle.tscn" id="2_ewse3"]
+[ext_resource type="PackedScene" uid="uid://djnrbtaeq1iid" path="res://scenes/region_sidebar/single_node/SidebarTitle.tscn" id="2_ewse3"]
 [ext_resource type="Script" path="res://scenes/region_sidebar/region_sidebar.gd" id="2_gt2tw"]
 [ext_resource type="Texture2D" uid="uid://d16g8l7c60lrn" path="res://gfx/ui_elements/right_sidebar/climate_atlas.png" id="3_gf34c"]
 [ext_resource type="Texture2D" uid="uid://dmq5rofg250j7" path="res://gfx/ui_elements/right_sidebar/crops_tile.png" id="4_uddq3"]

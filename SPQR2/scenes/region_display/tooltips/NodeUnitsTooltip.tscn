@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://gfx/ui_elements/tooltips/large_nine_patch.png" type="Texture2D" id=1]
-[ext_resource path="res://gfx/ui_elements/tooltips/background.png" type="Texture2D" id=2]
-[ext_resource path="res://scenes/right_sidebar/tooltips/NodeUnitsTooltip.gd" type="Script" id=5]
-[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/army_morale.png" type="Texture2D" id=6]
-[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/army_foot.png" type="Texture2D" id=7]
-[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/army_mounted.png" type="Texture2D" id=8]
-[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/army_quality.png" type="Texture2D" id=9]
+[ext_resource type="Texture2D" uid="uid://veiixlaqhlqc" path="res://gfx/ui_elements/tooltips/large_nine_patch.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bhovxajjaw243" path="res://gfx/ui_elements/tooltips/background.png" id="2"]
+[ext_resource type="Script" path="res://scenes/region_display/tooltips/NodeUnitsTooltip.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://w1byox7nvkyl" path="res://gfx/ui_elements/right_sidebar/icons/army_morale.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b24yyiy77i15v" path="res://gfx/ui_elements/right_sidebar/icons/army_foot.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://ih4xj4mb00g8" path="res://gfx/ui_elements/right_sidebar/icons/army_mounted.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://ch2c2grpm2rqa" path="res://gfx/ui_elements/right_sidebar/icons/army_quality.png" id="9"]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )

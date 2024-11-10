@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://jisjbosu6wwm"]
+[gd_scene load_steps=6 format=3 uid="uid://jisjbosu6wwm"]
 
 [ext_resource type="FontFile" path="res://gfx/fonts/regular_roman.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://b3s0i7tcsoq3u" path="res://gfx/ui_elements/year_info/silver_icon.png" id="2"]
 [ext_resource type="FontFile" path="res://gfx/fonts/year_roman.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://b8h3b5x28sc28" path="res://gfx/ui_elements/year_info/gold_icon.png" id="4"]
+[ext_resource type="Script" path="res://scenes/year_info/YearInfo.gd" id="5"]
 
-[node name="Mrg" type="MarginContainer"]
+[node name="YearInfo" type="MarginContainer"]
 offset_right = 307.0
 offset_bottom = 60.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
+script = ExtResource("5")
 
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -33,6 +35,7 @@ layout_mode = 2
 texture = ExtResource("4")
 
 [node name="GAmount" type="Label" parent="VBox/Money"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 5
 theme_override_fonts/font = ExtResource("1")
@@ -44,6 +47,7 @@ layout_mode = 2
 texture = ExtResource("2")
 
 [node name="SAmount" type="Label" parent="VBox/Money"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 5
 theme_override_fonts/font = ExtResource("1")

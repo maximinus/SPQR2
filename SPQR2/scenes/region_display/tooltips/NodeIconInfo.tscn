@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://gfx/ui_elements/right_sidebar/node_icons_atlas.png" type="Texture2D" id=1]
-[ext_resource path="res://gfx/fonts/nimbus_roman_small.tres" type="FontFile" id=2]
-[ext_resource path="res://scenes/right_sidebar/tooltips/NodeIconInfo.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://bs4sg3p0suo8y" path="res://gfx/ui_elements/right_sidebar/node_icons_atlas.png" id="1"]
+[ext_resource type="FontFile" path="res://gfx/fonts/nimbus_roman_small.tres" id="2"]
+[ext_resource type="Script" path="res://scenes/region_display/tooltips/NodeIconInfo.gd" id="3"]
 
 [sub_resource type="AtlasTexture" id=1]
 resource_local_to_scene = true

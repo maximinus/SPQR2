@@ -65,7 +65,7 @@ func _ready():
 	# roads are done by this point, so set those up as well
 	$map_board.set_road_texture(data.road_texture)
 	# display correct money values
-	$CanvasLayer/Overlay.set_gold_silver(data.get_player_gold(), data.get_player_silver())
+	%GUIOverlay.set_gold_silver(data.get_player_gold(), data.get_player_silver())
 	# force a click on the Rome region to force update
 	check_region_click(cn.ROME_PROVINCE_COORDS)
 
@@ -118,10 +118,10 @@ func _input(event) -> void:
 	if event.is_action_pressed('zoom_in'):
 		# true: zoom in
 		set_zoom_level(zoom_level - ZOOM_FACTOR)
-	if event.is_action_pressed("zoom_out"):
+	if event.is_action_pressed('zoom_out'):
 		set_zoom_level(zoom_level + ZOOM_FACTOR)
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.button_pressed == true:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			# we could have check a unit, if the unit is accepting
 			if unit_selected != null:
 				if unit_selected.check_click() == true:
@@ -148,7 +148,7 @@ func check_region_click(coords) -> void:
 		# check range to be sure
 		if index >= 0 and index < len(data.regions):
 			# get the city details
-			$CanvasLayer/Overlay.update_region_info(data.regions[index])
+			%GUIOverlay.update_region_info(data.regions[index])
 
 func add_nodes() -> void:
 	for i in data.rnodes:
@@ -213,7 +213,7 @@ func check_mouse_drag() -> bool:
 		# middle mouse down?
 		if Input.is_action_pressed('middle_mouse'):
 			dragging = true
-			$CanvasLayer/Overlay.set_default_cursor_shape(Input.CURSOR_DRAG)
+			%GUIOverlay.set_default_cursor_shape(Input.CURSOR_DRAG)
 			# nothing to do this frame
 			# we don't need the mouse position, we need where the mouse IS relative to the ground plane
 			drag_offset = get_mouse_map_coords(false)
@@ -229,7 +229,7 @@ func check_mouse_drag() -> bool:
 			return true
 		else:
 			dragging = false
-			$CanvasLayer/Overlay.set_default_cursor_shape(Input.CURSOR_ARROW)
+			%GUIOverlay.set_default_cursor_shape(Input.CURSOR_ARROW)
 	return false
 
 func set_zoom_level(value) -> void:
@@ -356,7 +356,7 @@ func _on_Overlay_mini_map(pos) -> void:
 func update_minimap_pin() -> void:
 	# update where the pin is on the mini-map
 	var pin_pos = (camera_intersect / cn.MAP_PIXEL_SIZE)
-	$CanvasLayer/Overlay.update_map_pin(pin_pos)
+	%GUIOverlay.update_map_pin(pin_pos)
 
 func _on_Overlay_change_view(index) -> void:
 	# update the shader graphics to change the view

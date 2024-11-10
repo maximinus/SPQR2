@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://gfx/ui_elements/tooltips/large_nine_patch.png" type="Texture2D" id=1]
-[ext_resource path="res://gfx/ui_elements/tooltips/background.png" type="Texture2D" id=2]
-[ext_resource path="res://gfx/fonts/nimbus_roman_small.tres" type="FontFile" id=3]
-[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/happy.png" type="Texture2D" id=4]
-[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/money.png" type="Texture2D" id=5]
-[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/roman.png" type="Texture2D" id=6]
-[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/christian.png" type="Texture2D" id=7]
-[ext_resource path="res://gfx/ui_elements/right_sidebar/icons/population.png" type="Texture2D" id=8]
-[ext_resource path="res://scenes/right_sidebar/tooltips/NodeDetailsTooltip.gd" type="Script" id=9]
+[ext_resource type="Texture2D" uid="uid://veiixlaqhlqc" path="res://gfx/ui_elements/tooltips/large_nine_patch.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bhovxajjaw243" path="res://gfx/ui_elements/tooltips/background.png" id="2"]
+[ext_resource type="FontFile" path="res://gfx/fonts/nimbus_roman_small.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://cmv61ubs26dmr" path="res://gfx/ui_elements/right_sidebar/icons/happy.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dey3j1cxwgk5u" path="res://gfx/ui_elements/right_sidebar/icons/money.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dgj7656mbd0wd" path="res://gfx/ui_elements/right_sidebar/icons/roman.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bchdw4hrld11u" path="res://gfx/ui_elements/right_sidebar/icons/christian.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bguqoisdrtv2a" path="res://gfx/ui_elements/right_sidebar/icons/population.png" id="8"]
+[ext_resource type="Script" path="res://scenes/region_display/tooltips/NodeDetailsTooltip.gd" id="9"]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )

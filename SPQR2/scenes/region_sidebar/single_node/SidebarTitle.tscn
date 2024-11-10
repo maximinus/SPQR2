@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" path="res://gfx/fonts/nimbus_roman_title.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://ddu1ayh8oj0xi" path="res://gfx/ui_elements/right_sidebar/header_image.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://cxqy083k0k3d4" path="res://gfx/ui_elements/right_sidebar/title_overlay.png" id="3"]
-[ext_resource type="Script" path="res://scenes/right_sidebar/helpers/SidebarTitle.gd" id="4"]
+[ext_resource type="Script" path="res://scenes/region_sidebar/single_node/SidebarTitle.gd" id="4"]
 
 [sub_resource type="Shader" id="1"]
 code = "shader_type canvas_item;
@@ -28,6 +28,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1092.0
 offset_bottom = -735.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4")
 
 [node name="TextureRect" type="TextureRect" parent="."]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://1ri5pgfa36gi"]
+
+[ext_resource type="Script" path="res://scenes/test/test_shader.gd" id="1_e0wdq"]
+[ext_resource type="Shader" path="res://scenes/test/test_shader.gdshader" id="1_ny6nl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_inrue"]
+shader = ExtResource("1_ny6nl")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a1d2x"]
+size = Vector2(200, 200)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_e0wdq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_inrue")
+position = Vector2(747, 395)
+texture = SubResource("PlaceholderTexture2D_a1d2x")
