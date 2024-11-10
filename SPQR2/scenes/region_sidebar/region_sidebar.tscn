@@ -1,0 +1,212 @@
+[gd_scene load_steps=18 format=3 uid="uid://bvmrtf8mcdur8"]
+
+[ext_resource type="Texture2D" uid="uid://yvrndqb06tbp" path="res://gfx/ui_elements/right_sidebar/base_image.png" id="1_1ac4r"]
+[ext_resource type="PackedScene" uid="uid://djnrbtaeq1iid" path="res://scenes/right_sidebar/helpers/SidebarTitle.tscn" id="2_ewse3"]
+[ext_resource type="Script" path="res://scenes/region_sidebar/region_sidebar.gd" id="2_gt2tw"]
+[ext_resource type="Texture2D" uid="uid://d16g8l7c60lrn" path="res://gfx/ui_elements/right_sidebar/climate_atlas.png" id="3_gf34c"]
+[ext_resource type="Texture2D" uid="uid://dmq5rofg250j7" path="res://gfx/ui_elements/right_sidebar/crops_tile.png" id="4_uddq3"]
+[ext_resource type="Texture2D" uid="uid://b115dowk8u273" path="res://gfx/ui_elements/right_sidebar/terrain_atlas.png" id="5_gie4h"]
+[ext_resource type="Texture2D" uid="uid://bguqoisdrtv2a" path="res://gfx/ui_elements/right_sidebar/icons/population.png" id="6_jqhrk"]
+[ext_resource type="FontFile" uid="uid://dheh3iyn40gra" path="res://gfx/fonts/Dustismo_Roman.ttf" id="7_knpdx"]
+[ext_resource type="Texture2D" uid="uid://dgj7656mbd0wd" path="res://gfx/ui_elements/right_sidebar/icons/roman.png" id="8_rn3lp"]
+[ext_resource type="Texture2D" uid="uid://dey3j1cxwgk5u" path="res://gfx/ui_elements/right_sidebar/icons/money.png" id="9_im6dd"]
+[ext_resource type="Texture2D" uid="uid://cmv61ubs26dmr" path="res://gfx/ui_elements/right_sidebar/icons/happy.png" id="10_5mlud"]
+[ext_resource type="PackedScene" uid="uid://h7fcjcmxf6tk" path="res://scenes/region_sidebar/single_node/single_node.tscn" id="11_1wwai"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h6hsp"]
+texture = ExtResource("1_1ac4r")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jucmi"]
+atlas = ExtResource("3_gf34c")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvpgd"]
+atlas = ExtResource("4_uddq3")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vbuq"]
+atlas = ExtResource("5_gie4h")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="LabelSettings" id="LabelSettings_axj14"]
+line_spacing = 0.0
+font = ExtResource("7_knpdx")
+font_color = Color(0, 0, 0, 1)
+
+[node name="RegionSidebar" type="PanelContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(310, 533)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1090.0
+offset_bottom = -267.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_h6hsp")
+script = ExtResource("2_gt2tw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SidebarTitle" parent="VBoxContainer" instance=ExtResource("2_ewse3")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BoxMargin" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BoxMargin"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="Icons" type="HBoxContainer" parent="VBoxContainer/BoxMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/BoxMargin/VBoxContainer/Icons"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jucmi")
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/BoxMargin/VBoxContainer/Icons"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_lvpgd")
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/BoxMargin/VBoxContainer/Icons"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8vbuq")
+
+[node name="RegionData" type="MarginContainer" parent="VBoxContainer/BoxMargin/VBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 8
+
+[node name="Details" type="HBoxContainer" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 14
+
+[node name="PopBox" type="HBoxContainer" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="PopImg" type="TextureRect" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/PopBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_jqhrk")
+stretch_mode = 3
+
+[node name="PopLbl" type="Label" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/PopBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "4.2"
+label_settings = SubResource("LabelSettings_axj14")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArmyBox" type="HBoxContainer" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ArmyImg" type="TextureRect" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/ArmyBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_rn3lp")
+stretch_mode = 3
+
+[node name="ArmyLbl" type="Label" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/ArmyBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "B4"
+label_settings = SubResource("LabelSettings_axj14")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoneyBox" type="HBoxContainer" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="MoneyImg" type="TextureRect" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/MoneyBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("9_im6dd")
+stretch_mode = 3
+
+[node name="MoneyLbl" type="Label" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/MoneyBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "2K"
+label_settings = SubResource("LabelSettings_axj14")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HappyBox" type="HBoxContainer" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HappyImg" type="TextureRect" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/HappyBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_5mlud")
+stretch_mode = 3
+
+[node name="HappyLbl" type="Label" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/HappyBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "B"
+label_settings = SubResource("LabelSettings_axj14")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChristianBox" type="HBoxContainer" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ChristianImg" type="TextureRect" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/ChristianBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_jqhrk")
+stretch_mode = 3
+
+[node name="ChristianLbl" type="Label" parent="VBoxContainer/BoxMargin/VBoxContainer/RegionData/Details/ChristianBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0
+"
+label_settings = SubResource("LabelSettings_axj14")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SingleNode" parent="VBoxContainer/BoxMargin/VBoxContainer" instance=ExtResource("11_1wwai")]
+layout_mode = 2
+
+[node name="SingleNode2" parent="VBoxContainer/BoxMargin/VBoxContainer" instance=ExtResource("11_1wwai")]
+layout_mode = 2
+
+[node name="SingleNode3" parent="VBoxContainer/BoxMargin/VBoxContainer" instance=ExtResource("11_1wwai")]
+layout_mode = 2
+
+[node name="SingleNode4" parent="VBoxContainer/BoxMargin/VBoxContainer" instance=ExtResource("11_1wwai")]
+layout_mode = 2
+
+[node name="SingleNode5" parent="VBoxContainer/BoxMargin/VBoxContainer" instance=ExtResource("11_1wwai")]
+layout_mode = 2

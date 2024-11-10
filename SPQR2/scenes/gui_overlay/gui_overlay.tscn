@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://cirjsbiam65dm"]
+
+[ext_resource type="PackedScene" uid="uid://bevpsxmf8yoip" path="res://scenes/leader_display/AllLeaders.tscn" id="1_vvqe5"]
+[ext_resource type="PackedScene" uid="uid://jisjbosu6wwm" path="res://scenes/year_info/YearInfo.tscn" id="2_drnon"]
+[ext_resource type="PackedScene" uid="uid://bvmrtf8mcdur8" path="res://scenes/region_sidebar/region_sidebar.tscn" id="3_uswcw"]
+[ext_resource type="PackedScene" uid="uid://nondx8jey5xk" path="res://scenes/minimap/MiniMap.tscn" id="4_njv3s"]
+
+[node name="GUIOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Left" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AllLeaders" parent="HBoxContainer/Left" instance=ExtResource("1_vvqe5")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Spacer" type="Control" parent="HBoxContainer/Left"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="YearInfo" parent="HBoxContainer/Left" instance=ExtResource("2_drnon")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Right" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="RegionSidebar" parent="HBoxContainer/Right" instance=ExtResource("3_uswcw")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Control" type="Control" parent="HBoxContainer/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MiniMap" parent="HBoxContainer/Right" instance=ExtResource("4_njv3s")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8

@@ -1,37 +1,28 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://b1cgrjvneeawp"]
 
-[ext_resource path="res://scenes/right_sidebar/helpers/NodeHeader.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/right_sidebar/helpers/NodeFooter.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/right_sidebar/helpers/NodeDisplay.gd" type="Script" id=3]
+[ext_resource type="PackedScene" path="res://scenes/right_sidebar/helpers/NodeHeader.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c07mmylnfed2l" path="res://scenes/right_sidebar/helpers/NodeFooter.tscn" id="2"]
+[ext_resource type="Script" path="res://scenes/right_sidebar/helpers/NodeDisplay.gd" id="3"]
 
 [node name="NodeDisplay" type="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 78)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1144.0
 offset_bottom = -722.0
-custom_minimum_size = Vector2( 256, 78 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="NodeHeader" parent="VBoxContainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 256.0
-offset_bottom = 30.0
+[node name="NodeHeader" parent="VBoxContainer" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="NodeFooter" parent="VBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 30.0
-offset_right = 256.0
-offset_bottom = 78.0
+[node name="NodeFooter" parent="VBoxContainer" instance=ExtResource("2")]
+layout_mode = 2

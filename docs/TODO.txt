@@ -5,6 +5,32 @@ List of current goals: Mark with ✓ when done, * when not
 This is essentially the "how I will program the game" document
 
 
+Re-look
+-------
+
+This is seperate from below, and should be removed when done
+
+Convert the project to Godot4, such that:
+
+* The game runs
+* You can move things around
+* The highlight regions work
+
+Now follows a list of things that seem to be missing:
+
+* Fix mouse clicks
+* The anti-aliasing on the map is a bit shit
+* Also slapping it all on one shader is excessive, send to a canvas and use a simpler shader
+* The nodes on the right hand side are too deep
+* The pop-ups are excessive, and there's too much information with no text. Reduce information on the pop-ups
+* It's too dark, brighten it up a bit - get a map and take photos, and compare with the game
+* Make the editor work again
+* Document the editor, the game data API and the mechanics of the engine
+* Fix the "new" nodes and decide what is correct
+* The extra singletons that are just class definitions should be moved together
+* Add AI code to create portrait images (we only need 1 image, exact same pose, for all)
+
+
 Short Term:
 -----------
 

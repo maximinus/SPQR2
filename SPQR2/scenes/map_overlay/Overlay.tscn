@@ -25,6 +25,7 @@ offset_left = -308.0
 offset_right = 0.0
 offset_bottom = 537.0
 grow_horizontal = 0
+grow_vertical = 1
 
 [node name="MiniMap" parent="." instance=ExtResource("3")]
 anchors_preset = 0
@@ -38,6 +39,8 @@ mouse_filter = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="AllLeaders" parent="." instance=ExtResource("4")]
 mouse_filter = 2
