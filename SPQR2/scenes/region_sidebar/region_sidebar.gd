@@ -5,5 +5,5 @@ const SINGLE_NODE = preload('res://scenes/region_sidebar/single_node/single_node
 func _ready() -> void:
 	pass
 
-func update(region_node):
+func update(_region_node):
 	pass

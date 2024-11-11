@@ -1,30 +1,29 @@
-[gd_scene load_steps=12 format=3 uid="uid://dw10m0omdjcx8"]
+[gd_scene load_steps=13 format=3 uid="uid://dw10m0omdjcx8"]
 
 [ext_resource type="PackedScene" uid="uid://cjdns8vacefl8" path="res://gfx/map/map_board.glb" id="1"]
 [ext_resource type="PackedScene" uid="uid://h4tbsm06hwdx" path="res://gfx/map_table/table.glb" id="2"]
 [ext_resource type="Script" path="res://scenes/map_board/map_board.gd" id="3"]
-[ext_resource type="Shader" path="res://scenes/map_board/map_board.gdshader" id="3_b5uhy"]
-[ext_resource type="Texture2D" uid="uid://cbb48w67ij0k1" path="res://gfx/map/roughness.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://b8jkkxeuvxmkm" path="res://gfx/map/map_final.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://cqwq3usv8f6rx" path="res://gfx/map/map_regions.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://ck03oke2wcxk4" path="res://gfx/map/map_board_map_albedo.png" id="5_hgopk"]
 [ext_resource type="Texture2D" uid="uid://cdb7paxhs2bk6" path="res://gfx/map/map_borders.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://ctphy0qm2woi" path="res://gfx/map/map_owners_polyfill.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://b1r0qtlo4wb5o" path="res://gfx/map/map_regions_uncompressed.png" id="7_icu5t"]
 [ext_resource type="Texture2D" uid="uid://by6nvfr6k5vrc" path="res://gfx/map/empty_roads.png" id="9"]
+[ext_resource type="Shader" path="res://scenes/map_board/map_render.gdshader" id="11_fnldy"]
+[ext_resource type="Texture2D" uid="uid://nf7s7sqav1nh" path="res://gfx/map/owners_test_alt.png" id="12_n3qme"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6f7r"]
-render_priority = 0
-shader = ExtResource("3_b5uhy")
-shader_parameter/roughness_scale = 1.2
-shader_parameter/region_color = null
-shader_parameter/mouse_pos = null
-shader_parameter/brightness = 0.07
-shader_parameter/total_regions = 14.0
-shader_parameter/image_map = ExtResource("5")
-shader_parameter/rough_map = ExtResource("4")
-shader_parameter/region_map = ExtResource("6")
-shader_parameter/border_map = ExtResource("7")
-shader_parameter/road_map = ExtResource("9")
-shader_parameter/map_owners = ExtResource("8")
+[sub_resource type="ViewportTexture" id="ViewportTexture_3wqig"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_op16i"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_3wqig")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8isab"]
+resource_local_to_scene = true
+shader = ExtResource("11_fnldy")
+shader_parameter/regions = ExtResource("7_icu5t")
+shader_parameter/borders = ExtResource("7")
+shader_parameter/owners = ExtResource("12_n3qme")
+shader_parameter/roads = ExtResource("9")
 
 [node name="map_board" instance=ExtResource("1")]
 script = ExtResource("3")
@@ -32,6 +31,15 @@ script = ExtResource("3")
 [node name="GameBoard" parent="." index="0"]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
-surface_material_override/1 = SubResource("ShaderMaterial_v6f7r")
+surface_material_override/1 = SubResource("StandardMaterial3D_op16i")
 
 [node name="table" parent="." index="1" instance=ExtResource("2")]
+
+[node name="SubViewport" type="SubViewport" parent="." index="2"]
+size = Vector2i(6000, 4000)
+
+[node name="MapRender" type="Sprite2D" parent="SubViewport" index="0"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_8isab")
+texture = ExtResource("5_hgopk")
+centered = false
