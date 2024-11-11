@@ -20,6 +20,8 @@ albedo_texture = SubResource("ViewportTexture_3wqig")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8isab"]
 resource_local_to_scene = true
 shader = ExtResource("11_fnldy")
+shader_parameter/highlight_mix = Color(0.666569, 0.666569, 0.666569, 0.501961)
+shader_parameter/selected_region = -1
 shader_parameter/regions = ExtResource("7_icu5t")
 shader_parameter/borders = ExtResource("7")
 shader_parameter/owners = ExtResource("12_n3qme")

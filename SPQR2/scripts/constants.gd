@@ -26,7 +26,6 @@ const MUSIC_VOLUME_DEFAULT: float = -2.0
 const SFX_VOLUME_DEFAULT: float = 0.0
 const MUSIC_PLAYING_DEFAULT: bool = true
 
-
 class RoadMoveDisplay:
 	# helper function to store details for displaying movements
 	var image: ImageTexture

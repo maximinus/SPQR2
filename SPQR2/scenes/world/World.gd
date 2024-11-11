@@ -102,17 +102,19 @@ func check_ui_actions() -> void:
 			['Refuse the request', 'Withdraw forces', 'Ignore the request'])
 
 func set_map_color() -> void:
-	# pass mouse position to shader
-	$map_board.set_mouse(map_intersect / cn.MAP_PIXEL_SIZE)
 	# now test against the pixel map. In range?
 	if map_intersect.x >= 0.0 and map_intersect.x < cn.MAP_PIXEL_SIZE.x:
 		if map_intersect.y >= 0.0 and map_intersect.y < cn.MAP_PIXEL_SIZE.y:
 			# yes, we need to set a color
 			var col = region_map.get_pixel(map_intersect.x, map_intersect.y)
-			$map_board.set_region_color(Vector3(col.r, col.g, col.b))
+			# if the alpha is not 1, reset
+			if col.a != 1.0:
+				$map_board.set_region(-1)
+			else:
+				$map_board.set_region(helpers.get_index_from_region_color(col))
 			return
 	# set color to white, i.e. tell the shader there is no region
-	$map_board.set_region_color(Vector3(1.0, 1.0, 1.0))
+	$map_board.set_region(-1)
 
 func _input(event) -> void:
 	if event.is_action_pressed('zoom_in'):
